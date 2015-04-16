@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.multiplatform.services;
 
-/**
+/** TODO: melhorar descrição
  * Interface para chamadas as APIs de Leaderboards...
  */
 public interface Leaderboards {
