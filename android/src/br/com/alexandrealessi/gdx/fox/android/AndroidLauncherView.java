@@ -5,8 +5,10 @@ package br.com.alexandrealessi.gdx.fox.android;
  */
 public interface AndroidLauncherView {
 
-    public void showConnected ();
-    public void showConnectionSuspended ();
-    public void showConnectionFailed ();
+    public void showConnected();
+
+    public void showConnectionSuspended();
+
+    public void showConnectionFailed();
 
 }

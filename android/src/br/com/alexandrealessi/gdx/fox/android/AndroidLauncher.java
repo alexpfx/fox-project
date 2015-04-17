@@ -2,14 +2,13 @@ package br.com.alexandrealessi.gdx.fox.android;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.widget.Toast;
+import br.com.alexandrealessi.gdx.fox.MainGame;
 import br.com.alexandrealessi.gdx.fox.android.services.google.GoogleApiConnector;
 import br.com.alexandrealessi.gdx.fox.android.services.google.GoogleApiLeaderboards;
 import br.com.alexandrealessi.gdx.fox.android.services.google.services.common.ApiConnector;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import br.com.alexandrealessi.gdx.fox.MainGame;
 
 public class AndroidLauncher extends AndroidApplication implements AndroidLauncherView {
 
@@ -25,7 +24,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
         googlePlayConnector = new GoogleApiConnector(this);
 
         /*
-		Important: Because it is hard to anticipate the state of each device, you must always check for a
+        Important: Because it is hard to anticipate the state of each device, you must always check for a
 		compatible Google Play services APK before you access Google Play services features.
 		 */
     }
@@ -47,14 +46,13 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 9001){
+        /* Fazer de outra maneira, pois assim está com problema de coesão: */
+        /* Fazer esta verificação na classe GoogleApiConnector*/
+        if (requestCode == 9001) {
             Toast.makeText(getApplicationContext(), "resolveu", Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
-    //
     @Override
     public void showConnected() {
         Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
