@@ -5,8 +5,8 @@ package br.com.alexandrealessi.gdx.fox.android.services.google.services.common;
  */
 public interface ApiConnector {
 
-    public void onStart();
+    public void connect();
 
-    public void onStop();
+    public void disconnect();
 
 }
