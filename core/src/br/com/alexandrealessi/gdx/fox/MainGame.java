@@ -1,5 +1,6 @@
 package br.com.alexandrealessi.gdx.fox;
 
+import br.com.alexandrealessi.gdx.fox.multiplatform.services.Leaderboards;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,7 +10,20 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MainGame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	
+	Leaderboards leaderboards;
+
+
+	/**
+	 * Construtor usado quando não se pretende usar serviço de Leaderboards
+	 */
+	public MainGame() {
+		this (Leaderboards.NULL);
+	}
+
+	public MainGame(Leaderboards leaderboards) {
+		this.leaderboards = leaderboards;
+	}
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -19,10 +33,11 @@ public class MainGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(1, .5f, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.draw(img, 0, 0);
 		batch.end();
 	}
+
 }
