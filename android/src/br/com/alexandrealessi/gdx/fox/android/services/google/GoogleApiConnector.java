@@ -9,6 +9,7 @@ import br.com.alexandrealessi.gdx.fox.android.services.google.services.common.Ap
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.plus.Plus;
 import com.google.example.games.basegameutils.GameHelper;
 
 /**
@@ -17,7 +18,7 @@ import com.google.example.games.basegameutils.GameHelper;
 public class GoogleApiConnector implements ApiConnector, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     public static final int RC_SIGN_IN = 9001;
     //    https://developers.google.com/games/services/checklist#improving_the_sign_in_experience_for_games
-    private GoogleApiClient mGoogleApiClient;
+    private GoogleApiClient googleApiClient;
     private AndroidLauncherView view;
     private Activity launcher;
     private GameHelper gameHelper;
@@ -25,11 +26,13 @@ public class GoogleApiConnector implements ApiConnector, GoogleApiClient.Connect
     public GoogleApiConnector(AndroidLauncher androidLauncher) {
         view = (AndroidLauncherView) androidLauncher;
         launcher = androidLauncher;
-        mGoogleApiClient = new GoogleApiClient.Builder(androidLauncher.getApplicationContext())
+        googleApiClient = new GoogleApiClient.Builder(androidLauncher.getApplicationContext())
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
-                .addApi(Games.API).addScope(Games.SCOPE_GAMES).build();
-
+                .addApi(Plus.API)
+                .addApi(Games.API)
+                .addScope(Plus.SCOPE_PLUS_LOGIN)
+                .addScope(Games.SCOPE_GAMES).build();
     }
 
     @Override
@@ -48,7 +51,7 @@ public class GoogleApiConnector implements ApiConnector, GoogleApiClient.Connect
             try {
                 connectionResult.startResolutionForResult(launcher, RC_SIGN_IN);
             } catch (IntentSender.SendIntentException e) {
-                mGoogleApiClient.connect();
+                googleApiClient.connect();
             }
         } else {
             view.showConnectionFailed();
@@ -57,11 +60,15 @@ public class GoogleApiConnector implements ApiConnector, GoogleApiClient.Connect
 
     @Override
     public void connect() {
-        mGoogleApiClient.connect();
+        googleApiClient.connect();
     }
 
     @Override
     public void disconnect() {
-        mGoogleApiClient.disconnect();
+        googleApiClient.disconnect();
+    }
+
+    public GoogleApiClient getGoogleApiClient() {
+        return googleApiClient;
     }
 }
