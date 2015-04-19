@@ -30,6 +30,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
         setContentView(baseLayout);
         inflatePlusOneButton(baseLayout);
         googlePlayServicesPresenter = new GooglePlayServicesPresenterImpl(this, this);
+
     }
 
     private AndroidApplicationConfiguration getAndroidApplicationConfig() {
@@ -101,34 +102,33 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
 
     }
 
+    // OnPlusOneClickListener
+
     @Override
     public void onPlusOneClick(Intent intent) {
         startActivityForResult(intent, 0);
     }
 
-    //* request handler
+    // RequestHandler
+
     @Override
     public boolean isConnected() {
-
         return false;
     }
 
     @Override
     public void submitScore(String key, long score) {
         googlePlayServicesPresenter.submitScore(key, score);
-
     }
 
     @Override
     public void incrementAchievment(String achievmentId, int amount) {
         googlePlayServicesPresenter.incrementAchievment(achievmentId, amount);
-
     }
 
     @Override
     public void unlockAchievment(String achievmentId) {
         googlePlayServicesPresenter.unlockAchievment(achievmentId);
-
     }
 
     @Override
