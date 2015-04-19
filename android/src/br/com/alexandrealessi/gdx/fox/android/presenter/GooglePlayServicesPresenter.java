@@ -3,11 +3,10 @@ package br.com.alexandrealessi.gdx.fox.android.presenter;
 /**
  * Created by alexandre on 19/04/15.
  */
-public interface LoginAtGooglePresenter {
+public interface GooglePlayServicesPresenter {
 
+    void connect();
 
-    void connect ();
-
-    void disconnect ();
+    void disconnect();
 
 }

@@ -14,14 +14,14 @@ import com.google.android.gms.plus.Plus;
 /**
  * Created by alexandre on 19/04/15.
  */
-public class GoogleApiClientInteractorImpl implements GoogleApiClientInteractor, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
-    private GoogleApiClient googleApiClient;
+public class GooglePlayServicesInteractorImpl implements GooglePlayServicesInteractor, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+    private final GoogleApiClient googleApiClient;
     private Context context;
     private OnConnectionResultReceivedListener onConnectionResultReceivedListener;
     private boolean mResolvingError = false;
-    private final String tag = GoogleApiClientInteractor.class.getName();
+    private final String tag = LogonServicesInteractor.class.getName();
 
-    public GoogleApiClientInteractorImpl(Context context, OnConnectionResultReceivedListener onConnectionResultReceivedListener) {
+    public GooglePlayServicesInteractorImpl(Context context, OnConnectionResultReceivedListener onConnectionResultReceivedListener) {
         this.context = context;
         this.onConnectionResultReceivedListener = onConnectionResultReceivedListener;
         googleApiClient = new GoogleApiClient.Builder(context)
@@ -31,6 +31,7 @@ public class GoogleApiClientInteractorImpl implements GoogleApiClientInteractor,
                 .addScope(Plus.SCOPE_PLUS_LOGIN)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this).build();
+
     }
 
     @Override
@@ -73,6 +74,34 @@ public class GoogleApiClientInteractorImpl implements GoogleApiClientInteractor,
             mResolvingError = false;
             Log.e(tag, "Exception while starting resolution activity");
         }
+    }
+
+    @Override
+    public void submitScore(String key, long score) {
+        if (isConnected()) {
+            Games.Leaderboards.submitScore(googleApiClient, key, score);
+        }
 
     }
+
+    @Override
+    public void incrementAchievment(String achievmentId, int amount) {
+        if (isConnected()) {
+            Games.Achievements.increment(googleApiClient, achievmentId, amount);
+        }
+
+    }
+
+    @Override
+    public void unlockAchievment(String achievmentId) {
+        if (isConnected()) {
+            Games.Achievements.unlock(googleApiClient, achievmentId);
+        }
+
+    }
+
+    private boolean isConnected() {
+        return googleApiClient != null && googleApiClient.isConnected();
+    }
+
 }
