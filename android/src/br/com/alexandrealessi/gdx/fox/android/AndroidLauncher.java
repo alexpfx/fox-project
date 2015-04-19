@@ -9,15 +9,17 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import br.com.alexandrealessi.gdx.fox.MainGame;
-import br.com.alexandrealessi.gdx.fox.android.services.google.GoogleApiClientWrapper;
-import br.com.alexandrealessi.gdx.fox.android.services.google.GoogleApiLeaderboardsInterface;
+import br.com.alexandrealessi.gdx.fox.RequestHandler;
+import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenter;
+import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenterImpl;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.plus.PlusOneButton;
 
-public class AndroidLauncher extends AndroidApplication implements AndroidLauncherView, PlusOneButton.OnPlusOneClickListener {
-    private GoogleApiClientWrapper googlePlayConnector;
+public class AndroidLauncher extends AndroidApplication implements AndroidLauncherView, PlusOneButton.OnPlusOneClickListener, RequestHandler {
+
     private PlusOneButton plusOneButton;
+    private GooglePlayServicesPresenter googlePlayServicesPresenter;
 
 //    private RelativeLayout baseViewLayout;
 
@@ -29,14 +31,12 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO: varias interfaces serao passadas para MainGame. Considerar utilizar fluence pattern.
-        final MainGame mainGame = new MainGame(new GoogleApiLeaderboardsInterface());
+        final MainGame mainGame = new MainGame(new AndroidRequestHandler(this));
         AndroidApplicationConfiguration config = getAndroidApplicationConfig();
+
         RelativeLayout baseLayout = inflateBaseView(config, mainGame);
         inflatePlusOneButton(baseLayout);
-        //TODO: criar presenter
-
-        googlePlayConnector = new GoogleApiClientWrapper(this);
+        googlePlayServicesPresenter = new GooglePlayServicesPresenterImpl(this, this);
     }
 
     private AndroidApplicationConfiguration getAndroidApplicationConfig() {
@@ -65,14 +65,13 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     @Override
     protected void onStart() {
         super.onStart();
-        googlePlayConnector.connect();
+        googlePlayServicesPresenter.connect();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        googlePlayConnector.disconnect();
-
+        googlePlayServicesPresenter.disconnect();
     }
 
     @Override
@@ -112,6 +111,34 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     @Override
     public void onPlusOneClick(Intent intent) {
         startActivityForResult(intent, 0);
+    }
+
+
+    //* request handler
+    @Override
+    public boolean isConnected() {
+
+        return false;
+    }
+
+    @Override
+    public void submitScore(String key, long score) {
+
+
+    }
+
+    @Override
+    public void incrementAchievment(String achievmentId, int amount) {
+
+    }
+
+    @Override
+    public void unlockAchievment(String achievmentId) {
+
+    }
+
+    @Override
+    public void setPlusOneButtonVisible(boolean visible) {
 
     }
 }
