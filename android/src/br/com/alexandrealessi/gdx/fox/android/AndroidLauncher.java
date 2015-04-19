@@ -16,7 +16,6 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.plus.PlusOneButton;
 
 public class AndroidLauncher extends AndroidApplication implements AndroidLauncherView, PlusOneButton.OnPlusOneClickListener {
-    private static final String url = "https://market.android.com/details?id=br.com.alexmob.games.halley.comet";
     private GoogleApiClientWrapper googlePlayConnector;
     private PlusOneButton plusOneButton;
 
@@ -30,11 +29,13 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //TODO: varias interfaces serao passadas para MainGame. Considerar utilizar fluence pattern.
         final MainGame mainGame = new MainGame(new GoogleApiLeaderboardsInterface());
         AndroidApplicationConfiguration config = getAndroidApplicationConfig();
-        RelativeLayout baseViewLayout = getBaseLayout(config, mainGame);
-        plusOneButton = addPlusOneButton(baseViewLayout);
-        setContentView(baseViewLayout);
+        RelativeLayout baseLayout = inflateBaseView(config, mainGame);
+        inflatePlusOneButton(baseLayout);
+        //TODO: criar presenter
+
         googlePlayConnector = new GoogleApiClientWrapper(this);
     }
 
@@ -42,17 +43,17 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
         return new AndroidApplicationConfiguration();
     }
 
-    private RelativeLayout getBaseLayout(AndroidApplicationConfiguration config, MainGame mainGame) {
+    private RelativeLayout inflateBaseView(AndroidApplicationConfiguration config, MainGame mainGame) {
         RelativeLayout layout = new RelativeLayout(this);
         final View view = initializeForView(mainGame, config);
         layout.addView(view);
         return layout;
     }
 
-    private PlusOneButton addPlusOneButton(RelativeLayout baseViewLayout) {
+    private void inflatePlusOneButton(RelativeLayout baseViewLayout) {
         View plusOneLayout = LayoutInflater.from(getApplicationContext()).inflate(R.layout.android_launcher_layout, null);
         baseViewLayout.addView(plusOneLayout, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        return (PlusOneButton) plusOneLayout.findViewById(R.id.plus_one_button);
+        plusOneButton = (PlusOneButton) plusOneLayout.findViewById(R.id.plus_one_button);
     }
 
     private void setupWindow() {
@@ -88,11 +89,8 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     @Override
     protected void onResume() {
         super.onResume();
-        plusOneButton.initialize(url, this);
-
-
-//        plusOneButton = (PlusOneButton) findViewById(R.id.plus_one_button);
-//        plusOneButton.initialize(URL, 9004);
+        final String shareUrl = getString(R.string.app_share_url);
+        plusOneButton.initialize(shareUrl, this);
     }
 
     @Override

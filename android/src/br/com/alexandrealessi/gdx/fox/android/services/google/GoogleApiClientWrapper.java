@@ -64,7 +64,4 @@ public class GoogleApiClientWrapper implements GoogleApiClient.ConnectionCallbac
         googleApiClient.disconnect();
     }
 
-    public GoogleApiClient getGoogleApiClient() {
-        return googleApiClient;
-    }
 }
