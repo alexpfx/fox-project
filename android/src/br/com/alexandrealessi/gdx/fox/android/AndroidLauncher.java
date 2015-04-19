@@ -27,6 +27,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
         final MainGame mainGame = new MainGame(new AndroidRequestHandler(this));
         AndroidApplicationConfiguration config = getAndroidApplicationConfig();
         RelativeLayout baseLayout = inflateBaseView(config, mainGame);
+        setContentView(baseLayout);
         inflatePlusOneButton(baseLayout);
         googlePlayServicesPresenter = new GooglePlayServicesPresenterImpl(this, this);
     }
