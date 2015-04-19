@@ -16,10 +16,10 @@ import com.google.android.gms.plus.Plus;
  */
 public class GooglePlayServicesInteractorImpl implements GooglePlayServicesInteractor, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private final GoogleApiClient googleApiClient;
+    private final String tag = LogonServicesInteractor.class.getName();
     private Context context;
     private OnConnectionResultReceivedListener onConnectionResultReceivedListener;
     private boolean mResolvingError = false;
-    private final String tag = LogonServicesInteractor.class.getName();
 
     public GooglePlayServicesInteractorImpl(Context context, OnConnectionResultReceivedListener onConnectionResultReceivedListener) {
         this.context = context;

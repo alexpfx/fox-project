@@ -15,5 +15,4 @@ public interface GooglePlayServicesPresenter {
 
     void unlockAchievment(String achievmentId);
 
-
 }

@@ -21,13 +21,6 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     private PlusOneButton plusOneButton;
     private GooglePlayServicesPresenter googlePlayServicesPresenter;
 
-//    private RelativeLayout baseViewLayout;
-
-            /*
-        Important: Because it is hard to anticipate the state of each device, you must always check for a
-		compatible Google Play services APK before you access Google Play services features.
-		 */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
