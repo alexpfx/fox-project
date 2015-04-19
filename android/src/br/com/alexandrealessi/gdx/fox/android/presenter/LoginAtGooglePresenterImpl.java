@@ -16,7 +16,7 @@ public class LoginAtGooglePresenterImpl implements LoginAtGooglePresenter, Googl
 
     public LoginAtGooglePresenterImpl(Context context, AndroidLauncherView view) {
         this.context = context;
-        googleApiClientInteractor = new GoogleApiClientInteractorImpl(context);
+        googleApiClientInteractor = new GoogleApiClientInteractorImpl(context, this);
         this.view = view;
     }
 
