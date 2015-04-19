@@ -1,6 +1,6 @@
 android {
     buildToolsVersion "21.1.2"
-    compileSdkVersion 20
+    compileSdkVersion 22
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -12,7 +12,9 @@ android {
         }
 
         instrumentTest.setRoot('tests')
+
     }
+
     defaultConfig{
         multiDexEnabled = true
     }
@@ -120,5 +122,6 @@ idea {
                 }
             }
         }
+        downloadSources = true
     }
 }
