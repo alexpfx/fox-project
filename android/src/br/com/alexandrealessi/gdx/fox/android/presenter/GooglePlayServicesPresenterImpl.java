@@ -33,6 +33,21 @@ public class GooglePlayServicesPresenterImpl implements GooglePlayServicesPresen
     }
 
     @Override
+    public void submitScore(String key, long score) {
+        googlePlayServicesInteractor.submitScore(key, score);
+    }
+
+    @Override
+    public void incrementAchievment(String achievmentId, int amount) {
+        googlePlayServicesInteractor.incrementAchievment(achievmentId, amount);
+    }
+
+    @Override
+    public void unlockAchievment(String achievmentId) {
+        googlePlayServicesInteractor.unlockAchievment(achievmentId);
+    }
+
+    @Override
     public void onConnectionFailed() {
         view.showConnectionFailed();
     }

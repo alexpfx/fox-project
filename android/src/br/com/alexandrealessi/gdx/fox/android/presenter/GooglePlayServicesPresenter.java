@@ -9,4 +9,11 @@ public interface GooglePlayServicesPresenter {
 
     void disconnect();
 
+    void submitScore(String key, long score);
+
+    void incrementAchievment(String achievmentId, int amount);
+
+    void unlockAchievment(String achievmentId);
+
+
 }

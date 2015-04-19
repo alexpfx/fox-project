@@ -33,7 +33,6 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
         super.onCreate(savedInstanceState);
         final MainGame mainGame = new MainGame(new AndroidRequestHandler(this));
         AndroidApplicationConfiguration config = getAndroidApplicationConfig();
-
         RelativeLayout baseLayout = inflateBaseView(config, mainGame);
         inflatePlusOneButton(baseLayout);
         googlePlayServicesPresenter = new GooglePlayServicesPresenterImpl(this, this);
@@ -113,7 +112,6 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
         startActivityForResult(intent, 0);
     }
 
-
     //* request handler
     @Override
     public boolean isConnected() {
@@ -123,22 +121,24 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
 
     @Override
     public void submitScore(String key, long score) {
-
+        googlePlayServicesPresenter.submitScore(key, score);
 
     }
 
     @Override
     public void incrementAchievment(String achievmentId, int amount) {
+        googlePlayServicesPresenter.incrementAchievment(achievmentId, amount);
 
     }
 
     @Override
     public void unlockAchievment(String achievmentId) {
+        googlePlayServicesPresenter.unlockAchievment(achievmentId);
 
     }
 
     @Override
     public void setPlusOneButtonVisible(boolean visible) {
-
+        plusOneButton.setVisibility((visible) ? View.VISIBLE : View.GONE);
     }
 }
