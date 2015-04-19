@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox;
 
-import br.com.alexandrealessi.gdx.fox.multiplatform.services.Leaderboards;
+import br.com.alexandrealessi.gdx.fox.multiplatform.services.LeaderboardsInterface;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -10,18 +10,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MainGame extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	Leaderboards leaderboards;
+	LeaderboardsInterface leaderboardsInterface;
 
 
 	/**
-	 * Construtor usado quando não se pretende usar serviço de Leaderboards
+	 * Construtor usado quando nao se pretende usar servico de LeaderboardsInterface
 	 */
 	public MainGame() {
-		this (Leaderboards.NULL);
+		this (LeaderboardsInterface.NULL);
 	}
 
-	public MainGame(Leaderboards leaderboards) {
-		this.leaderboards = leaderboards;
+	public MainGame(LeaderboardsInterface leaderboardsInterface) {
+		this.leaderboardsInterface = leaderboardsInterface;
 	}
 
 	@Override

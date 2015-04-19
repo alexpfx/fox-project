@@ -1,11 +1,11 @@
 package br.com.alexandrealessi.gdx.fox.android.services.google;
 
-import br.com.alexandrealessi.gdx.fox.multiplatform.services.Leaderboards;
+import br.com.alexandrealessi.gdx.fox.multiplatform.services.LeaderboardsInterface;
 
 /**
  * Created by alexandre on 16/04/15.
  */
-public class GoogleApiLeaderboards implements Leaderboards {
+public class GoogleApiLeaderboardsInterface implements LeaderboardsInterface {
     @Override
     public void submitScore(String key, int score) {
 

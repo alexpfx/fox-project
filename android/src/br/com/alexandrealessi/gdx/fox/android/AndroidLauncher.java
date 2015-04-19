@@ -2,23 +2,22 @@ package br.com.alexandrealessi.gdx.fox.android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import br.com.alexandrealessi.gdx.fox.MainGame;
-import br.com.alexandrealessi.gdx.fox.android.services.google.GoogleApiConnector;
-import br.com.alexandrealessi.gdx.fox.android.services.google.GoogleApiLeaderboards;
-import br.com.alexandrealessi.gdx.fox.android.services.google.services.common.ApiConnector;
+import br.com.alexandrealessi.gdx.fox.android.services.google.GoogleApiClientWrapper;
+import br.com.alexandrealessi.gdx.fox.android.services.google.GoogleApiLeaderboardsInterface;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.PlusOneButton;
 
-public class AndroidLauncher extends AndroidApplication implements AndroidLauncherView {
-    private static final String URL = "https://developers.google.com/+";
-    private ApiConnector googlePlayConnector;
+public class AndroidLauncher extends AndroidApplication implements AndroidLauncherView, PlusOneButton.OnPlusOneClickListener {
+    private static final String url = "https://market.android.com/details?id=br.com.alexmob.games.halley.comet";
+    private GoogleApiClientWrapper googlePlayConnector;
     private PlusOneButton plusOneButton;
 
 //    private RelativeLayout baseViewLayout;
@@ -31,12 +30,12 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final MainGame mainGame = new MainGame(new GoogleApiLeaderboards());
+        final MainGame mainGame = new MainGame(new GoogleApiLeaderboardsInterface());
         AndroidApplicationConfiguration config = getAndroidApplicationConfig();
         RelativeLayout baseViewLayout = getBaseLayout(config, mainGame);
-        googlePlayConnector = new GoogleApiConnector(this);
         plusOneButton = addPlusOneButton(baseViewLayout);
         setContentView(baseViewLayout);
+        googlePlayConnector = new GoogleApiClientWrapper(this);
     }
 
     private AndroidApplicationConfiguration getAndroidApplicationConfig() {
@@ -51,18 +50,9 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     }
 
     private PlusOneButton addPlusOneButton(RelativeLayout baseViewLayout) {
-        PlusOneButton plusOneButton = new PlusOneButton(this);
-        plusOneButton.setAnnotation(PlusOneButton.ANNOTATION_BUBBLE);
-        plusOneButton.setSize(PlusOneButton.SIZE_TALL);
-        plusOneButton.setVisibility(View.VISIBLE);
-
-        RelativeLayout.LayoutParams plusOneButtonParams =
-                new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        plusOneButtonParams.addRule(RelativeLayout.ALIGN_TOP);
-        plusOneButtonParams.addRule(RelativeLayout.ALIGN_RIGHT);
-        baseViewLayout.addView(plusOneButton, plusOneButtonParams);
-        return plusOneButton;
-
+        View plusOneLayout = LayoutInflater.from(getApplicationContext()).inflate(R.layout.android_launcher_layout, null);
+        baseViewLayout.addView(plusOneLayout, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        return (PlusOneButton) plusOneLayout.findViewById(R.id.plus_one_button);
     }
 
     private void setupWindow() {
@@ -89,7 +79,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 9001) {
             Toast.makeText(getApplicationContext(), "resolveu", Toast.LENGTH_SHORT).show();
-        }else if (requestCode == 9004){
+        } else if (requestCode == 9004) {
             Toast.makeText(getApplicationContext(), "plusOneButtonInitialize", Toast.LENGTH_SHORT).show();
         }
 
@@ -98,11 +88,12 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     @Override
     protected void onResume() {
         super.onResume();
-        final GoogleApiClient googleApiClient = ((GoogleApiConnector) googlePlayConnector).getGoogleApiClient();
-        plusOneButton.initialize(URL, 9004);
+        plusOneButton.initialize(url, this);
+
+
+//        plusOneButton = (PlusOneButton) findViewById(R.id.plus_one_button);
+//        plusOneButton.initialize(URL, 9004);
     }
-
-
 
     @Override
     public void showConnected() {
@@ -120,4 +111,9 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
 
     }
 
+    @Override
+    public void onPlusOneClick(Intent intent) {
+        startActivityForResult(intent, 0);
+
+    }
 }

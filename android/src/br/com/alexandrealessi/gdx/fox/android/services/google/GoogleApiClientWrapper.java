@@ -5,25 +5,23 @@ import android.content.IntentSender;
 import android.os.Bundle;
 import br.com.alexandrealessi.gdx.fox.android.AndroidLauncher;
 import br.com.alexandrealessi.gdx.fox.android.AndroidLauncherView;
-import br.com.alexandrealessi.gdx.fox.android.services.google.services.common.ApiConnector;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.plus.Plus;
-import com.google.example.games.basegameutils.GameHelper;
 
 /**
  * Created by alexandre on 16/04/15.
  */
-public class GoogleApiConnector implements ApiConnector, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class GoogleApiClientWrapper implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     public static final int RC_SIGN_IN = 9001;
+
     //    https://developers.google.com/games/services/checklist#improving_the_sign_in_experience_for_games
     private GoogleApiClient googleApiClient;
     private AndroidLauncherView view;
     private Activity launcher;
-    private GameHelper gameHelper;
 
-    public GoogleApiConnector(AndroidLauncher androidLauncher) {
+    public GoogleApiClientWrapper(AndroidLauncher androidLauncher) {
         view = (AndroidLauncherView) androidLauncher;
         launcher = androidLauncher;
         googleApiClient = new GoogleApiClient.Builder(androidLauncher.getApplicationContext())
@@ -58,12 +56,10 @@ public class GoogleApiConnector implements ApiConnector, GoogleApiClient.Connect
         }
     }
 
-    @Override
     public void connect() {
         googleApiClient.connect();
     }
 
-    @Override
     public void disconnect() {
         googleApiClient.disconnect();
     }
