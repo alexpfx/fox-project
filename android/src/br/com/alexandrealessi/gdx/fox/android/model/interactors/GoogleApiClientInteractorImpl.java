@@ -46,6 +46,7 @@ public class GoogleApiClientInteractorImpl implements GoogleApiClientInteractor,
     @Override
     public void onConnected(Bundle bundle) {
         Log.d(tag, "connected");
+        mResolvingError = false;
         onConnectionResultReceivedListener.onConnectionSuccess();
     }
 
@@ -62,13 +63,14 @@ public class GoogleApiClientInteractorImpl implements GoogleApiClientInteractor,
         if (!result.hasResolution()) {
             GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(), (Activity) context, 0).show();
             onConnectionResultReceivedListener.onConnectionFailed();
-            mResolvingError = true;
+            mResolvingError = false;
             return;
         }
         try {
             mResolvingError = true;
             result.startResolutionForResult((Activity) context, 0);
         } catch (IntentSender.SendIntentException e) {
+            mResolvingError = false;
             Log.e(tag, "Exception while starting resolution activity");
         }
 
