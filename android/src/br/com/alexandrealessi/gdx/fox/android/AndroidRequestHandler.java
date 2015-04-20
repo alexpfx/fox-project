@@ -20,17 +20,17 @@ public class AndroidRequestHandler implements RequestHandler {
     }
 
     @Override
-    public void submitScore(String key, long score) {
+    public void submitScore(String mappedKey, long score) {
 
     }
 
     @Override
-    public void incrementAchievment(String achievmentId, int amount) {
+    public void incrementAchievment(String mappedKey, int amount) {
 
     }
 
     @Override
-    public void unlockAchievment(String achievmentId) {
+    public void unlockAchievment(String mappedKey) {
 
     }
 

@@ -117,18 +117,18 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     }
 
     @Override
-    public void submitScore(String key, long score) {
-        googlePlayServicesPresenter.submitScore(key, score);
+    public void submitScore(String mappedKey, long score) {
+        googlePlayServicesPresenter.submitScore(mappedKey, score);
     }
 
     @Override
-    public void incrementAchievment(String achievmentId, int amount) {
-        googlePlayServicesPresenter.incrementAchievment(achievmentId, amount);
+    public void incrementAchievment(String mappedKey, int amount) {
+        googlePlayServicesPresenter.incrementAchievment(mappedKey, amount);
     }
 
     @Override
-    public void unlockAchievment(String achievmentId) {
-        googlePlayServicesPresenter.unlockAchievment(achievmentId);
+    public void unlockAchievment(String mappedKey) {
+        googlePlayServicesPresenter.unlockAchievment(mappedKey);
     }
 
     @Override

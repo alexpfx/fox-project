@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MainGame extends ApplicationAdapter {
     SpriteBatch batch;
     Texture img;
-    RequestHandler leaderboardsInterface;
+    RequestHandler requestHandler;
 
     /**
      * Construtor usado quando nao se pretende usar servico de LeaderboardsInterface
@@ -18,8 +18,8 @@ public class MainGame extends ApplicationAdapter {
         this(RequestHandler.NULL);
     }
 
-    public MainGame(RequestHandler leaderboardsInterface) {
-        this.leaderboardsInterface = leaderboardsInterface;
+    public MainGame(RequestHandler requestHand) {
+        this.requestHandler = requestHand;
     }
 
     @Override
@@ -29,8 +29,13 @@ public class MainGame extends ApplicationAdapter {
 
     }
 
+    int x = 0;
+
     @Override
     public void render() {
+        if (x ++ == 50000){ //TESTE
+            requestHandler.submitScore(GameServicesKeys.LEADERBOARD_BEST_FOXES.key, 10);
+        }
         Gdx.gl.glClearColor(1f, 1f, 1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
