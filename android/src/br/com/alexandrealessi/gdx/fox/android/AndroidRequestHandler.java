@@ -22,6 +22,7 @@ public class AndroidRequestHandler implements RequestHandler {
     @Override
     public void submitScore(String mappedKey, long score) {
 
+
     }
 
     @Override

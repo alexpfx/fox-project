@@ -24,7 +24,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final MainGame mainGame = new MainGame(new AndroidRequestHandler(this));
+        final MainGame mainGame = new MainGame(this);
         AndroidApplicationConfiguration config = getAndroidApplicationConfig();
         RelativeLayout baseLayout = inflateBaseView(config, mainGame);
         setContentView(baseLayout);
