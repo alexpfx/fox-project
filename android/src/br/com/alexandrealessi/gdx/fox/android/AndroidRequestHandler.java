@@ -1,7 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.android;
 
 import android.content.Context;
-import br.com.alexandrealessi.gdx.fox.RequestHandler;
+import br.com.alexandrealessi.gdx.fox.base.RequestHandler;
 
 /**
  * Created by alexandre on 19/04/15.

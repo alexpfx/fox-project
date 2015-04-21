@@ -18,8 +18,8 @@ public class GooglePlayServicesPresenterImpl implements GooglePlayServicesPresen
 
     public GooglePlayServicesPresenterImpl(Context context, AndroidLauncherView view) {
         this.context = context;
-        googlePlayServicesInteractor = new GooglePlayServicesInteractorImpl(context, this);
         this.view = view;
+        googlePlayServicesInteractor = new GooglePlayServicesInteractorImpl(context, this);
     }
 
     @Override

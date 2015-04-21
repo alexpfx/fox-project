@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import br.com.alexandrealessi.gdx.fox.MainGame;
-import br.com.alexandrealessi.gdx.fox.RequestHandler;
+import br.com.alexandrealessi.gdx.fox.base.BaseGame;
+import br.com.alexandrealessi.gdx.fox.base.RequestHandler;
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenter;
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenterImpl;
+import br.com.alexandrealessi.gdx.fox.soccer.SoccerGame;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.plus.PlusOneButton;
@@ -20,26 +22,45 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
 
     private PlusOneButton plusOneButton;
     private GooglePlayServicesPresenter googlePlayServicesPresenter;
+    private Button btnCallSoccerGame;
+    private SoccerGame soccerGame;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final MainGame mainGame = new MainGame(this);
-        AndroidApplicationConfiguration config = getAndroidApplicationConfig();
-        RelativeLayout baseLayout = inflateBaseView(config, mainGame);
-        setContentView(baseLayout);
-        inflatePlusOneButton(baseLayout);
+        loadGame(soccerGame = new SoccerGame(this));
         googlePlayServicesPresenter = new GooglePlayServicesPresenterImpl(this, this);
 
+        btnCallSoccerGame = (Button) findViewById(R.id.btnCallSoccerGame);
+        btnCallSoccerGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadGame(new SoccerGame(AndroidLauncher.this));
+            }
+        });
+    }
+
+    private void loadGame (BaseGame game){
+        final AndroidApplicationConfiguration config = getAndroidApplicationConfig();
+        RelativeLayout baseLayout = setContentViewWithGameView(config, game);
+        inflatePlusOneButton(baseLayout);
+
+    }
+
+    private RelativeLayout setContentViewWithGameView(AndroidApplicationConfiguration config, BaseGame baseGame) {
+        RelativeLayout baseLayout = inflateBaseView(config, baseGame);
+        setContentView(baseLayout);
+        return baseLayout;
     }
 
     private AndroidApplicationConfiguration getAndroidApplicationConfig() {
         return new AndroidApplicationConfiguration();
     }
 
-    private RelativeLayout inflateBaseView(AndroidApplicationConfiguration config, MainGame mainGame) {
+    private RelativeLayout inflateBaseView(AndroidApplicationConfiguration config, BaseGame baseGame) {
         RelativeLayout layout = new RelativeLayout(this);
-        final View view = initializeForView(mainGame, config);
+        final View view = initializeForView(baseGame, config);
         layout.addView(view);
         return layout;
     }

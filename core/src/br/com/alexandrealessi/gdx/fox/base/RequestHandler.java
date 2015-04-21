@@ -1,20 +1,9 @@
-package br.com.alexandrealessi.gdx.fox;
+package br.com.alexandrealessi.gdx.fox.base;
 
 /**
  * Created by alexandre on 19/04/15.
  */
 public interface RequestHandler {
-
-    boolean isConnected();
-
-    void submitScore(String key, long score);
-
-    void incrementAchievment(String achievmentId, int amount);
-
-    void unlockAchievment(String achievmentId);
-
-    void setPlusOneButtonVisible(boolean visible);
-
 
     static RequestHandler NULL = new RequestHandler() {
         @Override
@@ -42,5 +31,15 @@ public interface RequestHandler {
 
         }
     };
+
+    boolean isConnected();
+
+    void submitScore(String key, long score);
+
+    void incrementAchievment(String achievmentId, int amount);
+
+    void unlockAchievment(String achievmentId);
+
+    void setPlusOneButtonVisible(boolean visible);
 
 }

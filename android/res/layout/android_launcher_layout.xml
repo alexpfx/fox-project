@@ -5,6 +5,7 @@
                 android:layout_height="match_parent"
 
     >
+
     <com.google.android.gms.plus.PlusOneButton
 
         android:id="@+id/plus_one_button"
@@ -16,6 +17,23 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        />
+
+    <Button
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/btnCallSoccerGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soccer"
+        />
+
+    <Button
+        android:layout_toRightOf="@id/btnCallSoccerGame"
+        android:id="@+id/btnCallFlappyGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flappy Game"
         />
 
 </RelativeLayout>
