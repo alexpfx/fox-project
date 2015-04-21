@@ -8,7 +8,12 @@ import android.util.Log;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.GamesStatusCodes;
+import com.google.android.gms.games.achievement.Achievements;
+import com.google.android.gms.games.leaderboard.Leaderboards;
 import com.google.android.gms.plus.Plus;
 
 /**
@@ -79,15 +84,33 @@ public class GooglePlayServicesInteractorImpl implements GooglePlayServicesInter
     @Override
     public void submitScore(String key, long score) {
         if (isConnected()) {
-            Games.Leaderboards.submitScore(googleApiClient, key, score);
-        }
+            Games.Leaderboards.submitScoreImmediate(googleApiClient, key, score).setResultCallback(new ResultCallback<Leaderboards.SubmitScoreResult>() {
+                @Override
+                public void onResult(Leaderboards.SubmitScoreResult submitScoreResult) {
+                    final Status status = submitScoreResult.getStatus();
+                    if (status.getStatusCode() == 0) {
+                        Log.d(tag, "ok");
+                        return;
+                    }
 
+                }
+            });
+        }
     }
+
 
     @Override
     public void incrementAchievment(String achievmentId, int amount) {
         if (isConnected()) {
             Games.Achievements.increment(googleApiClient, achievmentId, amount);
+            Games.Achievements.incrementImmediate(googleApiClient, achievmentId, amount).setResultCallback(new ResultCallback<Achievements.UpdateAchievementResult>() {
+                @Override
+                public void onResult(Achievements.UpdateAchievementResult updateAchievementResult) {
+                    if (updateAchievementResult.getStatus().getStatusCode() == GamesStatusCodes.STATUS_OK){
+                        Log.d(tag, "ok");
+                    }
+                }
+            });
         }
 
     }
@@ -95,7 +118,14 @@ public class GooglePlayServicesInteractorImpl implements GooglePlayServicesInter
     @Override
     public void unlockAchievment(String achievmentId) {
         if (isConnected()) {
-            Games.Achievements.unlock(googleApiClient, achievmentId);
+            Games.Achievements.unlockImmediate(googleApiClient, achievmentId).setResultCallback(new ResultCallback<Achievements.UpdateAchievementResult>() {
+                @Override
+                public void onResult(Achievements.UpdateAchievementResult updateAchievementResult) {
+                    if (updateAchievementResult.getStatus().getStatusCode() == GamesStatusCodes.STATUS_OK){
+                        Log.d(tag, "ok");
+                    }
+                }
+            });
         }
 
     }

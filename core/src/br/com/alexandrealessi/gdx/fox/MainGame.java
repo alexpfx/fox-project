@@ -33,9 +33,6 @@ public class MainGame extends ApplicationAdapter {
 
     @Override
     public void render() {
-        if ((++x  % 1000) == 0){ //TESTE
-            requestHandler.submitScore(GameServicesKeys.LEADERBOARD_BEST_FOXES.key, 10);
-        }
         Gdx.gl.glClearColor(1f, 1f, 1f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
