@@ -13,6 +13,7 @@ import br.com.alexandrealessi.gdx.fox.base.BaseGame;
 import br.com.alexandrealessi.gdx.fox.base.RequestHandler;
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenter;
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenterImpl;
+import br.com.alexandrealessi.gdx.fox.comet.CometGame;
 import br.com.alexandrealessi.gdx.fox.soccer.SoccerGame;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -23,22 +24,35 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     private PlusOneButton plusOneButton;
     private GooglePlayServicesPresenter googlePlayServicesPresenter;
     private Button btnCallSoccerGame;
+    private Button btnCallCometGame;
     private SoccerGame soccerGame;
+    private CometGame cometGame;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadGame(soccerGame = new SoccerGame(this));
+        soccerGame = new SoccerGame(this);
+        cometGame = new CometGame(this);
+        loadGame(soccerGame);
         googlePlayServicesPresenter = new GooglePlayServicesPresenterImpl(this, this);
 
         btnCallSoccerGame = (Button) findViewById(R.id.btnCallSoccerGame);
         btnCallSoccerGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadGame(new SoccerGame(AndroidLauncher.this));
+                loadGame(soccerGame);
             }
         });
+
+        btnCallCometGame = (Button) findViewById(R.id.btnCallCometGame);
+        btnCallCometGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadGame(cometGame);
+            }
+        });
+
     }
 
     private void loadGame (BaseGame game){
@@ -58,8 +72,9 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
         return new AndroidApplicationConfiguration();
     }
 
+    RelativeLayout layout;
     private RelativeLayout inflateBaseView(AndroidApplicationConfiguration config, BaseGame baseGame) {
-        RelativeLayout layout = new RelativeLayout(this);
+        layout = new RelativeLayout(this);
         final View view = initializeForView(baseGame, config);
         layout.addView(view);
         return layout;
@@ -68,7 +83,9 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     private void inflatePlusOneButton(RelativeLayout baseViewLayout) {
         View plusOneLayout = LayoutInflater.from(getApplicationContext()).inflate(R.layout.android_launcher_layout, null);
         baseViewLayout.addView(plusOneLayout, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        plusOneButton = (PlusOneButton) plusOneLayout.findViewById(R.id.plus_one_button);
+        if (plusOneButton == null){
+            plusOneButton = (PlusOneButton) plusOneLayout.findViewById(R.id.plus_one_button);
+        }
     }
 
     private void setupWindow() {

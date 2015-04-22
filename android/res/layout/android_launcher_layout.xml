@@ -30,10 +30,10 @@
 
     <Button
         android:layout_toRightOf="@id/btnCallSoccerGame"
-        android:id="@+id/btnCallFlappyGame"
+        android:id="@+id/btnCallCometGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Flappy Game"
+        android:text="Comet Game"
         />
 
 </RelativeLayout>
