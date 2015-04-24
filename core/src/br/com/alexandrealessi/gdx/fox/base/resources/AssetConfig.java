@@ -6,7 +6,7 @@ package br.com.alexandrealessi.gdx.fox.base.resources;
 public abstract class AssetConfig {
 
     public static final String FONTS = "/fonts/";
-    public static final String GRAPHICS = "/graphics/";
+    public static final String IMAGES = "/images/";
     public static final String SOUNDS = "/sounds/";
 
     public abstract String getAssetBaseDirectory();
@@ -16,7 +16,7 @@ public abstract class AssetConfig {
     }
 
     public String getGraphicDirectory() {
-        return GRAPHICS;
+        return IMAGES;
     }
 
     public String getSoundDirectory() {

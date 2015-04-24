@@ -9,7 +9,7 @@ public class SaturnSimpleAssetConfig extends AssetConfig {
 
     @Override
     public String getAssetBaseDirectory() {
-        return "res/saturn";
+        return "saturn";
     }
 
     @Override
