@@ -1,3 +1,12 @@
-fontes instaladas:
-ethnocentric
-squared display
+----------- Anotações
+Considerar o uso de tile maps do libgdx para cosntruir estrutura de layers ou usar estrutura implementada no Halley Comet.
+
+
+----------- Recursos
+- ferramentas -
+:TexturePacker
+:Overlap2d
+
+- fontes -
+:ethnocentric
+:squared display
