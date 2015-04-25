@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.saturn;
+package br.com.alexandrealessi.gdx.fox.overlapexample;
 
 import br.com.alexandrealessi.gdx.fox.base.BaseGame;
 import br.com.alexandrealessi.gdx.fox.base.RequestHandler;
@@ -15,7 +15,6 @@ public class OverlapExampleGame extends BaseGame {
     @Override
     public void create() {
         setScreen(new OverlapExampleScreen(this));
-
     }
 
     @Override

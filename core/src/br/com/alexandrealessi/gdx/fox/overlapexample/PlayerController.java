@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.saturn;
+package br.com.alexandrealessi.gdx.fox.overlapexample;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.uwsoft.editor.renderer.actor.CompositeItem;

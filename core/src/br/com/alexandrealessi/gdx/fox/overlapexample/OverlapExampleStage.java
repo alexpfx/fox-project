@@ -1,8 +1,7 @@
-package br.com.alexandrealessi.gdx.fox.saturn;
+package br.com.alexandrealessi.gdx.fox.overlapexample;
 
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.gushikustudios.rube.loader.RubeSceneLoader;
 import com.uwsoft.editor.renderer.Overlap2DStage;
-import com.uwsoft.editor.renderer.SceneLoader;
 import com.uwsoft.editor.renderer.resources.ResourceManager;
 
 /**
@@ -20,6 +19,10 @@ public class OverlapExampleStage extends Overlap2DStage {
         addActor(sceneLoader.getRoot());
         PlayerController player = new PlayerController();
         sceneLoader.getRoot().getCompositeById("player").addScript(player);
+
+        RubeSceneLoader sceneLoader;
+
+
 
     }
 }

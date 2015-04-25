@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.saturn;
+package br.com.alexandrealessi.gdx.fox.overlapexample;
 
 import br.com.alexandrealessi.gdx.fox.base.BaseGame;
 import br.com.alexandrealessi.gdx.fox.base.BaseScreen;

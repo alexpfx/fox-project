@@ -1,9 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.desktop;
 
 import br.com.alexandrealessi.gdx.fox.base.RequestHandler;
-import br.com.alexandrealessi.gdx.fox.comet.CometGame;
-import br.com.alexandrealessi.gdx.fox.saturn.OverlapExampleGame;
-import br.com.alexandrealessi.gdx.fox.soccer.SoccerGame;
+import br.com.alexandrealessi.gdx.fox.overlapexample.OverlapExampleGame;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
