@@ -14,6 +14,7 @@ public class SaturnSimpleAssetConfig extends AssetConfig {
 
     @Override
     public String[] getAtlasFiles() {
+
         return new String[]{"game.atlas", "gui.atlas"};
     }
 }
