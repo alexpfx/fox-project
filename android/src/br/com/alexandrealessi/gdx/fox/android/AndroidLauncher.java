@@ -9,12 +9,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import br.com.alexandrealessi.gdx.fox.base.BaseGame;
+import br.com.alexandrealessi.gdx.fox.base.BaseGame2;
 import br.com.alexandrealessi.gdx.fox.base.RequestHandler;
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenter;
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenterImpl;
-import br.com.alexandrealessi.gdx.fox.comet.CometGame;
-import br.com.alexandrealessi.gdx.fox.soccer.SoccerGame;
+import br.com.alexandrealessi.gdx.fox.overlapexample.OverlapExampleGame;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.plus.PlusOneButton;
@@ -25,44 +24,26 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     private GooglePlayServicesPresenter googlePlayServicesPresenter;
     private Button btnCallSoccerGame;
     private Button btnCallCometGame;
-    private SoccerGame soccerGame;
-    private CometGame cometGame;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        soccerGame = new SoccerGame(this);
-        cometGame = new CometGame(this);
-        loadGame(soccerGame);
+//        soccerGame = new OverlapExampleGame(this);
+        loadGame(new OverlapExampleGame(this));
         googlePlayServicesPresenter = new GooglePlayServicesPresenterImpl(this, this);
 
-        btnCallSoccerGame = (Button) findViewById(R.id.btnCallSoccerGame);
-        btnCallSoccerGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadGame(soccerGame);
-            }
-        });
-
-        btnCallCometGame = (Button) findViewById(R.id.btnCallCometGame);
-        btnCallCometGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadGame(cometGame);
-            }
-        });
 
     }
 
-    private void loadGame (BaseGame game){
+    private void loadGame (BaseGame2 game){
         final AndroidApplicationConfiguration config = getAndroidApplicationConfig();
         RelativeLayout baseLayout = setContentViewWithGameView(config, game);
         inflatePlusOneButton(baseLayout);
 
     }
 
-    private RelativeLayout setContentViewWithGameView(AndroidApplicationConfiguration config, BaseGame baseGame) {
+    private RelativeLayout setContentViewWithGameView(AndroidApplicationConfiguration config, BaseGame2 baseGame) {
         RelativeLayout baseLayout = inflateBaseView(config, baseGame);
         setContentView(baseLayout);
         return baseLayout;
@@ -73,7 +54,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     }
 
     RelativeLayout layout;
-    private RelativeLayout inflateBaseView(AndroidApplicationConfiguration config, BaseGame baseGame) {
+    private RelativeLayout inflateBaseView(AndroidApplicationConfiguration config, BaseGame2 baseGame) {
         layout = new RelativeLayout(this);
         final View view = initializeForView(baseGame, config);
         layout.addView(view);

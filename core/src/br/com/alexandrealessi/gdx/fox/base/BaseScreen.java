@@ -15,9 +15,11 @@ public abstract class BaseScreen extends ScreenAdapter {
     protected SpriteBatch batch;
     private Color color = Color.BLACK;
 
+
     public BaseScreen(BaseGame game) {
         this.game = game;
         batch = new SpriteBatch();
+
     }
 
     @Override

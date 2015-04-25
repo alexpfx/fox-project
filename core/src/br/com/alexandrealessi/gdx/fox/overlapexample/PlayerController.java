@@ -10,11 +10,11 @@ import com.uwsoft.editor.renderer.script.IScript;
 public class PlayerController implements IScript {
     private CompositeItem item;
     private Body body;
+
     @Override
     public void init(CompositeItem item) {
         this.item = item;
         this.body = item.getBody();
-        body.setLinearVelocity(-10, 0);
     }
 
     @Override
@@ -24,6 +24,7 @@ public class PlayerController implements IScript {
 
     @Override
     public void act(float delta) {
+        item.setPosition(body.getPosition().x, body.getPosition().y);
 
     }
 }

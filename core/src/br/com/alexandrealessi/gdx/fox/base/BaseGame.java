@@ -10,9 +10,4 @@ public abstract class BaseGame extends Game {
         this.requestHandler = requestHand;
     }
 
-    @Override
-    public void render() {
-        super.render();
-
-    }
 }
