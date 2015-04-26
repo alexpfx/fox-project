@@ -2,7 +2,6 @@ package br.com.alexandrealessi.gdx.fox.car.stages;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.gushikustudios.rube.RubeScene;
@@ -19,23 +18,13 @@ public class CarsGameStage extends Stage {
         super(new StretchViewport(viewPort.x, viewPort.y));
     }
 
-
-
-    private void loadScene (){
+    private void loadScene() {
         RubeSceneLoader rubeSceneLoader = new RubeSceneLoader();
         final RubeScene scene = rubeSceneLoader.loadScene(Gdx.files.internal(RUBE_SCENE_FILE));
     }
 
-    public void loadActors (RubeScene scene){
-        
-
+    public void loadActors(RubeScene scene) {
 
     }
-
-
-
-
-
-
 
 }
