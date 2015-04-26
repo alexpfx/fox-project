@@ -102,7 +102,6 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-ai:$aiVersion"
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         compile 'com.underwaterapps.overlap2druntime:overlap2d-runtime-libgdx:0.0.9'
-        compile 'com.google.code.gson:gson:2.3.1'
 
     }
 }
