@@ -36,9 +36,6 @@ public class OverlapExampleStage extends Overlap2DStage {
 
         carController = new CarController();
 
-
-
-
         Body chassiBody = scene.getNamed(Body.class, "chassi").get(0);
         Body rodadianteira = scene.getNamed(Body.class, "rodaDianteira").get(0);
         Body rodatraseira = scene.getNamed(Body.class, "rodaTraseira").get(0);
