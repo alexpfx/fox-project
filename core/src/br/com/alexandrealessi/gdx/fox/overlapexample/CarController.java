@@ -2,7 +2,11 @@ package br.com.alexandrealessi.gdx.fox.overlapexample;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Joint;
+import com.badlogic.gdx.physics.box2d.JointEdge;
+import com.badlogic.gdx.physics.box2d.joints.WheelJoint;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import com.uwsoft.editor.renderer.actor.CompositeItem;
 import com.uwsoft.editor.renderer.actor.ImageItem;
 import com.uwsoft.editor.renderer.script.IScript;
@@ -16,13 +20,23 @@ public class CarController implements IScript {
     ImageItem rodaDianteira;
     ImageItem rodaTraseira;
     final float WORLD_TO_SCREEN = 31.5f;
+    private WheelJoint eixoDianteiro;
+    private Body chassiBody;
 
     @Override
     public void init(CompositeItem item) {
         this.item = item;
         chassi = item.getImageById("chassi");
+        chassiBody = chassi.getBody();
+
         rodaDianteira = item.getImageById("rodaDianteira");
         rodaTraseira = item.getImageById("rodaTraseira");
+
+
+        eixoDianteiro = (WheelJoint) chassiBody.getJointList().get(0).joint;
+        eixoDianteiro.enableMotor(true);
+
+
     }
 
     @Override
@@ -32,7 +46,7 @@ public class CarController implements IScript {
 
     @Override
     public void act(float delta) {
-        final Body chassiBody = chassi.getBody();
+
         float x = chassiBody.getPosition().x * WORLD_TO_SCREEN + 400 - (chassi.getWidth() / 2);
         float y = chassiBody.getPosition().y * WORLD_TO_SCREEN + 240 - (chassi.getHeight() / 2);
         float r = chassiBody.getAngle() * MathUtils.radDeg;
@@ -60,5 +74,26 @@ public class CarController implements IScript {
         rodaTraseira.setOrigin(Align.center);
         rodaTraseira.setRotation(r);
 
+
+
     }
+
+    public void accelerate (){
+        System.out.println("accel");
+        eixoDianteiro.enableMotor(true);
+        eixoDianteiro.setMotorSpeed(motorSpeed);
+    }
+
+    public void stop (){
+        eixoDianteiro.enableMotor(false);
+    }
+
+
+    float motorSpeed = -1000;
+    public void desaccelarete ( ){
+        eixoDianteiro.enableMotor(true);
+        eixoDianteiro.setMotorSpeed(-motorSpeed);
+
+    }
+
 }
