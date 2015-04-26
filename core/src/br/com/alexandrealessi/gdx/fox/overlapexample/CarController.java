@@ -1,6 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.overlapexample;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.JointEdge;
@@ -47,6 +48,7 @@ public class CarController implements IScript {
     @Override
     public void act(float delta) {
 
+        System.out.println(chassi.getWidth());
         float x = chassiBody.getPosition().x * WORLD_TO_SCREEN + 400 - (chassi.getWidth() / 2);
         float y = chassiBody.getPosition().y * WORLD_TO_SCREEN + 240 - (chassi.getHeight() / 2);
         float r = chassiBody.getAngle() * MathUtils.radDeg;
@@ -74,25 +76,35 @@ public class CarController implements IScript {
         rodaTraseira.setOrigin(Align.center);
         rodaTraseira.setRotation(r);
 
+        eixoDianteiro.setMaxMotorTorque(100);
+
 
 
     }
+
 
     public void accelerate (){
         System.out.println("accel");
         eixoDianteiro.enableMotor(true);
-        eixoDianteiro.setMotorSpeed(motorSpeed);
+        eixoDianteiro.setMotorSpeed((motorSpeed += 1) * -1);
+
+//        eixoDianteiro.getBodyA().getWorld().setGravity(Vector2.X.set(0,-50));
+
     }
 
     public void stop (){
+//        eixoDianteiro.enableMotor(false);
         eixoDianteiro.enableMotor(false);
+        motorSpeed = 0;
+//        eixoDianteiro.getBodyA().getWorld().setGravity(Vector2.X.set(0, -10));
     }
 
 
-    float motorSpeed = -1000;
+    float motorSpeed = 0;
+
     public void desaccelarete ( ){
         eixoDianteiro.enableMotor(true);
-        eixoDianteiro.setMotorSpeed(-motorSpeed);
+        eixoDianteiro.setMotorSpeed((motorSpeed += 1));
 
     }
 

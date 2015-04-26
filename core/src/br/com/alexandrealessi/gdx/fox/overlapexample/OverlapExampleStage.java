@@ -3,17 +3,20 @@ package br.com.alexandrealessi.gdx.fox.overlapexample;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.gushikustudios.rube.RubeScene;
 import com.gushikustudios.rube.loader.RubeSceneLoader;
-import com.uwsoft.editor.renderer.Overlap2DStage;
-import com.uwsoft.editor.renderer.actor.CompositeItem;
+import com.gushikustudios.rube.loader.serializers.utils.RubeImage;
 import com.uwsoft.editor.renderer.resources.ResourceManager;
 
 /**
  * Created by alexandre on 24/04/15.
  */
-public class OverlapExampleStage extends Overlap2DStage {
+public class OverlapExampleStage extends Stage {
 
     private final CarController carController;
     private ResourceManager resourceManager;
@@ -22,15 +25,15 @@ public class OverlapExampleStage extends Overlap2DStage {
     public OverlapExampleStage(ResourceManager resourceManager) {
         super(new StretchViewport(800, 480));
         this.resourceManager = resourceManager;
-        initSceneLoader(resourceManager);
-        sceneLoader.loadScene("car");
 
-        addActor(sceneLoader.getRoot());
+        Actor actor = new Actor();
+        addActor(actor);
 
-        final CompositeItem carComposite = sceneLoader.getRoot().getCompositeById("car");
 
         RubeSceneLoader rubeSceneLoader = new RubeSceneLoader();
         RubeScene scene = rubeSceneLoader.loadScene(Gdx.files.internal("pug.json"));
+        final Array<RubeImage> imgChassi = scene.getNamed(RubeImage.class, "imgChassi");
+        actor.setUserObject(imgChassi);
 
         world = scene.getWorld();
 
@@ -41,15 +44,17 @@ public class OverlapExampleStage extends Overlap2DStage {
         Body rodatraseira = scene.getNamed(Body.class, "rodaTraseira").get(0);
         Body chao = scene.getNamed(Body.class, "chao").get(0);
 
-        carComposite.getItemById("chassi").setBody(chassiBody);
-        carComposite.getItemById("rodaDianteira").setBody(rodadianteira);
-        carComposite.getItemById("rodaTraseira").setBody(rodatraseira);
-
-        carComposite.addScript(carController);
-
     }
 
     @Override
+    public void act() {
+        super.act();
+        if (Gdx.input.isTouched()){
+            dedalPress(Gdx.input.getX());
+        }
+
+    }
+
     public World getWorld() {
         return world;
     }
@@ -57,18 +62,27 @@ public class OverlapExampleStage extends Overlap2DStage {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         super.touchDown(screenX, screenY, pointer, button);
+        return true;
+    }
+
+
+
+    private boolean dedalPress(int screenX) {
+        System.out.println("dedal");
         if (screenX < getWidth() / 2f) {
             carController.desaccelarete();
-        }else{
+        } else {
             carController.accelerate();
         }
         return true;
     }
 
+
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         super.touchUp(screenX, screenY, pointer, button);
         carController.stop();
+
         return true;
     }
 }
