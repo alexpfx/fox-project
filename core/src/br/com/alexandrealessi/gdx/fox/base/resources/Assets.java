@@ -12,6 +12,7 @@ import java.util.Map;
  */
 public class Assets {
 
+
     private AssetConfig assetConfig;
     private AssetManager manager;
     private Map<String, TextureAtlas> atlasMap;
@@ -44,12 +45,12 @@ public class Assets {
 
     public TextureRegion getRegion(String atlasName, String regionName) {
         if (!loaded) {
-
+            throw new AssetsNotLoadedException();
         }
         final TextureAtlas atlas = atlasMap.get(atlasName);
 
         if (atlas == null) {
-//            throw
+            throw new WrongAtlasNameException();
         }
         return atlas.findRegion(regionName);
     }
