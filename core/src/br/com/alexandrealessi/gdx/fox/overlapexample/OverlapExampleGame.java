@@ -28,7 +28,7 @@ public class OverlapExampleGame extends BaseGame {
         inputMultiplexer = new InputMultiplexer();
         resourceManager.initAllResources();
         gameStage = new OverlapExampleStage(resourceManager);
-        worldRenderer = new WorldRenderer(gameStage.getWorld(),800 / (31.5f), 480 / (31.5f ));
+//        worldRenderer = new WorldRenderer(gameStage.getWorld(),800 / (31.5f), 480 / (31.5f ));
         inputMultiplexer.addProcessor(gameStage);
         Gdx.input.setInputProcessor(inputMultiplexer);
 

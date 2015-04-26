@@ -1,10 +1,14 @@
 package br.com.alexandrealessi.gdx.fox.car.stages;
 
+import br.com.alexandrealessi.gdx.fox.base.WorldRenderer;
+import br.com.alexandrealessi.gdx.fox.base.actors.CompositeActor;
+import br.com.alexandrealessi.gdx.fox.car.SizeConstants;
+import br.com.alexandrealessi.gdx.fox.car.actors.CarManufacture;
+import br.com.alexandrealessi.gdx.fox.car.actors.RubeSceneWrapper;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.gushikustudios.rube.RubeScene;
 import com.gushikustudios.rube.loader.RubeSceneLoader;
 
 /**
@@ -12,19 +16,22 @@ import com.gushikustudios.rube.loader.RubeSceneLoader;
  */
 public class CarsGameStage extends Stage {
 
+    private final WorldRenderer worldRenderer;
     public static final String RUBE_SCENE_FILE = "pug.json";
+    private final CompositeActor car;
 
     public CarsGameStage(Vector2 viewPort) {
         super(new StretchViewport(viewPort.x, viewPort.y));
+        final RubeSceneWrapper rubeSceneWrapper = new RubeSceneWrapper(new RubeSceneLoader().loadScene(Gdx.files.internal(RUBE_SCENE_FILE)));
+        CarManufacture manufacture = new CarManufacture(rubeSceneWrapper);
+        car = manufacture.createCar();
+        worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), SizeConstants.WORLD.size());
     }
 
-    private void loadScene() {
-        RubeSceneLoader rubeSceneLoader = new RubeSceneLoader();
-        final RubeScene scene = rubeSceneLoader.loadScene(Gdx.files.internal(RUBE_SCENE_FILE));
+    @Override
+    public void act() {
+        car.act(Gdx.graphics.getDeltaTime());
+        car.draw(getBatch(), 0);
+        worldRenderer.render();
     }
-
-    public void loadActors(RubeScene scene) {
-
-    }
-
 }

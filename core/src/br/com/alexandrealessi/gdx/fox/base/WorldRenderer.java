@@ -2,6 +2,7 @@ package br.com.alexandrealessi.gdx.fox.base;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -18,9 +19,9 @@ public class WorldRenderer {
     private final OrthographicCamera camera;
     private final Box2DDebugRenderer debugRenderer;
 
-    public WorldRenderer(World world, float width, float height) {
+    public WorldRenderer(World world, Vector2 size) {
         this.world = world;
-        camera = new OrthographicCamera(width, height);
+        camera = new OrthographicCamera(size.x, size.y);
 
         debugRenderer = new Box2DDebugRenderer();
     }

@@ -29,13 +29,13 @@ public class OverlapExampleStage extends Stage {
         Actor actor = new Actor();
         addActor(actor);
 
-
         RubeSceneLoader rubeSceneLoader = new RubeSceneLoader();
         RubeScene scene = rubeSceneLoader.loadScene(Gdx.files.internal("pug.json"));
         final Array<RubeImage> imgChassi = scene.getNamed(RubeImage.class, "imgChassi");
         actor.setUserObject(imgChassi);
 
         world = scene.getWorld();
+
 
         carController = new CarController();
 
