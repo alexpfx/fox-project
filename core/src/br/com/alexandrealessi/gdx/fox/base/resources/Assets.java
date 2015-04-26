@@ -29,7 +29,7 @@ public class Assets {
     }
 
     private void loadGraphics() {
-        for (String atlasFile : assetConfig.getAtlasFiles()) {
+        for (String atlasFile : assetConfig.getAtlasFilePaths()) {
             manager.load(atlasFile, TextureAtlas.class);
         }
         manager.finishLoading();
@@ -38,7 +38,7 @@ public class Assets {
     }
 
     private void storeAtlas() {
-        for (String atlasFile : assetConfig.getAtlasFiles()) {
+        for (String atlasFile : assetConfig.getAtlasFilePaths()) {
             atlasMap.put(atlasFile, manager.get(atlasFile, TextureAtlas.class));
         }
     }
@@ -47,7 +47,8 @@ public class Assets {
         if (!loaded) {
             throw new AssetsNotLoadedException();
         }
-        final TextureAtlas atlas = atlasMap.get(atlasName);
+
+        final TextureAtlas atlas = atlasMap.get(assetConfig.getGraphicDirectory()+atlasName);
 
         if (atlas == null) {
             throw new WrongAtlasNameException();

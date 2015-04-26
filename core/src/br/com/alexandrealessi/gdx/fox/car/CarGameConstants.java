@@ -8,8 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 public class CarGameConstants {
 
     public static enum Strings {
-        GAME_ATLAS_NAME("game"),
-        GUI_ATLAS_NAME("gui");
+        GAME_ATLAS_NAME("game.atlas"),
+        GUI_ATLAS_NAME("gui.atlas");
 
         public final String value;
 

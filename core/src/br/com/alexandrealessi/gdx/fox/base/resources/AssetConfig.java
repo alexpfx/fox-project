@@ -12,27 +12,36 @@ public abstract class AssetConfig {
     public abstract String getAssetBaseDirectory();
 
     public String getFontDirectory() {
-        return FONTS;
+        return getAssetBaseDirectory() + FONTS;
     }
 
     public String getGraphicDirectory() {
-        return IMAGES;
+        return getAssetBaseDirectory() + IMAGES;
     }
 
     public String getSoundDirectory() {
-        return SOUNDS;
+        return getAssetBaseDirectory() + SOUNDS;
     }
 
     /**
      * List of atlas files in graphics directory.
      * Override if you need more atlas files.
+     *
      * @return
      */
-    public String [] getAtlasFiles (){
-        return new String [] {
-            "game_texture.atlas"
+    protected String[] getAtlasFileNames() {
+        return new String[]{
+                "game_textures.atlas"
         };
     }
 
-
+    public String[] getAtlasFilePaths() {
+        final String[] atlasFileNames = getAtlasFileNames();
+        final String[] atlasFilesPaths = new String[atlasFileNames.length];
+        int i = 0;
+        for (String name : atlasFileNames) {
+            atlasFilesPaths[i++] = getGraphicDirectory() + name;
+        }
+        return atlasFilesPaths;
+    }
 }

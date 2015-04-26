@@ -29,7 +29,7 @@ public class CarsGameStage extends Stage {
     public CarsGameStage(Vector2 viewPort) {
         super(new StretchViewport(viewPort.x, viewPort.y));
         final RubeSceneWrapper rubeSceneWrapper = new RubeSceneWrapper(new RubeSceneLoader().loadScene(Gdx.files.internal(RUBE_SCENE_FILE)));
-        assets = new Assets(carGameStageAssetConfig);
+        assets = new Assets(new CarsGameStageAssetConfig());
         assets.load();
         CarManufacture manufacture = new CarManufacture(rubeSceneWrapper, assets);
         car = manufacture.createCar();
@@ -43,17 +43,6 @@ public class CarsGameStage extends Stage {
         worldRenderer.render();
     }
 
-    private AssetConfig carGameStageAssetConfig = new AssetConfig() {
-        @Override
-        public String getAssetBaseDirectory() {
-            return "car";
-        }
-
-        @Override
-        public String[] getAtlasFiles() {
-            return new String[]{Strings.GAME_ATLAS_NAME.value.concat(".atlas"), Strings.GUI_ATLAS_NAME.value.concat(".atlas")};
-        }
-    };
 
     private TextureRegion getRegion(String regioName) {
         return assets.getRegion(ATLAS_NAME, regioName);

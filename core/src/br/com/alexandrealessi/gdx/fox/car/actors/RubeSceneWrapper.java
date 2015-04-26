@@ -30,7 +30,7 @@ public class RubeSceneWrapper {
     public String getBindedImageFileName (Body body){
         final Array<RubeImage> mappedImage = scene.getMappedImage(body);
         final RubeImage rubeImage = mappedImage.get(0);
-        return rubeImage.file;
+        return rubeImage.name;
     }
 
     public World getWorld() {
