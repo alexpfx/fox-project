@@ -7,8 +7,11 @@ import com.gushikustudios.rube.RubeScene;
 import com.gushikustudios.rube.loader.RubeSceneLoader;
 import com.uwsoft.editor.renderer.Overlap2DStage;
 import com.uwsoft.editor.renderer.actor.CompositeItem;
+import com.uwsoft.editor.renderer.actor.IBaseItem;
 import com.uwsoft.editor.renderer.physics.PhysicsBodyLoader;
 import com.uwsoft.editor.renderer.resources.ResourceManager;
+
+import java.util.ArrayList;
 
 /**
  * Created by alexandre on 24/04/15.
@@ -36,16 +39,22 @@ public class OverlapExampleStage extends Overlap2DStage {
         world = scene.getWorld();
 
 
-        Body chassiBody = scene.getNamed(Body.class, "chassi").get(0);
-        carComposite.setBody(chassiBody);
+
+
+
+
         final CarController carController = new CarController();
         carComposite.addScript(carController);
         carController.init(carComposite);
 
-
+        Body chassiBody = scene.getNamed(Body.class, "chassi").get(0);
         Body rodadianteira = scene.getNamed(Body.class, "rodaDianteira").get(0);
         Body rodatraseira = scene.getNamed(Body.class, "rodaTraseira").get(0);
         Body chao = scene.getNamed(Body.class, "chao").get(0);
+
+        carComposite.getItemById("chassi").setBody(chassiBody);
+        carComposite.getItemById("rodaDianteira").setBody(rodadianteira);
+        carComposite.getItemById("rodaTraseira").setBody(rodatraseira);
 
 
     }
