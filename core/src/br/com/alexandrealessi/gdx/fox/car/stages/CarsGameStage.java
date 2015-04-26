@@ -2,7 +2,7 @@ package br.com.alexandrealessi.gdx.fox.car.stages;
 
 import br.com.alexandrealessi.gdx.fox.base.WorldRenderer;
 import br.com.alexandrealessi.gdx.fox.base.actors.CompositeActor;
-import br.com.alexandrealessi.gdx.fox.car.SizeConstants;
+import br.com.alexandrealessi.gdx.fox.car.CarGameConstants;
 import br.com.alexandrealessi.gdx.fox.car.actors.CarManufacture;
 import br.com.alexandrealessi.gdx.fox.car.actors.RubeSceneWrapper;
 import com.badlogic.gdx.Gdx;
@@ -25,7 +25,7 @@ public class CarsGameStage extends Stage {
         final RubeSceneWrapper rubeSceneWrapper = new RubeSceneWrapper(new RubeSceneLoader().loadScene(Gdx.files.internal(RUBE_SCENE_FILE)));
         CarManufacture manufacture = new CarManufacture(rubeSceneWrapper);
         car = manufacture.createCar();
-        worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), SizeConstants.WORLD.size());
+        worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), CarGameConstants.Sizes.WORLD.value());
     }
 
     @Override

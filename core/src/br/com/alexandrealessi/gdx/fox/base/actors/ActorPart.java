@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.base.actors;
 
-import br.com.alexandrealessi.gdx.fox.car.SizeConstants;
+import br.com.alexandrealessi.gdx.fox.car.CarGameConstants;
 import br.com.alexandrealessi.gdx.fox.car.actors.IDrawable;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.MathUtils;
@@ -37,7 +37,7 @@ public abstract class ActorPart extends Actor {
 
     @Override
     public void act(float delta) {
-        float ratio = SizeConstants.WORLD.hratio(SizeConstants.SCREEN);
+        float ratio = CarGameConstants.Sizes.WORLD.hratio(CarGameConstants.Sizes.SCREEN);
         float x = body.getPosition().x * ratio;
         float y = body.getPosition().y * ratio;
         float r = body.getAngle() * MathUtils.radDeg;

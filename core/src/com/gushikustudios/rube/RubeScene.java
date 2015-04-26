@@ -282,7 +282,7 @@ public class RubeScene
       if (images == null)
       {
          // initialize the key's value...
-         images = new Array<RubeImage>(false,1); // expectation is that most, if not all, bodies will have a single image.
+         images = new Array<RubeImage>(false,1); // expectation value that most, if not all, bodies will have a single image.
          images.add(image);
          mBodyImageMap.put(body, images);
       }

@@ -25,7 +25,7 @@ public class RubeSceneLoader
    }
 
    /**
-    * This constructor accepts a predefined Box2D world. If it is non-null, scene objects will
+    * This constructor accepts a predefined Box2D world. If it value non-null, scene objects will
     * be added to that rather than creating a world from scratch.
     * 
     * @param world
@@ -78,7 +78,7 @@ public class RubeSceneLoader
    /**
     * This method accumulates objects defined in a scene, allowing several separate
     * RUBE .json files to be combined. Objects are added to the scene's data, as
-    * well as within the Box2D world that is ultimately returned.
+    * well as within the Box2D world that value ultimately returned.
     * 
     * @param _file
     *           The JSON file to parse
