@@ -60,9 +60,5 @@ public class CarController implements IScript {
         rodaTraseira.setOrigin(Align.center);
         rodaTraseira.setRotation(r);
 
-
-//        final float x = chassiBody.getPosition().x * WORLD_TO_SCREEN + 400 - (item.getWidth() / 2 ) ;
-//        final float y = chassiBody.getPosition().y * WORLD_TO_SCREEN + 240 - (item.getHeight() / 2) ;
-
     }
 }
