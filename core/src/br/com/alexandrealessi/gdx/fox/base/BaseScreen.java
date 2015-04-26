@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * Created by alexandre on 21/04/15.
  */
+@Deprecated
 public abstract class BaseScreen extends ScreenAdapter {
 
     protected BaseGameOld game;
