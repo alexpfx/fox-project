@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.overlapexample;
 
-import br.com.alexandrealessi.gdx.fox.base.BaseGame;
+import br.com.alexandrealessi.gdx.fox.base.BaseGameOld;
 import br.com.alexandrealessi.gdx.fox.base.BaseScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -13,7 +13,7 @@ import com.uwsoft.editor.renderer.resources.ResourceManager;
 public class OverlapExampleScreen extends BaseScreen {
     private OverlapExampleStage stage;
 
-    public OverlapExampleScreen(BaseGame game) {
+    public OverlapExampleScreen(BaseGameOld game) {
         super(game);
     }
 

@@ -1,7 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.overlapexample;
 
 import br.com.alexandrealessi.gdx.fox.base.BaseGame;
-import br.com.alexandrealessi.gdx.fox.base.BaseGame2;
 import br.com.alexandrealessi.gdx.fox.base.RequestHandler;
 import br.com.alexandrealessi.gdx.fox.base.WorldRenderer;
 import com.badlogic.gdx.Gdx;
@@ -13,7 +12,7 @@ import com.uwsoft.editor.renderer.resources.ResourceManager;
 /**
  * Created by alexandre on 23/04/15.
  */
-public class OverlapExampleGame extends BaseGame2 {
+public class OverlapExampleGame extends BaseGame {
 
     private InputMultiplexer inputMultiplexer;
     private WorldRenderer worldRenderer;

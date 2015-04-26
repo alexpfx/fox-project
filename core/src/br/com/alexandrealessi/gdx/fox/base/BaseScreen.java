@@ -11,12 +11,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public abstract class BaseScreen extends ScreenAdapter {
 
-    protected BaseGame game;
+    protected BaseGameOld game;
     protected SpriteBatch batch;
     private Color color = Color.BLACK;
 
 
-    public BaseScreen(BaseGame game) {
+    public BaseScreen(BaseGameOld game) {
         this.game = game;
         batch = new SpriteBatch();
 

@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.comet;
 
-import br.com.alexandrealessi.gdx.fox.base.BaseGame;
+import br.com.alexandrealessi.gdx.fox.base.BaseGameOld;
 import br.com.alexandrealessi.gdx.fox.base.BaseScreen;
 
 /**
@@ -9,7 +9,7 @@ import br.com.alexandrealessi.gdx.fox.base.BaseScreen;
 public class CometGameScreen extends BaseScreen {
     private final String tag = CometGameScreen.class.getName();
 
-    public CometGameScreen(BaseGame game) {
+    public CometGameScreen(BaseGameOld game) {
         super(game);
 
     }

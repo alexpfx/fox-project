@@ -9,7 +9,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-import br.com.alexandrealessi.gdx.fox.base.BaseGame2;
+import br.com.alexandrealessi.gdx.fox.base.BaseGame;
 import br.com.alexandrealessi.gdx.fox.base.RequestHandler;
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenter;
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenterImpl;
@@ -36,14 +36,14 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
 
     }
 
-    private void loadGame (BaseGame2 game){
+    private void loadGame (BaseGame game){
         final AndroidApplicationConfiguration config = getAndroidApplicationConfig();
         RelativeLayout baseLayout = setContentViewWithGameView(config, game);
         inflatePlusOneButton(baseLayout);
 
     }
 
-    private RelativeLayout setContentViewWithGameView(AndroidApplicationConfiguration config, BaseGame2 baseGame) {
+    private RelativeLayout setContentViewWithGameView(AndroidApplicationConfiguration config, BaseGame baseGame) {
         RelativeLayout baseLayout = inflateBaseView(config, baseGame);
         setContentView(baseLayout);
         return baseLayout;
@@ -54,7 +54,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     }
 
     RelativeLayout layout;
-    private RelativeLayout inflateBaseView(AndroidApplicationConfiguration config, BaseGame2 baseGame) {
+    private RelativeLayout inflateBaseView(AndroidApplicationConfiguration config, BaseGame baseGame) {
         layout = new RelativeLayout(this);
         final View view = initializeForView(baseGame, config);
         layout.addView(view);

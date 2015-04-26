@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.soccer;
 
-import br.com.alexandrealessi.gdx.fox.base.BaseGame;
+import br.com.alexandrealessi.gdx.fox.base.BaseGameOld;
 import br.com.alexandrealessi.gdx.fox.base.BaseScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -13,7 +13,7 @@ public class SoccerGameScreen extends BaseScreen {
 
     int x = 0;
 
-    public SoccerGameScreen(BaseGame game) {
+    public SoccerGameScreen(BaseGameOld game) {
         super(game);
         setColor(Color.GREEN);
         Gdx.app.log(tag, "create");

@@ -1,8 +1,11 @@
 package br.com.alexandrealessi.gdx.fox.base;
 
-import com.badlogic.gdx.Game;
+import com.badlogic.gdx.ApplicationAdapter;
 
-public abstract class BaseGame extends Game {
+/**
+ * Created by alexandre on 25/04/15.
+ */
+public class BaseGame extends ApplicationAdapter {
 
     protected RequestHandler requestHandler;
 
