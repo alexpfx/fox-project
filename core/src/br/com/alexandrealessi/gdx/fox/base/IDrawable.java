@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.car.actors;
+package br.com.alexandrealessi.gdx.fox.base;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

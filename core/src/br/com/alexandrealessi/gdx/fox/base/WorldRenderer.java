@@ -28,7 +28,7 @@ public class WorldRenderer {
 
     public void render() {
         camera.update();
-        if (CarGameConstants.Flags.DEBUG_PHYSICS.value()) {
+        if (CarGameConstants.Flags.DEBUG_PHYSICS.value) {
             debugRenderer.render(world, camera.combined);
         }
         world.step(TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);

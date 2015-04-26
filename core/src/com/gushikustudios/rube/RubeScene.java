@@ -325,7 +325,7 @@ public class RubeScene
 	   System.out.println("Body count: " + ((mBodies != null) ? mBodies.size : 0));
 	   System.out.println("Fixture count: " + ((mFixtures != null) ? mFixtures.size : 0));
 	   System.out.println("Joint count: " + ((mJoints != null) ? mJoints.size : 0));
-	   System.out.println("Image count: " + ((mImages != null) ? mImages.size : 0));
+	   System.out.println("ImageDrawable count: " + ((mImages != null) ? mImages.size : 0));
 	   
    }
 }

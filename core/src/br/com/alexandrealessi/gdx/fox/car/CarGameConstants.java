@@ -7,18 +7,25 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class CarGameConstants {
 
+    public static enum Strings {
+        GAME_ATLAS_NAME("game"),
+        GUI_ATLAS_NAME("gui");
+
+        public final String value;
+
+        private Strings(String value) {
+            this.value = value;
+        }
+    }
+
     public static enum Flags {
 
         DEBUG_PHYSICS(true);
 
-        private final boolean value;
+        public final boolean value;
 
         private Flags(boolean value) {
             this.value = value;
-        }
-
-        public boolean value() {
-            return value;
         }
 
     }
@@ -27,7 +34,7 @@ public class CarGameConstants {
 
         WORLD(new Vector2(80f, 48f)), SCREEN(new Vector2(800f, 480f));
 
-        private Vector2 value;
+        public Vector2 value;
 
         private Sizes(Vector2 value) {
             this.value = value;
@@ -43,10 +50,6 @@ public class CarGameConstants {
 
         public float hratio(Sizes sizes) {
             return value.scl(1 / height()).x;
-        }
-
-        public Vector2 value() {
-            return value;
         }
 
     }

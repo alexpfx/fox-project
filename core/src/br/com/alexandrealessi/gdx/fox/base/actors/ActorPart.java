@@ -1,7 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.base.actors;
 
 import br.com.alexandrealessi.gdx.fox.car.CarGameConstants;
-import br.com.alexandrealessi.gdx.fox.car.actors.IDrawable;
+import br.com.alexandrealessi.gdx.fox.base.IDrawable;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;

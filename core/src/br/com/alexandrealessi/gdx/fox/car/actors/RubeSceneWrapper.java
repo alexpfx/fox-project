@@ -23,25 +23,17 @@ public class RubeSceneWrapper {
         return getBodies(name).get(0);
     }
 
-    public Texture getTexture(String name) {
-        return getTextures(name).get(0);
-    }
-
     public Array<Body> getBodies(String name) {
         return scene.getNamed(Body.class, name);
     }
 
-    public Array<Texture> getTextures(String name) {
-        final Array<RubeImage> rubeImages = scene.getNamed(RubeImage.class, name);
-        final Array<Texture> textures = new Array<Texture>();
-        for (RubeImage image : rubeImages) {
-            Texture t = new Texture(Gdx.files.internal(image.name));
-            textures.add(t);
-        }
-        return textures;
+    public String getBindedImageFileName (Body body){
+        final Array<RubeImage> mappedImage = scene.getMappedImage(body);
+        final RubeImage rubeImage = mappedImage.get(0);
+        return rubeImage.file;
     }
 
-    public World getWorld (){
+    public World getWorld() {
         return scene.getWorld();
     }
 }

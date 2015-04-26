@@ -20,7 +20,7 @@ public class CarsGame extends BaseGame {
 
     @Override
     public void create() {
-        stage = new CarsGameStage(CarGameConstants.Sizes.SCREEN.value());
+        stage = new CarsGameStage(CarGameConstants.Sizes.SCREEN.value);
     }
 
     @Override
