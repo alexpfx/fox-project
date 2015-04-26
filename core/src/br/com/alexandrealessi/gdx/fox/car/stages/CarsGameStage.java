@@ -17,7 +17,7 @@ import com.gushikustudios.rube.loader.RubeSceneLoader;
 public class CarsGameStage extends Stage {
 
     private final WorldRenderer worldRenderer;
-    public static final String RUBE_SCENE_FILE = "pug.json";
+    public static final String RUBE_SCENE_FILE = "carscene.json";
     private final CompositeActor car;
 
     public CarsGameStage(Vector2 viewPort) {
