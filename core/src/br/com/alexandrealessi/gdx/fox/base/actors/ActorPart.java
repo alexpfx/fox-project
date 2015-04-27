@@ -19,9 +19,7 @@ public abstract class ActorPart extends Actor {
 
     public ActorPart(Body body) {
         this.body = body;
-//        setScale(Sizes.SCREEN.xTo(1, Sizes.WORLD), Sizes.SCREEN.yTo(1, Sizes.WORLD));
         setScale(1);
-
     }
 
     @Override
