@@ -1,7 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.car.stages;
 
 import br.com.alexandrealessi.gdx.fox.base.resources.AssetConfig;
-import br.com.alexandrealessi.gdx.fox.car.CarGameConstants;
+import br.com.alexandrealessi.gdx.fox.car.CarsGameConstants;
 
 /**
  * Created by alexandre on 26/04/15.
@@ -15,6 +15,6 @@ public class CarsGameStageAssetConfig extends AssetConfig {
 
     @Override
     protected String[] getAtlasFileNames() {
-        return new String[]{CarGameConstants.Strings.GAME_ATLAS_NAME.value/*, CarGameConstants.Strings.GUI_ATLAS_NAME.value*/};
+        return new String[]{CarsGameConstants.Strings.GAME_ATLAS_NAME.value/*, CarsGameConstants.Strings.GUI_ATLAS_NAME.value*/};
     }
 }

@@ -1,6 +1,5 @@
-package br.com.alexandrealessi.gdx.fox;
+package br.com.alexandrealessi.gdx.fox.base.components;
 
-import br.com.alexandrealessi.gdx.fox.base.IDrawable;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

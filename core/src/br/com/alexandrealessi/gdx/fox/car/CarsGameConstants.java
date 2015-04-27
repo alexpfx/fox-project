@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by alexandre on 26/04/15.
  */
-public class CarGameConstants {
+public class CarsGameConstants {
 
     public static enum Strings {
         GAME_ATLAS_NAME("game.atlas"),
@@ -48,11 +48,11 @@ public class CarGameConstants {
             return value.y;
         }
 
-        public float yTo(float y, Sizes target) {
+        public float scaleY(float y, Sizes target) {
             return (target.height() / height()) * y;
         }
 
-        public float xTo(float x, Sizes target) {
+        public float scaleX(float x, Sizes target) {
             return (target.width() / width()) * x;
         }
 

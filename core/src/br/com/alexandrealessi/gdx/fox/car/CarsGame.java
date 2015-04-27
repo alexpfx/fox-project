@@ -1,8 +1,8 @@
 package br.com.alexandrealessi.gdx.fox.car;
 
 import br.com.alexandrealessi.gdx.fox.base.BaseGame;
-import br.com.alexandrealessi.gdx.fox.base.RequestHandler;
-import br.com.alexandrealessi.gdx.fox.car.stages.CarsGameStage;
+import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
+import br.com.alexandrealessi.gdx.fox.car.stages.CarsStage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,7 +12,7 @@ import com.badlogic.gdx.graphics.GL20;
  */
 public class CarsGame extends BaseGame {
 
-    CarsGameStage stage;
+    CarsStage stage;
 
     public CarsGame(RequestHandler requestHand) {
         super(requestHand);
@@ -20,7 +20,7 @@ public class CarsGame extends BaseGame {
 
     @Override
     public void create() {
-        stage = new CarsGameStage(CarGameConstants.Sizes.SCREEN.value);
+        stage = new CarsStage(CarsGameConstants.Sizes.SCREEN.value);
     }
 
     @Override

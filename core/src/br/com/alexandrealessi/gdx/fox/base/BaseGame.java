@@ -1,5 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.base;
 
+import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
 import com.badlogic.gdx.ApplicationAdapter;
 
 /**

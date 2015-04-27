@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.base.actors;
+package br.com.alexandrealessi.gdx.fox.base.components;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
 

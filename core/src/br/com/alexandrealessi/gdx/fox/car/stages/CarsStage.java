@@ -1,11 +1,11 @@
 package br.com.alexandrealessi.gdx.fox.car.stages;
 
-import br.com.alexandrealessi.gdx.fox.base.WorldRenderer;
-import br.com.alexandrealessi.gdx.fox.base.actors.CompositeActor;
-import br.com.alexandrealessi.gdx.fox.base.resources.Assets;
-import br.com.alexandrealessi.gdx.fox.car.CarGameConstants;
-import br.com.alexandrealessi.gdx.fox.car.actors.CarManufacture;
-import br.com.alexandrealessi.gdx.fox.car.actors.RubeSceneWrapper;
+import br.com.alexandrealessi.gdx.fox.base.physic.WorldRenderer;
+import br.com.alexandrealessi.gdx.fox.base.components.CompositeActor;
+import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
+import br.com.alexandrealessi.gdx.fox.car.CarsGameConstants;
+import br.com.alexandrealessi.gdx.fox.car.actors.CarFactory;
+import br.com.alexandrealessi.gdx.fox.base.utils.wrappers.RubeSceneWrapper;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -16,28 +16,29 @@ import com.gushikustudios.rube.loader.RubeSceneLoader;
 /**
  * Created by alexandre on 26/04/15.
  */
-public class CarsGameStage extends Stage {
+public class CarsStage extends Stage {
 
     private final WorldRenderer worldRenderer;
     public static final String RUBE_SCENE_FILE = "carscene.json";
     public static final String ATLAS_NAME = "game_atlas";
     private final CompositeActor car;
-    private Assets assets;
+    private ResourceManager resourceManager;
 
-    public CarsGameStage(Vector2 viewPort) {
+    public CarsStage(Vector2 viewPort) {
         super(new StretchViewport(viewPort.x, viewPort.y));
         final RubeSceneWrapper rubeSceneWrapper = new RubeSceneWrapper(new RubeSceneLoader().loadScene(Gdx.files.internal(RUBE_SCENE_FILE)));
-        assets = new Assets(new CarsGameStageAssetConfig());
-        assets.load();
-        CarManufacture manufacture = new CarManufacture(rubeSceneWrapper, assets);
+        resourceManager = new ResourceManager(new CarsGameStageAssetConfig());
+        resourceManager.load();
+        CarFactory manufacture = new CarFactory(rubeSceneWrapper, resourceManager);
         car = manufacture.createCar();
-        worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), CarGameConstants.Sizes.WORLD.value);
+        worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), CarsGameConstants.Sizes.WORLD.value);
         addActor(car);
     }
 
     @Override
     public void act() {
         super.act();
+
     }
 
     @Override
@@ -47,7 +48,7 @@ public class CarsGameStage extends Stage {
     }
 
     private TextureRegion getRegion(String regioName) {
-        return assets.getRegion(ATLAS_NAME, regioName);
+        return resourceManager.getRegion(ATLAS_NAME, regioName);
     }
 
 }

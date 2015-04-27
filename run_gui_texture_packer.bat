@@ -1,1 +1,1 @@
-java -cp gdx.jar;gdx-tools.jar com.badlogic.gdx.tools.texturepacker.TexturePacker assets-raw/gui android/assets/car/images gui.atlas
+java -cp gdx.jar;gdx-tools.jar com.badlogic.gdx.tools.texturepacker.TexturePacker resourceManager-raw/gui android/resourceManager/car/images gui.atlas

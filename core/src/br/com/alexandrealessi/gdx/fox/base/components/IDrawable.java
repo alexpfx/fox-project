@@ -1,7 +1,6 @@
-package br.com.alexandrealessi.gdx.fox.base;
+package br.com.alexandrealessi.gdx.fox.base.components;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * Created by alexandre on 26/04/15.

@@ -1,29 +1,30 @@
 package br.com.alexandrealessi.gdx.fox.car.actors;
 
-import br.com.alexandrealessi.gdx.fox.ImageDrawable;
-import br.com.alexandrealessi.gdx.fox.base.IDrawable;
-import br.com.alexandrealessi.gdx.fox.base.actors.ActorPart;
-import br.com.alexandrealessi.gdx.fox.base.actors.CompositeActor;
-import br.com.alexandrealessi.gdx.fox.base.resources.Assets;
-import br.com.alexandrealessi.gdx.fox.car.CarGameConstants;
+import br.com.alexandrealessi.gdx.fox.base.components.ImageDrawable;
+import br.com.alexandrealessi.gdx.fox.base.components.IDrawable;
+import br.com.alexandrealessi.gdx.fox.base.components.ActorPart;
+import br.com.alexandrealessi.gdx.fox.base.components.CompositeActor;
+import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
+import br.com.alexandrealessi.gdx.fox.base.utils.wrappers.RubeSceneWrapper;
+import br.com.alexandrealessi.gdx.fox.car.CarsGameConstants;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 
 /**
  * Created by alexandre on 26/04/15.
  */
-public class CarManufacture {
+public class CarFactory {
 
     public static final String CHASSIS = "chassis";
     public static final String REAR_WHEEL = "rear_wheel";
     public static final String FRONT_WHEEL = "front_wheel";
 
     private final RubeSceneWrapper rubeScene;
-    private final Assets assets;
+    private final ResourceManager resourceManager;
 
-    public CarManufacture(RubeSceneWrapper rubeSceneWrapper, Assets assets) {
+    public CarFactory(RubeSceneWrapper rubeSceneWrapper, ResourceManager resourceManager) {
         this.rubeScene = rubeSceneWrapper;
-        this.assets = assets;
+        this.resourceManager = resourceManager;
     }
 
     public CompositeActor createCar() {
@@ -63,7 +64,7 @@ public class CarManufacture {
     }
 
     public TextureRegion getRegion(String name) {
-        return assets.getRegion(CarGameConstants.Strings.GAME_ATLAS_NAME.value, name);
+        return resourceManager.getRegion(CarsGameConstants.Strings.GAME_ATLAS_NAME.value, name);
     }
 
 }

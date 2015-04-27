@@ -1,5 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.base.resources;
 
+import br.com.alexandrealessi.gdx.fox.base.resources.exceptions.AssetsNotLoadedException;
+import br.com.alexandrealessi.gdx.fox.base.resources.exceptions.WrongAtlasNameException;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -10,15 +12,14 @@ import java.util.Map;
 /**
  * Created by alexandre on 23/04/15.
  */
-public class Assets {
-
+public class ResourceManager {
 
     private AssetConfig assetConfig;
     private AssetManager manager;
     private Map<String, TextureAtlas> atlasMap;
     private boolean loaded = false;
 
-    public Assets(AssetConfig assetConfig) {
+    public ResourceManager(AssetConfig assetConfig) {
         this.assetConfig = assetConfig;
         this.manager = new AssetManager();
         atlasMap = new HashMap(16);
@@ -48,7 +49,7 @@ public class Assets {
             throw new AssetsNotLoadedException();
         }
 
-        final TextureAtlas atlas = atlasMap.get(assetConfig.getGraphicDirectory()+atlasName);
+        final TextureAtlas atlas = atlasMap.get(assetConfig.getGraphicDirectory() + atlasName);
 
         if (atlas == null) {
             throw new WrongAtlasNameException();

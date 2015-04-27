@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.car.actors;
 
-import br.com.alexandrealessi.gdx.fox.base.actors.ActorPart;
+import br.com.alexandrealessi.gdx.fox.base.components.ActorPart;
 import com.badlogic.gdx.physics.box2d.Body;
 
 /**

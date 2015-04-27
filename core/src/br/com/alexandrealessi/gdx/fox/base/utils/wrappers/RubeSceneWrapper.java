@@ -1,7 +1,5 @@
-package br.com.alexandrealessi.gdx.fox.car.actors;
+package br.com.alexandrealessi.gdx.fox.base.utils.wrappers;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
@@ -10,7 +8,7 @@ import com.gushikustudios.rube.loader.serializers.utils.RubeImage;
 
 /**
  * Created by alexandre on 26/04/15.
- * All Rube operations happens here yTo minimize dependency.
+ * All Rube operations happens here to minimize dependency.
  */
 public class RubeSceneWrapper {
     private final RubeScene scene;
