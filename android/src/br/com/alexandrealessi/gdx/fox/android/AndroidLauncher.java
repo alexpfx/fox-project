@@ -13,7 +13,7 @@ import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresen
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenterImpl;
 import br.com.alexandrealessi.gdx.fox.base.BaseGame;
 import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
-import br.com.alexandrealessi.gdx.fox.car.CarsGame;
+import br.com.alexandrealessi.gdx.fox.games.CarsGame;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.plus.PlusOneButton;

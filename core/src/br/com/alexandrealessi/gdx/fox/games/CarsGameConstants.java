@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.car;
+package br.com.alexandrealessi.gdx.fox.games;
 
 import com.badlogic.gdx.math.Vector2;
 

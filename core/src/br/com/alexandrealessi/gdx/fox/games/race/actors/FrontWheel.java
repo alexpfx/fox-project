@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.car.actors;
+package br.com.alexandrealessi.gdx.fox.games.race.actors;
 
 import br.com.alexandrealessi.gdx.fox.base.components.IDrawable;
 import br.com.alexandrealessi.gdx.fox.base.components.ActorPart;

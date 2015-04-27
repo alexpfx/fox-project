@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
-import static br.com.alexandrealessi.gdx.fox.car.CarsGameConstants.Sizes;
+import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.Sizes;
 
 /**
  * Created by alexandre on 26/04/15.

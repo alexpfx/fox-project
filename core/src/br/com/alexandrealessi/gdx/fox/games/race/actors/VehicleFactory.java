@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.car.actors;
+package br.com.alexandrealessi.gdx.fox.games.race.actors;
 
 import br.com.alexandrealessi.gdx.fox.base.components.ImageDrawable;
 import br.com.alexandrealessi.gdx.fox.base.components.IDrawable;
@@ -6,14 +6,14 @@ import br.com.alexandrealessi.gdx.fox.base.components.ActorPart;
 import br.com.alexandrealessi.gdx.fox.base.components.CompositeActor;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import br.com.alexandrealessi.gdx.fox.base.utils.wrappers.RubeSceneWrapper;
-import br.com.alexandrealessi.gdx.fox.car.CarsGameConstants;
+import br.com.alexandrealessi.gdx.fox.games.CarsGameConstants;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 
 /**
  * Created by alexandre on 26/04/15.
  */
-public class CarFactory {
+public class VehicleFactory {
 
     public static final String CHASSIS = "chassis";
     public static final String REAR_WHEEL = "rear_wheel";
@@ -22,7 +22,7 @@ public class CarFactory {
     private final RubeSceneWrapper rubeScene;
     private final ResourceManager resourceManager;
 
-    public CarFactory(RubeSceneWrapper rubeSceneWrapper, ResourceManager resourceManager) {
+    public VehicleFactory(RubeSceneWrapper rubeSceneWrapper, ResourceManager resourceManager) {
         this.rubeScene = rubeSceneWrapper;
         this.resourceManager = resourceManager;
     }

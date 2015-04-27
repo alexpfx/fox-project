@@ -1,10 +1,10 @@
-package br.com.alexandrealessi.gdx.fox.car.stages;
+package br.com.alexandrealessi.gdx.fox.games.race.stages;
 
 import br.com.alexandrealessi.gdx.fox.base.physic.WorldRenderer;
 import br.com.alexandrealessi.gdx.fox.base.components.CompositeActor;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
-import br.com.alexandrealessi.gdx.fox.car.CarsGameConstants;
-import br.com.alexandrealessi.gdx.fox.car.actors.CarFactory;
+import br.com.alexandrealessi.gdx.fox.games.CarsGameConstants;
+import br.com.alexandrealessi.gdx.fox.games.race.actors.VehicleFactory;
 import br.com.alexandrealessi.gdx.fox.base.utils.wrappers.RubeSceneWrapper;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -29,7 +29,7 @@ public class CarsStage extends Stage {
         final RubeSceneWrapper rubeSceneWrapper = new RubeSceneWrapper(new RubeSceneLoader().loadScene(Gdx.files.internal(RUBE_SCENE_FILE)));
         resourceManager = new ResourceManager(new CarsGameStageAssetConfig());
         resourceManager.load();
-        CarFactory manufacture = new CarFactory(rubeSceneWrapper, resourceManager);
+        VehicleFactory manufacture = new VehicleFactory(rubeSceneWrapper, resourceManager);
         car = manufacture.createCar();
         worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), CarsGameConstants.Sizes.WORLD.value);
         addActor(car);
