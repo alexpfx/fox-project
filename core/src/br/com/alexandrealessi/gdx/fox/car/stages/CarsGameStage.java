@@ -2,10 +2,8 @@ package br.com.alexandrealessi.gdx.fox.car.stages;
 
 import br.com.alexandrealessi.gdx.fox.base.WorldRenderer;
 import br.com.alexandrealessi.gdx.fox.base.actors.CompositeActor;
-import br.com.alexandrealessi.gdx.fox.base.resources.AssetConfig;
 import br.com.alexandrealessi.gdx.fox.base.resources.Assets;
 import br.com.alexandrealessi.gdx.fox.car.CarGameConstants;
-import br.com.alexandrealessi.gdx.fox.car.CarGameConstants.Strings;
 import br.com.alexandrealessi.gdx.fox.car.actors.CarManufacture;
 import br.com.alexandrealessi.gdx.fox.car.actors.RubeSceneWrapper;
 import com.badlogic.gdx.Gdx;
@@ -34,15 +32,19 @@ public class CarsGameStage extends Stage {
         CarManufacture manufacture = new CarManufacture(rubeSceneWrapper, assets);
         car = manufacture.createCar();
         worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), CarGameConstants.Sizes.WORLD.value);
+        addActor(car);
     }
 
     @Override
     public void act() {
-        car.act(Gdx.graphics.getDeltaTime());
-        car.draw(getBatch(), 0);
-        worldRenderer.render();
+        super.act();
     }
 
+    @Override
+    public void draw() {
+        super.draw();
+        worldRenderer.render();
+    }
 
     private TextureRegion getRegion(String regioName) {
         return assets.getRegion(ATLAS_NAME, regioName);

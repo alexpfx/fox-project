@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.gushikustudios.rube.loader.serializers.utils.RubeImage;
 
 /**
- * A simple encapsulation of a {@link World}. Plus the data needed to run the simulation.
+ * A simple encapsulation of a {@link World}. Plus the data needed yTo run the simulation.
  * @author clement.vayer
  *
  */
@@ -36,9 +36,9 @@ public class RubeScene
 	
 	/** Simulation steps wanted per second */
 	public int   stepsPerSecond;
-	/** Iteration steps done in the simulation to calculates positions */
+	/** Iteration steps done in the simulation yTo calculates positions */
 	public int   positionIterations;
-	/** Iteration steps done in the simulation to calculates velocities */
+	/** Iteration steps done in the simulation yTo calculates velocities */
 	public int   velocityIterations;
 	
 	public RubeScene()
@@ -70,7 +70,7 @@ public class RubeScene
 				}
 				else if (property.containsKey("int"))
 				{
-					// Json stores things as Floats.  Convert to integer here.
+					// Json stores things as Floats.  Convert yTo integer here.
 					setCustom(item, propertyName,(Integer)((Float)property.get("int")).intValue());
 				}
 				else if (property.containsKey("float"))
@@ -191,7 +191,7 @@ public class RubeScene
    }
 	
 	/**
-	 * Convenience method to update the Box2D simulation with the parameters read from the scene.
+	 * Convenience method yTo update the Box2D simulation with the parameters read from the scene.
 	 */
 	public void step()
 	{
@@ -212,7 +212,7 @@ public class RubeScene
       if (bodies != null)
       {
          mBodyOffset = mBodies.size; // determine where the new bodies are inserted at
-         mBodies.addAll(bodies); // appends the passed body array to the end of the current body array
+         mBodies.addAll(bodies); // appends the passed body array yTo the end of the current body array
       }
    }
    

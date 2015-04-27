@@ -18,11 +18,21 @@ public class ImageDrawable implements IDrawable {
     }
 
     @Override
-    public void draw(Batch batch, float x, float y, float r, float scaleRatio) {
-        spriteDrawable.draw(batch, x, y, 0, 0, spriteDrawable.getSprite().getWidth(), spriteDrawable.getSprite().getHeight(), 1, 1, r);
+    public void draw(Batch batch, float x, float y, float originX, float originY, float width, float height, float r, float scaleX, float scaleY) {
+        spriteDrawable.draw(batch, x, y, originX, originY, width, height, scaleX, scaleY, r);
     }
 
-    public static ImageDrawable createFromTextureRegion (TextureRegion textureRegion){
+    @Override
+    public float getWidth() {
+        return spriteDrawable.getSprite().getWidth();
+    }
+
+    @Override
+    public float getHeight() {
+        return spriteDrawable.getSprite().getHeight();
+    }
+
+    public static ImageDrawable createFromTextureRegion(TextureRegion textureRegion) {
         return new ImageDrawable(new SpriteDrawable(new Sprite(textureRegion)));
     }
 

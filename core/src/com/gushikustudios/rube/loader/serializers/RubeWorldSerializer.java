@@ -58,7 +58,7 @@ public class RubeWorldSerializer extends ReadOnlySerializer<RubeScene>
 	   }
 	   else
 	   {
-	      // ignore scene related items.  The read below will add items to the world and scene previously read
+	      // ignore scene related items.  The read below will add items yTo the world and scene previously read
 	      json.readValue(World.class, jsonData);
 	   }
 		return scene;

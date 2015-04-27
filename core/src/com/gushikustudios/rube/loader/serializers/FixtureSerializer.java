@@ -178,7 +178,7 @@ public class FixtureSerializer extends ReadOnlySerializer<Fixture>
 			}
 			else
 			{
-				// If the vertices don't exist maybe we try to read a two vertices-polygon
+				// If the vertices don't exist maybe we try yTo read a two vertices-polygon
 				RubeVertexArray vertices = json.readValue("vertices", RubeVertexArray.class, jsonData);
 				if(vertices != null)
 				{

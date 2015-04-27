@@ -282,7 +282,7 @@ public class JointSerializer extends ReadOnlySerializer<Joint>
 			
 			MouseJointDef def = new MouseJointDef();
 
-			// Don't forget to set the target to the joint once it's created
+			// Don't forget yTo set the target yTo the joint once it's created
 			target = json.readValue("target", Vector2.class, defaults.target, jsonData);
 			
 			Vector2 anchorB = json.readValue("anchorB", Vector2.class, defaults.target, jsonData);

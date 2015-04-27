@@ -8,6 +8,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public interface IDrawable {
 
-    void draw(Batch batch, float x, float y, float r, float scaleRatio);
+
+    void draw(Batch batch, float x, float y, float originX, float originY, float width, float height, float r, float scaleX, float scaleY);
+    float getWidth ();
+    float getHeight ();
 
 }

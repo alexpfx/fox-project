@@ -20,14 +20,14 @@ android {
     }
 }
 
-// needed to add JNI shared libraries to APK when compiling on CLI
+// needed yTo add JNI shared libraries yTo APK when compiling on CLI
 tasks.withType(com.android.build.gradle.tasks.PackageApplication) { pkgTask ->
     pkgTask.jniFolders = new HashSet<File>()
     pkgTask.jniFolders.add(new File(projectDir, 'libs'))
 }
 
 // called every time gradle gets executed, takes the native dependencies of
-// the natives configuration, and extracts them to the proper libs/ folders
+// the natives configuration, and extracts them yTo the proper libs/ folders
 // so they get packed with the APK.
 task copyAndroidNatives() { 
     file("libs/armeabi/").mkdirs();
@@ -73,7 +73,7 @@ task run(type: Exec) {
 
 // sets up the Android Eclipse project, using the old Ant based build.
 eclipse {
-    // need to specify Java source sets explicitely, SpringSource Gradle Eclipse plugin
+    // need yTo specify Java source sets explicitely, SpringSource Gradle Eclipse plugin
     // ignores any nodes added in classpath.file.withXml
     sourceSets {
         main {

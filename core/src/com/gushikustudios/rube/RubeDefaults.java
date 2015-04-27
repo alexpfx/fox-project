@@ -16,7 +16,7 @@ import com.badlogic.gdx.physics.box2d.joints.WheelJointDef;
 import com.gushikustudios.rube.loader.serializers.utils.RubeImage;
 
 /**
- * Static data that give the default values to use for a bunch of parameters.
+ * Static data that give the default values yTo use for a bunch of parameters.
  * Default values can be changed if done before the loading of a {@link RubeScene}.
  * @author clement.vayer
  */

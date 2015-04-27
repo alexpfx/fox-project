@@ -10,7 +10,7 @@ import com.gushikustudios.rube.loader.serializers.utils.RubeImage;
 
 /**
  * Created by alexandre on 26/04/15.
- * All Rube operations happens here to minimize dependency.
+ * All Rube operations happens here yTo minimize dependency.
  */
 public class RubeSceneWrapper {
     private final RubeScene scene;

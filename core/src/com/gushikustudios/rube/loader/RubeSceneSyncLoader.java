@@ -25,7 +25,7 @@ public class RubeSceneSyncLoader extends SynchronousAssetLoader<RubeScene, RubeS
    }
    
    /**
-    * Specifies a pre-defined Box2D world to add scene objects to.
+    * Specifies a pre-defined Box2D world yTo add scene objects yTo.
     * 
     * @param world
     * @param resolver
