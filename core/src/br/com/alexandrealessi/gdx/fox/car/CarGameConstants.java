@@ -32,7 +32,7 @@ public class CarGameConstants {
 
     public static enum Sizes {
 
-        WORLD(new Vector2(23.66f, 14.201f)), SCREEN(new Vector2(800f, 480f));
+        WORLD(new Vector2(25.806f, 15.48f)), SCREEN(new Vector2(800f, 480f));
 
         public Vector2 value;
 
@@ -49,11 +49,11 @@ public class CarGameConstants {
         }
 
         public float yTo(float y, Sizes target) {
-            return (target.height()/height()) * y;
+            return (target.height() / height()) * y;
         }
 
         public float xTo(float x, Sizes target) {
-            return (target.width()/width()) * x;
+            return (target.width() / width()) * x;
         }
 
     }
