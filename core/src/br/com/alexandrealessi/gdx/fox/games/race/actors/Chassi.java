@@ -4,11 +4,11 @@ import br.com.alexandrealessi.gdx.fox.base.components.ActorComponent;
 import com.badlogic.gdx.physics.box2d.Body;
 
 /**
- * Created by alexandre on 26/04/15.
+ * Created by alexandre on 27/04/15.
  */
-public class RearWheel extends ActorComponent {
-    public RearWheel(Body body) {
+public class Chassi extends ActorComponent{
+
+    public Chassi(Body body) {
         super(body);
     }
-
 }

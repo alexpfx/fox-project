@@ -2,7 +2,7 @@ package br.com.alexandrealessi.gdx.fox.games.race.actors;
 
 import br.com.alexandrealessi.gdx.fox.base.components.ImageDrawable;
 import br.com.alexandrealessi.gdx.fox.base.components.IDrawable;
-import br.com.alexandrealessi.gdx.fox.base.components.ActorPart;
+import br.com.alexandrealessi.gdx.fox.base.components.ActorComponent;
 import br.com.alexandrealessi.gdx.fox.base.components.CompositeActor;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import br.com.alexandrealessi.gdx.fox.base.utils.wrappers.RubeSceneWrapper;
@@ -49,14 +49,14 @@ public class VehicleFactory {
 
     private void createChassi(CompositeActor car) {
         final Body chassiBody = rubeScene.getBody(CHASSIS);
-        addPart(car, new Chassis(chassiBody), ImageDrawable.createFromTextureRegion(getRegion(rubeScene.getBindedImageFileName(chassiBody))));
+        addPart(car, new Chassi(chassiBody), ImageDrawable.createFromTextureRegion(getRegion(rubeScene.getBindedImageFileName(chassiBody))));
     }
 
-    public void addPart(CompositeActor ca, ActorPart part) {
+    public void addPart(CompositeActor ca, ActorComponent part) {
         addPart(ca, part, null);
     }
 
-    public void addPart(CompositeActor ca, ActorPart part, IDrawable drawable) {
+    public void addPart(CompositeActor ca, ActorComponent part, IDrawable drawable) {
         if (drawable != null) {
             part.setDrawable(drawable);
         }

@@ -10,15 +10,30 @@ import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.Sizes;
 
 /**
  * Created by alexandre on 26/04/15.
+ *
  */
-public abstract class ActorPart extends Actor {
+public abstract class ActorComponent extends Actor {
+    //TODO: considerar guardar o drawable no atributo userData do body.
 
     protected Body body;
     private IDrawable drawable;
 
-    public ActorPart(Body body) {
-        this.body = body;
+    public ActorComponent() {
+
+    }
+
+    protected ActorComponent(Body body) {
+        setBody(body);
         setScale(1);
+    }
+
+    protected ActorComponent(IDrawable drawable) {
+        setDrawable(drawable);
+    }
+
+    protected ActorComponent(Body body, IDrawable drawable) {
+        this(body);
+        setDrawable(drawable);
     }
 
     @Override
@@ -29,28 +44,35 @@ public abstract class ActorPart extends Actor {
         drawable.draw(batch, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getRotation(), getScaleX(), getScaleY());
     }
 
-    public void setDrawable(IDrawable drawable) {
-        this.drawable = drawable;
-        setWidth(drawable.getWidth());
-        setHeight(drawable.getHeight());
-
-    }
-
     @Override
     public void act(float delta) {
-        final float x = body.getPosition().x;
-        final float screenX = Sizes.WORLD.scaleX(x, Sizes.SCREEN) + Sizes.SCREEN.width()/ 2 - getWidth() / 2;
+        super.act(delta);
+        if (body == null) {
+            return;
+        }
+        doPhysicAct();
+    }
 
+    private void doPhysicAct() {
+        final float x = body.getPosition().x;
+        final float screenX = Sizes.WORLD.scaleX(x, Sizes.SCREEN) + Sizes.SCREEN.width() / 2 - getWidth() / 2;
         final float y = body.getPosition().y;
         final float screenY = Sizes.WORLD.scaleY(y, Sizes.SCREEN) + Sizes.SCREEN.height() / 2 - getHeight() / 2;
-
         final float angle = body.getAngle();
         float r = body.getAngle() * MathUtils.radDeg;
-
         setPosition(screenX, screenY);
         setOrigin(Align.center);
         setRotation(r);
     }
 
+    public void setBody(Body body) {
+        this.body = body;
+    }
+
+    public void setDrawable(IDrawable drawable) {
+        this.drawable = drawable;
+        setWidth(drawable.getWidth());
+        setHeight(drawable.getHeight());
+    }
 
 }
