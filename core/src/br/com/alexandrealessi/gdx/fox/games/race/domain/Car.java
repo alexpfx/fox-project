@@ -1,11 +1,11 @@
-package br.com.alexandrealessi.gdx.fox.games.race.actors;
+package br.com.alexandrealessi.gdx.fox.games.race.domain;
 
 import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by alexandre on 27/04/15.
  */
-public abstract class Car implements IVehicle {
+public abstract class Car implements Vehicle {
 
     private final Chassis chassi;
     private final FrontWheel frontWheel;
@@ -18,7 +18,7 @@ public abstract class Car implements IVehicle {
     }
 
     @Override
-    public Array<IVehicleComponent> getComponents() {
-        return Array.with((IVehicleComponent) chassi, (IVehicleComponent) frontWheel, (IVehicleComponent) rearWheel);
+    public final Array<VehicleComponent> getComponents() {
+        return Array.with((VehicleComponent) chassi, (VehicleComponent) frontWheel, (VehicleComponent) rearWheel);
     }
 }

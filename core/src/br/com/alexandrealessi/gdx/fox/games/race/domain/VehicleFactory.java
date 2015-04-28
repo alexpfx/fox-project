@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.games.race.actors;
+package br.com.alexandrealessi.gdx.fox.games.race.domain;
 
 import br.com.alexandrealessi.gdx.fox.base.components.ActorComponent;
 import br.com.alexandrealessi.gdx.fox.base.components.CompositeActor;
@@ -38,18 +38,18 @@ public class VehicleFactory {
 
     private void createFrontWheel(CompositeActor car) {
         final Body frontBody = rubeScene.getBody(FRONT_WHEEL);
-        addPart(car, new FrontWheel(frontBody), ImageDrawable.createFromTextureRegion(getRegion(rubeScene.getBindedImageFileName(frontBody))));
+//        addPart(car, new FrontWheel(frontBody), ImageDrawable.createFromTextureRegion(getRegion(rubeScene.getBindedImageFileName(frontBody))));
     }
 
     private void createRearWheel(CompositeActor car) {
         final Body rearBody = rubeScene.getBody(REAR_WHEEL);
-        addPart(car, new RearWheel(rearBody), ImageDrawable.createFromTextureRegion(getRegion(rubeScene.getBindedImageFileName(rearBody))));
+//        addPart(car, new RearWheel(rearBody), ImageDrawable.createFromTextureRegion(getRegion(rubeScene.getBindedImageFileName(rearBody))));
 
     }
 
     private void createChassi(CompositeActor car) {
         final Body chassiBody = rubeScene.getBody(CHASSIS);
-        addPart(car, new Chassi(chassiBody), ImageDrawable.createFromTextureRegion(getRegion(rubeScene.getBindedImageFileName(chassiBody))));
+//        addPart(car, new Chassi(chassiBody), ImageDrawable.createFromTextureRegion(getRegion(rubeScene.getBindedImageFileName(chassiBody))));
     }
 
     public void addPart(CompositeActor ca, ActorComponent part) {
