@@ -4,7 +4,7 @@ import br.com.alexandrealessi.gdx.fox.base.physic.WorldRenderer;
 import br.com.alexandrealessi.gdx.fox.base.components.CompositeActor;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import br.com.alexandrealessi.gdx.fox.games.CarsGameConstants;
-import br.com.alexandrealessi.gdx.fox.games.race.domain.VehicleFactory;
+import br.com.alexandrealessi.gdx.fox.games.race.domain.refatorar.VehicleFactory;
 import br.com.alexandrealessi.gdx.fox.base.utils.wrappers.RubeSceneWrapper;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;

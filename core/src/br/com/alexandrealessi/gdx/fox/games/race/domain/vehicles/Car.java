@@ -1,5 +1,9 @@
-package br.com.alexandrealessi.gdx.fox.games.race.domain;
+package br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles;
 
+import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components.Chassis;
+import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components.impl.FrontWheel;
+import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components.impl.RearWheel;
+import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components.impl.VehicleComponent;
 import com.badlogic.gdx.utils.Array;
 
 /**

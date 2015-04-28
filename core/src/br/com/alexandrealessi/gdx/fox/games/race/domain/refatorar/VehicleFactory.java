@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.games.race.domain;
+package br.com.alexandrealessi.gdx.fox.games.race.domain.refatorar;
 
 import br.com.alexandrealessi.gdx.fox.base.components.ActorComponent;
 import br.com.alexandrealessi.gdx.fox.base.components.CompositeActor;
