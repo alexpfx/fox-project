@@ -41,6 +41,7 @@
 			"awake" : true,
 			"fixture" : 
 			[
+				
 				{
 					"circle" : 
 					{
@@ -353,7 +354,7 @@
 					0.4554440975189209
 				]
 			},
-			"file" : "../../assets-raw/game/peugeot_chassi.png",
+			"file" : "../../assets-raw/game/peugeot_chassis.png",
 			"filter" : 1,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
@@ -398,7 +399,7 @@
 					0.2497506141662598
 				]
 			},
-			"file" : "../../assets-raw/game/peugeot_roda_tras.png",
+			"file" : "../../assets-raw/game/peugeot_rear_wheel.png",
 			"filter" : 1,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
@@ -413,7 +414,7 @@
 				-0.2569830417633057,
 				0.2497506141662598
 			],
-			"name" : "peugeot_roda_tras",
+			"name" : "peugeot_rear_wheel",
 			"opacity" : 0.5,
 			"scale" : 0.5
 		},
@@ -443,7 +444,7 @@
 					0.2472525835037231
 				]
 			},
-			"file" : "../../assets-raw/game/peugeot_roda_frente.png",
+			"file" : "../../assets-raw/game/peugeot_front_wheel.png",
 			"filter" : 1,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
@@ -458,7 +459,7 @@
 				-0.2426495552062988,
 				0.2472525835037231
 			],
-			"name" : "peugeot_roda_frente",
+			"name" : "peugeot_front_wheel",
 			"opacity" : 0.5,
 			"scale" : 0.5
 		}
