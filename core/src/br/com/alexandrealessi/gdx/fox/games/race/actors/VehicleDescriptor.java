@@ -7,5 +7,4 @@ public class VehicleDescriptor {
 
     private String name;
 
-
 }

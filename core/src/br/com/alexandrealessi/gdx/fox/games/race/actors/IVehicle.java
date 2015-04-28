@@ -6,7 +6,5 @@ import com.badlogic.gdx.utils.Array;
  * Created by alexandre on 26/04/15.
  */
 public interface IVehicle {
-
-
-
+    Array<IVehicleComponent> getComponents();
 }

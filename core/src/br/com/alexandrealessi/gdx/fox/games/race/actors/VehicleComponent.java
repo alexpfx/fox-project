@@ -3,12 +3,12 @@ package br.com.alexandrealessi.gdx.fox.games.race.actors;
 /**
  * Created by alexandre on 27/04/15.
  */
-public abstract class BaseVehicleComponent implements IVehicleComponent {
+public abstract class VehicleComponent implements IVehicleComponent {
 
     private final String mappedBodyname;
     private final String mappedImageName;
 
-    protected BaseVehicleComponent(String mappedBodyname, String mappedImageName) {
+    protected VehicleComponent(String mappedBodyname, String mappedImageName) {
         this.mappedBodyname = mappedBodyname;
         this.mappedImageName = mappedImageName;
     }

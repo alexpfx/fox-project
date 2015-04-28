@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 /**
  * Created by alexandre on 27/04/15.
  */
-public class Chassi extends ActorComponent{
+public class Chassi extends ActorComponent {
 
     public Chassi(Body body) {
         super(body);
