@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components.impl;
+package br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components;
 
 import br.com.alexandrealessi.gdx.fox.base.components.ComponentDescriptor;
 

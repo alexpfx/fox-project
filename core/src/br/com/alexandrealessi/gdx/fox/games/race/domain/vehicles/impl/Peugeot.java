@@ -2,7 +2,7 @@ package br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.impl;
 
 import br.com.alexandrealessi.gdx.fox.base.components.ComponentDescriptor;
 import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.Car;
-import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components.Chassis;
+import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components.impl.Chassis;
 import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components.impl.FrontWheel;
 import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components.impl.RearWheel;
 
