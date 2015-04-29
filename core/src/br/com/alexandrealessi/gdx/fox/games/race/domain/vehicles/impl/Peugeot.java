@@ -11,9 +11,9 @@ import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components.impl
  */
 public class Peugeot extends Car {
 
-    private static String chassis = "peugeot_chassis";
     public static final String rearWheel = "peugeot_rear_wheel";
     public static final String frontWheel = "peugeot_front_wheel";
+    private static String chassis = "peugeot_chassis";
 
     private Peugeot(Chassis c, FrontWheel f, RearWheel r) {
         super(c, f, r);

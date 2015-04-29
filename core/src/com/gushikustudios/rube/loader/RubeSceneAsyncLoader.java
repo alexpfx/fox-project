@@ -10,49 +10,42 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.gushikustudios.rube.RubeScene;
 
-public class RubeSceneAsyncLoader extends AsynchronousAssetLoader<RubeScene, RubeSceneAsyncLoader.RubeSceneParameters>
-{
-   private final RubeSceneLoader mLoader;
-   private RubeScene mScene;
-   
-   static public class RubeSceneParameters extends AssetLoaderParameters<RubeScene>
-   {
-   }
-   
-   public RubeSceneAsyncLoader(FileHandleResolver resolver)
-   {
-      this(null,resolver);
-   }
-   
-   /**
-    * Specifies a pre-defined Box2D world yTo add scene objects yTo.
-    * 
-    * @param world
-    * @param resolver
-    */
-   public RubeSceneAsyncLoader(World world, FileHandleResolver resolver)
-   {
-      super(resolver);
-      mLoader = new RubeSceneLoader(world);
-   }
+public class RubeSceneAsyncLoader extends AsynchronousAssetLoader<RubeScene, RubeSceneAsyncLoader.RubeSceneParameters> {
+    private final RubeSceneLoader mLoader;
+    private RubeScene mScene;
 
-   @SuppressWarnings("rawtypes")
-   @Override
-   public Array<AssetDescriptor> getDependencies(String fileName, FileHandle file, RubeSceneParameters parameter)
-   {
-      return null;
-   }
+    public RubeSceneAsyncLoader(FileHandleResolver resolver) {
+        this(null, resolver);
+    }
 
-   @Override
-   public void loadAsync(AssetManager manager, String fileName, FileHandle file, RubeSceneParameters parameter)
-   {
-      mScene = null;
-      mScene = mLoader.addScene(file);
-   }
+    /**
+     * Specifies a pre-defined Box2D world yTo add scene objects yTo.
+     *
+     * @param world
+     * @param resolver
+     */
+    public RubeSceneAsyncLoader(World world, FileHandleResolver resolver) {
+        super(resolver);
+        mLoader = new RubeSceneLoader(world);
+    }
 
-   @Override
-   public RubeScene loadSync(AssetManager manager, String fileName, FileHandle file, RubeSceneParameters parameter)
-   {
-      return mScene;
-   }
+    @SuppressWarnings("rawtypes")
+    @Override
+    public Array<AssetDescriptor> getDependencies(String fileName, FileHandle file, RubeSceneParameters parameter) {
+        return null;
+    }
+
+    @Override
+    public void loadAsync(AssetManager manager, String fileName, FileHandle file, RubeSceneParameters parameter) {
+        mScene = null;
+        mScene = mLoader.addScene(file);
+    }
+
+    @Override
+    public RubeScene loadSync(AssetManager manager, String fileName, FileHandle file, RubeSceneParameters parameter) {
+        return mScene;
+    }
+
+    static public class RubeSceneParameters extends AssetLoaderParameters<RubeScene> {
+    }
 }

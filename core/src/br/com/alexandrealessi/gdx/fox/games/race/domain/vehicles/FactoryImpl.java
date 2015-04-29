@@ -9,7 +9,6 @@ import br.com.alexandrealessi.gdx.fox.games.CarsGameConstants;
 import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components.VehicleComponent;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.gushikustudios.rube.RubeScene;
 
 /**
  * Created by alexandre on 28/04/15.

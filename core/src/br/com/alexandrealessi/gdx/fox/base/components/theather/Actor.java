@@ -10,8 +10,8 @@ import com.badlogic.gdx.utils.Array;
  */
 public final class Actor implements Entity {
 
-    private Array<Script> actuations = new Array<Script>();
     private final Body body;
+    private Array<Script> actuations = new Array<Script>();
     private Drawable drawable;
 
     public Actor(Body body) {

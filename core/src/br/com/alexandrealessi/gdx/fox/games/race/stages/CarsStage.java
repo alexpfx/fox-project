@@ -1,11 +1,11 @@
 package br.com.alexandrealessi.gdx.fox.games.race.stages;
 
-import br.com.alexandrealessi.gdx.fox.base.physic.WorldRenderer;
 import br.com.alexandrealessi.gdx.fox.base.components.theather.CompositeActor;
+import br.com.alexandrealessi.gdx.fox.base.physic.WorldRenderer;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
+import br.com.alexandrealessi.gdx.fox.base.utils.wrappers.RubeSceneWrapper;
 import br.com.alexandrealessi.gdx.fox.games.CarsGameConstants;
 import br.com.alexandrealessi.gdx.fox.games.race.domain.refatorar.VehicleFactory;
-import br.com.alexandrealessi.gdx.fox.base.utils.wrappers.RubeSceneWrapper;
 import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.FactoryImpl;
 import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.impl.Peugeot;
 import com.badlogic.gdx.Gdx;
@@ -21,12 +21,11 @@ import com.gushikustudios.rube.loader.RubeSceneLoader;
  */
 public class CarsStage extends Stage {
 
-    private final WorldRenderer worldRenderer;
     public static final String RUBE_SCENE_FILE = "carscene.json";
     public static final String ATLAS_NAME = "game_atlas";
+    private final WorldRenderer worldRenderer;
     private final CompositeActor car;
     private ResourceManager resourceManager;
-
 
     public CarsStage(Vector2 viewPort) {
         super(new StretchViewport(viewPort.x, viewPort.y));

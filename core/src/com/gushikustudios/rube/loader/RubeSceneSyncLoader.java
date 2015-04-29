@@ -10,42 +10,36 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.gushikustudios.rube.RubeScene;
 
-public class RubeSceneSyncLoader extends SynchronousAssetLoader<RubeScene, RubeSceneSyncLoader.RubeSceneParameters>
-{
-   private final RubeSceneLoader mLoader;
-   
-   static public class RubeSceneParameters extends AssetLoaderParameters<RubeScene>
-   {
-      // TODO: Add any special parameter definitions here
-   }
-   
-   public RubeSceneSyncLoader(FileHandleResolver resolver)
-   {
-      this(null,resolver);
-   }
-   
-   /**
-    * Specifies a pre-defined Box2D world yTo add scene objects yTo.
-    * 
-    * @param world
-    * @param resolver
-    */
-   public RubeSceneSyncLoader(World world, FileHandleResolver resolver)
-   {
-      super(resolver);
-      mLoader = new RubeSceneLoader(world);
-   }
+public class RubeSceneSyncLoader extends SynchronousAssetLoader<RubeScene, RubeSceneSyncLoader.RubeSceneParameters> {
+    private final RubeSceneLoader mLoader;
 
-   @Override
-   public RubeScene load(AssetManager assetManager, String fileName, FileHandle file, RubeSceneParameters parameter)
-   {
-      return mLoader.addScene(file);
-   }
+    public RubeSceneSyncLoader(FileHandleResolver resolver) {
+        this(null, resolver);
+    }
 
-   @SuppressWarnings("rawtypes")
-   @Override
-   public Array<AssetDescriptor> getDependencies(String fileName, FileHandle file, RubeSceneParameters parameter)
-   {
-      return null;
-   }
+    /**
+     * Specifies a pre-defined Box2D world yTo add scene objects yTo.
+     *
+     * @param world
+     * @param resolver
+     */
+    public RubeSceneSyncLoader(World world, FileHandleResolver resolver) {
+        super(resolver);
+        mLoader = new RubeSceneLoader(world);
+    }
+
+    @Override
+    public RubeScene load(AssetManager assetManager, String fileName, FileHandle file, RubeSceneParameters parameter) {
+        return mLoader.addScene(file);
+    }
+
+    @SuppressWarnings("rawtypes")
+    @Override
+    public Array<AssetDescriptor> getDependencies(String fileName, FileHandle file, RubeSceneParameters parameter) {
+        return null;
+    }
+
+    static public class RubeSceneParameters extends AssetLoaderParameters<RubeScene> {
+        // TODO: Add any special parameter definitions here
+    }
 }

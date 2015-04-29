@@ -11,7 +11,6 @@ import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.Sizes;
 
 /**
  * Created by alexandre on 26/04/15.
- *
  */
 public class ActorComponent extends Actor {
     //TODO: considerar guardar o drawable no atributo userData do body.

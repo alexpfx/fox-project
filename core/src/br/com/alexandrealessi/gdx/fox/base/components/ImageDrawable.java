@@ -17,6 +17,11 @@ public class ImageDrawable implements Drawable {
         this.spriteDrawable = spriteDrawable;
     }
 
+    public static ImageDrawable createFromTextureRegion(TextureRegion textureRegion) {
+
+        return new ImageDrawable(new SpriteDrawable(new Sprite(textureRegion)));
+    }
+
     @Override
     public void draw(Batch batch, float alpha, Body body) {
         spriteDrawable.draw(batch, 500f, 250f, getWidth(), getHeight());
@@ -30,11 +35,6 @@ public class ImageDrawable implements Drawable {
     @Override
     public float getHeight() {
         return spriteDrawable.getSprite().getHeight();
-    }
-
-    public static ImageDrawable createFromTextureRegion(TextureRegion textureRegion) {
-
-        return new ImageDrawable(new SpriteDrawable(new Sprite(textureRegion)));
     }
 
 }

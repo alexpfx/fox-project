@@ -7,6 +7,5 @@ import br.com.alexandrealessi.gdx.fox.base.components.theather.CompositeActor;
  */
 public interface Factory {
 
-
     public CompositeActor construct(Vehicle vehicle);
 }
