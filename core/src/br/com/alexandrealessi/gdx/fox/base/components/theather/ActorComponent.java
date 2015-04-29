@@ -1,5 +1,6 @@
-package br.com.alexandrealessi.gdx.fox.base.components;
+package br.com.alexandrealessi.gdx.fox.base.components.theather;
 
+import br.com.alexandrealessi.gdx.fox.base.components.IDrawable;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -12,7 +13,7 @@ import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.Sizes;
  * Created by alexandre on 26/04/15.
  *
  */
-public abstract class ActorComponent extends Actor {
+public class ActorComponent extends Actor {
     //TODO: considerar guardar o drawable no atributo userData do body.
 
     protected Body body;

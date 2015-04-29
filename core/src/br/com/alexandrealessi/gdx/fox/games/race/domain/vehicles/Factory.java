@@ -1,7 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles;
 
-import br.com.alexandrealessi.gdx.fox.base.components.CompositeActor;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import br.com.alexandrealessi.gdx.fox.base.components.theather.CompositeActor;
 
 /**
  * Created by alexandre on 28/04/15.

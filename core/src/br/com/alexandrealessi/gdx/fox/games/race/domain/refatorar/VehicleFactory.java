@@ -1,9 +1,8 @@
 package br.com.alexandrealessi.gdx.fox.games.race.domain.refatorar;
 
-import br.com.alexandrealessi.gdx.fox.base.components.ActorComponent;
-import br.com.alexandrealessi.gdx.fox.base.components.CompositeActor;
+import br.com.alexandrealessi.gdx.fox.base.components.theather.ActorComponent;
+import br.com.alexandrealessi.gdx.fox.base.components.theather.CompositeActor;
 import br.com.alexandrealessi.gdx.fox.base.components.IDrawable;
-import br.com.alexandrealessi.gdx.fox.base.components.ImageDrawable;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import br.com.alexandrealessi.gdx.fox.base.utils.wrappers.RubeSceneWrapper;
 import br.com.alexandrealessi.gdx.fox.games.CarsGameConstants;

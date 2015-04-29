@@ -25,7 +25,7 @@ public class RubeSceneWrapper {
         return scene.getNamed(Body.class, name);
     }
 
-    public String getBindedImageFileName (Body body){
+    public String getBindedImageFileName(Body body) {
         final Array<RubeImage> mappedImage = scene.getMappedImage(body);
         final RubeImage rubeImage = mappedImage.get(0);
         return rubeImage.name;

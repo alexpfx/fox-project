@@ -1,7 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.race.stages;
 
 import br.com.alexandrealessi.gdx.fox.base.physic.WorldRenderer;
-import br.com.alexandrealessi.gdx.fox.base.components.CompositeActor;
+import br.com.alexandrealessi.gdx.fox.base.components.theather.CompositeActor;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import br.com.alexandrealessi.gdx.fox.games.CarsGameConstants;
 import br.com.alexandrealessi.gdx.fox.games.race.domain.refatorar.VehicleFactory;
