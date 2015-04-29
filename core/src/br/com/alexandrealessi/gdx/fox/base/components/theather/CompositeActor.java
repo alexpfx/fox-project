@@ -1,6 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.base.components.theather;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -22,6 +23,14 @@ public class CompositeActor implements Entity {
         for (Entity child : childs) {
             child.draw(batch, alpha);
         }
+    }
+
+    @Override
+    public Vector2 getWorldPosition() {
+        if (childs.size == 0) {
+            return Vector2.Zero;
+        }
+        return childs.get(0).getWorldPosition();
     }
 
     public void addChild(Entity child) {

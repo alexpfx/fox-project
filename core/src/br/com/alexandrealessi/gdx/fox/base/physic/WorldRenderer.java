@@ -34,4 +34,7 @@ public class WorldRenderer {
         world.step(TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
     }
 
+    public OrthographicCamera getCamera() {
+        return camera;
+    }
 }
