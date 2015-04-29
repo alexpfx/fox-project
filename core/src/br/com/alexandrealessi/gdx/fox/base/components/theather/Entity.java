@@ -7,6 +7,5 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public interface Entity {
     void act(float delta);
-
     void draw(SpriteBatch bath, float alpha);
 }

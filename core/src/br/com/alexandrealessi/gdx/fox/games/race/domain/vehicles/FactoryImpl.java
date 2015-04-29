@@ -14,6 +14,9 @@ import com.badlogic.gdx.physics.box2d.Body;
  * Created by alexandre on 28/04/15.
  */
 //TODO: mudar nome
+    // Mover a maior parte dessa implementação para as classes basicas
+    // nao deve construir um veiculo e sim uma interface pai
+    //deixar claro q aqui construi um componente concreto (ator) por meio de um descritor
 public class FactoryImpl implements Factory {
 
     private final RubeSceneWrapper rubeScene;
