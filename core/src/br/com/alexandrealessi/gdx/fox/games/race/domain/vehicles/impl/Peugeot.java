@@ -11,37 +11,51 @@ import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.components.impl
  */
 public class Peugeot extends Car {
 
-    protected Peugeot() {
-        super(new Chassis(new ComponentDescriptor() {
-            @Override
-            public String bodyName() {
-                return null;
-            }
+    private static String chassis = "peugeot_chassis";
+    public static final String rearWheel = "peugeot_rear_wheel";
+    public static final String frontWheel = "peugeot_front_wheel";
 
-            @Override
-            public String drawableName() {
-                return null;
-            }
-        }), new FrontWheel(new ComponentDescriptor() {
-            @Override
-            public String bodyName() {
-                return null;
-            }
-
-            @Override
-            public String drawableName() {
-                return null;
-            }
-        }), new RearWheel(new ComponentDescriptor() {
-            @Override
-            public String bodyName() {
-                return null;
-            }
-
-            @Override
-            public String drawableName() {
-                return null;
-            }
-        }));
+    private Peugeot(Chassis c, FrontWheel f, RearWheel r) {
+        super(c, f, r);
     }
+
+    public static Peugeot createPeugeot() {
+        final ComponentDescriptor cdc = new ComponentDescriptor() {
+            @Override
+            public String bodyName() {
+                return chassis;
+            }
+
+            @Override
+            public String drawableName() {
+                return null;
+            }
+        };
+
+        ComponentDescriptor cdf = new ComponentDescriptor() {
+            @Override
+            public String bodyName() {
+                return frontWheel;
+            }
+
+            @Override
+            public String drawableName() {
+                return null;
+            }
+        };
+
+        ComponentDescriptor cdr = new ComponentDescriptor() {
+            @Override
+            public String bodyName() {
+                return rearWheel;
+            }
+
+            @Override
+            public String drawableName() {
+                return null;
+            }
+        };
+        return new Peugeot(new Chassis(cdc), new FrontWheel(cdf), new RearWheel(cdr));
+    }
+
 }

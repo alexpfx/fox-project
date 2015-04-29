@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.base.components.theather;
 
-import br.com.alexandrealessi.gdx.fox.base.components.IDrawable;
+import br.com.alexandrealessi.gdx.fox.base.components.Drawable;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -17,7 +17,7 @@ public class ActorComponent extends Actor {
     //TODO: considerar guardar o drawable no atributo userData do body.
 
     protected Body body;
-    private IDrawable drawable;
+    private Drawable drawable;
 
     public ActorComponent() {
 
@@ -28,11 +28,11 @@ public class ActorComponent extends Actor {
         setScale(1);
     }
 
-    protected ActorComponent(IDrawable drawable) {
+    protected ActorComponent(Drawable drawable) {
         setDrawable(drawable);
     }
 
-    protected ActorComponent(Body body, IDrawable drawable) {
+    protected ActorComponent(Body body, Drawable drawable) {
         this(body);
         setDrawable(drawable);
     }
@@ -42,7 +42,7 @@ public class ActorComponent extends Actor {
         if (drawable == null) {
             return;
         }
-        drawable.draw(batch, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getRotation(), getScaleX(), getScaleY());
+//        drawable.draw(batch, getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(), getRotation(), getScaleX(), getScaleY());
     }
 
     @Override
@@ -70,7 +70,7 @@ public class ActorComponent extends Actor {
         this.body = body;
     }
 
-    public void setDrawable(IDrawable drawable) {
+    public void setDrawable(Drawable drawable) {
         this.drawable = drawable;
         setWidth(drawable.getWidth());
         setHeight(drawable.getHeight());

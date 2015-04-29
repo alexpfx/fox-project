@@ -2,7 +2,7 @@ package br.com.alexandrealessi.gdx.fox.games.race.domain.refatorar;
 
 import br.com.alexandrealessi.gdx.fox.base.components.theather.ActorComponent;
 import br.com.alexandrealessi.gdx.fox.base.components.theather.CompositeActor;
-import br.com.alexandrealessi.gdx.fox.base.components.IDrawable;
+import br.com.alexandrealessi.gdx.fox.base.components.Drawable;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import br.com.alexandrealessi.gdx.fox.base.utils.wrappers.RubeSceneWrapper;
 import br.com.alexandrealessi.gdx.fox.games.CarsGameConstants;
@@ -55,11 +55,11 @@ public class VehicleFactory {
         addPart(ca, part, null);
     }
 
-    public void addPart(CompositeActor ca, ActorComponent part, IDrawable drawable) {
+    public void addPart(CompositeActor ca, ActorComponent part, Drawable drawable) {
         if (drawable != null) {
             part.setDrawable(drawable);
         }
-        ca.addActor(part);
+//        ca.addActor(part);
     }
 
     public TextureRegion getRegion(String name) {
