@@ -37,8 +37,8 @@ public class FactoryImpl implements Factory {
             final Body body = rubeScene.getBody(bodyName);
             Actor actor = new Actor(body);
             final String bindedImageFileName = rubeScene.getBindedImageFileName(body);
-            System.out.println(bindedImageFileName);
-            ImageDrawable.createFromTextureRegion(getRegionBy(bindedImageFileName));
+            final ImageDrawable imageDrawable = ImageDrawable.createFromTextureRegion(getRegionBy(bindedImageFileName));
+            actor.setDrawable(imageDrawable);
             compositeActor.addChild(actor);
         }
         return compositeActor;

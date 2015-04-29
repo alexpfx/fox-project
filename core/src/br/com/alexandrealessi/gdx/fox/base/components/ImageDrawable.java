@@ -19,7 +19,7 @@ public class ImageDrawable implements Drawable {
 
     @Override
     public void draw(Batch batch, float alpha, Body body) {
-
+        spriteDrawable.draw(batch, 500f, 250f, getWidth(), getHeight());
     }
 
     @Override

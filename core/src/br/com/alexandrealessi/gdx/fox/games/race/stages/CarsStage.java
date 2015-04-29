@@ -9,6 +9,7 @@ import br.com.alexandrealessi.gdx.fox.base.utils.wrappers.RubeSceneWrapper;
 import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.FactoryImpl;
 import br.com.alexandrealessi.gdx.fox.games.race.domain.vehicles.impl.Peugeot;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -48,7 +49,9 @@ public class CarsStage extends Stage {
 
     @Override
     public void draw() {
-        super.draw();
+        getBatch().begin();
+        car.draw((SpriteBatch) getBatch(), 1f);
+        getBatch().end();
         worldRenderer.render();
     }
 
