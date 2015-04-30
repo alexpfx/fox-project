@@ -54,15 +54,15 @@ public class ActorComponent extends Actor {
     }
 
     private void doPhysicAct() {
-        final float x = body.getPosition().x;
-        final float screenX = Sizes.WORLD.scaleX(x, Sizes.SCREEN) + Sizes.SCREEN.width() / 2 - getWidth() / 2;
-        final float y = body.getPosition().y;
-        final float screenY = Sizes.WORLD.scaleY(y, Sizes.SCREEN) + Sizes.SCREEN.height() / 2 - getHeight() / 2;
-        final float angle = body.getAngle();
-        float r = body.getAngle() * MathUtils.radDeg;
-        setPosition(screenX, screenY);
-        setOrigin(Align.center);
-        setRotation(r);
+//        final float x = body.getPosition().x;
+//        final float screenX = Sizes.WORLD.scaleX(x, Sizes.SCREEN) + Sizes.SCREEN.width() / 2 - getWidth() / 2;
+//        final float y = body.getPosition().y;
+//        final float screenY = Sizes.WORLD.scaleY(y, Sizes.SCREEN) + Sizes.SCREEN.height() / 2 - getHeight() / 2;
+//        final float angle = body.getAngle();
+//        float r = body.getAngle() * MathUtils.radDeg;
+//        setPosition(screenX, screenY);
+//        setOrigin(Align.center);
+//        setRotation(r);
     }
 
     public void setBody(Body body) {

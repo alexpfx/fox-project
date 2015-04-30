@@ -31,6 +31,41 @@ public class CarsGameConstants {
     }
 
     public static enum Sizes {
+        WORLD(new Vector2(25.806f, 15.48f)), SCREEN(new Vector2(800f, 480f)), TRANSFORM(new Vector2(-1, -1));
+
+        private Vector2 value;
+
+        private Sizes(Vector2 value) {
+            this.value = value;
+        }
+
+        private Vector2 inputValue;
+        private Vector2 sourceValue;
+
+        public Sizes value(Vector2 value) {
+            inputValue = value;
+            return this;
+        }
+
+        public Sizes from(Sizes size) {
+            sourceValue = size.value;
+            return this;
+        }
+
+        public Vector2 to(Sizes size) {
+            float x = size.value.x / sourceValue.x * inputValue.x;
+            float y = size.value.y / sourceValue.y * inputValue.y;
+            return Vector2.Zero.set(x, y);
+        }
+
+        public Vector2 getValue() {
+            return value;
+        }
+    }
+
+
+    /*
+    public static enum Sizes {
 
         WORLD(new Vector2(25.806f, 15.48f)), SCREEN(new Vector2(800f, 480f));
 
@@ -57,5 +92,6 @@ public class CarsGameConstants {
         }
 
     }
+    */
 
 }
