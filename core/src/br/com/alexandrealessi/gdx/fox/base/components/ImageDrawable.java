@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
+import java.util.Random;
+
 import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.*;
 import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.Sizes.*;
 
@@ -30,6 +32,9 @@ public class ImageDrawable implements Drawable {
 
     }
 
+    private static Random rand = new Random();
+
+
     @Override
     public void draw(Batch batch, float alpha, Body body) {
         final float x = body.getPosition().x;
@@ -40,7 +45,14 @@ public class ImageDrawable implements Drawable {
     }
 
     private Vector3 calculatePosition(Vector2 position, float angle) {
-        final Vector2 to = TRANSFORM.value(position).from(WORLD).to(SCREEN);
+        //TODO: apagar
+        if (rand.nextInt(1000_000) == 500_000){
+            System.out.println("ganhou o milhão");
+            System.out.println(position);
+        }
+        final Vector2 to = Transform.value(position).from(WORLD).to(SCREEN);
+        System.out.println(to);
+//        final Vector2 to = TRANSFORM.value(position).from(WORLD).to(SCREEN);
         to.mulAdd(SCREEN.getValue(), 1 / 2f).sub(getWidth() / 2, getHeight() / 2);
         float xs = to.x;
         float ys = to.y;
