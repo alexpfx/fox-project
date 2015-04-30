@@ -46,12 +46,12 @@ public class ImageDrawable implements Drawable {
 
     private Vector3 calculatePosition(Vector2 position, float angle) {
         //TODO: apagar
-        if (rand.nextInt(1000_000) == 500_000){
-            System.out.println("ganhou o milhão");
+        if (rand.nextInt(1000000) == 500000){
+            System.out.println("ganhou o milhao");
             System.out.println(position);
         }
         final Vector2 to = Transform.value(position).from(WORLD).to(SCREEN);
-        System.out.println(to);
+
 //        final Vector2 to = TRANSFORM.value(position).from(WORLD).to(SCREEN);
         to.mulAdd(SCREEN.getValue(), 1 / 2f).sub(getWidth() / 2, getHeight() / 2);
         float xs = to.x;
