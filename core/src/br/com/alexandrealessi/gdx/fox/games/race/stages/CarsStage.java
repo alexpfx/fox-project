@@ -16,9 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.gushikustudios.rube.loader.RubeSceneLoader;
 
-import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.Sizes.SCREEN;
-import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.Sizes.TRANSFORM;
-import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.Sizes.WORLD;
+import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.Sizes.*;
 
 /**
  * Created by alexandre on 26/04/15.

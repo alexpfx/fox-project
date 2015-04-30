@@ -61,37 +61,50 @@ public class CarsGameConstants {
         public Vector2 getValue() {
             return value;
         }
+
+        /**
+         * Alternative Transform method.
+         */
+        public static class Transform {
+            private Vector2 inputValue;
+            private Vector2 sourceValue;
+
+            private final static Transform instance = new Transform();
+
+            private Transform() {
+
+            }
+
+            public static Transform value(Vector2 inputValue) {
+                instance.inputValue = inputValue;
+                return instance;
+            }
+
+                /* problematic, since this method must be called
+                 within the main game loop we should avoid new object instances
+
+                public Transform value (Vector2 inputValue){
+                    final Transform transform = new Transform();
+                    transform.inputValue = inputValue;
+                    return this;
+                }
+                */
+
+            public Transform from(Sizes size) {
+                this.sourceValue = size.value;
+                return this;
+            }
+
+            public Vector2 to(Sizes size) {
+                float x = size.value.x / sourceValue.x * inputValue.x;
+                float y = size.value.y / sourceValue.y * inputValue.y;
+                return Vector2.Zero.set(x, y);
+            }
+
+            public static void main(String[] args) { // Test
+                final Vector2 transfomed = Transform.value(new Vector2(10, 10)).from(WORLD).to(SCREEN);
+            }
+        }
     }
-
-
-    /*
-    public static enum Sizes {
-
-        WORLD(new Vector2(25.806f, 15.48f)), SCREEN(new Vector2(800f, 480f));
-
-        public Vector2 value;
-
-        private Sizes(Vector2 value) {
-            this.value = value;
-        }
-
-        public float width() {
-            return value.x;
-        }
-
-        public float height() {
-            return value.y;
-        }
-
-        public float scaleY(float y, Sizes target) {
-            return (target.height() / height()) * y;
-        }
-
-        public float scaleX(float x, Sizes target) {
-            return (target.width() / width()) * x;
-        }
-
-    }
-    */
-
 }
+
