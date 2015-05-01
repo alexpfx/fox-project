@@ -1,6 +1,5 @@
 package br.com.alexandrealessi.gdx.fox.base.components;
 
-import br.com.alexandrealessi.gdx.fox.games.CarsGameConstants;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,8 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
 import java.util.Random;
 
-import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.*;
-import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.Sizes.*;
+import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.ResolutionConstants.*;
 
 /**
  * Created by alexandre on 26/04/15.
@@ -45,15 +43,13 @@ public class ImageDrawable implements Drawable {
     }
 
     private Vector3 calculatePosition(Vector2 position, float angle) {
-        //TODO: apagar
-        if (rand.nextInt(1000000) == 500000){
-            System.out.println("ganhou o milhao");
-            System.out.println(position);
-        }
+
         final Vector2 to = Transform.value(position).from(WORLD).to(SCREEN);
+//        final Vector2 to = new Transform().nvalue(position).from(WORLD).to(SCREEN);
+//        new CarsGameConstants.Sizes.Transform().nvalue(position);
 
 //        final Vector2 to = TRANSFORM.value(position).from(WORLD).to(SCREEN);
-        to.mulAdd(SCREEN.getValue(), 1 / 2f).sub(getWidth() / 2, getHeight() / 2);
+        to.mulAdd(SCREEN.value, 1 / 2f).sub(getWidth() / 2, getHeight() / 2);
         float xs = to.x;
         float ys = to.y;
         final float rs = angle * MathUtils.radDeg;
