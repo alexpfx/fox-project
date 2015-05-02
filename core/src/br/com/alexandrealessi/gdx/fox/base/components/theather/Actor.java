@@ -2,6 +2,7 @@ package br.com.alexandrealessi.gdx.fox.base.components.theather;
 
 import br.com.alexandrealessi.gdx.fox.base.components.Drawable;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
@@ -33,7 +34,7 @@ public final class Actor implements Entity {
     @Override
     public void draw(SpriteBatch batch, float alpha) {
         if (drawable != null) {
-            drawable.draw(batch, alpha, body);
+            drawable.draw(batch, alpha, body.getPosition(), body.getAngle() * MathUtils.radDeg);
         }
     }
 

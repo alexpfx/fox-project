@@ -5,21 +5,21 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
+import com.sun.istack.internal.NotNull;
 
 /**
  * Created by alex on 01/05/2015.
  */
-public class DefaultEntity implements Physical, VisualEntity {
+public abstract class DefaultEntity implements MovableEntity, VisualEntity {
 
-    private BodyWrapper body;
-    private Drawable drawable;
-    private Array<Script> scripts;
-    private SpriteBatch batch;
+    private final BodyWrapper body;
+    private final Drawable drawable;
+    private final Array<Script> scripts;
 
-
-    @Override
-    public BodyWrapper getBody() {
-        return body;
+    public DefaultEntity(BodyWrapper bodyWrapper, Drawable drawable) {
+        this.scripts = new Array<Script>();
+        this.body = bodyWrapper;
+        this.drawable = drawable;
     }
 
 
@@ -28,6 +28,10 @@ public class DefaultEntity implements Physical, VisualEntity {
         for (Script script : scripts) {
             script.run(delta);
         }
+    }
+
+    public BodyWrapper getBody() {
+        return body;
     }
 
     @Override
@@ -40,5 +44,6 @@ public class DefaultEntity implements Physical, VisualEntity {
         Body b = body.getBody();
         drawable.draw(batch, alpha, b.getPosition(), b.getAngle() * MathUtils.radDeg);
     }
+
 
 }

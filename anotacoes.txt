@@ -1,6 +1,6 @@
 ----------- Anotações
 Considerar o uso de tile maps do libgdx para cosntruir estrutura de layers ou usar estrutura implementada no Halley Comet.
-
+Considerar o uso de anotações para associar nome das imagens.
 
 ----------- Recursos
 - ferramentas -

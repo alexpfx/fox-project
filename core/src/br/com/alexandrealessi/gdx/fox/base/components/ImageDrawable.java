@@ -2,6 +2,7 @@ package br.com.alexandrealessi.gdx.fox.base.components;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -31,7 +32,7 @@ public class ImageDrawable implements Drawable {
     }
 
     @Override
-    public void draw(Batch batch, float alpha, Vector2 position, float degAngle) {
+    public void draw(SpriteBatch  batch, float alpha, Vector2 position, float degAngle) {
         final Vector2 newPosition = calculatePosition(position);
         spriteDrawable.draw(batch, newPosition.x, newPosition.y, getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), 1, 1, degAngle);
     }
@@ -43,6 +44,7 @@ public class ImageDrawable implements Drawable {
         float ys = to.y;
         return Vector2.Zero.set(xs, ys);
     }
+
 
     @Override
     public float getWidth() {
