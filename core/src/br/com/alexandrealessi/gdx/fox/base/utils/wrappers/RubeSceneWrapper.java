@@ -15,7 +15,7 @@ import com.gushikustudios.rube.loader.serializers.utils.RubeImage;
 public class RubeSceneWrapper {
     private final RubeScene scene;
 
-    // passar o loader e nao só o scene, senao nao wrappeia nada.
+    // passar o loader e nao sao o scene, senao nao wrappeia nada.
     public RubeSceneWrapper(String sceneFile, World world) {
         RubeSceneLoader loader = new RubeSceneLoader(world);
         scene = loader.loadScene(Gdx.files.internal(sceneFile));

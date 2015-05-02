@@ -7,6 +7,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 
+import static br.com.alexandrealessi.gdx.fox.games.constants.ResolutionConstants.SCREEN;
+
 /**
  * Created by alexandre on 26/04/15.
  */
@@ -20,7 +22,7 @@ public class CarsGame extends BaseGame {
 
     @Override
     public void create() {
-        stage = new CarsStage(CarsGameConstants.ResolutionConstants.SCREEN.value);
+        stage = new CarsStage(SCREEN.value);
     }
 
     @Override

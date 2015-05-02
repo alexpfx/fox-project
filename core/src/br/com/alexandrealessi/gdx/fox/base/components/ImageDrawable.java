@@ -1,18 +1,12 @@
 package br.com.alexandrealessi.gdx.fox.base.components;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
-import java.util.Random;
-
-import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.ResolutionConstants.*;
+import static br.com.alexandrealessi.gdx.fox.games.constants.ResolutionConstants.*;
 
 /**
  * Created by alexandre on 26/04/15.

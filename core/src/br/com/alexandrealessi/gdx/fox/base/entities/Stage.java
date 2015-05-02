@@ -32,7 +32,7 @@ public abstract class Stage implements InputProcessor {
         viewPort = new StretchViewport(width, height, camera);
         movableEntities = new Array<MovableEntity>();
         visualEntities = new Array<VisualEntity>();
-        viewPort.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        viewPort.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
         batch = new SpriteBatch();
     }
 
@@ -58,19 +58,25 @@ public abstract class Stage implements InputProcessor {
     }
 
     public final void render() {
-        for (MovableEntity e : movableEntities) {
-            e.update(Gdx.graphics.getDeltaTime());
-        }
+        update();
+        draw();
+        worldRenderer.render();
+    }
 
+    private void draw() {
         Camera camera = viewPort.getCamera();
-        batch.setProjectionMatrix(camera.combined);
+        camera.update();
         batch.begin();
+        batch.setProjectionMatrix(camera.combined);
         for (VisualEntity e : visualEntities) {
-            e.draw(batch, 1);
+            e.draw(batch, .5f);
         }
         batch.end();
-        if (worldRenderer != null){
-            worldRenderer.render();
+    }
+
+    private void update() {
+        for (MovableEntity e : movableEntities) {
+            e.update(Gdx.graphics.getDeltaTime());
         }
     }
 

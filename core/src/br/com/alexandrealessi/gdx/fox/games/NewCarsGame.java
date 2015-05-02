@@ -7,9 +7,13 @@ import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.GdxNativesLoader;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * Created by alex on 01/05/2015.
  */
+
 public class NewCarsGame extends BaseGame {
 
 

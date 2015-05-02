@@ -2,12 +2,8 @@ package br.com.alexandrealessi.gdx.fox.base.components.theather;
 
 import br.com.alexandrealessi.gdx.fox.base.components.Drawable;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
-
-import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.ResolutionConstants;
 
 /**
  * Created by alexandre on 26/04/15.

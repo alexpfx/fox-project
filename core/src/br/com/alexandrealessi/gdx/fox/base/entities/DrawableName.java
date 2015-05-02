@@ -6,13 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Created by alex on 02/05/2015.
+ * Created by alexandre on 02/05/15.
  */
-
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-public @interface BodyName {
-    String bodyNameReference();
-    /* */
-    boolean isClone() default false;
+public @interface DrawableName {
+    public String atlasName ();
+    public String drawableName ();
 }

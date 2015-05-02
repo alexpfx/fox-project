@@ -14,10 +14,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.gushikustudios.rube.loader.RubeSceneLoader;
 
-import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.ResolutionConstants;
-import static br.com.alexandrealessi.gdx.fox.games.CarsGameConstants.ResolutionConstants.*;
+import static br.com.alexandrealessi.gdx.fox.games.constants.ResolutionConstants.*;
 
 /**
  * Created by alexandre on 26/04/15.
@@ -81,10 +79,10 @@ public class CarsStage extends Stage {
     }
 
     public static void main(String[] args) {
-        Vector2 result = ResolutionConstants.Transform.value(new Vector2(5, 5)).from(ResolutionConstants.WORLD).to(ResolutionConstants.SCREEN);
+        Vector2 result = Transform.value(new Vector2(5, 5)).from(WORLD).to(SCREEN);
         assertEquals(50f, result.x);
         assertEquals(50f, result.y);
-        result = ResolutionConstants.Transform.value(new Vector2(10, 20)).from(ResolutionConstants.WORLD).to(ResolutionConstants.SCREEN);
+        result = Transform.value(new Vector2(10, 20)).from(WORLD).to(SCREEN);
         assertEquals(100f, result.x);
         assertEquals(200f, result.y);
     }
