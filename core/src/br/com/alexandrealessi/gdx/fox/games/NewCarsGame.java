@@ -10,29 +10,12 @@ import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
  */
 public class NewCarsGame extends BaseGame {
 
-    private Stage defaultStage = new Stage() {
-        @Override
-        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-            addEntity(new MovableEntity() {
-                @Override
-                public void update(float delta) {
-
-                }
-
-                @Override
-                public void dispose() {
-
-                }
-            });
-            return true;
-        }
-    };
     protected NewCarsGame(RequestHandler requestHand) {
         super(requestHand);
     }
 
     @Override
     public void render() {
-        defaultStage.render();
+
     }
 }

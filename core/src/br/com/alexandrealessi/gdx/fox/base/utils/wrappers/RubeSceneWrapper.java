@@ -1,9 +1,11 @@
 package br.com.alexandrealessi.gdx.fox.base.utils.wrappers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.gushikustudios.rube.RubeScene;
+import com.gushikustudios.rube.loader.RubeSceneLoader;
 import com.gushikustudios.rube.loader.serializers.utils.RubeImage;
 
 /**
@@ -13,8 +15,10 @@ import com.gushikustudios.rube.loader.serializers.utils.RubeImage;
 public class RubeSceneWrapper {
     private final RubeScene scene;
 
-    public RubeSceneWrapper(RubeScene scene) {
-        this.scene = scene;
+    // passar o loader e nao só o scene, senao nao wrappeia nada.
+    public RubeSceneWrapper(String sceneFile, World world) {
+        RubeSceneLoader loader = new RubeSceneLoader(world);
+        scene = loader.loadScene(Gdx.files.internal(sceneFile));
     }
 
     public Body getBody(String name) {

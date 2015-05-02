@@ -33,7 +33,7 @@ public class CarsStage extends Stage {
 
     public CarsStage(Vector2 viewPort) {
         super(new StretchViewport(viewPort.x, viewPort.y));
-        final RubeSceneWrapper rubeSceneWrapper = new RubeSceneWrapper(new RubeSceneLoader().loadScene(Gdx.files.internal(RUBE_SCENE_FILE)));
+        final RubeSceneWrapper rubeSceneWrapper = new RubeSceneWrapper(RUBE_SCENE_FILE, null);
         resourceManager = new ResourceManager(new CarsGameStageAssetConfig());
         resourceManager.load();
         VehicleFactory manufacture = new VehicleFactory(rubeSceneWrapper, resourceManager);
