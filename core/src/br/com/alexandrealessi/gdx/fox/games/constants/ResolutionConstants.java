@@ -8,13 +8,15 @@ import com.badlogic.gdx.math.Vector2;
 public enum ResolutionConstants {
     WORLD(new Vector2(25.806f, 15.48f)), SCREEN(new Vector2(800f, 480f));
 
-    private Vector2 value;
+    public Vector2 value;
     private Vector2 inputValue;
     private Vector2 sourceValue;
 
     private ResolutionConstants(Vector2 value) {
         this.value = value;
     }
+
+
 
     /**
      * Alternative Transform method.

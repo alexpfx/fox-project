@@ -1,6 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.base.entities;
 
 import br.com.alexandrealessi.gdx.fox.base.components.Drawable;
+import br.com.alexandrealessi.gdx.fox.base.physic.WorldRenderer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.GdxNativesLoader;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -22,6 +24,8 @@ public abstract class Stage implements InputProcessor {
     private Array<VisualEntity> visualEntities;
     private SpriteBatch batch;
     private Viewport viewPort;
+    private WorldRenderer worldRenderer;
+
 
     public Stage(float width, float height) {
         Camera camera = new OrthographicCamera(width, height);
@@ -29,10 +33,15 @@ public abstract class Stage implements InputProcessor {
         movableEntities = new Array<MovableEntity>();
         visualEntities = new Array<VisualEntity>();
         viewPort.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch = new SpriteBatch();
     }
 
     public final void addMovable(MovableEntity entity) {
         movableEntities.add(entity);
+    }
+
+    public void setWorldRenderer(WorldRenderer worldRenderer) {
+        this.worldRenderer = worldRenderer;
     }
 
     public final void addVisual(VisualEntity entity) {
@@ -60,6 +69,9 @@ public abstract class Stage implements InputProcessor {
             e.draw(batch, 1);
         }
         batch.end();
+        if (worldRenderer != null){
+            worldRenderer.render();
+        }
     }
 
     public void dispose() {
@@ -113,4 +125,5 @@ public abstract class Stage implements InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
+    public abstract void init ();
 }
