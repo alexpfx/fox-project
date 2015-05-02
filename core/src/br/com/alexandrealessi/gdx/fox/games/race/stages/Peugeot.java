@@ -1,7 +1,7 @@
-package br.com.alexandrealessi.gdx.fox.games;
+package br.com.alexandrealessi.gdx.fox.games.race.stages;
 
-import br.com.alexandrealessi.gdx.fox.base.entities.BodyName;
-import br.com.alexandrealessi.gdx.fox.base.entities.DrawableName;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.BodyName;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.DrawableName;
 
 /**
  * Created by alex on 02/05/2015.

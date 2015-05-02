@@ -5,7 +5,5 @@ package br.com.alexandrealessi.gdx.fox.base.entities;
  */
 public interface Script {
     void run(float delta);
-
     void dispose();
-
 }

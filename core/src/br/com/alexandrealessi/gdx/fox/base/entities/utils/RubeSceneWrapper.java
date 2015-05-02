@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.base.utils.wrappers;
+package br.com.alexandrealessi.gdx.fox.base.entities.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Body;

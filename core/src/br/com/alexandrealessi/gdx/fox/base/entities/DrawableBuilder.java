@@ -1,5 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.base.entities;
 
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.DrawableName;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 

@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.base.entities;
+package br.com.alexandrealessi.gdx.fox.base.entities.utils;
 
 import com.badlogic.gdx.physics.box2d.Body;
 

@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
-import static br.com.alexandrealessi.gdx.fox.games.constants.ResolutionConstants.*;
+import static br.com.alexandrealessi.gdx.fox.games.race.stages.constants.ResolutionConstants.*;
 
 /**
  * Created by alexandre on 26/04/15.

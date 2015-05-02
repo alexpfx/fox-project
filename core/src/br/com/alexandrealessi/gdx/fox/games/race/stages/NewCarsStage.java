@@ -1,15 +1,12 @@
-package br.com.alexandrealessi.gdx.fox.games;
+package br.com.alexandrealessi.gdx.fox.games.race.stages;
 
-import br.com.alexandrealessi.gdx.fox.base.entities.BodyBuilder;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.BodyBuilder;
 import br.com.alexandrealessi.gdx.fox.base.entities.DrawableBuilder;
-import br.com.alexandrealessi.gdx.fox.base.entities.Stage;
-import br.com.alexandrealessi.gdx.fox.base.physic.WorldRenderer;
+import br.com.alexandrealessi.gdx.fox.base.stages.Stage;
+import br.com.alexandrealessi.gdx.fox.base.stages.WorldRenderer;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
-import br.com.alexandrealessi.gdx.fox.base.utils.wrappers.RubeSceneWrapper;
-import br.com.alexandrealessi.gdx.fox.games.constants.ResolutionConstants;
-import br.com.alexandrealessi.gdx.fox.games.race.stages.CarsGameStageAssetConfig;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.RubeSceneWrapper;
+import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.ResolutionConstants;
 
 /**
  * Created by alex on 02/05/2015.

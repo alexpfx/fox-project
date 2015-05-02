@@ -13,7 +13,7 @@ import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresen
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenterImpl;
 import br.com.alexandrealessi.gdx.fox.base.BaseGame;
 import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
-import br.com.alexandrealessi.gdx.fox.games.NewCarsGame;
+import br.com.alexandrealessi.gdx.fox.games.race.stages.NewCarsGame;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.plus.PlusOneButton;
@@ -28,7 +28,6 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        soccerGame = new OverlapExampleGame(this);
         loadGame(new NewCarsGame(this));
         googlePlayServicesPresenter = new GooglePlayServicesPresenterImpl(this, this);
 

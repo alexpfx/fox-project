@@ -1,6 +1,8 @@
-package br.com.alexandrealessi.gdx.fox.base.entities;
+package br.com.alexandrealessi.gdx.fox.base.stages;
 
-import br.com.alexandrealessi.gdx.fox.base.physic.WorldRenderer;
+import br.com.alexandrealessi.gdx.fox.base.entities.Entity;
+import br.com.alexandrealessi.gdx.fox.base.entities.MovableEntity;
+import br.com.alexandrealessi.gdx.fox.base.entities.VisualEntity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;

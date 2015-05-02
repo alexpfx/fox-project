@@ -1,7 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.race.stages;
 
 import br.com.alexandrealessi.gdx.fox.base.resources.AssetConfig;
-import br.com.alexandrealessi.gdx.fox.games.CarsGameConstants;
 
 /**
  * Created by alexandre on 26/04/15.

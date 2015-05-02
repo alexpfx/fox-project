@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.games;
+package br.com.alexandrealessi.gdx.fox.games.race.stages;
 
 import com.badlogic.gdx.math.Vector2;
 

@@ -1,14 +1,9 @@
-package br.com.alexandrealessi.gdx.fox.games;
+package br.com.alexandrealessi.gdx.fox.games.race.stages;
 
 import br.com.alexandrealessi.gdx.fox.base.BaseGame;
-import br.com.alexandrealessi.gdx.fox.base.entities.MovableEntity;
-import br.com.alexandrealessi.gdx.fox.base.entities.Stage;
+import br.com.alexandrealessi.gdx.fox.base.stages.Stage;
 import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.utils.GdxNativesLoader;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 /**
  * Created by alex on 01/05/2015.

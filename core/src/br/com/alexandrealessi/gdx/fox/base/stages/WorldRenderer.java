@@ -1,6 +1,6 @@
-package br.com.alexandrealessi.gdx.fox.base.physic;
+package br.com.alexandrealessi.gdx.fox.base.stages;
 
-import br.com.alexandrealessi.gdx.fox.games.CarsGameConstants;
+import br.com.alexandrealessi.gdx.fox.games.race.stages.CarsGameConstants;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
