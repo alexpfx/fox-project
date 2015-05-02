@@ -28,7 +28,7 @@ public class ImageDrawable implements Drawable {
     @Override
     public void draw(SpriteBatch  batch, float alpha, Vector2 position, float degAngle) {
         final Vector2 newPosition = calculatePosition(position);
-        spriteDrawable.draw(batch, newPosition.x, newPosition.y, getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), 1, 1, degAngle);
+        spriteDrawable.draw(batch, newPosition.x, newPosition.y, getWidth() / 2, getHeight() / 2, getWidth(), getHeight(), 1f, 1f, degAngle);
     }
 
     private Vector2 calculatePosition(Vector2 position) {

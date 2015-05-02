@@ -6,8 +6,8 @@ import com.badlogic.gdx.math.Vector2;
  * Created by alexandre on 30/04/15.
  */
 public enum ResolutionConstants {
-    WORLD(new Vector2(25.806f, 15.48f)), SCREEN(new Vector2(800f, 480f));
-
+    WORLD(new Vector2(25.806f * 1.32f, 15.48f * 1.32f)), SCREEN(new Vector2(800f, 480f));
+    //    WORLD(new Vector2(25.806f * 1.5f, 15.48f * 1.5f)), SCREEN(new Vector2(800f, 480f));
     public Vector2 value;
     private Vector2 inputValue;
     private Vector2 sourceValue;
@@ -15,8 +15,6 @@ public enum ResolutionConstants {
     private ResolutionConstants(Vector2 value) {
         this.value = value;
     }
-
-
 
     /**
      * Alternative Transform method.
