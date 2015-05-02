@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 /**
  * Created by alex on 01/05/2015.
  */
-public interface VisualEntity {
+public interface VisualEntity extends Entity {
     void draw(SpriteBatch batch, float alpha);
     Drawable getDrawable();
     void dispose ();

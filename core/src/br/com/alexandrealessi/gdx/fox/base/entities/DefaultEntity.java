@@ -22,6 +22,9 @@ public abstract class DefaultEntity implements MovableEntity, VisualEntity {
         this.drawable = drawable;
     }
 
+    public void addScript (Script script){
+        scripts.add(script);
+    }
 
     @Override
     public void update(float delta) {
