@@ -1,17 +1,15 @@
 package br.com.alexandrealessi.gdx.fox.base.components;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * Created by alexandre on 26/04/15.
  */
 public interface Drawable {
 
-    /*
-      Drawable deve saber desenhar a si mesmo usando as informacoes do body, se quiser.
-     */
-    void draw(Batch batch, float alpha, Body body);
+
+    void draw(SpriteBatch batch, float alpha, Vector2 position, float degAngle);
 
     public float getWidth();
 
