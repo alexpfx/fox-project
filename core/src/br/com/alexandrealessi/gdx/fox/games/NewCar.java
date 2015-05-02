@@ -1,7 +1,5 @@
 package br.com.alexandrealessi.gdx.fox.games;
 
-import br.com.alexandrealessi.gdx.fox.base.components.Drawable;
-import br.com.alexandrealessi.gdx.fox.base.entities.BodyWrapper;
 import br.com.alexandrealessi.gdx.fox.base.entities.DefaultEntity;
 
 /**

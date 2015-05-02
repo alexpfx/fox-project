@@ -13,7 +13,7 @@ import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresen
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenterImpl;
 import br.com.alexandrealessi.gdx.fox.base.BaseGame;
 import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
-import br.com.alexandrealessi.gdx.fox.games.CarsGame;
+import br.com.alexandrealessi.gdx.fox.games.NewCarsGame;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.plus.PlusOneButton;
@@ -25,18 +25,16 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     private Button btnCallSoccerGame;
     private Button btnCallCometGame;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        soccerGame = new OverlapExampleGame(this);
-        loadGame(new CarsGame(this));
+        loadGame(new NewCarsGame(this));
         googlePlayServicesPresenter = new GooglePlayServicesPresenterImpl(this, this);
-
 
     }
 
-    private void loadGame (BaseGame game){
+    private void loadGame(BaseGame game) {
         final AndroidApplicationConfiguration config = getAndroidApplicationConfig();
         RelativeLayout baseLayout = setContentViewWithGameView(config, game);
         inflatePlusOneButton(baseLayout);
@@ -54,6 +52,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     }
 
     RelativeLayout layout;
+
     private RelativeLayout inflateBaseView(AndroidApplicationConfiguration config, BaseGame baseGame) {
         layout = new RelativeLayout(this);
         final View view = initializeForView(baseGame, config);
@@ -64,7 +63,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     private void inflatePlusOneButton(RelativeLayout baseViewLayout) {
         View plusOneLayout = LayoutInflater.from(getApplicationContext()).inflate(R.layout.android_launcher_layout, null);
         baseViewLayout.addView(plusOneLayout, WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        if (plusOneButton == null){
+        if (plusOneButton == null) {
             plusOneButton = (PlusOneButton) plusOneLayout.findViewById(R.id.plus_one_button);
         }
     }

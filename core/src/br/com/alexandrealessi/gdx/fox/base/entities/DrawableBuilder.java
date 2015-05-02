@@ -1,6 +1,5 @@
 package br.com.alexandrealessi.gdx.fox.base.entities;
 
-import br.com.alexandrealessi.gdx.fox.base.components.ImageDrawable;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 

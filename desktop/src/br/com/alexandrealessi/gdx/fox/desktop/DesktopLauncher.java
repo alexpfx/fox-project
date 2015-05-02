@@ -1,7 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.desktop;
 
 import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
-import br.com.alexandrealessi.gdx.fox.games.CarsGame;
 import br.com.alexandrealessi.gdx.fox.games.NewCarsGame;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
