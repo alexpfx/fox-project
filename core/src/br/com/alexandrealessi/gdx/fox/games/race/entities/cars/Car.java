@@ -3,6 +3,7 @@ package br.com.alexandrealessi.gdx.fox.games.race.entities.cars;
 import br.com.alexandrealessi.gdx.fox.base.entities.DefaultEntity;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.BodyName;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.DrawableName;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.JointName;
 
 /**
  * Created by alex on 02/05/2015.
@@ -57,7 +58,7 @@ public class Car extends DefaultEntity implements Accelerable {
         return frontAxis;
     }
 
-//    @JointName(jointName = "peugeot_front_axis")
+    @JointName(jointName = "peugeot_front_axis")
     public void setFrontAxis(Axis frontAxis) {
         this.frontAxis = frontAxis;
     }
@@ -66,15 +67,20 @@ public class Car extends DefaultEntity implements Accelerable {
         return rearAxis;
     }
 
-//    @JointName(jointName = "peugeot_rear_axis")
+    @JointName(jointName = "peugeot_rear_axis")
     public void setRearAxis(Axis rearAxis) {
         this.rearAxis = rearAxis;
     }
 
     @Override
-    public void accelerate(float amount) {
+    public void accelerate(float amount, float target) {
+        frontAxis.accelerate(amount, target);
+        rearAxis.accelerate(amount, target);
+    }
 
-
-
+    @Override
+    public void brek(float amount) {
+        frontAxis.brek(amount);
+        rearAxis.brek(amount);
     }
 }
