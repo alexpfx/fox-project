@@ -10,7 +10,6 @@ public class Wheel extends DefaultEntity implements Accelerable{
     @Override
     public void accelerate(float amount, float target) {
 
-
     }
 
     @Override

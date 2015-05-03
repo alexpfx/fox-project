@@ -23,12 +23,12 @@ public abstract class DefaultEntity implements MovableEntity, VisualEntity, Phys
     }
 
     @Override
-    public void setBodyWrapper(Body body) {
+    public void setBody(Body body) {
         this.body = body;
     }
 
     @Override
-    public Body getBodyWrapper() {
+    public Body getBody() {
         return body;
     }
 

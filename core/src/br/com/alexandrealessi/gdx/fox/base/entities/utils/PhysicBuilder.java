@@ -52,6 +52,6 @@ public class PhysicBuilder {
             e.printStackTrace();
         }
         Body body = rubeSceneWrapper.getBody(bodyName.bodyNameReference());
-        pe.setBodyWrapper(body);
+        pe.setBody(body);
     }
 }
