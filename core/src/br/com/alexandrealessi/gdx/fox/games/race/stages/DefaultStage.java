@@ -11,12 +11,17 @@ import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.ResolutionCons
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
+import static com.badlogic.gdx.Input.*;
+import static com.badlogic.gdx.Input.Keys.*;
+
 /**
  * Created by alex on 02/05/2015.
  */
-public class DefaultStage extends Stage{
+public class DefaultStage extends Stage {
 
-
+    private static final float DEFAULT_AMOUNT = 0.2f;
+    private static final float DIRECTION_RIGHT = -1;
+    private static final float DIRECTION_LEFT = 1;
     private Car peugeot;
     public DefaultStage(float width, float height) {
         super(width, height);
@@ -37,19 +42,28 @@ public class DefaultStage extends Stage{
     }
 
     @Override
-    public boolean keyDown(int keycode) {
-
-        if (keycode == Input.Keys.UP){
-            peugeot.accelerate(-10, -100);
-        }
-        return true;
+    public void render() {
+        doInput();
+        super.render();
     }
 
-    @Override
-    public boolean keyUp(int keycode) {
-        if (keycode == Input.Keys.UP){
-            peugeot.brek(0);
+    private void doInput() {
+        if (isJustPressed(UP)){
+            accelerateCar(DEFAULT_AMOUNT, DIRECTION_RIGHT);
+
         }
-        return true;
+        if (isJustPressed(DOWN)){
+            accelerateCar(DEFAULT_AMOUNT, DIRECTION_LEFT);
+        }
     }
+
+    private boolean isJustPressed (int key){
+        return Gdx.input.isKeyPressed(key);
+    }
+
+
+    public void accelerateCar (float amount , float direction){
+        peugeot.accelerate(amount, direction);
+    }
+
 }

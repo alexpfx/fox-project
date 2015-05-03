@@ -1,7 +1,9 @@
 package br.com.alexandrealessi.gdx.fox.base.entities;
 
+import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.ResolutionConstants;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
 
@@ -54,5 +56,13 @@ public abstract class DefaultEntity implements MovableEntity, VisualEntity, Phys
     @Override
     public void dispose() {
 
+    }
+
+    @Override
+    public Vector2 getPosition() {
+        if (body == null){
+            return Vector2.Zero;
+        }
+        return ResolutionConstants.Transform.value(body.getPosition()).from(ResolutionConstants.WORLD).to(ResolutionConstants.SCREEN);
     }
 }

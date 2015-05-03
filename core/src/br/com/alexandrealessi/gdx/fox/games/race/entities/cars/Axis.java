@@ -16,7 +16,7 @@ public class Axis implements Accelerable {
     }
 
     @Override
-    public void accelerate(float amount, float target) {
+    public void accelerate(float amount, float direction) {
         if (joint.isActive()) {
             joint.getBodyB().applyTorque(MathUtils.random(10f), true);
         }

@@ -3,6 +3,7 @@ package br.com.alexandrealessi.gdx.fox.base.stages;
 import br.com.alexandrealessi.gdx.fox.base.entities.Entity;
 import br.com.alexandrealessi.gdx.fox.base.entities.MovableEntity;
 import br.com.alexandrealessi.gdx.fox.base.entities.VisualEntity;
+import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.ResolutionConstants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
@@ -56,10 +57,11 @@ public abstract class Stage implements InputProcessor {
         }
     }
 
-    public final void render() {
+    public void render() {
         update();
         draw();
         worldRenderer.render();
+
     }
 
     private void draw() {
@@ -89,6 +91,9 @@ public abstract class Stage implements InputProcessor {
 
     }
 
+    public Viewport getViewPort() {
+        return viewPort;
+    }
     // Input
 
     @Override

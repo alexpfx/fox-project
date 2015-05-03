@@ -8,7 +8,9 @@ import br.com.alexandrealessi.gdx.fox.base.entities.DefaultEntity;
 public class Wheel extends DefaultEntity implements Accelerable{
 
     @Override
-    public void accelerate(float amount, float target) {
+    public void accelerate(float amount, float direction) {
+        getBody().applyAngularImpulse(amount * direction, true);
+        System.out.println(getBody().getLinearVelocity().x * 3.6f);
 
     }
 

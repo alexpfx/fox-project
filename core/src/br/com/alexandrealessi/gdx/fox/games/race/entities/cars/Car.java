@@ -3,6 +3,7 @@ package br.com.alexandrealessi.gdx.fox.games.race.entities.cars;
 import br.com.alexandrealessi.gdx.fox.base.entities.DefaultEntity;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.BodyName;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.DrawableName;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * Created by alex on 02/05/2015.
@@ -50,10 +51,17 @@ public class Car extends DefaultEntity implements Accelerable {
     }
 
     @Override
-    public void accelerate(float amount, float target) {
+    public void accelerate(float amount, float direction) {
+        frontWheel.accelerate(amount, direction);
+        rearWheel.accelerate(amount,direction);
     }
 
     @Override
     public void brek(float amount) {
+    }
+
+    @Override
+    public Vector2 getPosition() {
+        return getChassis().getPosition();
     }
 }

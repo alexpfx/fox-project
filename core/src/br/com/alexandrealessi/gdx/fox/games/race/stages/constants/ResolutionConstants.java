@@ -15,6 +15,15 @@ public enum ResolutionConstants {
         this.value = value;
     }
 
+    public static float metersToPixels(float x) {
+        return SCREEN.value.y / WORLD.value.y;
+    }
+
+    public static float pixelsToMeters(float x) {
+        return WORLD.value.y / SCREEN.value.y;
+    }
+
+    //TODO: KISS
     public static class Transform {
         private Vector2 inputValue;
         private Vector2 sourceValue;

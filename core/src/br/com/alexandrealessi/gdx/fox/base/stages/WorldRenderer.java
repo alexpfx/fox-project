@@ -37,4 +37,14 @@ public class WorldRenderer {
     public OrthographicCamera getCamera() {
         return camera;
     }
+
+    public void lookAt (Vector2 position){
+        camera.position.set(position.x, position.y, 0);
+        camera.update();
+    }
+
+    public void lookAt (float x, float y){
+        camera.position.set(x, y, 0);
+        camera.update();
+    }
 }
