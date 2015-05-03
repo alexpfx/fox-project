@@ -3,19 +3,18 @@ package br.com.alexandrealessi.gdx.fox.games.race.entities.cars;
 import br.com.alexandrealessi.gdx.fox.base.entities.DefaultEntity;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.BodyName;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.DrawableName;
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.JointName;
-import com.badlogic.gdx.physics.box2d.Joint;
 
 /**
  * Created by alex on 02/05/2015.
  */
-public class Car extends DefaultEntity {
+public class Car extends DefaultEntity implements Accelerable {
 
     private Chassis chassis;
     private Wheel frontWheel;
     private Wheel rearWheel;
-    private Joint frontAxis;
-    private Joint rearAxis;
+    private Axis frontAxis;
+    private Axis rearAxis;
+
 
     public Car() {
         chassis = new Chassis();
@@ -54,21 +53,28 @@ public class Car extends DefaultEntity {
         this.rearWheel = rearWheel;
     }
 
-    public Joint getFrontAxis() {
+    public Axis getFrontAxis() {
         return frontAxis;
     }
 
 //    @JointName(jointName = "peugeot_front_axis")
-    public void setFrontAxis(Joint frontAxis) {
+    public void setFrontAxis(Axis frontAxis) {
         this.frontAxis = frontAxis;
     }
 
-    public Joint getRearAxis() {
+    public Axis getRearAxis() {
         return rearAxis;
     }
 
 //    @JointName(jointName = "peugeot_rear_axis")
-    public void setRearAxis(Joint rearAxis) {
+    public void setRearAxis(Axis rearAxis) {
         this.rearAxis = rearAxis;
+    }
+
+    @Override
+    public void accelerate(float amount) {
+
+
+
     }
 }
