@@ -1,12 +1,12 @@
 package br.com.alexandrealessi.gdx.fox.games.race.stages;
 
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.PhysicBuilder;
 import br.com.alexandrealessi.gdx.fox.base.entities.DrawableBuilder;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.PhysicBuilder;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.RubeSceneWrapper;
+import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import br.com.alexandrealessi.gdx.fox.base.stages.Stage;
 import br.com.alexandrealessi.gdx.fox.base.stages.WorldRenderer;
-import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.RubeSceneWrapper;
-import br.com.alexandrealessi.gdx.fox.games.race.entities.cars.Peugeot;
+import br.com.alexandrealessi.gdx.fox.games.race.entities.cars.Car;
 import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.ResolutionConstants;
 
 /**
@@ -20,7 +20,7 @@ public class DefaultStage extends Stage{
     }
 
     public void init (){
-        Peugeot peugeot = new Peugeot();
+        Car peugeot = new Car();
         final RubeSceneWrapper rubeSceneWrapper = new RubeSceneWrapper("carscene.json", null);
         PhysicBuilder physicBuilder = new PhysicBuilder(rubeSceneWrapper);
         DrawableBuilder drawableBuilder = new DrawableBuilder(new ResourceManager(new DefaultStageAssetConfig()));

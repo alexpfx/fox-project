@@ -32,13 +32,15 @@ public class PhysicBuilder {
         }
     }
 
-    private void attachJoint(PhysicalEntity entity, Method m, JointName jointName) {
-        JointEdge jointEdge = null;
+    public void attachJoint(PhysicalEntity entity, Method m, JointName jointName) {
         final Joint joint = rubeSceneWrapper.getJoint(jointName.jointName());
-
-        //setar a joint nos setEixos do Car.
-
-
+        try {
+            m.invoke(entity, joint);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     private void attachBody(PhysicalEntity entity, Method m, BodyName bodyName) {

@@ -1,38 +1,74 @@
 package br.com.alexandrealessi.gdx.fox.games.race.entities.cars;
 
 import br.com.alexandrealessi.gdx.fox.base.entities.DefaultEntity;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.BodyName;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.DrawableName;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.JointName;
 import com.badlogic.gdx.physics.box2d.Joint;
-import com.badlogic.gdx.physics.box2d.JointEdge;
 
 /**
  * Created by alex on 02/05/2015.
  */
-public abstract class Car extends DefaultEntity {
+public class Car extends DefaultEntity {
 
     private Chassis chassis;
     private Wheel frontWheel;
     private Wheel rearWheel;
-    protected JointEdge frontAxis;
-    protected JointEdge rearAxis;
+    private Joint frontAxis;
+    private Joint rearAxis;
+
+    public Car() {
+        chassis = new Chassis();
+        frontWheel = new Wheel();
+        rearWheel = new Wheel();
+    }
 
 
-    public Car(Chassis chassis, Wheel rearWheel, Wheel frontWheel) {
+    @DrawableName(atlasName = "game.atlas", drawableName = "peugeot_chassis")
+    @BodyName(bodyNameReference = "peugeot_chassis")
+    public Chassis getChassis() {
+        return chassis;
+    }
+
+    public void setChassis(Chassis chassis) {
         this.chassis = chassis;
-        this.rearWheel = rearWheel;
+    }
+
+    @DrawableName(atlasName = "game.atlas", drawableName = "peugeot_front_wheel")
+    @BodyName(bodyNameReference = "peugeot_front_wheel")
+    public Wheel getFrontWheel() {
+        return frontWheel;
+    }
+
+    public void setFrontWheel(Wheel frontWheel) {
         this.frontWheel = frontWheel;
     }
 
-    abstract Wheel getFrontWheel();
+    @DrawableName(atlasName = "game.atlas", drawableName = "peugeot_rear_wheel")
+    @BodyName(bodyNameReference = "peugeot_rear_wheel")
+    public Wheel getRearWheel() {
+        return rearWheel;
+    }
 
-    abstract Wheel getRearWheel();
+    public void setRearWheel(Wheel rearWheel) {
+        this.rearWheel = rearWheel;
+    }
 
-    abstract Chassis getChassis();
+    public Joint getFrontAxis() {
+        return frontAxis;
+    }
 
-    abstract public JointEdge getFrontAxis();
+//    @JointName(jointName = "peugeot_front_axis")
+    public void setFrontAxis(Joint frontAxis) {
+        this.frontAxis = frontAxis;
+    }
 
-    abstract public JointEdge getRearAxis();
+    public Joint getRearAxis() {
+        return rearAxis;
+    }
 
-    abstract public void setFrontAxis(JointEdge frontAxis);
-
-    abstract public void setRearAxis(JointEdge rearAxis);
+//    @JointName(jointName = "peugeot_rear_axis")
+    public void setRearAxis(Joint rearAxis) {
+        this.rearAxis = rearAxis;
+    }
 }
