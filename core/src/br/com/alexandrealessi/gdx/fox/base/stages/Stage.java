@@ -24,6 +24,8 @@ public abstract class Stage implements InputProcessor {
     private WorldRenderer worldRenderer;
 
 
+    public abstract void init ();
+
     public Stage(float width, float height) {
         Camera camera = new OrthographicCamera(width, height);
         viewPort = new StretchViewport(width, height, camera);
@@ -128,5 +130,5 @@ public abstract class Stage implements InputProcessor {
     public boolean scrolled(int amount) {
         return false;
     }
-    public abstract void init ();
+
 }

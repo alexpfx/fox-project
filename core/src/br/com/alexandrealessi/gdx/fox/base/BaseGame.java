@@ -18,9 +18,4 @@ public class BaseGame extends ApplicationAdapter {
     }
 
 
-    protected void clear(Color bgColor) {
-        Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    }
-
 }

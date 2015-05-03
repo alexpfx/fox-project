@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.base.stages;
 
-import br.com.alexandrealessi.gdx.fox.games.race.stages.CarsGameConstants;
+import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.FlagConstants;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -28,7 +28,7 @@ public class WorldRenderer {
 
     public void render() {
         camera.update();
-        if (CarsGameConstants.Flags.DEBUG_PHYSICS.value) {
+        if (FlagConstants.DEBUG_PHYSICS.value) {
             debugRenderer.render(world, camera.combined);
         }
         world.step(TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);

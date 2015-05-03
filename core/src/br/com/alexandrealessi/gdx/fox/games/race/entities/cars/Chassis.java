@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.games.race.stages;
+package br.com.alexandrealessi.gdx.fox.games.race.entities.cars;
 
 import br.com.alexandrealessi.gdx.fox.base.entities.DefaultEntity;
 
