@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
  * Created by alexandre on 30/04/15.
  */
 public enum ResolutionConstants {
-    WORLD(new Vector2(34.06392f, 15.48f * 20.4336f)), SCREEN(new Vector2(800f, 480f));
+    WORLD(new Vector2(34.06392f, 20.4336f)), SCREEN(new Vector2(800f, 480f));
     public Vector2 value;
     private Vector2 inputValue;
     private Vector2 sourceValue;
