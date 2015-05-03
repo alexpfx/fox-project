@@ -18,17 +18,7 @@ public class Axis implements Accelerable {
     @Override
     public void accelerate(float amount, float target) {
         if (joint.isActive()) {
-            final WheelJoint wJoint = getWheelJoint();
-            wJoint.enableMotor(true);
-            final float motorSpeed = Math.abs(wJoint.getMotorSpeed());
-            final float jointSpeed = Math.abs(wJoint.getJointSpeed());
-            System.out.println();
-            System.out.println(motorSpeed);
-            System.out.println(jointSpeed);
-
-            if (jointSpeed < Math.abs(target)){
-                wJoint.setMotorSpeed(target);
-            }
+            joint.getBodyB().applyTorque(MathUtils.random(10f), true);
         }
     }
 

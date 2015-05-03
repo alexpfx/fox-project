@@ -1,6 +1,5 @@
 package br.com.alexandrealessi.gdx.fox.base.entities;
 
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.BodyWrapper;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -11,7 +10,7 @@ import com.badlogic.gdx.utils.Array;
  */
 public abstract class DefaultEntity implements MovableEntity, VisualEntity, PhysicalEntity {
 
-    private BodyWrapper body;
+    private Body body;
     private Drawable drawable;
     private final Array<Script> scripts;
 
@@ -24,12 +23,12 @@ public abstract class DefaultEntity implements MovableEntity, VisualEntity, Phys
     }
 
     @Override
-    public void setBodyWrapper(BodyWrapper body) {
+    public void setBodyWrapper(Body body) {
         this.body = body;
     }
 
     @Override
-    public BodyWrapper getBodyWrapper() {
+    public Body getBodyWrapper() {
         return body;
     }
 
@@ -45,19 +44,12 @@ public abstract class DefaultEntity implements MovableEntity, VisualEntity, Phys
         }
     }
 
-    public BodyWrapper getBody() {
-        return body;
-    }
-
-
     @Override
     public void draw(SpriteBatch batch, float alpha) {
         if (body == null || drawable == null)
             return;
-        Body b = body.getBody();
-        drawable.draw(batch, alpha, b.getPosition(), b.getAngle() * MathUtils.radDeg);
+        drawable.draw(batch, alpha, body.getPosition(), body.getAngle() * MathUtils.radDeg);
     }
-
 
     @Override
     public void dispose() {
