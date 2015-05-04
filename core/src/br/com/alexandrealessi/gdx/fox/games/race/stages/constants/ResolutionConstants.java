@@ -5,11 +5,14 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by alexandre on 30/04/15.
  */
+
+
+/*
 public enum ResolutionConstants {
     WORLD(new Vector2(34.06392f, 20.4336f)), SCREEN(new Vector2(800f, 480f));
     public Vector2 value;
-    private Vector2 inputValue;
-    private Vector2 sourceValue;
+//    private Vector2 inputValue;
+//    private Vector2 sourceValue;
 
     private ResolutionConstants(Vector2 value) {
         this.value = value;
@@ -23,7 +26,7 @@ public enum ResolutionConstants {
         return WORLD.value.y / SCREEN.value.y;
     }
 
-    //TODO: KISS
+
     public static class Transform {
         private Vector2 inputValue;
         private Vector2 sourceValue;
@@ -55,3 +58,4 @@ public enum ResolutionConstants {
         }
     }
 }
+*/

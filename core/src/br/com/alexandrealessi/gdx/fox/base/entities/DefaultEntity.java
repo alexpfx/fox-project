@@ -1,6 +1,5 @@
 package br.com.alexandrealessi.gdx.fox.base.entities;
 
-import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.ResolutionConstants;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -63,6 +62,7 @@ public abstract class DefaultEntity implements MovableEntity, VisualEntity, Phys
         if (body == null){
             return Vector2.Zero;
         }
-        return ResolutionConstants.Transform.value(body.getPosition()).from(ResolutionConstants.WORLD).to(ResolutionConstants.SCREEN);
+        return Vector2.Zero;
+//        return ResolutionConstants.Transform.value(body.getPosition()).from(ResolutionConstants.WORLD).to(ResolutionConstants.SCREEN);
     }
 }
