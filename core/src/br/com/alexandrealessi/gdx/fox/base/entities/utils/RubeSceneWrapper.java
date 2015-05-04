@@ -11,7 +11,7 @@ import com.gushikustudios.rube.loader.serializers.utils.RubeImage;
 
 /**
  * Created by alexandre on 26/04/15.
- * All Rube operations happens here convertTo minimize dependency.
+ * All Rube operations happens here convert minimize dependency.
  */
 public class RubeSceneWrapper {
     private final RubeScene scene;

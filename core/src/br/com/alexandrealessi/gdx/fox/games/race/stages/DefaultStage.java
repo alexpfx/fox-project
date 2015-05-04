@@ -7,9 +7,8 @@ import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import br.com.alexandrealessi.gdx.fox.base.stages.Stage;
 import br.com.alexandrealessi.gdx.fox.base.stages.WorldRenderer;
 import br.com.alexandrealessi.gdx.fox.games.race.entities.cars.Car;
-import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Heights;
+import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 
 import static com.badlogic.gdx.Input.Keys.DOWN;
@@ -35,7 +34,7 @@ public class DefaultStage extends Stage {
         DrawableBuilder drawableBuilder = new DrawableBuilder(new ResourceManager(new DefaultStageAssetConfig()));
         physicBuilder.build(peugeot);
         drawableBuilder.buildImageDrawable(peugeot);
-        final WorldRenderer worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), new Vector2(Heights.WORLD.width(), Heights.WORLD.height()));
+        final WorldRenderer worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), new Vector2(Size.WORLD.scale(Size.ASPECT_RATIO.value()), Size.WORLD.value()));
         setWorldRenderer(worldRenderer);
 //        worldRenderer.setCamera((OrthographicCamera) getViewPort().getCamera());
 

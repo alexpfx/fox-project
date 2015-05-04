@@ -3,7 +3,7 @@ package br.com.alexandrealessi.gdx.fox.base.stages;
 import br.com.alexandrealessi.gdx.fox.base.entities.Entity;
 import br.com.alexandrealessi.gdx.fox.base.entities.MovableEntity;
 import br.com.alexandrealessi.gdx.fox.base.entities.VisualEntity;
-import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Heights;
+import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
@@ -29,13 +29,13 @@ public abstract class Stage implements InputProcessor {
 
     public Stage(float width, float height) {
         OrthographicCamera camera = new OrthographicCamera(width, height);
-        camera.zoom = Heights.ZOOM.height();
+        camera.zoom = Size.ZOOM.value();
         viewPort = new StretchViewport(width, height, camera);
         movableEntities = new Array<MovableEntity>();
         visualEntities = new Array<VisualEntity>();
         viewPort.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
         batch = new SpriteBatch();
-        viewPort.setScreenSize((int) Heights.SCREEN.width(), (int) Heights.SCREEN.height());
+        viewPort.setScreenSize((int) Size.SCREEN.scale(Size.ASPECT_RATIO.value()), (int) Size.SCREEN.value());
 
     }
 
