@@ -1,10 +1,13 @@
 package br.com.alexandrealessi.gdx.fox.base.entities.utils;
 
+import br.com.alexandrealessi.gdx.fox.base.entities.Entity;
 import br.com.alexandrealessi.gdx.fox.base.entities.PhysicalEntity;
 import br.com.alexandrealessi.gdx.fox.games.race.entities.cars.Axis;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Joint;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -19,8 +22,33 @@ public class PhysicBuilder {
         this.rubeSceneWrapper = rubeSceneWrapper;
     }
 
+    public Entity attachBody(Entity entity) {
+        Field[] fields = entity.getClass().getDeclaredFields();
+        for (Field f : fields) {
+            BodyName annotation = f.getAnnotation(BodyName.class);
+            if (annotation == null) {
+                continue;
+            }
+            attachBody(entity, f, annotation, rubeSceneWrapper);
+        }
+        return entity;
+    }
+
+    private void attachBody(Entity entity, Field f, BodyName bodyName, RubeSceneWrapper rubeSceneWrapper) {
+        Body body = rubeSceneWrapper.getBody(bodyName.bodyNameReference());
+        f.setAccessible(true);
+        try {
+            PhysicalEntity ph = (PhysicalEntity) f.get(entity);
+            ph.setBody(body);
+        } catch (IllegalAccessException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+
     public void build(PhysicalEntity entity) {
         Method[] declaredMethods = entity.getClass().getDeclaredMethods();
+
         for (Method m : declaredMethods) {
             if (m.isAnnotationPresent(BodyName.class)) {
                 attachBody(entity, m, m.getAnnotation(BodyName.class));
@@ -54,4 +82,5 @@ public class PhysicBuilder {
         Body body = rubeSceneWrapper.getBody(bodyName.bodyNameReference());
         pe.setBody(body);
     }
+
 }

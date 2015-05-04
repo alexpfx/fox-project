@@ -7,15 +7,22 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
+import java.lang.reflect.Field;
+
 /**
  * Created by alex on 02/05/2015.
  */
 //TODO: car nao eh Physcal nem Visual entity ja q nao tem corpo nem figura que represente.
 
-public class Car implements Accelerable, PhysicalEntity, VisualEntity {
+public class Car implements Accelerable, Entity {
 
+    @BodyName(bodyNameReference = "peugeot_chassis")
     private Chassis chassis;
+
+    @BodyName(bodyNameReference = "peugeot_front_wheel")
     private Wheel frontWheel;
+
+    @BodyName(bodyNameReference = "peugeot_rear_wheel")
     private Wheel rearWheel;
 
     public Car() {
@@ -64,28 +71,5 @@ public class Car implements Accelerable, PhysicalEntity, VisualEntity {
     public void brek(float amount) {
     }
 
-    @Override
-    public void setBody(Body body) {
 
-    }
-
-    @Override
-    public Body getBody() {
-        return null;
-    }
-
-    @Override
-    public void draw(SpriteBatch batch, float alpha) {
-
-    }
-
-    @Override
-    public void setDrawable(Drawable drawable) {
-
-    }
-
-    @Override
-    public void dispose() {
-
-    }
 }

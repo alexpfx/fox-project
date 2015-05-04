@@ -32,11 +32,13 @@ public class DefaultStage extends Stage {
         final RubeSceneWrapper rubeSceneWrapper = new RubeSceneWrapper("carscene.json", null);
         PhysicBuilder physicBuilder = new PhysicBuilder(rubeSceneWrapper);
         DrawableBuilder drawableBuilder = new DrawableBuilder(new ResourceManager(new DefaultStageAssetConfig()));
-        physicBuilder.build(peugeot);
-        drawableBuilder.buildImageDrawable(peugeot);
+        physicBuilder.attachBody(peugeot);
+
+        drawableBuilder.attachDrawable(peugeot);
         final WorldRenderer worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), new Vector2(Size.WORLD.scale(Size.ASPECT_RATIO.value()), Size.WORLD.value()));
         setWorldRenderer(worldRenderer);
 //        worldRenderer.setCamera((OrthographicCamera) getViewPort().getCamera());
+
 
 
         //nao precisa adicionar no mundo se nao tem representacao (body). nem precisaria ser DefaultEntity.
