@@ -8,13 +8,36 @@ import com.badlogic.gdx.math.Vector2;
 //interface Conversor {
 //    float convert(float convertValue, Heights h);
 //}
+interface Coordinate {
+    float height();
+    float width();
+}
 
-public enum Size {
+public enum Size implements Coordinate {
+    CAMERA_ZOOM(2f),
+    SCREEN(480f) {
+        @Override
+        public float width() {
+            return super.value * ASPECT_RATIO.value;
+        }
 
-    ZOOM (5f),
-    SCREEN(480f),
-    WORLD(20.4336f),
-    ASPECT_RATIO (1.666666666667f);
+        @Override
+        public float height() {
+            return super.value;
+        }
+    },
+    WORLD(20.4336f) {
+        @Override
+        public float width() {
+            return super.value * ASPECT_RATIO.value;
+        }
+
+        @Override
+        public float height() {
+            return super.value;
+        }
+    },
+    ASPECT_RATIO(1.666666666667f);
 
     private Size(float value) {
         this.value = value;
@@ -40,7 +63,15 @@ public enum Size {
 
     public static void main(String[] args) {
         final float v = SCREEN.convert(WORLD, 10);
-        System.out.println(v); //
     }
 
+    @Override
+    public float width() {
+        throw new IllegalStateException();
+    }
+
+    @Override
+    public float height() {
+        throw new IllegalStateException();
+    }
 }

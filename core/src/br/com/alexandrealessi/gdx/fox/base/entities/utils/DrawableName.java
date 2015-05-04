@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * Created by alexandre on 02/05/15.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.CONSTRUCTOR, ElementType.TYPE})
+@Target({ElementType.METHOD, ElementType.CONSTRUCTOR, ElementType.TYPE, ElementType.FIELD})
 public @interface DrawableName {
     public String atlasName ();
     public String drawableName ();

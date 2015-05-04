@@ -38,7 +38,7 @@ public class WorldRenderer {
 
 
     public void render() {
-        camera.zoom = Size.ZOOM.value();
+        camera.zoom = Size.CAMERA_ZOOM.value();
         camera.position.set(0, 0, 1f);
         camera.update();
         if (FlagConstants.DEBUG_PHYSICS.value) {

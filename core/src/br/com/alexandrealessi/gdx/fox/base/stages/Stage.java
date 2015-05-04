@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import static br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size.*;
+
 /**
  * Created by alex on 01/05/2015.
  */
@@ -29,14 +31,13 @@ public abstract class Stage implements InputProcessor {
 
     public Stage(float width, float height) {
         OrthographicCamera camera = new OrthographicCamera(width, height);
-        camera.zoom = Size.ZOOM.value();
+        camera.zoom = CAMERA_ZOOM.value();
         viewPort = new StretchViewport(width, height, camera);
         movableEntities = new Array<MovableEntity>();
         visualEntities = new Array<VisualEntity>();
         viewPort.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
         batch = new SpriteBatch();
-        viewPort.setScreenSize((int) Size.SCREEN.scale(Size.ASPECT_RATIO.value()), (int) Size.SCREEN.value());
-
+        viewPort.setScreenSize((int) SCREEN.width(), (int) SCREEN.height());
     }
 
     public final void addMovable(MovableEntity entity) {

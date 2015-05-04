@@ -33,6 +33,7 @@ public class DrawableBuilder {
     private void attachDrawable(Entity entity, Field f, DrawableName drawableName, ResourceManager resourceManager) {
         TextureRegion region = resourceManager.getRegion(drawableName.atlasName(), drawableName.drawableName());
         try {
+            f.setAccessible(true);
             VisualEntity ve = (VisualEntity) f.get(entity);
             ve.setDrawable(ImageDrawable.createFromTextureRegion(region));
         } catch (IllegalAccessException e) {

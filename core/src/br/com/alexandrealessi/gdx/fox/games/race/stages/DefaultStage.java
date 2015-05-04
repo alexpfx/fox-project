@@ -33,13 +33,9 @@ public class DefaultStage extends Stage {
         PhysicBuilder physicBuilder = new PhysicBuilder(rubeSceneWrapper);
         DrawableBuilder drawableBuilder = new DrawableBuilder(new ResourceManager(new DefaultStageAssetConfig()));
         physicBuilder.attachBody(peugeot);
-
         drawableBuilder.attachDrawable(peugeot);
-        final WorldRenderer worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), new Vector2(Size.WORLD.scale(Size.ASPECT_RATIO.value()), Size.WORLD.value()));
+        final WorldRenderer worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), new Vector2(Size.WORLD.width(), Size.WORLD.height()));
         setWorldRenderer(worldRenderer);
-//        worldRenderer.setCamera((OrthographicCamera) getViewPort().getCamera());
-
-
 
         //nao precisa adicionar no mundo se nao tem representacao (body). nem precisaria ser DefaultEntity.
 //        addEntity(peugeot);
@@ -62,10 +58,22 @@ public class DefaultStage extends Stage {
         if (isJustPressed(DOWN)){
             accelerateCar(DEFAULT_AMOUNT, DIRECTION_LEFT);
         }
+        if (isTouch()){
+            System.out.println(Gdx.input.getX());
+            if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2){
+                accelerateCar(DEFAULT_AMOUNT, DIRECTION_RIGHT);
+            }else {
+                accelerateCar(DEFAULT_AMOUNT, DIRECTION_LEFT);
+            }
+        }
     }
 
     private boolean isJustPressed (int key){
         return Gdx.input.isKeyPressed(key);
+    }
+
+    private boolean isTouch (){
+        return Gdx.input.isTouched();
     }
 
 

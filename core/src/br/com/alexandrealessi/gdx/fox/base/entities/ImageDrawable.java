@@ -24,7 +24,6 @@ public class ImageDrawable implements Drawable {
     public static ImageDrawable createFromTextureRegion(TextureRegion textureRegion) {
         final ImageDrawable imageDrawable = new ImageDrawable(new SpriteDrawable(new Sprite(textureRegion)));
         return imageDrawable;
-
     }
 
     @Override
@@ -35,7 +34,7 @@ public class ImageDrawable implements Drawable {
 
     private Vector2 calculatePosition(Vector2 position) {
         Vector2 to = WORLD.convert(SCREEN, position);
-        to.add(SCREEN.scale(ASPECT_RATIO.value()) * 1 / 2f, SCREEN.value() * 1 / 2f);
+        to.add(SCREEN.width() * 1 / 2f, SCREEN.height() * 1 / 2f);
         to.sub(getWidth() / 2, getHeight() / 2);
         return to;
 //        return position;
