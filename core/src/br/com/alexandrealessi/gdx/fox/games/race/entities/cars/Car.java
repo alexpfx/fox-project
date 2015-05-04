@@ -1,14 +1,18 @@
 package br.com.alexandrealessi.gdx.fox.games.race.entities.cars;
 
-import br.com.alexandrealessi.gdx.fox.base.entities.DefaultEntity;
+import br.com.alexandrealessi.gdx.fox.base.entities.*;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.BodyName;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.DrawableName;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 
 /**
  * Created by alex on 02/05/2015.
  */
-public class Car extends DefaultEntity implements Accelerable {
+//TODO: car nao eh Physcal nem Visual entity ja q nao tem corpo nem figura que represente.
+
+public class Car implements Accelerable, PhysicalEntity, VisualEntity {
 
     private Chassis chassis;
     private Wheel frontWheel;
@@ -61,7 +65,27 @@ public class Car extends DefaultEntity implements Accelerable {
     }
 
     @Override
-    public Vector2 getPosition() {
-        return getChassis().getPosition();
+    public void setBody(Body body) {
+
+    }
+
+    @Override
+    public Body getBody() {
+        return null;
+    }
+
+    @Override
+    public void draw(SpriteBatch batch, float alpha) {
+
+    }
+
+    @Override
+    public void setDrawable(Drawable drawable) {
+
+    }
+
+    @Override
+    public void dispose() {
+
     }
 }

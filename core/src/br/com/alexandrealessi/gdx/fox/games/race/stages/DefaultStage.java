@@ -39,7 +39,8 @@ public class DefaultStage extends Stage {
 //        worldRenderer.setCamera((OrthographicCamera) getViewPort().getCamera());
 
 
-        addEntity(peugeot);
+        //nao precisa adicionar no mundo se nao tem representacao (body). nem precisaria ser DefaultEntity.
+//        addEntity(peugeot);
         addEntity(peugeot.getChassis());
         addEntity(peugeot.getFrontWheel());
         addEntity(peugeot.getRearWheel());
