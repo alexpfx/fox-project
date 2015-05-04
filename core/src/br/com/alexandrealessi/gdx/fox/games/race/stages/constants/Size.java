@@ -11,10 +11,10 @@ import com.badlogic.gdx.math.Vector2;
 
 public enum Size {
 
-    ZOOM (5F),
+    ZOOM (5f),
     SCREEN(480f),
     WORLD(20.4336f),
-    ASPECT_RATIO (1.666666666667F);
+    ASPECT_RATIO (1.666666666667f);
 
     private Size(float value) {
         this.value = value;
