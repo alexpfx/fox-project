@@ -19,13 +19,15 @@ import static com.badlogic.gdx.Input.Keys.UP;
  */
 public class DefaultStage extends Stage {
 
-    private static final float DEFAULT_AMOUNT = 0.3f;
+    private static final float DEFAULT_AMOUNT = 0.45f;
     private static final float DIRECTION_RIGHT = -1;
     private static final float DIRECTION_LEFT = 1;
     private Car peugeot;
     public DefaultStage(float width, float height) {
-        super(width, height);
+        super(width, height, true);
     }
+
+
 
     public void init (){
         peugeot = new Car();

@@ -32,4 +32,9 @@ public class RaceGame extends BaseGame {
         ScreenUtils.clear(Color.DARK_GRAY);
         stage.render();
     }
+
+    @Override
+    public void resize(int width, int height) {
+        stage.resize(width, height);
+    }
 }

@@ -11,6 +11,9 @@ public class CameraHandler {
     private Camera camera;
     private Focable focable;
 
+    public CameraHandler(Camera camera) {
+        this.camera = camera;
+    }
 
     public void follow(Focable focable){
         this.focable = focable;
@@ -23,7 +26,7 @@ public class CameraHandler {
         camera.update();
     }
 
-
-
-
+    public Camera getCamera() {
+        return camera;
+    }
 }

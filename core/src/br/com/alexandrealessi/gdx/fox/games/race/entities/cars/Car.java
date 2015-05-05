@@ -62,7 +62,7 @@ public class Car implements Accelerable, Entity {
     @Override
     public void accelerate(float amount, float direction) {
         frontWheel.accelerate(amount, direction);
-        rearWheel.accelerate(amount,direction);
+//        rearWheel.accelerate(amount,direction);
     }
 
     @Override

@@ -2,6 +2,7 @@ package br.com.alexandrealessi.gdx.fox.base.stages;
 
 import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.FlagConstants;
 import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -51,9 +52,14 @@ public class WorldRenderer {
         return camera;
     }
 
-    public void lookAt (Vector2 position){
-//        camera.position.set(position.x, position.y, 0);
 
+    public void resize (float width, float height){
+        float hw = Size.SCREEN.convert(Size.WORLD, height);
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
+
+        camera.viewportHeight = hw;
+        camera.viewportWidth = (w/h) * hw;
         camera.update();
     }
 

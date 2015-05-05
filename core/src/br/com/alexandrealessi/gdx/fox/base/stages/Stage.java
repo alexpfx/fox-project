@@ -3,11 +3,14 @@ package br.com.alexandrealessi.gdx.fox.base.stages;
 import br.com.alexandrealessi.gdx.fox.base.entities.Entity;
 import br.com.alexandrealessi.gdx.fox.base.entities.MovableEntity;
 import br.com.alexandrealessi.gdx.fox.base.entities.VisualEntity;
+import br.com.alexandrealessi.gdx.fox.base.utils.CameraHandler;
+import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -22,21 +25,31 @@ public abstract class Stage implements InputProcessor {
     private Array<MovableEntity> movableEntities;
     private Array<VisualEntity> visualEntities;
     private SpriteBatch batch;
-    private Viewport viewPort;
     private WorldRenderer worldRenderer;
+    private CameraHandler cameraHandler;
 
 
     public abstract void init ();
 
-    public Stage(float width, float height) {
+    public void resize (float width, float height){
+        worldRenderer.resize(width, height);
+        final float AR = (float) Gdx.graphics.getWidth() /  Gdx.graphics.getHeight();
+//
+        cameraHandler.getCamera().viewportHeight = height;
+        cameraHandler.getCamera().viewportWidth = AR * height;
+        cameraHandler.getCamera().update();
+    }
+
+    public Stage(float width, float height, boolean t){
         OrthographicCamera camera = new OrthographicCamera(width, height);
+        camera.position.set(width / 2f, height / 2f, 0);
+        camera.update();
         camera.zoom = CAMERA_ZOOM.value();
-        viewPort = new StretchViewport(width, height, camera);
+        cameraHandler = new CameraHandler(camera);
         movableEntities = new Array<MovableEntity>();
         visualEntities = new Array<VisualEntity>();
-        viewPort.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
         batch = new SpriteBatch();
-        viewPort.setScreenSize((int) SCREEN.width(), (int) SCREEN.height());
+
     }
 
     public final void addMovable(MovableEntity entity) {
@@ -72,10 +85,12 @@ public abstract class Stage implements InputProcessor {
     }
 
     private void draw() {
-        Camera camera = viewPort.getCamera();
-        camera.update();
+        cameraHandler.render();
+//        Camera camera = viewPort.getCamera();
+//        camera.update();
+//        batch.setProjectionMatrix(viewPort.getCamera().combined);
+        batch.setProjectionMatrix(cameraHandler.getCamera().combined);
         batch.begin();
-        batch.setProjectionMatrix(camera.combined);
         for (VisualEntity e : visualEntities) {
             e.draw(batch, .5f);
         }
@@ -98,9 +113,6 @@ public abstract class Stage implements InputProcessor {
 
     }
 
-    public Viewport getViewPort() {
-        return viewPort;
-    }
     // Input
 
     @Override
