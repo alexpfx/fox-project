@@ -37,7 +37,6 @@ public class ImageDrawable implements Drawable {
         to.add(SCREEN.width() * 1 / 2f, SCREEN.height() * 1 / 2f);
         to.sub(getWidth() / 2, getHeight() / 2);
         return to;
-//        return position;
     }
 
 

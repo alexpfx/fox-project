@@ -1,7 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.race.stages;
 
-import br.com.alexandrealessi.gdx.fox.base.entities.DrawableBuilder;
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.PhysicBuilder;
+import br.com.alexandrealessi.gdx.fox.base.entities.DrawableBinder;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.PhsyicBinder;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.RubeSceneWrapper;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import br.com.alexandrealessi.gdx.fox.base.stages.Stage;
@@ -30,10 +30,10 @@ public class DefaultStage extends Stage {
     public void init (){
         peugeot = new Car();
         final RubeSceneWrapper rubeSceneWrapper = new RubeSceneWrapper("carscene.json", null);
-        PhysicBuilder physicBuilder = new PhysicBuilder(rubeSceneWrapper);
-        DrawableBuilder drawableBuilder = new DrawableBuilder(new ResourceManager(new DefaultStageAssetConfig()));
-        physicBuilder.attachBody(peugeot);
-        drawableBuilder.attachDrawable(peugeot);
+        PhsyicBinder phsyicBinder = new PhsyicBinder(rubeSceneWrapper);
+        DrawableBinder drawableBinder = new DrawableBinder(new ResourceManager(new DefaultStageAssetConfig()));
+        phsyicBinder.attachBody(peugeot);
+        drawableBinder.attachDrawable(peugeot);
         final WorldRenderer worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), new Vector2(Size.WORLD.width(), Size.WORLD.height()));
         setWorldRenderer(worldRenderer);
 
@@ -44,13 +44,9 @@ public class DefaultStage extends Stage {
         addEntity(peugeot.getRearWheel());
     }
 
-    @Override
-    public void render() {
-        doInput();
-        super.render();
-    }
 
-    private void doInput() {
+    @Override
+    public void handleInput() {
         if (isJustPressed(UP)){
             accelerateCar(DEFAULT_AMOUNT, DIRECTION_RIGHT);
 

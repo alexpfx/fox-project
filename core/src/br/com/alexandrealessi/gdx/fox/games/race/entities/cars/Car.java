@@ -34,8 +34,6 @@ public class Car implements Accelerable, Entity {
         rearWheel = new Wheel();
     }
 
-    @DrawableName(atlasName = "game.atlas", drawableName = "peugeot_chassis")
-    @BodyName(bodyNameReference = "peugeot_chassis")
     public Chassis getChassis() {
         return chassis;
     }
@@ -44,8 +42,6 @@ public class Car implements Accelerable, Entity {
         this.chassis = chassis;
     }
 
-    @DrawableName(atlasName = "game.atlas", drawableName = "peugeot_front_wheel")
-    @BodyName(bodyNameReference = "peugeot_front_wheel")
     public Wheel getFrontWheel() {
         return frontWheel;
     }
@@ -55,7 +51,6 @@ public class Car implements Accelerable, Entity {
     }
 
 
-    @BodyName(bodyNameReference = "peugeot_rear_wheel")
     public Wheel getRearWheel() {
         return rearWheel;
     }
