@@ -1,9 +1,9 @@
 package br.com.alexandrealessi.gdx.fox.base.resources;
 
-import br.com.alexandrealessi.gdx.fox.base.resources.exceptions.AssetsNotLoadedException;
 import br.com.alexandrealessi.gdx.fox.base.resources.exceptions.WrongAtlasNameException;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -20,6 +20,7 @@ public class ResourceManager {
     private AssetManager manager;
     private Map<String, TextureAtlas> atlasMap;
     private boolean loaded = false;
+    private BitmapFont font, shadow;
 
     public ResourceManager(AssetConfig assetConfig) {
         this.assetConfig = assetConfig;
@@ -29,6 +30,15 @@ public class ResourceManager {
 
     public void load() {
         loadGraphics();
+        loadFonts();
+    }
+
+    private void loadFonts() {
+        font = new BitmapFont(Gdx.files.internal(assetConfig.getFontDirectory() + "text.fnt"));
+        font.setScale(12f, 12f);
+        shadow = new BitmapFont(Gdx.files.internal(assetConfig.getFontDirectory() + "shadow.fnt"));
+        shadow.setScale(2f, 2f);
+
     }
 
     private void loadGraphics() {
@@ -48,7 +58,7 @@ public class ResourceManager {
 
     public TextureRegion getRegion(String atlasName, String regionName) {
         if (!loaded) {
-            load();
+            load(); //TODO tirar isso aqui daqui puta merda.
         }
 
         final TextureAtlas atlas = atlasMap.get(assetConfig.getGraphicDirectory() + atlasName);
@@ -60,6 +70,7 @@ public class ResourceManager {
         return atlas.findRegion(regionName);
     }
 
-
-
+    public BitmapFont getFont() {
+        return font;
+    }
 }

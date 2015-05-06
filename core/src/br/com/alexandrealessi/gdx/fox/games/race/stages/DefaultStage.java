@@ -23,8 +23,8 @@ public class DefaultStage extends Stage {
     private static final float DIRECTION_RIGHT = -1;
     private static final float DIRECTION_LEFT = 1;
     private Car peugeot;
-    public DefaultStage(float width, float height) {
-        super(width, height, true);
+    public DefaultStage() {
+        super(Size.SCREEN.width(), Size.SCREEN.height());
     }
 
 

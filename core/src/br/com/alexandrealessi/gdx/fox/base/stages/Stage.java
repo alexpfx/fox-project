@@ -28,19 +28,19 @@ public abstract class Stage implements InputProcessor {
     private WorldRenderer worldRenderer;
     private CameraHandler cameraHandler;
 
-
     public abstract void init ();
 
     public void resize (float width, float height){
         worldRenderer.resize(width, height);
+
         final float AR = (float) Gdx.graphics.getWidth() /  Gdx.graphics.getHeight();
-//
+
         cameraHandler.getCamera().viewportHeight = height;
         cameraHandler.getCamera().viewportWidth = AR * height;
         cameraHandler.getCamera().update();
     }
 
-    public Stage(float width, float height, boolean t){
+    public Stage(float width, float height){
         OrthographicCamera camera = new OrthographicCamera(width, height);
         camera.position.set(width / 2f, height / 2f, 0);
         camera.update();
@@ -77,7 +77,8 @@ public abstract class Stage implements InputProcessor {
         handleInput();
         update();
         draw();
-        worldRenderer.render();
+        if (worldRenderer != null)
+            worldRenderer.render();
     }
 
     protected void handleInput(){
