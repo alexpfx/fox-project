@@ -30,6 +30,9 @@ public class DefaultStage extends Stage {
     private static final float DIRECTION_RIGHT = -1;
     private static final float DIRECTION_LEFT = 1;
     public static final String GAME_ATLAS = "game.atlas";
+    public static final String PEUGEOT_CHASSIS = "peugeot_chassis";
+    public static final String PEUGEOT_FRONT_WHEEL = "peugeot_front_wheel";
+    public static final String PEUGEOT_REAR_WHEEL = "peugeot_rear_wheel";
     private Car peugeot;
     private PhysicObject rCar;
     private ResourceManager resourceManager;
@@ -52,17 +55,17 @@ public class DefaultStage extends Stage {
     }
 
     private void createGameObjects() {
-        final Body peugeot_chassis = rubeSceneWrapper.getBody("peugeot_chassis");
-        final Body peugeot_front_wheel = rubeSceneWrapper.getBody("peugeot_front_wheel");
-        final Body peugeot_rear_wheel = rubeSceneWrapper.getBody("peugeot_rear_wheel");
+        final Body peugeot_chassis = rubeSceneWrapper.getBody(PEUGEOT_CHASSIS);
+        final Body peugeot_front_wheel = rubeSceneWrapper.getBody(PEUGEOT_FRONT_WHEEL);
+        final Body peugeot_rear_wheel = rubeSceneWrapper.getBody(PEUGEOT_REAR_WHEEL);
 
-        new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, "peugeot_chassis")), screenContext);
-        new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, "peugeot_front_wheel")), screenContext);
-        new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, "peugeot_rear_wheel")), screenContext);
+        SpriteDrawable imgChassis = new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, PEUGEOT_CHASSIS)), screenContext);
+        SpriteDrawable imgFrontWheel = new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, PEUGEOT_FRONT_WHEEL)), screenContext);
+        SpriteDrawable imgRearWheel = new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, PEUGEOT_REAR_WHEEL)), screenContext);
 
-        final Chassis chassis = new Chassis(new RigidBody(peugeot_chassis, worldContext));
-        final Wheel rear = new Wheel(new RigidBody(peugeot_rear_wheel, worldContext));
-        final Wheel front = new Wheel(new RigidBody(peugeot_front_wheel, worldContext));
+        final Chassis chassis = new Chassis(new RigidBody(peugeot_chassis, worldContext, (RigidBody.OnMoveListener) imgChassis));
+        final Wheel rear = new Wheel(new RigidBody(peugeot_rear_wheel, worldContext, (RigidBody.OnMoveListener) imgFrontWheel));
+        final Wheel front = new Wheel(new RigidBody(peugeot_front_wheel, worldContext, (RigidBody.OnMoveListener) imgRearWheel));
 
         peugeot = new Car(chassis, front, rear);
     }

@@ -13,6 +13,11 @@ public class Wheel extends GameObject implements Accelerable{
     }
 
     @Override
+    public void update() {
+        body.update();
+    }
+
+    @Override
     public void accelerate(float amount, float direction) {
 
     }

@@ -41,4 +41,7 @@ public class RigidBody implements PhysicObject {
         moveListeners.add(listener);
     }
 
+    public void applyLinearForce(boolean wake, float impule){
+        body.applyAngularImpulse(impule, wake);
+    }
 }

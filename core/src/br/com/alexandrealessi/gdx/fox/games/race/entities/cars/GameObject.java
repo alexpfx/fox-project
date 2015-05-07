@@ -12,4 +12,9 @@ public abstract class GameObject {
     public GameObject(RigidBody body) {
         this.body = body;
     }
+
+    public void update (){
+        body.update();
+    }
+
 }
