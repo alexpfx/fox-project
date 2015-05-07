@@ -12,8 +12,6 @@ public class BodyWrapper {
 
     private Body body;
 
-    
-
     public BodyWrapper(Body body) {
         this.body = body;
     }

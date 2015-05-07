@@ -9,11 +9,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public interface Drawable {
 
-    void draw(SpriteBatch batch, float alpha, Vector2 position, float degAngle);
-
-    public float getWidth();
-
-    public float getHeight();
+    void draw(SpriteBatch batch, float alpha);
 
 
 

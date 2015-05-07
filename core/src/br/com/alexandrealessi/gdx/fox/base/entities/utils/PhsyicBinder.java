@@ -15,44 +15,55 @@ import java.lang.reflect.Method;
  */
 public class PhsyicBinder {
 
-    private final RubeSceneWrapper rubeSceneWrapper;
-
-    public PhsyicBinder(RubeSceneWrapper rubeSceneWrapper) {
-        this.rubeSceneWrapper = rubeSceneWrapper;
-    }
-
-    public Entity attachBody(Entity entity) {
-        Field[] fields = entity.getClass().getDeclaredFields();
-        for (Field f : fields) {
-            BodyName annotation = f.getAnnotation(BodyName.class);
-            if (annotation == null) {
-                continue;
-            }
-            attachBody(entity, f, annotation, rubeSceneWrapper);
-        }
-        return entity;
-    }
-
-    private void attachBody(Entity entity, Field f, BodyName bodyName, RubeSceneWrapper rubeSceneWrapper) {
-        Body body = rubeSceneWrapper.getBody(bodyName.bodyNameReference());
-        f.setAccessible(true);
-        try {
-            PhysicalEntity ph = (PhysicalEntity) f.get(entity);
-            ph.setBody(body);
-        } catch (IllegalAccessException e1) {
-            e1.printStackTrace();
-        }
-    }
-
-    public void attachJoint(PhysicalEntity entity, Method m, JointName jointName) {
-        final Joint joint = rubeSceneWrapper.getJoint(jointName.jointName());
-        try {
-            m.invoke(entity, new Axis(joint));
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-    }
+//    private final RubeSceneWrapper rubeSceneWrapper;
+//
+//    public PhsyicBinder(RubeSceneWrapper rubeSceneWrapper) {
+//        this.rubeSceneWrapper = rubeSceneWrapper;
+//    }
+//
+//
+//
+//
+//    public Entity attachBody(Entity entity) {
+//        Field[] fields = entity.getClass().getDeclaredFields();
+//        for (Field f : fields) {
+//            BodyName annotation = f.getAnnotation(BodyName.class);
+//            if (annotation == null) {
+//                continue;
+//            }
+//            attachBody(entity, f, annotation, rubeSceneWrapper);
+//        }
+//        return entity;
+//    }
+//
+//
+//    public Entity attachBody (Entity entity, String bodyName){
+//        final Body body = rubeSceneWrapper.getBody(bodyName);
+//
+//
+//    }
+//
+//
+//    private void attachBody(Entity entity, Field f, BodyName bodyName, RubeSceneWrapper rubeSceneWrapper) {
+//        Body body = rubeSceneWrapper.getBody(bodyName.bodyNameReference());
+//        f.setAccessible(true);
+//        try {
+//            PhysicalEntity ph = (PhysicalEntity) f.get(entity);
+//            ph.setBody(body);
+//        } catch (IllegalAccessException e1) {
+//            e1.printStackTrace();
+//        }
+//    }
+//
+//    public void attachJoint(PhysicalEntity entity, Method m, JointName jointName) {
+//        final Joint joint = rubeSceneWrapper.getJoint(jointName.jointName());
+//        try {
+//            m.invoke(entity, new Axis(joint));
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }

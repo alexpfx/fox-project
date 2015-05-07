@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by alexandre on 05/05/15.
  */
+/*
 public class FontDrawable implements Drawable {
 
     private final BitmapFont font;
@@ -40,3 +41,4 @@ public class FontDrawable implements Drawable {
         return 0;
     }
 }
+*/

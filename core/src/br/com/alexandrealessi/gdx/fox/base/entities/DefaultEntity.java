@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Array;
  */
 public abstract class DefaultEntity implements MovableEntity, VisualEntity, PhysicalEntity {
 
+    /*
     private Body body;
     private Drawable drawable;
     private final Array<Script> scripts;
@@ -65,4 +66,5 @@ public abstract class DefaultEntity implements MovableEntity, VisualEntity, Phys
         return Vector2.Zero;
 //        return ResolutionConstants.Transform.value(body.getPosition()).from(ResolutionConstants.WORLD).to(ResolutionConstants.SCREEN);
     }
+    */
 }

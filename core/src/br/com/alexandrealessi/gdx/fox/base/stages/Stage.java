@@ -1,34 +1,34 @@
 package br.com.alexandrealessi.gdx.fox.base.stages;
 
-import br.com.alexandrealessi.gdx.fox.base.entities.Entity;
-import br.com.alexandrealessi.gdx.fox.base.entities.MovableEntity;
-import br.com.alexandrealessi.gdx.fox.base.entities.VisualEntity;
+import br.com.alexandrealessi.gdx.fox.base.entities.*;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.ScreenContext;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.WorldContext;
 import br.com.alexandrealessi.gdx.fox.base.utils.CameraHandler;
-import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import static br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size.*;
 
 /**
- * Created by alex on 01/05/2015.
+ *
  */
 public abstract class Stage implements InputProcessor {
 
+
+
     private Array<MovableEntity> movableEntities;
     private Array<VisualEntity> visualEntities;
+    private Array<PhysicObject> physicObjects;
     private SpriteBatch batch;
     private WorldRenderer worldRenderer;
     private CameraHandler cameraHandler;
 
     public abstract void init ();
+    protected WorldContext worldContext;
+    protected ScreenContext screenContext;
 
     public void resize (float width, float height){
         worldRenderer.resize(width, height);
@@ -40,7 +40,11 @@ public abstract class Stage implements InputProcessor {
         cameraHandler.getCamera().update();
     }
 
-    public Stage(float width, float height){
+    public Stage(ScreenContext screenContext, WorldContext worldContext){
+        this.worldContext = worldContext;
+        this.screenContext = screenContext;
+        final float width = screenContext.getWidth();
+        final float height = screenContext.getHeight();
         OrthographicCamera camera = new OrthographicCamera(width, height);
         camera.position.set(width / 2f, height / 2f, 0);
         camera.update();
@@ -49,7 +53,11 @@ public abstract class Stage implements InputProcessor {
         movableEntities = new Array<MovableEntity>();
         visualEntities = new Array<VisualEntity>();
         batch = new SpriteBatch();
+        physicObjects = new Array<PhysicObject>();
+    }
 
+    public final void addPhysicObject (PhysicObject object){
+        physicObjects.add(object);
     }
 
     public final void addMovable(MovableEntity entity) {

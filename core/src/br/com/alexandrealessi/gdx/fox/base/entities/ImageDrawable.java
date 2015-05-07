@@ -13,6 +13,7 @@ import static br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size.WO
 /**
  * Created by alexandre on 26/04/15.
  */
+/*
 public class ImageDrawable implements Drawable {
 
     private final SpriteDrawable spriteDrawable;
@@ -51,3 +52,4 @@ public class ImageDrawable implements Drawable {
     }
 
 }
+*/

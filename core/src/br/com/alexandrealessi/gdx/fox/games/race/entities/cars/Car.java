@@ -16,22 +16,14 @@ import java.lang.reflect.Field;
 
 public class Car implements Accelerable, Entity {
 
-    @DrawableName(atlasName = "game.atlas", drawableName = "peugeot_chassis")
-    @BodyName(bodyNameReference = "peugeot_chassis")
     private Chassis chassis;
-
-    @DrawableName(atlasName = "game.atlas", drawableName = "peugeot_front_wheel")
-    @BodyName(bodyNameReference = "peugeot_front_wheel")
     private Wheel frontWheel;
-
-    @DrawableName(atlasName = "game.atlas", drawableName = "peugeot_rear_wheel")
-    @BodyName(bodyNameReference = "peugeot_rear_wheel")
     private Wheel rearWheel;
 
-    public Car() {
-        chassis = new Chassis();
-        frontWheel = new Wheel();
-        rearWheel = new Wheel();
+    public Car(Chassis chassis, Wheel front, Wheel rear) {
+        this.chassis = chassis;
+        this.frontWheel = front;
+        this.rearWheel = rear;
     }
 
     public Chassis getChassis() {

@@ -5,7 +5,6 @@ import br.com.alexandrealessi.gdx.fox.base.entities.utils.ScreenUtils;
 import br.com.alexandrealessi.gdx.fox.base.stages.Stage;
 import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
 import br.com.alexandrealessi.gdx.fox.games.race.stages.DefaultStage;
-import br.com.alexandrealessi.gdx.fox.games.race.stages.HudStage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 
@@ -25,7 +24,6 @@ public class RaceGame extends BaseGame {
     @Override
     public void create() {
         stage = new DefaultStage();
-        hudStage = new HudStage();
         stage.init();
         hudStage.init();
         Gdx.input.setInputProcessor(stage);
