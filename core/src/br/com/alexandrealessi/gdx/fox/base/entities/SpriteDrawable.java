@@ -23,6 +23,8 @@ public class SpriteDrawable implements Drawable, RigidBody.OnMoveListener {
     @Override
     public void bodyMovement(Vector2 bodyPosition, float angle, WorldContext worldContext) {
         Vector2 spritePosition = calculatePosition(bodyPosition, worldContext);
+        spritePosition.add(context.getWidth() / 2, context.getHeight() /2);
+        spritePosition.sub(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setPosition(spritePosition.x, spritePosition.y);
         sprite.setRotation(MathUtils.radDeg * angle);
     }
@@ -36,7 +38,12 @@ public class SpriteDrawable implements Drawable, RigidBody.OnMoveListener {
     private Vector2 calculatePosition(Vector2 bodyPosition, WorldContext worldContext) {
         final float ny = context.getHeight() / worldContext.getHeight() * bodyPosition.y;
         final float nx = context.getWidth() / worldContext.getWidth() * bodyPosition.x;
-        return Vector2.Zero.add(nx, ny);
+        return Vector2.Zero.set(nx, ny);
     }
+
+//    Vector2 to = WORLD.convert(SCREEN, position);
+//    to.add(SCREEN.width() * 1 / 2f, SCREEN.height() * 1 / 2f);
+//    to.sub(getWidth() / 2, getHeight() / 2);
+//    return to;
 
 }

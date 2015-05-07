@@ -14,7 +14,7 @@ import java.lang.reflect.Field;
  */
 //TODO: car nao eh Physcal nem Visual entity ja q nao tem corpo nem figura que represente.
 
-public class Car implements Accelerable, Entity {
+public class Car implements Accelerable  {
 
     private Chassis chassis;
     private Wheel frontWheel;
@@ -54,7 +54,8 @@ public class Car implements Accelerable, Entity {
     @Override
     public void accelerate(float amount, float direction) {
         frontWheel.accelerate(amount, direction);
-//        rearWheel.accelerate(amount,direction);
+        rearWheel.accelerate(amount,direction);
+        System.out.println("acc");
     }
 
     @Override

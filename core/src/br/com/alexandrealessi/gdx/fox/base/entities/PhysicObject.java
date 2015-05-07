@@ -5,4 +5,5 @@ package br.com.alexandrealessi.gdx.fox.base.entities;
  */
 public interface PhysicObject {
     void update();
+    public void applyAngularImpulse(float impule, boolean wake);
 }

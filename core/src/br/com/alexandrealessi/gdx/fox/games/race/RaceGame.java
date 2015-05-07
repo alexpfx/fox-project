@@ -16,7 +16,6 @@ public class RaceGame extends BaseGame {
 
 
     private Stage stage;
-    private Stage hudStage;
     public RaceGame(RequestHandler requestHand) {
         super(requestHand);
     }
@@ -25,7 +24,6 @@ public class RaceGame extends BaseGame {
     public void create() {
         stage = new DefaultStage();
         stage.init();
-        hudStage.init();
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -33,7 +31,6 @@ public class RaceGame extends BaseGame {
     public void render() {
         ScreenUtils.clear(Color.DARK_GRAY);
         stage.render();
-        hudStage.render();
     }
 
     @Override

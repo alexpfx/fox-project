@@ -15,6 +15,7 @@ import br.com.alexandrealessi.gdx.fox.games.race.entities.cars.Wheel;
 import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
@@ -63,17 +64,22 @@ public class DefaultStage extends Stage {
         SpriteDrawable imgFrontWheel = new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, PEUGEOT_FRONT_WHEEL)), screenContext);
         SpriteDrawable imgRearWheel = new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, PEUGEOT_REAR_WHEEL)), screenContext);
 
-        final Chassis chassis = new Chassis(new RigidBody(peugeot_chassis, worldContext, (RigidBody.OnMoveListener) imgChassis));
-        final Wheel rear = new Wheel(new RigidBody(peugeot_rear_wheel, worldContext, (RigidBody.OnMoveListener) imgFrontWheel));
-        final Wheel front = new Wheel(new RigidBody(peugeot_front_wheel, worldContext, (RigidBody.OnMoveListener) imgRearWheel));
+        final Chassis chassis = new Chassis(new RigidBody(peugeot_chassis, worldContext), imgChassis);
+        final Wheel rear = new Wheel(new RigidBody(peugeot_rear_wheel, worldContext), imgFrontWheel);
+        final Wheel front = new Wheel(new RigidBody(peugeot_front_wheel, worldContext), imgRearWheel);
 
         peugeot = new Car(chassis, front, rear);
+        addEntity(chassis);
+        addEntity(front);
+        addEntity(rear);
     }
+
+
 
     @Override
     public void handleInput() {
         if (isJustPressed(UP)) {
-            accelerateCar(DEFAULT_AMOUNT, DIRECTION_RIGHT);
+            accelerateCar(DEFAULT_AMOUNT + MathUtils.random(1), DIRECTION_RIGHT);
 
         }
         if (isJustPressed(DOWN)) {

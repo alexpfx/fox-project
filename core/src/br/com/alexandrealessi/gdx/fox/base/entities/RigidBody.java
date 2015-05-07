@@ -22,10 +22,7 @@ public class RigidBody implements PhysicObject {
         this.body = body;
         this.context = context;
     }
-    public RigidBody(Body body, WorldContext context, OnMoveListener listener) {
-        this (body, context);
-        addOnMoveListener(listener);
-    }
+
 
     /**
      * Atualiza a posicao dos listeners quanto a posicao deste RigidBody.
@@ -38,10 +35,12 @@ public class RigidBody implements PhysicObject {
     }
 
     public void addOnMoveListener(OnMoveListener listener) {
-        moveListeners.add(listener);
+        if (!moveListeners.contains(listener, true)){
+            moveListeners.add(listener);
+        }
     }
 
-    public void applyLinearForce(boolean wake, float impule){
+    public void applyAngularImpulse(float impule, boolean wake){
         body.applyAngularImpulse(impule, wake);
     }
 }

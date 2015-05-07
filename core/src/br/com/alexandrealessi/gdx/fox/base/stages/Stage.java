@@ -19,9 +19,7 @@ public abstract class Stage implements InputProcessor {
 
 
 
-    private Array<MovableEntity> movableEntities;
-    private Array<VisualEntity> visualEntities;
-    private Array<PhysicObject> physicObjects;
+    private Array<Entity> entities;
     private SpriteBatch batch;
     private WorldRenderer worldRenderer;
     private CameraHandler cameraHandler;
@@ -50,35 +48,18 @@ public abstract class Stage implements InputProcessor {
         camera.update();
         camera.zoom = CAMERA_ZOOM.value();
         cameraHandler = new CameraHandler(camera);
-        movableEntities = new Array<MovableEntity>();
-        visualEntities = new Array<VisualEntity>();
         batch = new SpriteBatch();
-        physicObjects = new Array<PhysicObject>();
+        entities = new Array<Entity> ();
     }
 
-    public final void addPhysicObject (PhysicObject object){
-        physicObjects.add(object);
-    }
-
-    public final void addMovable(MovableEntity entity) {
-        movableEntities.add(entity);
-    }
 
     public void setWorldRenderer(WorldRenderer worldRenderer) {
         this.worldRenderer = worldRenderer;
     }
 
-    public final void addVisual(VisualEntity entity) {
-        visualEntities.add(entity);
-    }
 
     public final void addEntity(Entity entity) {
-        if (entity instanceof VisualEntity) {
-            visualEntities.add((VisualEntity) entity);
-        }
-        if (entity instanceof MovableEntity) {
-            movableEntities.add((MovableEntity) entity);
-        }
+        entities.add(entity);
     }
 
     public final void render() {
@@ -100,25 +81,19 @@ public abstract class Stage implements InputProcessor {
 //        batch.setProjectionMatrix(viewPort.getCamera().combined);
         batch.setProjectionMatrix(cameraHandler.getCamera().combined);
         batch.begin();
-        for (VisualEntity e : visualEntities) {
-            e.draw(batch, .5f);
+        for (Entity e : entities) {
+            e.draw(batch, 1f);
         }
         batch.end();
     }
 
     private void update() {
-        for (MovableEntity e : movableEntities) {
+        for (Entity e:entities){
             e.update(Gdx.graphics.getDeltaTime());
         }
     }
 
     public void dispose() {
-        for (MovableEntity e : movableEntities) {
-            e.dispose();
-        }
-        for (VisualEntity v : visualEntities) {
-            v.dispose();
-        }
 
     }
 

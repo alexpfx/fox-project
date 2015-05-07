@@ -13,5 +13,7 @@ public class Chassis extends GameObject{
         super(rigidBody);
     }
 
-
+    public Chassis(RigidBody body, Drawable drawable) {
+        super(body, drawable);
+    }
 }

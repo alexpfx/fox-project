@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by alexandre on 26/04/15.
  */
-public interface Drawable {
+public interface Drawable extends RigidBody.OnMoveListener {
 
     void draw(SpriteBatch batch, float alpha);
 
