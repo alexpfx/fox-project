@@ -1,7 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.base.stages;
 
-import br.com.alexandrealessi.gdx.fox.base.entities.*;
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.ScreenContext;
+import br.com.alexandrealessi.gdx.fox.base.entities.Entity;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.WorldContext;
 import br.com.alexandrealessi.gdx.fox.base.utils.CameraHandler;
 import com.badlogic.gdx.Gdx;
@@ -10,7 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
-import static br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size.*;
+import static br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size.CAMERA_ZOOM;
 
 /**
  *
@@ -26,7 +25,7 @@ public abstract class Stage implements InputProcessor {
 
     public abstract void init ();
     protected WorldContext worldContext;
-    protected ScreenContext screenContext;
+    protected WorldContext screenContext;
 
     public void resize (float width, float height){
         worldRenderer.resize(width, height);
@@ -38,7 +37,7 @@ public abstract class Stage implements InputProcessor {
         cameraHandler.getCamera().update();
     }
 
-    public Stage(ScreenContext screenContext, WorldContext worldContext){
+    public Stage(WorldContext screenContext, WorldContext worldContext){
         this.worldContext = worldContext;
         this.screenContext = screenContext;
         final float width = screenContext.getWidth();

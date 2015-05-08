@@ -4,7 +4,6 @@ import br.com.alexandrealessi.gdx.fox.base.entities.PhysicObject;
 import br.com.alexandrealessi.gdx.fox.base.entities.RigidBody;
 import br.com.alexandrealessi.gdx.fox.base.entities.SpriteDrawable;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.RubeSceneWrapper;
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.ScreenContext;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.WorldContext;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import br.com.alexandrealessi.gdx.fox.base.stages.Stage;
@@ -107,7 +106,7 @@ public class DefaultStage extends Stage {
         peugeot.accelerate(amount, direction);
     }
 
-    private static class ThisStageScreenContext implements ScreenContext {
+    private static class ThisStageScreenContext implements WorldContext {
         @Override
         public float getWidth() {
             return Size.SCREEN.width();

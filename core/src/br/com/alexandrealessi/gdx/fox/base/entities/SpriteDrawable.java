@@ -1,6 +1,5 @@
 package br.com.alexandrealessi.gdx.fox.base.entities;
 
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.ScreenContext;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.WorldContext;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,9 +12,9 @@ import com.badlogic.gdx.math.Vector2;
 public class SpriteDrawable implements Drawable, RigidBody.OnMoveListener {
 
     private Sprite sprite;
-    private ScreenContext context;
+    private WorldContext context;
 
-    public SpriteDrawable(Sprite sprite, ScreenContext context) {
+    public SpriteDrawable(Sprite sprite, WorldContext context) {
         this.sprite = sprite;
         this.context = context;
     }
@@ -34,10 +33,25 @@ public class SpriteDrawable implements Drawable, RigidBody.OnMoveListener {
         sprite.draw(batch, alpha);
     }
 
+    @Override
+    public Vector2 getPosition() {
+        return Vector2.Zero.set(sprite.getX(), sprite.getY());
+    }
+
+    @Override
+    public float getDegAngle() {
+        return sprite.getRotation();
+    }
+
+    @Override
+    public WorldContext getWorldContext() {
+        return context;
+    }
+
     //TODO: considerar jogar para uma classe utils se vier a ser usado em mais lugares.
-    private Vector2 calculatePosition(Vector2 bodyPosition, WorldContext worldContext) {
-        final float ny = context.getHeight() / worldContext.getHeight() * bodyPosition.y;
-        final float nx = context.getWidth() / worldContext.getWidth() * bodyPosition.x;
+    private Vector2 calculatePosition(Vector2 bodyPosition, WorldContext anotherContext) {
+        final float ny = context.getHeight() / anotherContext.getHeight() * bodyPosition.y;
+        final float nx = context.getWidth() / anotherContext.getWidth() * bodyPosition.x;
         return Vector2.Zero.set(nx, ny);
     }
 

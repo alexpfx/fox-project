@@ -14,9 +14,6 @@ public class RigidBody implements PhysicObject {
     private Body body;
     private WorldContext context;
 
-    public static interface OnMoveListener {
-        void bodyMovement(Vector2 position, float angle, WorldContext context);
-    }
 
     public RigidBody(Body body, WorldContext context) {
         this.body = body;
@@ -42,5 +39,17 @@ public class RigidBody implements PhysicObject {
 
     public void applyAngularImpulse(float impule, boolean wake){
         body.applyAngularImpulse(impule, wake);
+    }
+
+    public Vector2 getPosition (){
+        return body.getPosition();
+    }
+
+    public float getAngle (){
+        return body.getAngle();
+    }
+
+    public WorldContext getContext() {
+        return context;
     }
 }
