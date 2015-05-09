@@ -55,7 +55,8 @@ public class SpriteDrawable implements Drawable, RigidBody.OnMoveListener {
         return Vector2.Zero.set(nx, ny);
     }
 
-//    Vector2 to = WORLD.convert(SCREEN, position);
+
+    //    Vector2 to = WORLD.convert(SCREEN, position);
 //    to.add(SCREEN.width() * 1 / 2f, SCREEN.height() * 1 / 2f);
 //    to.sub(getWidth() / 2, getHeight() / 2);
 //    return to;

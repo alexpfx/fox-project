@@ -33,8 +33,4 @@ public class RaceGame extends BaseGame {
         stage.render();
     }
 
-    @Override
-    public void resize(int width, int height) {
-        stage.resize(width, height);
-    }
 }

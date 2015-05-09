@@ -3,9 +3,8 @@ package br.com.alexandrealessi.gdx.fox.games.race.entities.cars;
 import br.com.alexandrealessi.gdx.fox.base.entities.Drawable;
 import br.com.alexandrealessi.gdx.fox.base.entities.Entity;
 import br.com.alexandrealessi.gdx.fox.base.entities.RigidBody;
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.WorldContext;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -13,24 +12,19 @@ import com.badlogic.gdx.utils.Array;
  */
 public abstract class GameObject implements Entity {
 
-    private Array<OnBodyMoveListener> bodyMoveListeners = new Array<OnBodyMoveListener>();
-    private Array<OnDrawableMoveListener> drawableMoveListeners = new Array<OnDrawableMoveListener>();
 
     protected RigidBody body;
     private Drawable drawable;
 
-
-    public void addMoveListener (OnBodyMoveListener listener){
-        bodyMoveListeners.add(listener);
-    }
-
-    public void addMoveListener (OnDrawableMoveListener listener){
-        drawableMoveListeners.add(listener);
-    }
+    private String objectName = "";
 
 
     public GameObject(RigidBody body) {
         this.body = body;
+    }
+
+    public void setObjectName(String objectName) {
+        this.objectName = objectName;
     }
 
     public GameObject(RigidBody body, Drawable drawable) {
@@ -41,24 +35,9 @@ public abstract class GameObject implements Entity {
 
     @Override
     public void update (float delta){
-        updateBodyListeners();
-        updateDrawableListeners ();
-    }
-
-    private void updateDrawableListeners() {
-        if (drawable == null) return;
-        for (OnDrawableMoveListener listener : drawableMoveListeners) {
-            listener.drawableMovement(drawable.getPosition(), drawable.getDegAngle(), drawable.getWorldContext());
-        }
-    }
-
-    private void updateBodyListeners() {
-        if (body == null) return;
         body.update();
-        for (OnBodyMoveListener bodyMoveListener : bodyMoveListeners) {
-            bodyMoveListener.bodyMovement(body.getPosition(), body.getAngle(), body.getContext());
-        }
     }
+
 
     @Override
     public void draw(SpriteBatch batch, float alpha) {
@@ -69,6 +48,15 @@ public abstract class GameObject implements Entity {
 
     public void dispose() {
 
+    }
 
+    @Override
+    public Vector2 getPosition() {
+        return drawable != null?drawable.getPosition():Vector2.Zero;
+    }
+
+    @Override
+    public String toString() {
+        return objectName;
     }
 }

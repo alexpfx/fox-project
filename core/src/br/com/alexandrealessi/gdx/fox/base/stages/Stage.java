@@ -1,12 +1,13 @@
 package br.com.alexandrealessi.gdx.fox.base.stages;
 
+import br.com.alexandrealessi.gdx.fox.base.entities.CameraHolder;
 import br.com.alexandrealessi.gdx.fox.base.entities.Entity;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.WorldContext;
-import br.com.alexandrealessi.gdx.fox.base.utils.CameraHandler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 import static br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size.CAMERA_ZOOM;
@@ -16,46 +17,28 @@ import static br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size.CA
  */
 public abstract class Stage implements InputProcessor {
 
-
-
     private Array<Entity> entities;
     private SpriteBatch batch;
     private WorldRenderer worldRenderer;
-    private CameraHandler cameraHandler;
+    private CameraHolder cameraHandler;
 
-    public abstract void init ();
+    public abstract void init();
+
     protected WorldContext worldContext;
     protected WorldContext screenContext;
 
-    public void resize (float width, float height){
-        worldRenderer.resize(width, height);
 
-        final float AR = (float) Gdx.graphics.getWidth() /  Gdx.graphics.getHeight();
-
-        cameraHandler.getCamera().viewportHeight = height;
-        cameraHandler.getCamera().viewportWidth = AR * height;
-        cameraHandler.getCamera().update();
-    }
-
-    public Stage(WorldContext screenContext, WorldContext worldContext){
+    public Stage(WorldContext screenContext, WorldContext worldContext) {
         this.worldContext = worldContext;
         this.screenContext = screenContext;
-        final float width = screenContext.getWidth();
-        final float height = screenContext.getHeight();
-        OrthographicCamera camera = new OrthographicCamera(width, height);
-        camera.position.set(width / 2f, height / 2f, 0);
-        camera.update();
-        camera.zoom = CAMERA_ZOOM.value();
-        cameraHandler = new CameraHandler(camera);
+        cameraHandler = new CameraHolder(new OrthographicCamera(), screenContext.getWidth(), screenContext.getHeight(), CAMERA_ZOOM.value());
         batch = new SpriteBatch();
-        entities = new Array<Entity> ();
+        entities = new Array<Entity>();
     }
-
 
     public void setWorldRenderer(WorldRenderer worldRenderer) {
         this.worldRenderer = worldRenderer;
     }
-
 
     public final void addEntity(Entity entity) {
         entities.add(entity);
@@ -69,16 +52,16 @@ public abstract class Stage implements InputProcessor {
             worldRenderer.render();
     }
 
-    protected void handleInput(){
+    protected void handleInput() {
 
     }
 
     private void draw() {
-        cameraHandler.render();
+        cameraHandler.update();
 //        Camera camera = viewPort.getCamera();
 //        camera.update();
 //        batch.setProjectionMatrix(viewPort.getCamera().combined);
-        batch.setProjectionMatrix(cameraHandler.getCamera().combined);
+        cameraHandler.setProjectionMatrix(batch);
         batch.begin();
         for (Entity e : entities) {
             e.draw(batch, 1f);
@@ -87,7 +70,7 @@ public abstract class Stage implements InputProcessor {
     }
 
     private void update() {
-        for (Entity e:entities){
+        for (Entity e : entities) {
             e.update(Gdx.graphics.getDeltaTime());
         }
     }

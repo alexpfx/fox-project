@@ -9,8 +9,12 @@ import br.com.alexandrealessi.gdx.fox.base.entities.RigidBody;
 
 public class Chassis extends GameObject{
 
+    {
+        setObjectName("chassis");
+    }
     public Chassis(RigidBody rigidBody) {
         super(rigidBody);
+
     }
 
     public Chassis(RigidBody body, Drawable drawable) {
