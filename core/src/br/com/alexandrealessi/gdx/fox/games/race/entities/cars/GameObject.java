@@ -20,7 +20,6 @@ public abstract class GameObject implements Entity {
     private Drawable drawable;
 
 
-
     public void addMoveListener (OnBodyMoveListener listener){
         bodyMoveListeners.add(listener);
     }
