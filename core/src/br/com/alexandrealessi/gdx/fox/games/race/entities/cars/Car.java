@@ -44,6 +44,8 @@ public class Car implements Accelerable {
     @Override
     public void accelerate(float amount, float direction) {
         frontWheel.accelerate(amount, direction);
+        rearWheel.accelerate(amount / 4, direction);
+
     }
 
     @Override

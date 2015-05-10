@@ -26,7 +26,7 @@ import static com.badlogic.gdx.Input.Keys.UP;
  */
 public class DefaultStage extends Stage {
 
-    private static final float DEFAULT_AMOUNT = 0.45f;
+    private static final float DEFAULT_AMOUNT = 1f;
     private static final float DIRECTION_RIGHT = -1;
     private static final float DIRECTION_LEFT = 1;
     public static final String GAME_ATLAS = "game.atlas";
@@ -83,7 +83,7 @@ public class DefaultStage extends Stage {
     @Override
     public void handleInput() {
         if (isJustPressed(UP)) {
-            accelerateCar(DEFAULT_AMOUNT + MathUtils.random(1), DIRECTION_RIGHT);
+            accelerateCar(DEFAULT_AMOUNT, DIRECTION_RIGHT);
 
         }
         if (isJustPressed(DOWN)) {
@@ -109,6 +109,7 @@ public class DefaultStage extends Stage {
 
     public void accelerateCar(float amount, float direction) {
         peugeot.accelerate(amount, direction);
+
     }
 
     private static class ThisStageScreenContext implements WorldContext {

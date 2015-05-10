@@ -3,7 +3,6 @@ package br.com.alexandrealessi.gdx.fox.base.entities.utils;
 import br.com.alexandrealessi.gdx.fox.base.entities.CameraHolder;
 import br.com.alexandrealessi.gdx.fox.base.entities.Entity;
 import br.com.alexandrealessi.gdx.fox.base.utils.CameraPositioner;
-import br.com.alexandrealessi.gdx.fox.games.race.entities.cars.GameObject;
 
 /**
  * Created by alexandre on 09/05/15.
