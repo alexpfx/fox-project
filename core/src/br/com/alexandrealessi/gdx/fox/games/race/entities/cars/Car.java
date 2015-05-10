@@ -1,20 +1,11 @@
 package br.com.alexandrealessi.gdx.fox.games.race.entities.cars;
 
-import br.com.alexandrealessi.gdx.fox.base.entities.*;
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.BodyName;
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.DrawableName;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-
-import java.lang.reflect.Field;
-
 /**
  * Created by alex on 02/05/2015.
  */
 //TODO: car nao eh Physcal nem Visual entity ja q nao tem corpo nem figura que represente.
 
-public class Car implements Accelerable  {
+public class Car implements Accelerable {
 
     private Chassis chassis;
     private Wheel frontWheel;
@@ -42,7 +33,6 @@ public class Car implements Accelerable  {
         this.frontWheel = frontWheel;
     }
 
-
     public Wheel getRearWheel() {
         return rearWheel;
     }
@@ -54,13 +44,10 @@ public class Car implements Accelerable  {
     @Override
     public void accelerate(float amount, float direction) {
         frontWheel.accelerate(amount, direction);
-        rearWheel.accelerate(amount,direction);
-        System.out.println("acc");
     }
 
     @Override
     public void brek(float amount) {
     }
-
 
 }

@@ -5,7 +5,6 @@ package br.com.alexandrealessi.gdx.fox.base.utils;
  */
 public interface Focable {
 
-    float getX();
-    float getY();
+    
 
 }

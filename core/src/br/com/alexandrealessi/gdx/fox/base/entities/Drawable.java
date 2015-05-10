@@ -15,5 +15,6 @@ public interface Drawable extends PhysicObject.OnMoveListener {
     Vector2 getPosition ();
     float getDegAngle ();
     WorldContext getWorldContext ();
+    Vector2 getDimensions ();
 
 }

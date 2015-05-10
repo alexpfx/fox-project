@@ -45,12 +45,14 @@ public class DefaultStage extends Stage {
     public void init() {
         createResourceManager();
         createGameObjects();
+
     }
 
     private void createResourceManager() {
         resourceManager = new ResourceManager(new DefaultStageAssetConfig());
         rubeSceneWrapper = new RubeSceneWrapper("carscene.json", null);
-        final WorldRenderer worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), new Vector2(Size.WORLD.width(), Size.WORLD.height()));
+        final WorldRenderer worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), getWorldContext());
+
         setWorldRenderer(worldRenderer);
     }
 
@@ -71,6 +73,9 @@ public class DefaultStage extends Stage {
         addEntity(chassis);
         addEntity(front);
         addEntity(rear);
+
+        pointCameraTo(chassis);
+
     }
 
 

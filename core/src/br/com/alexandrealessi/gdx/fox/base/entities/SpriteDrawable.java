@@ -48,6 +48,11 @@ public class SpriteDrawable implements Drawable, RigidBody.OnMoveListener {
         return context;
     }
 
+    @Override
+    public Vector2 getDimensions() {
+        return Vector2.Zero.set(sprite.getRegionWidth(), sprite.getRegionHeight());
+    }
+
     //TODO: considerar jogar para uma classe utils se vier a ser usado em mais lugares.
     private Vector2 calculatePosition(Vector2 bodyPosition, WorldContext anotherContext) {
         final float ny = context.getHeight() / anotherContext.getHeight() * bodyPosition.y;

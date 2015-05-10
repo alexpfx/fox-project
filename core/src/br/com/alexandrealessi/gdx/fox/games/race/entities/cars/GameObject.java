@@ -56,7 +56,17 @@ public abstract class GameObject implements Entity {
     }
 
     @Override
+    public Vector2 getPhysicalPosition() {
+        return body.getPosition();
+    }
+
+    @Override
     public String toString() {
         return objectName;
+    }
+
+    @Override
+    public Vector2 getDimensions() {
+        return drawable != null? drawable.getDimensions(): Vector2.Zero;
     }
 }

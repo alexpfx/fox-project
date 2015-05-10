@@ -18,5 +18,10 @@ public interface Entity {
 
     Vector2 getPosition ();
 
+    Vector2 getPhysicalPosition ();
+
+    Vector2 getDimensions ();
+
+
 
 }
