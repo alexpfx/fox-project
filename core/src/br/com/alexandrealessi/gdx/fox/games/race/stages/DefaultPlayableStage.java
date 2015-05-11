@@ -1,12 +1,13 @@
 package br.com.alexandrealessi.gdx.fox.games.race.stages;
 
+import br.com.alexandrealessi.gdx.fox.base.entities.GameStatusListener;
 import br.com.alexandrealessi.gdx.fox.base.entities.PhysicObject;
 import br.com.alexandrealessi.gdx.fox.base.entities.RigidBody;
 import br.com.alexandrealessi.gdx.fox.base.entities.SpriteDrawable;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.RubeSceneWrapper;
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.WorldContext;
 import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
-import br.com.alexandrealessi.gdx.fox.base.stages.Stage;
+import br.com.alexandrealessi.gdx.fox.base.stages.PlayableStage;
 import br.com.alexandrealessi.gdx.fox.base.stages.WorldRenderer;
 import br.com.alexandrealessi.gdx.fox.games.race.entities.cars.Car;
 import br.com.alexandrealessi.gdx.fox.games.race.entities.cars.Chassis;
@@ -14,8 +15,7 @@ import br.com.alexandrealessi.gdx.fox.games.race.entities.cars.Wheel;
 import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.maps.Map;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import static com.badlogic.gdx.Input.Keys.DOWN;
@@ -24,7 +24,8 @@ import static com.badlogic.gdx.Input.Keys.UP;
 /**
  * Created by alex on 02/05/2015.
  */
-public class DefaultStage extends Stage {
+public class DefaultPlayableStage extends PlayableStage implements GameStatusListener.GameStatus {
+
 
     private static final float DEFAULT_AMOUNT = 1f;
     private static final float DIRECTION_RIGHT = -1;
@@ -37,22 +38,22 @@ public class DefaultStage extends Stage {
     private PhysicObject rCar;
     private ResourceManager resourceManager;
     private RubeSceneWrapper rubeSceneWrapper;
+    private Map gameStatus;
 
-    public DefaultStage() {
+    public DefaultPlayableStage(ResourceManager resourceManager) {
         super(new ThisStageScreenContext(), new ThisStageWorldContext());
+        this.resourceManager = resourceManager;
     }
 
     public void init() {
-        createResourceManager();
+        itializeWorld();
         createGameObjects();
-
+        gameStatus = new Map();
     }
 
-    private void createResourceManager() {
-        resourceManager = new ResourceManager(new DefaultStageAssetConfig());
+    private void itializeWorld() {
         rubeSceneWrapper = new RubeSceneWrapper("carscene.json", null);
         final WorldRenderer worldRenderer = new WorldRenderer(rubeSceneWrapper.getWorld(), getWorldContext());
-
         setWorldRenderer(worldRenderer);
     }
 
@@ -73,7 +74,6 @@ public class DefaultStage extends Stage {
         addEntity(chassis);
         addEntity(front);
         addEntity(rear);
-
         pointCameraTo(chassis);
 
     }
@@ -112,6 +112,11 @@ public class DefaultStage extends Stage {
 
     }
 
+    @Override
+    public Map getStatus() {
+        return gameStatus;
+    }
+
     private static class ThisStageScreenContext implements WorldContext {
         @Override
         public float getWidth() {
@@ -134,5 +139,11 @@ public class DefaultStage extends Stage {
         public float getHeight() {
             return Size.WORLD.height();
         }
+    }
+
+    @Override
+    protected void afterUpdate() {
+        gameStatus.getProperties().put("kmh", peugeot.getKmh ());
+
     }
 }

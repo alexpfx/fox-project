@@ -52,4 +52,13 @@ public class RigidBody implements PhysicObject {
     public WorldContext getContext() {
         return context;
     }
+
+    public float getAngularVelocity (){
+        return body.getAngularVelocity();
+    }
+
+    public Vector2 getLinearVelocity(){
+        return body.getLinearVelocity();
+    }
+
 }

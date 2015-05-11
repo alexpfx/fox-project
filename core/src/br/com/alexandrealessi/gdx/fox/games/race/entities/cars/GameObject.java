@@ -5,7 +5,6 @@ import br.com.alexandrealessi.gdx.fox.base.entities.Entity;
 import br.com.alexandrealessi.gdx.fox.base.entities.RigidBody;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by alexandre on 06/05/15.
@@ -68,5 +67,9 @@ public abstract class GameObject implements Entity {
     @Override
     public Vector2 getDimensions() {
         return drawable != null? drawable.getDimensions(): Vector2.Zero;
+    }
+
+    public Vector2 getVelocity (){
+        return body.getLinearVelocity();
     }
 }

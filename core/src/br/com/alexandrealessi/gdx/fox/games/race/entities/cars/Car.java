@@ -44,7 +44,7 @@ public class Car implements Accelerable {
     @Override
     public void accelerate(float amount, float direction) {
         frontWheel.accelerate(amount, direction);
-        rearWheel.accelerate(amount / 4, direction);
+//        rearWheel.accelerate(amount / 4, direction);
 
     }
 
@@ -52,4 +52,7 @@ public class Car implements Accelerable {
     public void brek(float amount) {
     }
 
+    public float getKmh() {
+        return rearWheel.getVelocity().x * -1;
+    }
 }
