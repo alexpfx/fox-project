@@ -53,6 +53,6 @@ public class Car implements Accelerable {
     }
 
     public float getKmh() {
-        return rearWheel.getVelocity().x * -1;
+        return rearWheel.getLinearVelocity().x * -1;
     }
 }

@@ -69,7 +69,7 @@ public abstract class GameObject implements Entity {
         return drawable != null? drawable.getDimensions(): Vector2.Zero;
     }
 
-    public Vector2 getVelocity (){
-        return body.getLinearVelocity();
-    }
+
+
+
 }

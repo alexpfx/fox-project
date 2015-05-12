@@ -27,7 +27,7 @@ import static com.badlogic.gdx.Input.Keys.UP;
 public class DefaultPlayableStage extends PlayableStage implements GameStatusListener.GameStatus {
 
 
-    private static final float DEFAULT_AMOUNT = 1f;
+    private static final float DEFAULT_AMOUNT = 1.5f;
     private static final float DIRECTION_RIGHT = -1;
     private static final float DIRECTION_LEFT = 1;
     public static final String GAME_ATLAS = "game.atlas";
