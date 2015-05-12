@@ -35,6 +35,12 @@ public class Wheel extends GameObject implements Accelerable {
         return body.getRadius(0);
     }
 
-
+    /**
+     *
+     * @return Angular Velocity in Radians/Second
+     */
+    public float getAngularVelocity (){
+        return body.getAngularVelocity();
+    }
 
 }

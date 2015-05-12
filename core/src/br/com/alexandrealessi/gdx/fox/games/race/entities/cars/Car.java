@@ -52,7 +52,17 @@ public class Car implements Accelerable {
     public void brek(float amount) {
     }
 
+    //angular: 94 rad/sec
+    //radius: 0.3
+    //CIRC: = 2Pi R = 2 * 3.14 * 0.3 = 1.884 m
+
+
+
     public float getKmh() {
-        return rearWheel.getLinearVelocity().x * -1;
+        final float radius = rearWheel.getRadius();
+        System.out.println("radius: "+radius);
+        final float angularVelocity = rearWheel.getAngularVelocity() ;
+        System.out.println("angular: "+angularVelocity);
+        return angularVelocity * radius;
     }
 }

@@ -63,6 +63,7 @@ public class RigidBody implements PhysicObject {
 
     public float getRadius (int fixtureIndex){
         return body.getFixtureList().get(fixtureIndex).getShape().getRadius();
+
     }
 
 
