@@ -27,7 +27,7 @@ import static com.badlogic.gdx.Input.Keys.UP;
 public class DefaultPlayableStage extends PlayableStage implements GameStatusListener.GameStatus {
 
 
-    private static final float DEFAULT_AMOUNT = 1.5f;
+    private static final float amount = 0.1f;
     private static final float DIRECTION_RIGHT = -1;
     private static final float DIRECTION_LEFT = 1;
     public static final String GAME_ATLAS = "game.atlas";
@@ -83,18 +83,17 @@ public class DefaultPlayableStage extends PlayableStage implements GameStatusLis
     @Override
     public void handleInput() {
         if (isJustPressed(UP)) {
-            accelerateCar(DEFAULT_AMOUNT, DIRECTION_RIGHT);
+            accelerateCar(amount, DIRECTION_RIGHT);
 
         }
         if (isJustPressed(DOWN)) {
-            accelerateCar(DEFAULT_AMOUNT, DIRECTION_LEFT);
+            accelerateCar(amount, DIRECTION_LEFT);
         }
         if (isTouch()) {
-            System.out.println(Gdx.input.getX());
             if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2) {
-                accelerateCar(DEFAULT_AMOUNT, DIRECTION_RIGHT);
+                accelerateCar(amount, DIRECTION_RIGHT);
             } else {
-                accelerateCar(DEFAULT_AMOUNT, DIRECTION_LEFT);
+                accelerateCar(amount, DIRECTION_LEFT);
             }
         }
     }

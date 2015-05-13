@@ -14,7 +14,7 @@ interface Coordinate {
 }
 
 public enum Size implements Coordinate {
-    CAMERA_ZOOM(.5f),
+    CAMERA_ZOOM(2f),
     SCREEN(480f) {
         @Override
         public float width() {

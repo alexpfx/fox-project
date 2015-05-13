@@ -44,6 +44,7 @@ public class Car implements Accelerable {
     @Override
     public void accelerate(float amount, float direction) {
         frontWheel.accelerate(amount, direction);
+
 //        rearWheel.accelerate(amount / 4, direction);
 
     }
@@ -59,10 +60,9 @@ public class Car implements Accelerable {
 
 
     public float getKmh() {
-        final float radius = rearWheel.getRadius();
-        System.out.println("radius: "+radius);
-        final float angularVelocity = rearWheel.getAngularVelocity() ;
-        System.out.println("angular: "+angularVelocity);
-        return angularVelocity * radius;
+        final float radius = frontWheel.getRadius();
+        final float angularVelocity = frontWheel.getAngularVelocity() ;
+
+        return angularVelocity * radius / 1000 * 3600;
     }
 }
