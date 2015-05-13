@@ -27,7 +27,7 @@ import static com.badlogic.gdx.Input.Keys.UP;
 public class DefaultPlayableStage extends PlayableStage implements GameStatusListener.GameStatus {
 
 
-    private static final float amount = 0.1f;
+    private static final float amount = 1f;
     private static final float DIRECTION_RIGHT = -1;
     private static final float DIRECTION_LEFT = 1;
     public static final String GAME_ATLAS = "game.atlas";
@@ -83,17 +83,17 @@ public class DefaultPlayableStage extends PlayableStage implements GameStatusLis
     @Override
     public void handleInput() {
         if (isJustPressed(UP)) {
-            accelerateCar(amount, DIRECTION_RIGHT);
+            accelerateCar(amount, DIRECTION_RIGHT,1);
 
         }
         if (isJustPressed(DOWN)) {
-            accelerateCar(amount, DIRECTION_LEFT);
+            accelerateCar(amount, DIRECTION_LEFT,1);
         }
         if (isTouch()) {
             if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2) {
-                accelerateCar(amount, DIRECTION_RIGHT);
+                accelerateCar(amount, DIRECTION_RIGHT, Gdx.input.getY());
             } else {
-                accelerateCar(amount, DIRECTION_LEFT);
+                accelerateCar(amount, DIRECTION_LEFT, Gdx.input.getY());
             }
         }
     }
@@ -106,8 +106,13 @@ public class DefaultPlayableStage extends PlayableStage implements GameStatusLis
         return Gdx.input.isTouched();
     }
 
-    public void accelerateCar(float amount, float direction) {
-        peugeot.accelerate(amount, direction);
+    public void accelerateCar(float amount, float direction, float y) {
+        final float height = Gdx.graphics.getHeight();
+        float ratio = 100 / height;
+        final float acc = amount * (ratio * (height - y));
+        peugeot.accelerate(acc, direction);
+        System.out.println(acc);
+
 
     }
 

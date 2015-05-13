@@ -23,8 +23,8 @@ public class Wheel extends GameObject implements Accelerable {
 
     @Override
     public void accelerate(float amount, float direction) {
-        body.applyAngularImpulse(amount * direction, true);
-//        body.setAngularVelocity(amount * direction);
+//        body.applyAngularImpulse(amount * direction, true);
+        body.setAngularVelocity(amount * direction);
 
     }
 
