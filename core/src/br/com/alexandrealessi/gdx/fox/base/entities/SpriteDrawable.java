@@ -16,6 +16,7 @@ public class SpriteDrawable implements Drawable, RigidBody.OnMoveListener {
 
     public SpriteDrawable(Sprite sprite, WorldContext context) {
         this.sprite = sprite;
+        sprite.setOriginCenter();
         this.context = context;
     }
 

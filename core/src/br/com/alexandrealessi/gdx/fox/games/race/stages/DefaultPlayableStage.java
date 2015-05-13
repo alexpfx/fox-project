@@ -16,7 +16,12 @@ import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.Map;
-import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.math.Bezier;
+import com.badlogic.gdx.math.CatmullRomSpline;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.*;
+import net.dermetfan.gdx.physics.box2d.Chain;
+import org.omg.CORBA.TRANSACTION_MODE;
 
 import static com.badlogic.gdx.Input.Keys.DOWN;
 import static com.badlogic.gdx.Input.Keys.UP;
@@ -57,6 +62,37 @@ public class DefaultPlayableStage extends PlayableStage implements GameStatusLis
         setWorldRenderer(worldRenderer);
     }
 
+    public void createSome (){
+        final World world = rubeSceneWrapper.getWorld();
+        BodyDef bd = new BodyDef();
+        bd.type = BodyDef.BodyType.DynamicBody;
+        bd.position.set(0, 0);
+        Body body = world.createBody(bd);
+
+        ChainShape chainShape = new ChainShape();
+        EdgeShape edgeShape = new EdgeShape();
+
+        edgeShape.setHasVertex0(false);
+        edgeShape.setHasVertex3(false);
+        edgeShape.setVertex0(-1, 1);
+        edgeShape.set(-20, 2, 3, 30);
+        edgeShape.setVertex3(50, 5);
+
+
+        body.createFixture(edgeShape, 1);
+    /* fill dataSet with path points */
+
+//        body.createFixture(chainShape, .1f);
+//        chainShape.dispose();
+
+
+    }
+
+    Vector2 newVector (float x, float y){
+        return new Vector2(x, y);
+    }
+
+
     private void createGameObjects() {
         final Body peugeot_chassis = rubeSceneWrapper.getBody(PEUGEOT_CHASSIS);
         final Body peugeot_front_wheel = rubeSceneWrapper.getBody(PEUGEOT_FRONT_WHEEL);
@@ -84,8 +120,8 @@ public class DefaultPlayableStage extends PlayableStage implements GameStatusLis
     public void handleInput() {
         if (isJustPressed(UP)) {
             accelerateCar(amount, DIRECTION_RIGHT,1);
-
         }
+
         if (isJustPressed(DOWN)) {
             accelerateCar(amount, DIRECTION_LEFT,1);
         }
@@ -98,6 +134,12 @@ public class DefaultPlayableStage extends PlayableStage implements GameStatusLis
         }
     }
 
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        createSome();
+        return true;
+    }
+
     private boolean isJustPressed(int key) {
         return Gdx.input.isKeyPressed(key);
     }
@@ -107,11 +149,13 @@ public class DefaultPlayableStage extends PlayableStage implements GameStatusLis
     }
 
     public void accelerateCar(float amount, float direction, float y) {
+        if (true) return;
         final float height = Gdx.graphics.getHeight();
         float ratio = 100 / height;
         final float acc = amount * (ratio * (height - y));
         peugeot.accelerate(acc, direction);
         System.out.println(acc);
+
 
 
     }
