@@ -1,8 +1,11 @@
 package br.com.alexandrealessi.gdx.fox.base.entities;
 
 import br.com.alexandrealessi.gdx.fox.base.entities.utils.WorldContext;
+import br.com.alexandrealessi.gdx.fox.games.race.entities.cars.Wheel;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Joint;
+import com.badlogic.gdx.physics.box2d.joints.WheelJoint;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -35,6 +38,12 @@ public class RigidBody implements PhysicObject {
         if (!moveListeners.contains(listener, true)){
             moveListeners.add(listener);
         }
+    }
+
+    public void setMotorSpeed(float motorSpeed){
+        final WheelJoint joint = (WheelJoint) body.getJointList().get(0).joint;
+        joint.enableMotor(true);
+        joint.setMotorSpeed(motorSpeed);
     }
 
     public void applyAngularImpulse(float impule, boolean wake){
