@@ -22,6 +22,7 @@ public interface Entity {
 
     Vector2 getDimensions ();
 
+    float getPhysicalAngle ();
 
 
 }

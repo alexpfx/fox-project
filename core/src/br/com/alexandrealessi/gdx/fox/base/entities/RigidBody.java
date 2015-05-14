@@ -49,6 +49,8 @@ public class RigidBody implements PhysicObject {
     public void applyAngularImpulse(float impule, boolean wake){
         body.applyAngularImpulse(impule, wake);
     }
+
+
     public void setAngularVelocity (float velocity){
         body.setAngularVelocity(velocity);
     }

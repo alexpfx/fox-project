@@ -69,7 +69,8 @@ public abstract class GameObject implements Entity {
         return drawable != null? drawable.getDimensions(): Vector2.Zero;
     }
 
-
-
-
+    @Override
+    public float getPhysicalAngle() {
+        return body.getAngle();
+    }
 }

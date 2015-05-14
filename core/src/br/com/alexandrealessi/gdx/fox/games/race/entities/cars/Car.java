@@ -41,12 +41,18 @@ public class Car implements Accelerable {
         this.rearWheel = rearWheel;
     }
 
+
     @Override
     public void accelerate(float amount, float direction) {
         frontWheel.accelerate(amount, direction);
+        rearWheel.accelerate(amount, direction);
 
 
-//        rearWheel.accelerate(amount / 4, direction);
+//        if ((chassis.getPhysicalAngle() % Math.PI) < (Math.PI / 6) && (chassis.getPhysicalAngle() % Math.PI) > (5 * Math.PI / 6)){
+//            chassis.applyAngularImpulse(.1f, -direction);
+//        }
+        System.out.println(chassis.getPhysicalAngle());;
+
 
     }
 
@@ -63,6 +69,7 @@ public class Car implements Accelerable {
     public float getKmh() {
         final float radius = frontWheel.getRadius();
         final float angularVelocity = frontWheel.getAngularVelocity() ;
+
 
         return angularVelocity * radius / 1000 * 3600;
     }

@@ -23,6 +23,9 @@ public class Chassis extends GameObject{
     }
 
 
+    public void applyAngularImpulse (float amount, float direction){
+        body.applyAngularImpulse(amount * direction, true);
+    }
 
 
 }

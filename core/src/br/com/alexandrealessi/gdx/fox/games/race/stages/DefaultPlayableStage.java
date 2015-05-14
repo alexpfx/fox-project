@@ -136,7 +136,7 @@ public class DefaultPlayableStage extends PlayableStage implements GameStatusLis
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        createSome();
+//        createSome();
         return true;
     }
 
@@ -149,14 +149,10 @@ public class DefaultPlayableStage extends PlayableStage implements GameStatusLis
     }
 
     public void accelerateCar(float amount, float direction, float y) {
-        if (true) return;
         final float height = Gdx.graphics.getHeight();
         float ratio = 100 / height;
         final float acc = amount * (ratio * (height - y));
         peugeot.accelerate(acc, direction);
-        System.out.println(acc);
-
-
 
     }
 
