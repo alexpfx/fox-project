@@ -32,13 +32,17 @@ import static com.badlogic.gdx.Input.Keys.UP;
 public class DefaultPlayableStage extends PlayableStage implements GameStatusListener.GameStatus {
 
 
-    private static final float amount = 1f;
+    private static final float amount = 50f;
     private static final float DIRECTION_RIGHT = -1;
     private static final float DIRECTION_LEFT = 1;
     public static final String GAME_ATLAS = "game.atlas";
-    public static final String PEUGEOT_CHASSIS = "peugeot_chassis";
-    public static final String PEUGEOT_FRONT_WHEEL = "peugeot_front_wheel";
-    public static final String PEUGEOT_REAR_WHEEL = "peugeot_rear_wheel";
+//    public static final String PEUGEOT_CHASSIS = "peugeot_chassis";
+//    public static final String PEUGEOT_FRONT_WHEEL = "peugeot_front_wheel";
+//    public static final String PEUGEOT_REAR_WHEEL = "peugeot_rear_wheel";
+    public static final String PEUGEOT_CHASSIS = "rodao_chassis";
+    public static final String PEUGEOT_FRONT_WHEEL = "rodao_front_wheel";
+    public static final String PEUGEOT_REAR_WHEEL = "rodao_rear_wheel";
+
     private Car peugeot;
     private PhysicObject rCar;
     private ResourceManager resourceManager;
@@ -98,13 +102,19 @@ public class DefaultPlayableStage extends PlayableStage implements GameStatusLis
         final Body peugeot_front_wheel = rubeSceneWrapper.getBody(PEUGEOT_FRONT_WHEEL);
         final Body peugeot_rear_wheel = rubeSceneWrapper.getBody(PEUGEOT_REAR_WHEEL);
 
-        SpriteDrawable imgChassis = new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, PEUGEOT_CHASSIS)), screenContext);
-        SpriteDrawable imgFrontWheel = new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, PEUGEOT_FRONT_WHEEL)), screenContext);
-        SpriteDrawable imgRearWheel = new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, PEUGEOT_REAR_WHEEL)), screenContext);
+//        SpriteDrawable imgChassis = new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, PEUGEOT_CHASSIS)), screenContext);
+//        SpriteDrawable imgFrontWheel = new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, PEUGEOT_FRONT_WHEEL)), screenContext);
+//        SpriteDrawable imgRearWheel = new SpriteDrawable(new Sprite(resourceManager.getRegion(GAME_ATLAS, PEUGEOT_REAR_WHEEL)), screenContext);
 
-        final Chassis chassis = new Chassis(new RigidBody(peugeot_chassis, worldContext), imgChassis);
-        final Wheel rear = new Wheel(new RigidBody(peugeot_rear_wheel, worldContext), imgFrontWheel);
-        final Wheel front = new Wheel(new RigidBody(peugeot_front_wheel, worldContext), imgRearWheel);
+//        final Chassis chassis = new Chassis(new RigidBody(peugeot_chassis, worldContext), imgChassis);
+//        final Wheel rear = new Wheel(new RigidBody(peugeot_rear_wheel, worldContext), imgFrontWheel);
+//        final Wheel front = new Wheel(new RigidBody(peugeot_front_wheel, worldContext), imgRearWheel);
+
+
+        final Chassis chassis = new Chassis(new RigidBody(peugeot_chassis, worldContext));
+        final Wheel rear = new Wheel(new RigidBody(peugeot_rear_wheel, worldContext));
+        final Wheel front = new Wheel(new RigidBody(peugeot_front_wheel, worldContext));
+
 
         peugeot = new Car(chassis, front, rear);
         addEntity(chassis);
@@ -149,10 +159,10 @@ public class DefaultPlayableStage extends PlayableStage implements GameStatusLis
     }
 
     public void accelerateCar(float amount, float direction, float y) {
-        final float height = Gdx.graphics.getHeight();
-        float ratio = 100 / height;
-        final float acc = amount * (ratio * (height - y));
-        peugeot.accelerate(acc, direction);
+//        final float height = Gdx.graphics.getHeight();
+//        float ratio = 100 / height;
+//        final float acc = amount * (ratio * (height - y));
+        peugeot.accelerate(amount, direction);
 
     }
 
