@@ -44,8 +44,10 @@ public class Car implements Accelerable {
 
     @Override
     public void accelerate(float amount, float direction) {
-        frontWheel.accelerate(amount, direction);
-        rearWheel.accelerate(amount, direction);
+//        frontWheel.accelerate(amount, direction);
+//        rearWheel.accelerate(amount, direction);
+        chassis.applyLinearImpulse(0.01f * direction,0);
+
 
 
 //        if ((chassis.getPhysicalAngle() % Math.PI) < (Math.PI / 6) && (chassis.getPhysicalAngle() % Math.PI) > (5 * Math.PI / 6)){

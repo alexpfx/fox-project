@@ -47,7 +47,12 @@ public class RigidBody implements PhysicObject {
     }
 
     public void applyAngularImpulse(float impule, boolean wake){
+
         body.applyAngularImpulse(impule, wake);
+    }
+
+    public void applyLinearImpulse (float impulseX, float impulseY){
+        body.applyLinearImpulse(impulseX, impulseY,body.getLocalCenter().x,body.getLocalCenter().y, true);
     }
 
 
