@@ -5,11 +5,10 @@ import br.com.alexandrealessi.gdx.fox.base.entities.utils.WorldContext;
 /**
  * Created by alexandre on 16/05/15.
  */
-public interface WorldConfig {
+public class WorldConfig {
 
 
-    WorldContext getWorldContext();
-    boolean isDebugPhysics();
+
 
 
 }
