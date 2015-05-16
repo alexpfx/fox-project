@@ -57,10 +57,6 @@ public class ResourceManager {
     }
 
     public TextureRegion getRegion(String atlasName, String regionName) {
-        if (!loaded) {
-            load(); //TODO tirar isso aqui daqui puta merda.
-        }
-
         final TextureAtlas atlas = atlasMap.get(assetConfig.getGraphicDirectory() + atlasName);
 
         if (atlas == null) {

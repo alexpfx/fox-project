@@ -6,6 +6,7 @@ import br.com.alexandrealessi.gdx.fox.base.resources.ResourceManager;
 import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
 import br.com.alexandrealessi.gdx.fox.games.topdown.stages.DefaultAssetConfig;
 import br.com.alexandrealessi.gdx.fox.games.topdown.stages.GameStage;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import static com.badlogic.gdx.graphics.Color.BLACK;
 
@@ -15,6 +16,8 @@ import static com.badlogic.gdx.graphics.Color.BLACK;
 public class TopDownRaceGame extends BaseGame {
     private GameStage gameStage;
 
+
+
     public TopDownRaceGame(RequestHandler requestHand) {
         super(requestHand);
     }
@@ -23,8 +26,11 @@ public class TopDownRaceGame extends BaseGame {
     public void create() {
         ResourceManager rm = new ResourceManager(new DefaultAssetConfig());
         rm.load();
-        gameStage = new GameStage();
+
+
+        gameStage = new GameStage(rm);
         gameStage.init();
+
 
     }
 
