@@ -5,9 +5,9 @@ package br.com.alexandrealessi.gdx.fox.base.resources;
  */
 public abstract class AssetConfig {
 
-    public static final String FONTS = "/fonts/";
-    public static final String IMAGES = "/images/";
-    public static final String SOUNDS = "/sounds/";
+    private static final String FONTS = "/fonts/";
+    private static final String IMAGES = "/images/";
+    private static final String SOUNDS = "/sounds/";
 
     public abstract String getAssetBaseDirectory();
 

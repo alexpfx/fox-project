@@ -21,7 +21,7 @@ public class GameStage extends PlayableStage {
     private RubeSceneWrapper rubeSceneWrapper;
 
     public GameStage(ResourceManager resourceManager) {
-        super(WorldContext.createNew(800, 480), WorldContext.createNew(80, 48));
+        super(WorldContext.createNew(800, 800), WorldContext.createNew(8, 8));
         this.resourceManager = resourceManager;
     }
 
