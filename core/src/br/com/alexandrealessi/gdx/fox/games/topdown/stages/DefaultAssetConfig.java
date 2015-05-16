@@ -1,16 +1,15 @@
-package br.com.alexandrealessi.gdx.fox.games.race.stages;
+package br.com.alexandrealessi.gdx.fox.games.topdown.stages;
 
-import br.com.alexandrealessi.gdx.fox.base.resources.AssetConfig;
-import br.com.alexandrealessi.gdx.fox.games.race.stages.constants.ResourceConstants;
+import br.com.alexandrealessi.gdx.fox.games.topdown.stages.constants.ResourceConstants;
 
 /**
  * Created by alexandre on 26/04/15.
  */
-public class DefaultStageAssetConfig extends AssetConfig {
+public class DefaultAssetConfig extends br.com.alexandrealessi.gdx.fox.base.resources.AssetConfig {
 
     @Override
     public String getAssetBaseDirectory() {
-        return "car";
+        return "topdownrace";
     }
 
     @Override

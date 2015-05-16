@@ -4,9 +4,10 @@ import br.com.alexandrealessi.gdx.fox.base.test.GdxTest;
 import br.com.alexandrealessi.gdx.fox.base.test.PathTest;
 import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
 import br.com.alexandrealessi.gdx.fox.games.race.RaceGame;
-import com.badlogic.gdx.Gdx;
+import br.com.alexandrealessi.gdx.fox.games.topdown.TopDownRaceGame;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 
 public class DesktopLauncher {
     static boolean runtest = false;
@@ -19,7 +20,10 @@ public class DesktopLauncher {
             return;
         }
         try{
-            new LwjglApplication(new RaceGame(RequestHandler.NULL), config);
+            pack();
+//            new LwjglApplication(new RaceGame(RequestHandler.NULL), config);
+
+            new LwjglApplication(new TopDownRaceGame(RequestHandler.NULL), config);
         } finally {
 
         }
@@ -38,4 +42,13 @@ public class DesktopLauncher {
         new LwjglApplication(test, config);
         return true;
     }
+
+    public static void pack (){
+        TexturePacker.Settings settings = new TexturePacker.Settings();
+        settings.maxWidth = 4096;
+        settings.maxHeight = 2048;
+        TexturePacker.process(settings, "../../assets-raw/topdown", "assets/topdownrace/images", "topdown.atlas");
+    }
 }
+
+
