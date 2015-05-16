@@ -34,10 +34,12 @@ public class ResourceManager {
     }
 
     private void loadFonts() {
+        /* mover daqui. usar estrategia como no load dos graficos.
         font = new BitmapFont(Gdx.files.internal(assetConfig.getFontDirectory() + "text.fnt"));
         font.setScale(12f, 12f);
         shadow = new BitmapFont(Gdx.files.internal(assetConfig.getFontDirectory() + "shadow.fnt"));
         shadow.setScale(2f, 2f);
+        */
 
     }
 

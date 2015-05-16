@@ -47,7 +47,7 @@ public class DesktopLauncher {
         TexturePacker.Settings settings = new TexturePacker.Settings();
         settings.maxWidth = 4096;
         settings.maxHeight = 2048;
-        TexturePacker.process(settings, "../../assets-raw/topdown", "assets/topdownrace/images", "topdown.atlas");
+        TexturePacker.process(settings, "../../assets-raw/topdown", "topdownrace/images", "topdown.atlas");
     }
 }
 

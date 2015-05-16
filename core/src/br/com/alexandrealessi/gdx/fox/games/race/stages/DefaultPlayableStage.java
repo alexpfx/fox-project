@@ -59,33 +59,6 @@ public class DefaultPlayableStage extends PlayableStage implements GameStatusLis
         setWorldRenderer(worldRenderer);
     }
 
-    public void createSome() {
-        final World world = rubeSceneWrapper.getWorld();
-        BodyDef bd = new BodyDef();
-        bd.type = BodyDef.BodyType.DynamicBody;
-        bd.position.set(0, 0);
-        Body body = world.createBody(bd);
-
-        ChainShape chainShape = new ChainShape();
-        EdgeShape edgeShape = new EdgeShape();
-
-        edgeShape.setHasVertex0(false);
-        edgeShape.setHasVertex3(false);
-        edgeShape.setVertex0(-1, 1);
-        edgeShape.set(-20, 2, 3, 30);
-        edgeShape.setVertex3(50, 5);
-
-        body.createFixture(edgeShape, 1);
-    /* fill dataSet with path points */
-
-//        body.createFixture(chainShape, .1f);
-//        chainShape.dispose();
-
-    }
-
-    Vector2 newVector(float x, float y) {
-        return new Vector2(x, y);
-    }
 
     private void createGameObjects() {
         final Body peugeot_chassis = rubeSceneWrapper.getBody(PEUGEOT_CHASSIS);

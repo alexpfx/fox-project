@@ -18,7 +18,6 @@ import static br.com.alexandrealessi.gdx.fox.games.race.stages.constants.Size.CA
  */
 public abstract class PlayableStage implements InputProcessor, Stage {
 
-
     public static final String KMH_KEY = "kmh";
     private Array<Entity> entities;
     private SpriteBatch batch;
@@ -49,6 +48,7 @@ public abstract class PlayableStage implements InputProcessor, Stage {
 
     public void setWorldRenderer(WorldRenderer worldRenderer) {
         this.worldRenderer = worldRenderer;
+
     }
 
     public final void addEntity(Entity entity) {

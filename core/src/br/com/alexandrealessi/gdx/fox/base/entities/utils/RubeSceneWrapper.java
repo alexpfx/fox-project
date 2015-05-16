@@ -21,6 +21,10 @@ public class RubeSceneWrapper {
         scene = loader.loadScene(Gdx.files.internal(sceneFile));
     }
 
+    public RubeSceneWrapper(String sceneFile) {
+        this (sceneFile, null);
+    }
+
     public Body getBody(String name) {
         return getBodies(name).get(0);
     }

@@ -3,8 +3,6 @@ package br.com.alexandrealessi.gdx.fox.games.race.entities.cars;
 /**
  * Created by alex on 02/05/2015.
  */
-//TODO: car nao eh Physcal nem Visual entity ja q nao tem corpo nem figura que represente.
-
 public class Car implements Accelerable {
 
     private Chassis chassis;
