@@ -30,7 +30,7 @@ public class MapBodyLoader {
 
     public void create (){
         loader = new TmxMapLoader();
-        map = loader.load("tiled_example.tmx");
+        map = loader.load("track1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, WORLD_TO_SCREEN);
         mapBodyManager = new MapBodyManager(world, SCREEN_TO_WORLD, Gdx.files.internal("materials.json"), Logger.INFO);
         mapBodyManager.createPhysics(map);

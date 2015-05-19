@@ -20,7 +20,7 @@ public class DesktopLauncher {
             return;
         }
         try{
-            pack();
+//            pack();
 //            new LwjglApplication(new RaceGame(RequestHandler.NULL), config);
 
             new LwjglApplication(new TopDownRaceGame(RequestHandler.NULL), config);
