@@ -8,12 +8,12 @@ import com.badlogic.gdx.utils.Disposable;
 /**
  * Created by alexandre on 17/05/15.
  */
-public class AssetsLoader implements Disposable, AssetErrorListener{
-    public static final String tag = AssetsLoader.class.getName();
+public class Assets implements Disposable, AssetErrorListener{
+    public static final String tag = Assets.class.getName();
 
     private AssetManager manager;
 
-    public AssetsLoader() {
+    public Assets() {
         manager = new AssetManager( );
 
     }
