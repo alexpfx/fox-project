@@ -1,5 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.systems;
 
+import br.com.alexandrealessi.gdx.fox.games.soccer.components.BodyComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.components.PositionComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.components.SpriteComponent;
 import com.badlogic.ashley.core.*;
@@ -26,7 +27,7 @@ public class RenderSystem extends EntitySystem {
 
     @Override
     public void addedToEngine(Engine engine) {
-        entities = engine.getEntitiesFor(Family.all(PositionComponent.class, SpriteComponent.class).get());
+        entities = engine.getEntitiesFor(Family.all(BodyComponent.class, PositionComponent.class, SpriteComponent.class).get());
     }
 
     @Override
@@ -44,6 +45,5 @@ public class RenderSystem extends EntitySystem {
             sprite.draw(batch);
         }
         batch.end();
-
     }
 }

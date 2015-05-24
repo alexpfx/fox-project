@@ -4,6 +4,7 @@ import br.com.alexandrealessi.gdx.fox.base.test.GdxTest;
 import br.com.alexandrealessi.gdx.fox.base.test.PathTest;
 import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
 import br.com.alexandrealessi.gdx.fox.games.race.RaceGame;
+import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.topdown.TopDownRaceGame;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
@@ -22,8 +23,8 @@ public class DesktopLauncher {
         try{
 //            pack();
 //            new LwjglApplication(new RaceGame(RequestHandler.NULL), config);
-
-            new LwjglApplication(new TopDownRaceGame(RequestHandler.NULL), config);
+            new LwjglApplication(new SoccerGame(), config);
+//            new LwjglApplication(new TopDownRaceGame(RequestHandler.NULL), config);
         } finally {
 
         }
