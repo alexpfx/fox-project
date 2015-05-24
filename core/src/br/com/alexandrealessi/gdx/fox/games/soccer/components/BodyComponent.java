@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 public class BodyComponent extends Component {
     private Body body;
 
-    private BodyComponent (Body body){
+    public BodyComponent (Body body){
         this.body = body;
     }
 

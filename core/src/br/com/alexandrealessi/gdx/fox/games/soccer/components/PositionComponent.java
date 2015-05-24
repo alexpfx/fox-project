@@ -8,7 +8,7 @@ import com.badlogic.ashley.core.Component;
 public class PositionComponent extends Component {
     private float x;
     private float y;
-    private float angle;
+    private float rotation;
 
     public float getX() {
         return x;
@@ -26,7 +26,18 @@ public class PositionComponent extends Component {
         this.y = y;
     }
 
-    public float getAngle() {
-        return angle;
+    public float getRotation() {
+        return rotation;
     }
+
+    public void setRotation(float rotation) {
+        this.rotation = rotation;
+    }
+
+    public void setPosition(float x, float y, float rotation) {
+        this.x = x;
+        this.y = y;
+        this.rotation = rotation;
+    }
+
 }

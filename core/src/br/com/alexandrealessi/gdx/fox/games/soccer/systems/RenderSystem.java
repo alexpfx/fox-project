@@ -34,15 +34,15 @@ public class RenderSystem extends EntitySystem {
         camera.update();
         batch.begin();
         batch.setProjectionMatrix(camera.combined);
-        for (int i = 0 ; i < entities.size() ; i++){
+        for (int i = 0; i < entities.size(); i++) {
             final Entity e = entities.get(i);
             final PositionComponent positionComponent = pm.get(e);
             final SpriteComponent spriteComponent = sm.get(e);
             final Sprite sprite = spriteComponent.getSprite();
             sprite.setPosition(positionComponent.getX(), positionComponent.getY());
+            sprite.setRotation(positionComponent.getRotation());
             sprite.draw(batch);
         }
-
         batch.end();
 
     }
