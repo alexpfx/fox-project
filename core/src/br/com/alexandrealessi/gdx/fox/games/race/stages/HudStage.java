@@ -36,7 +36,7 @@ public class HudStage implements Stage, GameStatusListener{
         camera.setProjectionMatrix(batch);
         camera.update();
         batch.begin();
-        font.setScale(.4f, .4f);
+        font.getData().setScale(.4f, .4f);
         font.draw(batch, "km/h: "+ kmh, -295, 295);
         batch.end();
     }
