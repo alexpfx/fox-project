@@ -1,5 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer;
 
+import br.com.alexandrealessi.gdx.fox.games.soccer.screens.MainMenuScreen;
 import com.badlogic.gdx.Game;
 
 /**
@@ -10,7 +11,7 @@ public class SoccerGame extends Game {
 
     @Override
     public void create() {
-               
+        setScreen(new MainMenuScreen());
 
     }
 }

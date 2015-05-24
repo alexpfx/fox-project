@@ -1,6 +1,5 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 
 /**
@@ -8,12 +7,10 @@ import com.badlogic.gdx.ScreenAdapter;
  */
 public class MainMenuScreen extends ScreenAdapter {
 
-    
+
     @Override
     public void show() {
     }
-
-
 
     @Override
     public void dispose() {
