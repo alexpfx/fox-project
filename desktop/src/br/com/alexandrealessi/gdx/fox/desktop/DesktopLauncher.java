@@ -21,7 +21,7 @@ public class DesktopLauncher {
             return;
         }
         try{
-//            pack();
+            pack();
 //            new LwjglApplication(new RaceGame(RequestHandler.NULL), config);
             new LwjglApplication(new SoccerGame(), config);
 //            new LwjglApplication(new TopDownRaceGame(RequestHandler.NULL), config);
@@ -48,7 +48,7 @@ public class DesktopLauncher {
         TexturePacker.Settings settings = new TexturePacker.Settings();
         settings.maxWidth = 4096;
         settings.maxHeight = 2048;
-        TexturePacker.process(settings, "../../assets-raw/topdown", "topdownrace/images", "topdown.atlas");
+        TexturePacker.process(settings, "../../assets-raw/animals", "data/images/", "game.atlas");
     }
 }
 
