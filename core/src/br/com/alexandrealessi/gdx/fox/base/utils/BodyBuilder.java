@@ -14,10 +14,18 @@ public class BodyBuilder {
     private BodyDef bdef;
     private Array<FixtureDef> fixtureDefs;
     private Object userData;
+    private World world;
 
     public static BodyBuilder create (){
         return new BodyBuilder();
     }
+
+    public static BodyBuilder create (World world){
+        final BodyBuilder bodyBuilder = new BodyBuilder();
+        bodyBuilder.world = world;
+        return bodyBuilder;
+    }
+
 
     private BodyBuilder() {
         bdef = new BodyDef();
@@ -61,6 +69,11 @@ public class BodyBuilder {
         return this;
     }
 
+
+    public Body build (){
+        return build(this.world);
+    }
+
     public Body build(World world) {
         body = world.createBody(bdef);
         if (fixtureDefs!=null){
@@ -72,6 +85,8 @@ public class BodyBuilder {
             body.setUserData(userData);
         return body;
     }
+
+
 
     public static BodyBuilder clone (Body body){
         BodyBuilder bb = create ().bodyType(body.getType()).position(body.getPosition()).fixedRotation(body.isFixedRotation()).active(body.isActive()).bullet(body.isBullet()).userData(body.getUserData());
