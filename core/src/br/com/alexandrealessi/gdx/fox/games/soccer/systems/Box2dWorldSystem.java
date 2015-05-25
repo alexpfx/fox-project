@@ -4,28 +4,31 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * Created by alexandre on 24/05/15.
  */
 public class Box2dWorldSystem extends EntitySystem{
     public static final float TIME_STEP = 1 / 60f;
-    private static final int VELOCITY_ITERATIONS = 10;
-    private static final int POSITION_ITERATIONS = 7;
+    private static final int VELOCITY_ITERATIONS = 3;
+    private static final int POSITION_ITERATIONS = 2;
 
     private final World world;
     private Box2DDebugRenderer debugRenderer;
     private static final boolean debugPhysics = false;
-    private Camera camera;
+    private Viewport viewport;
 
-    public Box2dWorldSystem (World world, Camera camera){
+    public Box2dWorldSystem (World world, Viewport viewport){
         this.world = world;
-        this.camera = camera;
+        this.viewport = viewport;
         debugRenderer = new Box2DDebugRenderer();
     }
 
     @Override
     public void update(float deltaTime) {
+        final Camera camera = viewport.getCamera();
+        camera.update();
         if (debugPhysics){
             debugRenderer.render(world, camera.combined);
         }
