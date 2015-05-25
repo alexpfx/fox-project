@@ -87,13 +87,16 @@ public class BodyBuilder {
     }
 
 
-
-    public static BodyBuilder clone (Body body){
-        BodyBuilder bb = create ().bodyType(body.getType()).position(body.getPosition()).fixedRotation(body.isFixedRotation()).active(body.isActive()).bullet(body.isBullet()).userData(body.getUserData());
+    public static BodyBuilder clone (Body body, World world){
+        BodyBuilder bb = create (world).bodyType(body.getType()).position(body.getPosition()).fixedRotation(body.isFixedRotation()).active(body.isActive()).bullet(body.isBullet()).userData(body.getUserData());
         Array<Fixture> fixtureList = body.getFixtureList();
         for (Fixture f:fixtureList){
             bb.addFixture(FixtureBuilder.create().clone(f));
         }
         return bb;
+    }
+
+    public static BodyBuilder clone (Body body){
+        return clone(body, body.getWorld());
     }
 }
