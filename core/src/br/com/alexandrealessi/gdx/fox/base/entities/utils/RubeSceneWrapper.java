@@ -2,9 +2,11 @@ package br.com.alexandrealessi.gdx.fox.base.entities.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.gushikustudios.rube.RubeDefaults;
 import com.gushikustudios.rube.RubeScene;
 import com.gushikustudios.rube.loader.RubeSceneLoader;
 import com.gushikustudios.rube.loader.serializers.utils.RubeImage;
@@ -27,6 +29,10 @@ public class RubeSceneWrapper {
 
     public Body getBody(String name) {
         return getBodies(name).get(0);
+    }
+
+    public Array<Fixture> getFixturesByName(String name){
+        return scene.getNamed(Fixture.class, name);
     }
 
     public Array<Body> getBodies(String name) {

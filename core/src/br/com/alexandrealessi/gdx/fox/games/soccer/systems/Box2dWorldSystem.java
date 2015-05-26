@@ -32,26 +32,34 @@ public class Box2dWorldSystem extends EntitySystem{
     private ContactListener contactListener = new ContactListener() {
         @Override
         public void beginContact(Contact contact) {
-            final Body bodyA = contact.getFixtureA().getBody();
-            final Body bodyB = contact.getFixtureB().getBody();
+            if (x < 600) return;
+            final Fixture fixtureA = contact.getFixtureA();
+            final Fixture fixtureB = contact.getFixtureB();
+            if (!fixtureA.isSensor() && !fixtureB.isSensor())
+                return;
 
-
+            final Body bodyA = fixtureA.getBody();
+            final Body bodyB = fixtureB.getBody();
             final Player playerA = (Player) bodyA.getUserData();
             final Player playerB = (Player) bodyB.getUserData();
-
-
-
             if (playerA == null || playerB == null)
                 return;
-            playerA.add();
-            playerB.add();
 
 
-            if (playerA.reached(90)){
+            final String name = (String) fixtureA.getUserData();
+            if (name.equals("head")){
+                playerA.sub();
+            }else{
+                playerA.add();
+            }
+
+            int limit = 100;
+
+            if (playerA.reached(limit)){
                 System.out.println("morto: "+playerA.getName());
                 deleteIt.add(bodyA);
             }
-            if (playerB.reached(90)){
+            if (playerB.reached(limit)){
                 System.out.println("morto: "+playerB.getName());
                 deleteIt.add(bodyB);
             }
@@ -75,6 +83,7 @@ public class Box2dWorldSystem extends EntitySystem{
     };
 
 
+    int x = 0;
     @Override
     public void update(float deltaTime) {
         final Camera camera = viewport.getCamera();
@@ -88,11 +97,26 @@ public class Box2dWorldSystem extends EntitySystem{
             }
             deleteIt.clear();
         }
+        if ((x ++ % 300) == 0){
+            Array<Body> bs = new Array<Body>();
+            world.getBodies(bs);
+            System.out.println();
+            for (Body b: bs){
+                final Object userData = b.getUserData();
+
+                if (userData != null && userData instanceof Player){
+                    System.out.println("Vivo ainda: "+((Player) userData).getName());
+                }
+            }
+            System.out.println();
+
+        }
+
         if (MathUtils.randomBoolean(0.05f)){
             Array<Body> bs = new Array<Body>();
             world.getBodies(bs);
             if (bs.size > 0){
-                bs.get(MathUtils.random(bs.size - 1)).applyLinearImpulse(100,-100,5,5, true);
+                bs.get(MathUtils.random(bs.size - 1)).applyLinearImpulse(100, -100, 5, 5, true);
             }
         }
 

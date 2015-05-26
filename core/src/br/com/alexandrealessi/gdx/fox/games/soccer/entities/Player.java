@@ -39,6 +39,12 @@ public class Player extends Entity {
     public void add() {
         contacts++;
     }
+    public void sub (){
+        contacts--;
+
+    }
+
+
 
     public boolean reached(int amount) {
         return contacts == amount;

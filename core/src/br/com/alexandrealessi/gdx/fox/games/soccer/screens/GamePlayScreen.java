@@ -22,6 +22,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -74,12 +75,27 @@ public class GamePlayScreen extends BaseScreen {
         PhysicToScreenSystem physicToScreenSystem = new PhysicToScreenSystem(1);
         RenderSystem renderSystem = new RenderSystem(viewport);
 
+
+        final Sprite monkey = new Sprite(atlas.findRegion("monkey"));
+        monkey.setScale(ANIMAL_SPRITE_SCALE / monkey.getHeight());
+
+        final Sprite parrot = new Sprite(atlas.findRegion("parrot"));
+        parrot.setScale(ANIMAL_SPRITE_SCALE / parrot.getHeight());
+
         engine.addEntity(field);
+
+
         final Team tpanda = createTeam("panda", panda);
         final Team tgirafa = createTeam("girafa", girafa);
+        final Team tmonkey = createTeam("monkey", monkey);
+        final Team tparrot = createTeam("parrot", parrot);
+
 
         addTeamToEngine(engine, tpanda);
         addTeamToEngine(engine, tgirafa);
+        addTeamToEngine(engine, tmonkey);
+        addTeamToEngine(engine, tparrot);
+
 
         engine.addSystem(physicToScreenSystem);
         engine.addSystem(renderSystem);
@@ -96,6 +112,14 @@ public class GamePlayScreen extends BaseScreen {
     public Team createTeam(String name, Sprite uniform) {
         PlayerBuilder builder = new PlayerBuilder();
         final Body playerBody = rubeSceneWrapper.getBody("player");
+        final Array<Fixture> head = rubeSceneWrapper.getFixturesByName("head");
+        for (Fixture f:head){
+            f.setUserData("head");
+        }
+        final Array<Fixture> tail = rubeSceneWrapper.getFixturesByName("tail");
+        for (Fixture f:tail){
+            f.setUserData("tail");
+        }
         Array<Player> players = new Array<Player>();
 
         players.add(builder.createPlayerEntity(createPlayerData("Ochoa", 1, PlayerPosition.GK), uniform, playerBody));

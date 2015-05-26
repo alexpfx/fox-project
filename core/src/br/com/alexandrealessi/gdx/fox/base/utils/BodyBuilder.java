@@ -81,8 +81,7 @@ public class BodyBuilder {
                 body.createFixture(d);
             }
         }
-        if (userData != null)
-            body.setUserData(userData);
+        body.setUserData(userData);
         return body;
     }
 
