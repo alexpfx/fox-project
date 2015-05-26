@@ -1,6 +1,5 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.entities;
 
-import br.com.alexandrealessi.gdx.fox.games.soccer.components.BodyComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.entities.utils.PlayerPosition;
 import com.badlogic.ashley.core.Entity;
 
@@ -12,6 +11,7 @@ public class Player extends Entity {
     private int number;
     private PlayerPosition position;
     private Team team;
+    private int contacts = 0;
 
     public Player(String name, int number, PlayerPosition position) {
         this.team = team;
@@ -35,4 +35,13 @@ public class Player extends Entity {
     public void setTeam(Team team) {
         this.team = team;
     }
+
+    public void add() {
+        contacts++;
+    }
+
+    public boolean reached(int amount) {
+        return contacts == amount;
+    }
+
 }

@@ -34,6 +34,7 @@ public class GamePlayScreen extends BaseScreen {
     private static final float SCENE_WIDTH = 160;
     private static final float SCENE_HEIGHT = 100;
     private static final float ASPECT_RATIO = SCENE_WIDTH / SCENE_HEIGHT;
+    private static final float ANIMAL_SPRITE_SCALE = 7F;
 
     private Engine engine;
     private Entity field;
@@ -50,10 +51,11 @@ public class GamePlayScreen extends BaseScreen {
         rubeSceneWrapper = new RubeSceneWrapper("soccer.json");
         engine = new Engine();
 
-
-
         final Sprite panda = new Sprite(atlas.findRegion("panda"));
-        panda.setScale(2.2f / panda.getHeight());
+        panda.setScale(ANIMAL_SPRITE_SCALE / panda.getHeight());
+
+        final Sprite girafa = new Sprite(atlas.findRegion("giraffe"));
+        girafa.setScale(ANIMAL_SPRITE_SCALE / girafa.getHeight());
 
         field = new Entity();
         field.add(new BodyComponent(rubeSceneWrapper.getBody("field")));
@@ -73,9 +75,11 @@ public class GamePlayScreen extends BaseScreen {
         RenderSystem renderSystem = new RenderSystem(viewport);
 
         engine.addEntity(field);
-        final Team galaticos = createTeam("galaticos", panda);
+        final Team tpanda = createTeam("panda", panda);
+        final Team tgirafa = createTeam("girafa", girafa);
 
-        addTeamToEngine (engine, galaticos);
+        addTeamToEngine(engine, tpanda);
+        addTeamToEngine(engine, tgirafa);
 
         engine.addSystem(physicToScreenSystem);
         engine.addSystem(renderSystem);
@@ -84,7 +88,7 @@ public class GamePlayScreen extends BaseScreen {
     }
 
     private void addTeamToEngine(Engine engine, Team galaticos) {
-        for (Player p:galaticos.getPlayers()){
+        for (Player p : galaticos.getPlayers()) {
             engine.addEntity(p);
         }
     }
@@ -93,6 +97,7 @@ public class GamePlayScreen extends BaseScreen {
         PlayerBuilder builder = new PlayerBuilder();
         final Body playerBody = rubeSceneWrapper.getBody("player");
         Array<Player> players = new Array<Player>();
+
         players.add(builder.createPlayerEntity(createPlayerData("Ochoa", 1, PlayerPosition.GK), uniform, playerBody));
         players.add(builder.createPlayerEntity(createPlayerData("Messi", 10, PlayerPosition.ATTACKER), uniform, playerBody));
         players.add(builder.createPlayerEntity(createPlayerData("Ronaldo", 9, PlayerPosition.ATTACKER), uniform, playerBody));

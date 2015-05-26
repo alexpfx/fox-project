@@ -7,6 +7,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.components.SpriteComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.entities.Player;
 import br.com.alexandrealessi.gdx.fox.games.soccer.entities.Team;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 
 /**
@@ -25,7 +26,11 @@ public class PlayerBuilder {
         playerEntity.add(new PositionComponent());
         playerEntity.add(new SpriteComponent(uniform));
         final BodyBuilder cloneBuilder = BodyBuilder.clone(bodyModel);
-        playerEntity.add(new BodyComponent(cloneBuilder.build()));
+        final Body body = cloneBuilder.build();
+        body.getPosition().set(10,10);
+
+        playerEntity.add(new BodyComponent(body));
+        body.setUserData(playerEntity);
     }
 
 }
