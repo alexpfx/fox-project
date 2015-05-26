@@ -5,11 +5,11 @@ import com.badlogic.gdx.Game;
 /**
  * Created by alexandre on 24/05/15.
  */
-public class Screen implements com.badlogic.gdx.Screen {
+public class BaseScreen implements com.badlogic.gdx.Screen {
     private Game game;
 
 
-    public Screen (Game game){
+    public BaseScreen(Game game){
         this.game = game;
     }
 
