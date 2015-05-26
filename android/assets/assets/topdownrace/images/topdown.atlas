@@ -1,0 +1,20 @@
+
+topdown.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+car_one
+  rotate: false
+  xy: 2004, 1930
+  size: 34, 72
+  orig: 34, 72
+  offset: 0, 0
+  index: -1
+path01
+  rotate: false
+  xy: 2, 2
+  size: 2000, 2000
+  orig: 2000, 2000
+  offset: 0, 0
+  index: -1

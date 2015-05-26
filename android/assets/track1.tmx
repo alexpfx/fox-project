@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="128" tileheight="128" nextobjectid="8">
+ <tileset firstgid="1" name="Car Racing Game Tileset" tilewidth="128" tileheight="128">
+  <image source="E:/Gamedev/envato/graphicriver-3529350-car-racing-game-tileset/Car Racing Game Tileset.png" width="1280" height="768"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJzt0z0LgCAQxnGRluairZetl1W3/P6fqzuwRa4gREV6ht+m/uE4tVJKA1RgJ4vgSPRuyJJGMEf2+f5JRtIS93K2E/omch7h/SeD0Ekxjy9z43n0P+7zzkwF+yvZfNd5ufq8t9IO5urfMyjZl/6uzdgHAACA+lyZ/hHB
+  </data>
+ </layer>
+ <objectgroup name="physics">
+  <object id="3" name="left_side" x="1520.5" y="660.5">
+   <properties>
+    <property name="material" value="concreto"/>
+   </properties>
+   <polyline points="0,0 667,-1.75 719.25,16 756,60.5 765.75,103.25 765,235.5 769.25,247.25 782,254 1177.25,254.25 1226,271.75 1257.75,302.25 1277,345.75 1276.25,1273 1269.75,1297.25 1252.5,1327.25 1218.5,1357.25 1180.5,1369.25 643.25,1368.5 591.25,1348.5 563.25,1320 546,1277 546.25,1129.25 540.75,1118.75 529.25,1113.5 485.75,1104.75 452,1083.5 427.25,1047.5 419,1012.5 417.5,488.5 411.5,479.5 402.5,473 -1275,472.25 -1312.5,461.75 -1346.5,434.75 -1370,391.5 -1375.75,359.75 -1374,223 -1364.5,189.25 -1332.5,150.75 -1282,126 -110.25,125.75 -96.25,113 -86.5,64.5 -54,22.5 -10.25,1.75 0,0"/>
+  </object>
+  <object id="6" name="right_side" x="1533" y="752">
+   <properties>
+    <property name="material" value="concreto"/>
+   </properties>
+   <polyline points="0,0 644.5,-2 663,13.5 661.5,153.5 677.5,201 711,235.5 768,254 1158.5,253 1171.5,260.5 1174.5,285 1172,1167 1166,1180 1151.5,1187 640,1186.5 632,1178.5 624.5,1167 624,1014.5 601.5,973.5 568.5,945 518,929.5 503,924.5 495,898 495,384 479,341 445,308 399,292 45.5,291.5 -1281,290 -1290.5,283 -1296,270 -1295.5,136 -1279.5,124.5 -111.5,124.5 -76,113.5 -35,78 -16.5,31 -13.5,6.5 -1,0"/>
+  </object>
+ </objectgroup>
+</map>

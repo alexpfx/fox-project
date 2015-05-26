@@ -1,0 +1,83 @@
+
+game.png
+size: 2048,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+elephant
+  rotate: false
+  xy: 1252, 572
+  size: 256, 257
+  orig: 256, 257
+  offset: 0, 0
+  index: -1
+giraffe
+  rotate: false
+  xy: 2, 2
+  size: 44, 44
+  orig: 44, 44
+  offset: 0, 0
+  index: -1
+hippo
+  rotate: false
+  xy: 1252, 313
+  size: 256, 257
+  orig: 256, 257
+  offset: 0, 0
+  index: -1
+monkey
+  rotate: false
+  xy: 1510, 572
+  size: 256, 257
+  orig: 256, 257
+  offset: 0, 0
+  index: -1
+panda
+  rotate: false
+  xy: 1252, 54
+  size: 256, 257
+  orig: 256, 257
+  offset: 0, 0
+  index: -1
+parrot
+  rotate: false
+  xy: 1510, 313
+  size: 256, 257
+  orig: 256, 257
+  offset: 0, 0
+  index: -1
+penguin
+  rotate: false
+  xy: 1768, 572
+  size: 256, 257
+  orig: 256, 257
+  offset: 0, 0
+  index: -1
+pig
+  rotate: false
+  xy: 1510, 54
+  size: 256, 257
+  orig: 256, 257
+  offset: 0, 0
+  index: -1
+rabbit
+  rotate: false
+  xy: 1768, 313
+  size: 256, 257
+  orig: 256, 257
+  offset: 0, 0
+  index: -1
+snake
+  rotate: false
+  xy: 1768, 54
+  size: 256, 257
+  orig: 256, 257
+  offset: 0, 0
+  index: -1
+soccer
+  rotate: false
+  xy: 2, 48
+  size: 1248, 781
+  orig: 1248, 781
+  offset: 0, 0
+  index: -1

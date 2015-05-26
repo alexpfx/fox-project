@@ -1,0 +1,27 @@
+
+game.png
+size: 128,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+peugeot_chassis
+  rotate: false
+  xy: 2, 21
+  size: 93, 31
+  orig: 93, 31
+  offset: 0, 0
+  index: -1
+peugeot_front_wheel
+  rotate: false
+  xy: 2, 2
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+peugeot_rear_wheel
+  rotate: false
+  xy: 97, 35
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
