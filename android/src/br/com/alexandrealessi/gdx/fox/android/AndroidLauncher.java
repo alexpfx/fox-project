@@ -14,6 +14,8 @@ import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresen
 import br.com.alexandrealessi.gdx.fox.base.BaseGame;
 import br.com.alexandrealessi.gdx.fox.base.utils.RequestHandler;
 import br.com.alexandrealessi.gdx.fox.games.race.RaceGame;
+import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.google.android.gms.plus.PlusOneButton;
@@ -28,19 +30,21 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadGame(new RaceGame(this));
+        loadGame(new SoccerGame());
         googlePlayServicesPresenter = new GooglePlayServicesPresenterImpl(this, this);
 
     }
 
-    private void loadGame(BaseGame game) {
+
+
+    private void loadGame(Game game) {
         final AndroidApplicationConfiguration config = getAndroidApplicationConfig();
         RelativeLayout baseLayout = setContentViewWithGameView(config, game);
         inflatePlusOneButton(baseLayout);
 
     }
 
-    private RelativeLayout setContentViewWithGameView(AndroidApplicationConfiguration config, BaseGame baseGame) {
+    private RelativeLayout setContentViewWithGameView(AndroidApplicationConfiguration config, Game baseGame) {
         RelativeLayout baseLayout = inflateBaseView(config, baseGame);
         setContentView(baseLayout);
         return baseLayout;
@@ -52,7 +56,7 @@ public class AndroidLauncher extends AndroidApplication implements AndroidLaunch
 
     RelativeLayout layout;
 
-    private RelativeLayout inflateBaseView(AndroidApplicationConfiguration config, BaseGame baseGame) {
+    private RelativeLayout inflateBaseView(AndroidApplicationConfiguration config, Game baseGame) {
         layout = new RelativeLayout(this);
         final View view = initializeForView(baseGame, config);
         layout.addView(view);
