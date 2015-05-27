@@ -1,13 +1,12 @@
-package br.com.alexandrealessi.gdx.fox.games.soccer.entities.utils;
+package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.utils;
 
 import br.com.alexandrealessi.gdx.fox.base.utils.BodyBuilder;
-import br.com.alexandrealessi.gdx.fox.games.soccer.components.BodyComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.components.PositionComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.components.SpriteComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.entities.Player;
-import br.com.alexandrealessi.gdx.fox.games.soccer.entities.Team;
+import br.com.alexandrealessi.gdx.fox.base.ashley.components.BodyComponent;
+import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
+import br.com.alexandrealessi.gdx.fox.base.ashley.components.SpriteComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Player;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerData;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 
 /**

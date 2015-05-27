@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.games.soccer.entities;
+package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities;
 
 import com.badlogic.gdx.utils.Array;
 

@@ -1,11 +1,10 @@
-package br.com.alexandrealessi.gdx.fox.games.soccer.systems;
+package br.com.alexandrealessi.gdx.fox.games.soccer.ashely.systems;
 
-import br.com.alexandrealessi.gdx.fox.games.soccer.components.BodyComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.components.PositionComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.components.SpriteComponent;
+import br.com.alexandrealessi.gdx.fox.base.ashley.components.BodyComponent;
+import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
+import br.com.alexandrealessi.gdx.fox.base.ashley.components.SpriteComponent;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.Viewport;

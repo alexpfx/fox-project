@@ -1,6 +1,6 @@
-package br.com.alexandrealessi.gdx.fox.games.soccer.systems;
+package br.com.alexandrealessi.gdx.fox.games.soccer.ashely.systems;
 
-import br.com.alexandrealessi.gdx.fox.games.soccer.entities.Player;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Player;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.MathUtils;

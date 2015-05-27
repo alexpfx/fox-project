@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.games.soccer.components;
+package br.com.alexandrealessi.gdx.fox.base.ashley.components;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.ai.steer.Steerable;
@@ -10,7 +10,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 /**
  * Created by alexandre on 24/05/15.
  */
-//TODO: mover para base.
 public class BodyComponent extends Component implements Steerable<Vector2> {
     boolean tagged;
     float maxLinearSpeed;

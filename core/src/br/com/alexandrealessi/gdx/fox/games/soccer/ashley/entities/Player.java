@@ -1,6 +1,5 @@
-package br.com.alexandrealessi.gdx.fox.games.soccer.entities;
+package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities;
 
-import br.com.alexandrealessi.gdx.fox.games.soccer.entities.utils.PlayerPosition;
 import com.badlogic.ashley.core.Entity;
 
 /**
