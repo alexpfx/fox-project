@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 /**
  * Created by alexandre on 24/05/15.
  */
+//TODO: mover para base.
 public class SpriteComponent extends Component {
 
     private Sprite sprite;

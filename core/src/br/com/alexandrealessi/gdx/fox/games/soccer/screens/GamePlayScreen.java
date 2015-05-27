@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.RubeSceneWrapper;
+import br.com.alexandrealessi.gdx.fox.base.entities.utils.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.components.BodyComponent;
@@ -40,7 +40,7 @@ public class GamePlayScreen extends BaseScreen {
     private Engine engine;
     private Entity field;
     private TextureAtlas atlas;
-    private RubeSceneWrapper rubeSceneWrapper;
+    private RubeSceneHelper rubeSceneHelper;
     private OrthographicCamera camera;
     private OrthographicCamera worldCamera;
     private Viewport viewport;
@@ -49,7 +49,7 @@ public class GamePlayScreen extends BaseScreen {
     public GamePlayScreen(SoccerGame game) {
         super(game);
         atlas = new TextureAtlas(Gdx.files.internal("data/images/game.atlas"));
-        rubeSceneWrapper = new RubeSceneWrapper("soccer.json");
+        rubeSceneHelper = new RubeSceneHelper("soccer.json");
         engine = new Engine();
 
         final Sprite panda = new Sprite(atlas.findRegion("panda"));
@@ -59,7 +59,7 @@ public class GamePlayScreen extends BaseScreen {
         girafa.setScale(ANIMAL_SPRITE_SCALE / girafa.getHeight());
 
         field = new Entity();
-        field.add(new BodyComponent(rubeSceneWrapper.getBody("field")));
+        field.add(new BodyComponent(rubeSceneHelper.getBody("field")));
         field.add(new PositionComponent());
 
         final Sprite soccer = new Sprite(atlas.findRegion("soccer"));
@@ -71,7 +71,7 @@ public class GamePlayScreen extends BaseScreen {
 
         viewport = new StretchViewport(SCENE_WIDTH, SCENE_HEIGHT, camera);
 
-        Box2dWorldSystem box2dWorldSystem = new Box2dWorldSystem(rubeSceneWrapper.getWorld(), viewport);
+        Box2dWorldSystem box2dWorldSystem = new Box2dWorldSystem(rubeSceneHelper.getWorld(), viewport);
         PhysicToScreenSystem physicToScreenSystem = new PhysicToScreenSystem(1);
         RenderSystem renderSystem = new RenderSystem(viewport);
 
@@ -111,12 +111,12 @@ public class GamePlayScreen extends BaseScreen {
 
     public Team createTeam(String name, Sprite uniform) {
         PlayerBuilder builder = new PlayerBuilder();
-        final Body playerBody = rubeSceneWrapper.getBody("player");
-        final Array<Fixture> head = rubeSceneWrapper.getFixturesByName("head");
+        final Body playerBody = rubeSceneHelper.getBody("player");
+        final Array<Fixture> head = rubeSceneHelper.getFixturesByName("head");
         for (Fixture f:head){
             f.setUserData("head");
         }
-        final Array<Fixture> tail = rubeSceneWrapper.getFixturesByName("tail");
+        final Array<Fixture> tail = rubeSceneHelper.getFixturesByName("tail");
         for (Fixture f:tail){
             f.setUserData("tail");
         }

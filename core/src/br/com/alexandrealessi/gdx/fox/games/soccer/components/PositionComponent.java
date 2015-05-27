@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Component;
 /**
  * Created by alexandre on 24/05/15.
  */
+//TODO: mover para base.
 public class PositionComponent extends Component {
     private float x;
     private float y;

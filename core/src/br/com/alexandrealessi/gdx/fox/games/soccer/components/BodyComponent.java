@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 /**
  * Created by alexandre on 24/05/15.
  */
+//TODO: mover para base.
 public class BodyComponent extends Component implements Steerable<Vector2> {
     boolean tagged;
     float maxLinearSpeed;
