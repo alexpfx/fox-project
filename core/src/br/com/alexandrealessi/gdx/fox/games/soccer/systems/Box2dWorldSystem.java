@@ -32,7 +32,7 @@ public class Box2dWorldSystem extends EntitySystem{
     private ContactListener contactListener = new ContactListener() {
         @Override
         public void beginContact(Contact contact) {
-            if (x < 600) return;
+            if (x < 100) return;
             final Fixture fixtureA = contact.getFixtureA();
             final Fixture fixtureB = contact.getFixtureB();
             if (!fixtureA.isSensor() && !fixtureB.isSensor())
@@ -46,14 +46,27 @@ public class Box2dWorldSystem extends EntitySystem{
                 return;
 
 
+
             final String name = (String) fixtureA.getUserData();
-            if (name.equals("head")){
-                playerA.sub();
-            }else{
+
+            float ra = MathUtils.random(10f);
+            float rb = MathUtils.random(10f);
+            float d = ra - rb;
+            if (d > 1){
                 playerA.add();
+                if (MathUtils.randomBoolean(0.5f))
+                    playerB.sub();
+                System.out.println(playerB.getContacts());
+            } else if (d < -1){
+                playerB.add();
+                if (MathUtils.randomBoolean(0.5f))
+                    playerA.sub();
+                System.out.println(playerA.getContacts());
             }
 
-            int limit = 100;
+
+
+            int limit = 1;
 
             if (playerA.reached(limit)){
                 System.out.println("morto: "+playerA.getName());
@@ -93,10 +106,13 @@ public class Box2dWorldSystem extends EntitySystem{
         }
         if (deleteIt.size > 0){
             for (Body b:deleteIt){
+                b.setActive(false);
                 world.destroyBody(b);
             }
+
             deleteIt.clear();
         }
+
         if ((x ++ % 300) == 0){
             Array<Body> bs = new Array<Body>();
             world.getBodies(bs);

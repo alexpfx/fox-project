@@ -41,10 +41,12 @@ public class Player extends Entity {
     }
     public void sub (){
         contacts--;
-
     }
 
 
+    public int getContacts() {
+        return contacts;
+    }
 
     public boolean reached(int amount) {
         return contacts == amount;
