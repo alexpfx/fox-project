@@ -56,6 +56,7 @@ public class FixtureBuilder {
         return this.def;
     }
 
+    //TODO: codigo duplicado
     public Fixture clone(Fixture fixture, Body body) {
         final Fixture f = create().density(fixture.getDensity())
                                   .friction(fixture.getFriction())
