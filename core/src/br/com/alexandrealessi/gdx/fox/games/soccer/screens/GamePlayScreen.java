@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 
-import br.com.alexandrealessi.gdx.fox.base.entities.utils.RubeSceneHelper;
+import br.com.alexandrealessi.gdx.fox.base.utils.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.BodyComponent;
