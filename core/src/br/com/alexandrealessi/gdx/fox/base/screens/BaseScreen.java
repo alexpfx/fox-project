@@ -1,11 +1,12 @@
 package br.com.alexandrealessi.gdx.fox.base.screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Screen;
 
 /**
  * Created by alexandre on 24/05/15.
  */
-public class BaseScreen implements com.badlogic.gdx.Screen {
+public class BaseScreen implements Screen {
     private Game game;
 
 
