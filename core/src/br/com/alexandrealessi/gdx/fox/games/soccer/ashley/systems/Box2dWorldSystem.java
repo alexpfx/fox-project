@@ -42,7 +42,7 @@ public class Box2dWorldSystem extends EntitySystem {
             float ra = MathUtils.random(10f);
             float rb = MathUtils.random(10f);
             float d = ra - rb;
-            if (d > 1) {
+            if (d > 1 ) {
                 playerA.add();
                 if (MathUtils.randomBoolean(0.5f))
                     playerB.sub();
@@ -89,6 +89,8 @@ public class Box2dWorldSystem extends EntitySystem {
         debugRenderer = new Box2DDebugRenderer();
         world.setContactListener(contactListener);
     }
+
+
 
     @Override
     public void update(float deltaTime) {
