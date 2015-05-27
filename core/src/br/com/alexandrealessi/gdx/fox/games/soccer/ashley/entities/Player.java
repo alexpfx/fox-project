@@ -38,10 +38,10 @@ public class Player extends Entity {
     public void add() {
         contacts++;
     }
-    public void sub (){
+
+    public void sub() {
         contacts--;
     }
-
 
     public int getContacts() {
         return contacts;

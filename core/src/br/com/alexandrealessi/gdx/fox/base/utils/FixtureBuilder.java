@@ -4,6 +4,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Shape;
+
 //TODO: refatorar
 public class FixtureBuilder {
     private FixtureDef def;
@@ -27,7 +28,7 @@ public class FixtureBuilder {
         return this;
     }
 
-    public FixtureBuilder userData (Object userData){
+    public FixtureBuilder userData(Object userData) {
         this.userData = userData;
         return this;
     }
@@ -56,18 +57,24 @@ public class FixtureBuilder {
     }
 
     public Fixture clone(Fixture fixture, Body body) {
-        final Fixture f = create().density(fixture.getDensity()).friction(fixture.getFriction())
-                .restitution(fixture.getRestitution())
-                .shape(fixture.getShape()).sensor(fixture.isSensor()).build(body);
+        final Fixture f = create().density(fixture.getDensity())
+                                  .friction(fixture.getFriction())
+                                  .restitution(fixture.getRestitution())
+                                  .shape(fixture.getShape())
+                                  .sensor(fixture.isSensor())
+                                  .build(body);
         f.setUserData(fixture.getUserData());
         return f;
     }
 
     //TODO: codigo duplicado
     public FixtureDef clone(Fixture fixture) {
-        return create().userData(fixture.getUserData()).density(fixture.getDensity()).friction(fixture.getFriction())
-                .restitution(fixture.getRestitution())
-                .shape(fixture.getShape()).sensor(fixture.isSensor()).def;
+        return create().userData(fixture.getUserData())
+                       .density(fixture.getDensity())
+                       .friction(fixture.getFriction())
+                       .restitution(fixture.getRestitution())
+                       .shape(fixture.getShape())
+                       .sensor(fixture.isSensor()).def;
     }
 
 }

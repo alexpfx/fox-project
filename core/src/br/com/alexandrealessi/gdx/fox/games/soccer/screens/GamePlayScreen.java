@@ -1,16 +1,16 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 
-import br.com.alexandrealessi.gdx.fox.base.utils.RubeSceneHelper;
-import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
-import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.BodyComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.SpriteComponent;
+import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
+import br.com.alexandrealessi.gdx.fox.base.utils.RubeSceneHelper;
+import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Player;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.utils.PlayerBuilder;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerPosition;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.utils.PlayerBuilder;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.Box2dWorldSystem;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.PhysicToScreenSystem;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.RenderSystem;
@@ -75,7 +75,6 @@ public class GamePlayScreen extends BaseScreen {
         PhysicToScreenSystem physicToScreenSystem = new PhysicToScreenSystem(1);
         RenderSystem renderSystem = new RenderSystem(viewport);
 
-
         final Sprite monkey = new Sprite(atlas.findRegion("monkey"));
         monkey.setScale(ANIMAL_SPRITE_SCALE / monkey.getHeight());
 
@@ -84,18 +83,15 @@ public class GamePlayScreen extends BaseScreen {
 
         engine.addEntity(field);
 
-
         final Team tpanda = createTeam("panda", panda);
         final Team tgirafa = createTeam("girafa", girafa);
         final Team tmonkey = createTeam("monkey", monkey);
         final Team tparrot = createTeam("parrot", parrot);
 
-
         addTeamToEngine(engine, tpanda);
         addTeamToEngine(engine, tgirafa);
         addTeamToEngine(engine, tmonkey);
         addTeamToEngine(engine, tparrot);
-
 
         engine.addSystem(physicToScreenSystem);
         engine.addSystem(renderSystem);
@@ -113,11 +109,11 @@ public class GamePlayScreen extends BaseScreen {
         PlayerBuilder builder = new PlayerBuilder();
         final Body playerBody = rubeSceneHelper.getBody("player");
         final Array<Fixture> head = rubeSceneHelper.getFixturesByName("head");
-        for (Fixture f:head){
+        for (Fixture f : head) {
             f.setUserData("head");
         }
         final Array<Fixture> tail = rubeSceneHelper.getFixturesByName("tail");
-        for (Fixture f:tail){
+        for (Fixture f : tail) {
             f.setUserData("tail");
         }
         Array<Player> players = new Array<Player>();

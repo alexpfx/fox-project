@@ -28,12 +28,14 @@ public class RenderSystem extends EntitySystem {
 
     @Override
     public void addedToEngine(Engine engine) {
-        entities = engine.getEntitiesFor(Family.all(BodyComponent.class, PositionComponent.class, SpriteComponent.class).get());
+        entities = engine.getEntitiesFor(Family.all(BodyComponent.class, PositionComponent.class, SpriteComponent.class)
+                                               .get());
     }
 
     @Override
     public void update(float deltaTime) {
-        viewport.getCamera().update();
+        viewport.getCamera()
+                .update();
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
         for (int i = 0; i < entities.size(); i++) {

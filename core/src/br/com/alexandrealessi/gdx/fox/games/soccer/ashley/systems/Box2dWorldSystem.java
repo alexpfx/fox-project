@@ -11,24 +11,16 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by alexandre on 24/05/15.
  */
-public class Box2dWorldSystem extends EntitySystem{
+public class Box2dWorldSystem extends EntitySystem {
     public static final float TIME_STEP = 1 / 60f;
     private static final int VELOCITY_ITERATIONS = 3;
     private static final int POSITION_ITERATIONS = 2;
-
-    private final World world;
-    private Box2DDebugRenderer debugRenderer;
     private static final boolean debugPhysics = true;
+    private final World world;
+    Array<Body> deleteIt = new Array<Body>();
+    int x = 0;
+    private Box2DDebugRenderer debugRenderer;
     private Viewport viewport;
-    Array <Body> deleteIt = new Array<Body>();
-
-    public Box2dWorldSystem (World world, Viewport viewport){
-        this.world = world;
-        this.viewport = viewport;
-        debugRenderer = new Box2DDebugRenderer();
-        world.setContactListener(contactListener);
-    }
-
     private ContactListener contactListener = new ContactListener() {
         @Override
         public void beginContact(Contact contact) {
@@ -45,35 +37,31 @@ public class Box2dWorldSystem extends EntitySystem{
             if (playerA == null || playerB == null)
                 return;
 
-
-
             final String name = (String) fixtureA.getUserData();
 
             float ra = MathUtils.random(10f);
             float rb = MathUtils.random(10f);
             float d = ra - rb;
-            if (d > 1){
+            if (d > 1) {
                 playerA.add();
                 if (MathUtils.randomBoolean(0.5f))
                     playerB.sub();
                 System.out.println(playerB.getContacts());
-            } else if (d < -1){
+            } else if (d < -1) {
                 playerB.add();
                 if (MathUtils.randomBoolean(0.5f))
                     playerA.sub();
                 System.out.println(playerA.getContacts());
             }
 
-
-
             int limit = 1;
 
-            if (playerA.reached(limit)){
-                System.out.println("morto: "+playerA.getName());
+            if (playerA.reached(limit)) {
+                System.out.println("morto: " + playerA.getName());
                 deleteIt.add(bodyA);
             }
-            if (playerB.reached(limit)){
-                System.out.println("morto: "+playerB.getName());
+            if (playerB.reached(limit)) {
+                System.out.println("morto: " + playerB.getName());
                 deleteIt.add(bodyB);
             }
 
@@ -95,17 +83,22 @@ public class Box2dWorldSystem extends EntitySystem{
         }
     };
 
+    public Box2dWorldSystem(World world, Viewport viewport) {
+        this.world = world;
+        this.viewport = viewport;
+        debugRenderer = new Box2DDebugRenderer();
+        world.setContactListener(contactListener);
+    }
 
-    int x = 0;
     @Override
     public void update(float deltaTime) {
         final Camera camera = viewport.getCamera();
         camera.update();
-        if (debugPhysics){
+        if (debugPhysics) {
             debugRenderer.render(world, camera.combined);
         }
-        if (deleteIt.size > 0){
-            for (Body b:deleteIt){
+        if (deleteIt.size > 0) {
+            for (Body b : deleteIt) {
                 b.setActive(false);
                 world.destroyBody(b);
             }
@@ -113,32 +106,31 @@ public class Box2dWorldSystem extends EntitySystem{
             deleteIt.clear();
         }
 
-        if ((x ++ % 300) == 0){
+        if ((x++ % 300) == 0) {
             Array<Body> bs = new Array<Body>();
             world.getBodies(bs);
             System.out.println();
-            for (Body b: bs){
+            for (Body b : bs) {
                 final Object userData = b.getUserData();
 
-                if (userData != null && userData instanceof Player){
-                    System.out.println("Vivo ainda: "+((Player) userData).getName());
+                if (userData != null && userData instanceof Player) {
+                    System.out.println("Vivo ainda: " + ((Player) userData).getName());
                 }
             }
             System.out.println();
 
         }
 
-        if (MathUtils.randomBoolean(0.05f)){
+        if (MathUtils.randomBoolean(0.05f)) {
             Array<Body> bs = new Array<Body>();
             world.getBodies(bs);
-            if (bs.size > 0){
-                bs.get(MathUtils.random(bs.size - 1)).applyLinearImpulse(100, -100, 5, 5, true);
+            if (bs.size > 0) {
+                bs.get(MathUtils.random(bs.size - 1))
+                  .applyLinearImpulse(100, -100, 5, 5, true);
             }
         }
 
         world.step(TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
     }
-
-
 
 }

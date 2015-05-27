@@ -11,7 +11,7 @@ public class SpriteComponent extends Component {
 
     private Sprite sprite;
 
-    public SpriteComponent (Sprite sprite){
+    public SpriteComponent(Sprite sprite) {
         this.sprite = sprite;
     }
 

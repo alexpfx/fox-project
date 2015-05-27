@@ -3,12 +3,10 @@ package br.com.alexandrealessi.gdx.fox.base.utils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.gushikustudios.rube.RubeScene;
 import com.gushikustudios.rube.loader.RubeSceneLoader;
-import com.gushikustudios.rube.loader.serializers.utils.RubeImage;
 
 /**
  * Created by alexandre on 26/04/15.

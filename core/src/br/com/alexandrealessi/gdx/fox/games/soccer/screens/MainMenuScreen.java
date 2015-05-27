@@ -7,7 +7,6 @@ import com.badlogic.gdx.ScreenAdapter;
  */
 public class MainMenuScreen extends ScreenAdapter {
 
-
     @Override
     public void show() {
     }
