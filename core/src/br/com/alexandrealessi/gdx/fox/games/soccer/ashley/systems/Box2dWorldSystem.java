@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.games.soccer.ashely.systems;
+package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Player;
 import com.badlogic.ashley.core.EntitySystem;
