@@ -4,7 +4,6 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserDat
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.WorldComponent;
 import com.badlogic.ashley.core.*;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 /**
@@ -12,12 +11,10 @@ import com.badlogic.gdx.physics.box2d.*;
  */
 public class ContactSystem extends EntitySystem implements ContactListener {
 
-    private Entity worldEntity;
-
     private static final float timeWaitBeforeProcessContactBetweenPlayers = 10f;
+    private Entity worldEntity;
     private float timecount = 0;
     private ComponentMapper<WorldComponent> wm = ComponentMapper.getFor(WorldComponent.class);
-
 
     @Override
     public void addedToEngine(Engine engine) {
@@ -28,7 +25,7 @@ public class ContactSystem extends EntitySystem implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
-        if (timecount > timeWaitBeforeProcessContactBetweenPlayers){
+        if (timecount > timeWaitBeforeProcessContactBetweenPlayers) {
             processContactBetweenPlayers(contact);
         }
     }
@@ -51,10 +48,18 @@ public class ContactSystem extends EntitySystem implements ContactListener {
         final float a_power = vx_a + vy_a;
         final float b_power = vx_b + vy_b;
         if ((a_power > b_power)) {
+            if (save(bodyB)) return;
             markForDestroy(bodyB);
         } else {
+            if (save(bodyA)) return;
             markForDestroy(bodyA);
         }
+    }
+
+    private boolean save(Body b) {
+        final boolean save = MathUtils.randomBoolean(.5f);
+        if (save) b.applyLinearImpulse(MathUtils.random(-100, 100), MathUtils.random(-100, 100), b.getLocalCenter().x, b.getLocalCenter().y, true);
+        return save;
     }
 
     private boolean isPlayer(Body body) {
