@@ -8,7 +8,8 @@ import br.com.alexandrealessi.gdx.fox.base.utils.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.utils.PlayerBuilder;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.Box2dWorldSystem;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.WorldStepSystem;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.ContactSystem;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.PhysicToScreenSystem;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.RenderSystem;
 import com.badlogic.ashley.core.Engine;
@@ -25,7 +26,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.gushikustudios.rube.loader.RubeSceneLoader;
 
 /**
  * Created by alexandre on 23/05/15.
@@ -77,9 +77,11 @@ public class GamePlayScreen extends BaseScreen {
 
         viewport = new StretchViewport(SCENE_WIDTH, SCENE_HEIGHT, camera);
 
-        Box2dWorldSystem box2dWorldSystem = new Box2dWorldSystem(rubeSceneHelper.getWorld(), viewport);
+        ContactSystem contactSystem = new ContactSystem();
+        WorldStepSystem worldStepSystem = new WorldStepSystem();
         PhysicToScreenSystem physicToScreenSystem = new PhysicToScreenSystem(1);
-        RenderSystem renderSystem = new RenderSystem(viewport, false);
+        RenderSystem renderSystem = new RenderSystem(viewport, true);
+
 
         final Sprite monkey = new Sprite(atlas.findRegion("monkey"));
         monkey.setScale(ANIMAL_SPRITE_SCALE / monkey.getHeight());
@@ -99,9 +101,12 @@ public class GamePlayScreen extends BaseScreen {
         addTeamToEngine(engine, tmonkey);
         addTeamToEngine(engine, tparrot);
 
+
+        engine.addSystem(contactSystem);
         engine.addSystem(physicToScreenSystem);
         engine.addSystem(renderSystem);
-        engine.addSystem(box2dWorldSystem);
+        engine.addSystem(worldStepSystem);
+
 
     }
 
