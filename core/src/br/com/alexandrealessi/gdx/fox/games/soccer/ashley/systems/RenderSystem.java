@@ -11,12 +11,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * Created by alexandre on 24/05/15.
  */
-public class RenderSystem extends EntitySystem {
+public class RenderSystem extends EntitySystem implements Disposable {
 
     private final boolean debugPhysics;
     private ImmutableArray<Entity> players;
@@ -78,4 +79,9 @@ public class RenderSystem extends EntitySystem {
         batch.end();
     }
 
+    @Override
+    public void dispose() {
+        batch.dispose();
+        box2DDebugRenderer.dispose();
+    }
 }
