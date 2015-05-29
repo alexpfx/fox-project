@@ -24,6 +24,7 @@ public class PhysicToScreenSystem extends EntitySystem {
     @Override
     public void addedToEngine(Engine engine) {
         entities = engine.getEntitiesFor(Family.all(BodyComponent.class, PositionComponent.class).get());
+        System.out.println(entities);
     }
 
     @Override

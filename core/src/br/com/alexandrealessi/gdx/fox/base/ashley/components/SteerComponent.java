@@ -37,7 +37,7 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
             steeringBehavior.calculateSteering(steeringOutput);
             applySteering(steeringOutput, delta);
         }
-        //wrap arround
+        //wrap arround (pegar limites de tela para isso)
     }
 
     private void applySteering(SteeringAcceleration<Vector2> steeringOutput, float delta) {

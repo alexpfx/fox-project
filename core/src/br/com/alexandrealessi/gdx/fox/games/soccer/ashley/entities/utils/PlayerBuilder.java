@@ -3,6 +3,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.utils;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.BodyComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.SpriteComponent;
+import br.com.alexandrealessi.gdx.fox.base.ashley.components.SteerComponent;
 import br.com.alexandrealessi.gdx.fox.base.utils.BodyBuilder;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Player;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerData;
@@ -29,6 +30,7 @@ public class PlayerBuilder {
         final Body body = cloneBuilder.build();
         body.getPosition().set(10, 10);
         playerEntity.add(new BodyComponent(body));
+        playerEntity.add(new SteerComponent(body, true));
         body.setUserData(PlayerUserData.getFor(playerEntity));
     }
 
