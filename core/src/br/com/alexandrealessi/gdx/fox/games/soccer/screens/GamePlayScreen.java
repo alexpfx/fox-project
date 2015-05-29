@@ -17,6 +17,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
@@ -40,7 +41,7 @@ public class GamePlayScreen extends BaseScreen {
     private OrthographicCamera camera;
     private OrthographicCamera worldCamera;
     private Viewport viewport;
-    private PlayerBuilder builder = new PlayerBuilder();
+    private PlayerBuilder builder = new PlayerBuilder(new Vector2(SCENE_WIDTH, SCENE_HEIGHT));
 
     public GamePlayScreen(SoccerGame game) {
         super(game);

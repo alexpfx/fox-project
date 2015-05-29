@@ -13,9 +13,10 @@ import com.badlogic.gdx.physics.box2d.Body;
  */
 public class SteerComponent extends Component implements Steerable<Vector2>, Updatable {
 
-    public static final float MARGIN = 0.0001f;
+    public static final float MARGIN = 0.001f;
     private Body body;
     private float boundingRadius;
+    private final Vector2 worldSize;
     private boolean tagged = false;
     private float maxLinearSpeed;
     private float maxLinearAcceleration;
@@ -25,10 +26,16 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
     private SteeringAcceleration<Vector2> steeringOutput;
     private boolean independentFacing;
 
-    public SteerComponent(Body body, boolean independentFacing) {
+    public SteerComponent(Body body, boolean independentFacing, float boundingRadius, Vector2 worldSize) {
         this.body = body;
+        this.boundingRadius = boundingRadius;
+        this.worldSize = worldSize;
         steeringOutput = new SteeringAcceleration<Vector2>(new Vector2());
         this.independentFacing = independentFacing;
+        setMaxLinearSpeed(30);
+        setMaxAngularSpeed(30);
+        setMaxLinearAcceleration(30);
+        setMaxAngularAcceleration(30);
     }
 
     @Override
@@ -37,7 +44,22 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
             steeringBehavior.calculateSteering(steeringOutput);
             applySteering(steeringOutput, delta);
         }
+
         //wrap arround (pegar limites de tela para isso)
+        wrapAround (worldSize);
+
+    }
+
+    private void wrapAround(Vector2 max) {
+        float k = Float.POSITIVE_INFINITY;
+        final Vector2 position = body.getPosition();
+        if (position.x > max.x) k = position.x = 0;
+        if (position.x < 0) k = position.x = max.x;
+        if (position.y < 0) k = position.y = max.y;
+        if (position.y > max.y) k = position.y = 0;
+        if (k != Float.POSITIVE_INFINITY)
+            body.setTransform(position, body.getAngle());
+
     }
 
     private void applySteering(SteeringAcceleration<Vector2> steeringOutput, float delta) {
@@ -117,8 +139,7 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
 
     @Override
     public float getBoundingRadius() {
-        //confirmar
-        return body.getFixtureList().get(0).getShape().getRadius();
+        return boundingRadius;
     }
 
     @Override
@@ -138,13 +159,14 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
 
     @Override
     public float vectorToAngle(Vector2 vector) {
-        //confirmar
-        return vector.angle();
+        return (float) Math.atan2(-vector.x, vector.y);
     }
 
     @Override
     public Vector2 angleToVector(Vector2 outVector, float angle) {
-        return null;
+        outVector.x = -(float) Math.sin(angle);
+        outVector.y = (float) Math.cos(angle);
+        return outVector;
     }
 
     @Override
