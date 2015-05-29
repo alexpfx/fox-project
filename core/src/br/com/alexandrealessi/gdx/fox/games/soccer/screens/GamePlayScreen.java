@@ -8,10 +8,7 @@ import br.com.alexandrealessi.gdx.fox.base.utils.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.utils.PlayerBuilder;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.WorldStepSystem;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.ContactSystem;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.PhysicToScreenSystem;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.RenderSystem;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
@@ -43,6 +40,7 @@ public class GamePlayScreen extends BaseScreen {
     private OrthographicCamera camera;
     private OrthographicCamera worldCamera;
     private Viewport viewport;
+    private PlayerBuilder builder = new PlayerBuilder();
 
     public GamePlayScreen(SoccerGame game) {
         super(game);
@@ -81,6 +79,7 @@ public class GamePlayScreen extends BaseScreen {
         WorldStepSystem worldStepSystem = new WorldStepSystem();
         PhysicToScreenSystem physicToScreenSystem = new PhysicToScreenSystem(1);
         RenderSystem renderSystem = new RenderSystem(viewport, true);
+        AISystem aiSystem = new AISystem();
 
 
         final Sprite monkey = new Sprite(atlas.findRegion("monkey"));
@@ -102,7 +101,8 @@ public class GamePlayScreen extends BaseScreen {
         addTeamToEngine(engine, tparrot);
 
 
-        engine.addSystem(contactSystem);
+//        engine.addSystem(contactSystem);
+        engine.addSystem(aiSystem);
         engine.addSystem(physicToScreenSystem);
         engine.addSystem(renderSystem);
         engine.addSystem(worldStepSystem);
@@ -125,7 +125,7 @@ public class GamePlayScreen extends BaseScreen {
     }
 
     public Team createTeam(String name, Sprite uniform) {
-        PlayerBuilder builder = new PlayerBuilder();
+
         final Body playerBody = rubeSceneHelper.getBody("player");
         final Array<Fixture> head = rubeSceneHelper.getFixturesByName("head");
         for (Fixture f : head) {
@@ -137,14 +137,14 @@ public class GamePlayScreen extends BaseScreen {
         }
         Array<Player> players = new Array<Player>();
 
-        players.add(builder.createPlayerEntity(createPlayerData("Ochoa", 1, PlayerPosition.GK), uniform, playerBody));
-        players.add(builder.createPlayerEntity(createPlayerData("Messi", 10, PlayerPosition.ATTACKER), uniform, playerBody));
-        players.add(builder.createPlayerEntity(createPlayerData("Ronaldo", 9, PlayerPosition.ATTACKER), uniform, playerBody));
-        players.add(builder.createPlayerEntity(createPlayerData("Neymar", 11, PlayerPosition.ATTACKER), uniform, playerBody));
-        players.add(builder.createPlayerEntity(createPlayerData("Iniesta", 6, PlayerPosition.MIDDLEFIELD), uniform, playerBody));
-        players.add(builder.createPlayerEntity(createPlayerData("Xabi Alonso", 8, PlayerPosition.MIDDLEFIELD), uniform, playerBody));
-        players.add(builder.createPlayerEntity(createPlayerData("James Rodriguez", 7, PlayerPosition.MIDDLEFIELD), uniform, playerBody));
-        players.add(builder.createPlayerEntity(createPlayerData("Dani Alves", 2, PlayerPosition.DEFENDER), uniform, playerBody));
+//        players.add(builder.createPlayerEntity(createPlayerData("Ochoa", 1, PlayerPosition.GK), uniform, playerBody));
+//        players.add(builder.createPlayerEntity(createPlayerData("Messi", 10, PlayerPosition.ATTACKER), uniform, playerBody));
+//        players.add(builder.createPlayerEntity(createPlayerData("Ronaldo", 9, PlayerPosition.ATTACKER), uniform, playerBody));
+//        players.add(builder.createPlayerEntity(createPlayerData("Neymar", 11, PlayerPosition.ATTACKER), uniform, playerBody));
+//        players.add(builder.createPlayerEntity(createPlayerData("Iniesta", 6, PlayerPosition.MIDDLEFIELD), uniform, playerBody));
+//        players.add(builder.createPlayerEntity(createPlayerData("Xabi Alonso", 8, PlayerPosition.MIDDLEFIELD), uniform, playerBody));
+//        players.add(builder.createPlayerEntity(createPlayerData("James Rodriguez", 7, PlayerPosition.MIDDLEFIELD), uniform, playerBody));
+//        players.add(builder.createPlayerEntity(createPlayerData("Dani Alves", 2, PlayerPosition.DEFENDER), uniform, playerBody));
         players.add(builder.createPlayerEntity(createPlayerData("Mascherano", 3, PlayerPosition.DEFENDER), uniform, playerBody));
         players.add(builder.createPlayerEntity(createPlayerData("Boateng", 4, PlayerPosition.DEFENDER), uniform, playerBody));
         players.add(builder.createPlayerEntity(createPlayerData("Lahm", 5, PlayerPosition.DEFENDER), uniform, playerBody));

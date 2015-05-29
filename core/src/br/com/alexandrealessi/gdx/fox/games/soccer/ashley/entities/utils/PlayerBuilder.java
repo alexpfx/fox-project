@@ -38,6 +38,7 @@ public class PlayerBuilder {
         final SteerComponent steer = new SteerComponent(body, true);
         playerEntity.add(steer);
         if (x++ == 10) {
+            System.out.println(x);
             Wander<Vector2> wander = new Wander<Vector2>(steer).setFaceEnabled(true).setAlignTolerance(0.001f)
                                                                .setDecelerationRadius(5).setTimeToTarget(0.1f)
                                                                .setWanderOffset(90).setWanderOrientation(10)
