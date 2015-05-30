@@ -11,20 +11,21 @@ import com.badlogic.gdx.physics.box2d.Body;
 /**
  * Created by alexandre on 24/05/15.
  */
-public class PhysicToScreenSystem extends EntitySystem {
+public class MetersToPixelConvertSystem extends EntitySystem {
 
     private final float worldToScreen;
     private ImmutableArray<Entity> entities;
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
-    private ComponentMapper<SteerComponent> sm = ComponentMapper.getFor(SteerComponent.class);
+    private ComponentMapper<BodyComponent> sm = ComponentMapper.getFor(BodyComponent.class);
 
-    public PhysicToScreenSystem(float worldToScreen) {
+    public MetersToPixelConvertSystem(float worldToScreen) {
         this.worldToScreen = worldToScreen;
     }
 
     @Override
     public void addedToEngine(Engine engine) {
-        entities = engine.getEntitiesFor(Family.all(SteerComponent.class, PositionComponent.class).get());
+        entities = engine.getEntitiesFor(Family.all(BodyComponent.class, PositionComponent.class).get());
+        System.out.println(entities);
     }
 
     @Override
@@ -32,9 +33,9 @@ public class PhysicToScreenSystem extends EntitySystem {
 
         for (int i = 0; i < entities.size(); i++) {
             final Entity e = entities.get(i);
-            final SteerComponent steerComponent = sm.get(e);
+            final BodyComponent bodyComponent = sm.get(e);
             final PositionComponent positionComponent = pm.get(e);
-            final Body body = steerComponent.getBody();
+            final Body body = bodyComponent.getBody();
             float x = body.getPosition().x * worldToScreen;
             float y = body.getPosition().y * worldToScreen;
             float r = body.getAngle() * MathUtils.radDeg;

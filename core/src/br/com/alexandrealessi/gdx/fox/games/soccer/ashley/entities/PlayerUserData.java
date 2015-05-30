@@ -4,24 +4,22 @@ import br.com.alexandrealessi.gdx.fox.base.UserData;
 import br.com.alexandrealessi.gdx.fox.base.UserDataAction;
 import com.badlogic.gdx.utils.Array;
 
-import javax.swing.*;
-
 /**
  * Created by alexandre on 27/05/15.
  */
 public class PlayerUserData implements UserData{
 
     private boolean alive;
-    private Player player;
+    private PlayerEntity playerEntity;
     private Array<UserDataAction> actions = new Array<UserDataAction>();
 
-    private PlayerUserData(Player player) {
-        this.player = player;
+    private PlayerUserData(PlayerEntity playerEntity) {
+        this.playerEntity = playerEntity;
         this.alive = true;
     }
 
-    public static PlayerUserData getFor(Player player) {
-        return new PlayerUserData(player);
+    public static PlayerUserData getFor(PlayerEntity playerEntity) {
+        return new PlayerUserData(playerEntity);
     }
 
     @Override
@@ -33,8 +31,8 @@ public class PlayerUserData implements UserData{
         this.alive = alive;
     }
 
-    public Player getPlayer() {
-        return player;
+    public PlayerEntity getPlayerEntity() {
+        return playerEntity;
     }
 
 

@@ -9,14 +9,14 @@ public class Team {
 
     private String name;
 
-    private Array<Player> players = new Array<Player>();
+    private Array<PlayerEntity> players = new Array<PlayerEntity>();
 
-    public Team(String name, Array<Player> players) {
+    public Team(String name, Array<PlayerEntity> players) {
         this.name = name;
         this.players = players;
     }
 
-    public Array<Player> getPlayers() {
+    public Array<PlayerEntity> getPlayers() {
         return players;
     }
 }

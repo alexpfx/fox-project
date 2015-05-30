@@ -1,15 +1,10 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.base.UserData;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Player;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.WorldComponent;
 import com.badlogic.ashley.core.*;
-import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Iterator;
 

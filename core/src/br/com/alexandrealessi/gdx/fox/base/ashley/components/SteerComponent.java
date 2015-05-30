@@ -38,10 +38,10 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
         shapeRenderer = new ShapeRenderer();
         this.body = body;
         this.worldSize = new Vector2(worldSize.x /2, worldSize.y /2);
-        System.out.println(worldSize);
         this.boundingRadius = boundingRadius;
         steeringOutput = new SteeringAcceleration<Vector2>(new Vector2());
         this.independentFacing = independentFacing;
+
 
     }
 
