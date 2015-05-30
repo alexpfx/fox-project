@@ -19,18 +19,23 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.utils.viewport.*;
 
 /**
  * Created by alexandre on 23/05/15.
  */
 public class GamePlayScreen extends BaseScreen {
     //1248 x 794
-    private static final float SCENE_WIDTH = 159.761f;
-    private static final float SCENE_HEIGHT = 100;
+    //1700 x 1150
+
+//    private static final float SCENE_WIDTH = 159.761f;
+//    private static final float SCENE_HEIGHT = 100;
+
+    private static final float SCENE_WIDTH = 178f;
+    private static final float SCENE_HEIGHT = 120;
     private static final float ANIMAL_SPRITE_SCALE = 7F;
 
     private Engine engine;
@@ -51,6 +56,7 @@ public class GamePlayScreen extends BaseScreen {
         Entity fieldEntity = new Entity();
         createWorldEntity (rubeSceneHelper.getWorld());
 
+
         final Sprite panda = new Sprite(atlas.findRegion("panda"));
         panda.getTexture().setFilter(Texture.TextureFilter.Linear,Texture.TextureFilter.Linear);
         panda.setScale(ANIMAL_SPRITE_SCALE / panda.getHeight());
@@ -62,13 +68,27 @@ public class GamePlayScreen extends BaseScreen {
         field.add(new BodyComponent(rubeSceneHelper.getBody("field")));
         field.add(new PositionComponent());
 
-        final Sprite soccer = new Sprite(atlas.findRegion("soccer"));
-        soccer.setScale(100 / soccer.getHeight());
+        final Sprite soccer = new Sprite(atlas.findRegion("field"));
+        soccer.setScale(120 / soccer.getHeight());
         field.add(new SpriteComponent(soccer));
 
-        camera = new OrthographicCamera();
 
-        viewport = new StretchViewport(SCENE_WIDTH, SCENE_HEIGHT, camera);
+        final Sprite ballSprite = new Sprite(atlas.findRegion("ball"));
+        final Body ballBody = rubeSceneHelper.getBody("ball");
+        final Entity ballEntity = new Entity();
+        ballEntity.add(new SpriteComponent(ballSprite));
+        ballEntity.add(new BodyComponent(ballBody));
+        ballEntity.add(new PositionComponent());
+        ballSprite.setScale(2 / ballSprite.getHeight());
+
+
+
+
+
+        camera = new OrthographicCamera();
+        camera.zoom = 0.7f;
+
+        viewport = new ExtendViewport(SCENE_WIDTH, SCENE_HEIGHT, camera);
 
         ContactSystem contactSystem = new ContactSystem();
         WorldStepSystem worldStepSystem = new WorldStepSystem();
@@ -84,7 +104,7 @@ public class GamePlayScreen extends BaseScreen {
         parrot.setScale(ANIMAL_SPRITE_SCALE / parrot.getHeight());
 
         engine.addEntity(field);
-
+        engine.addEntity(ballEntity);
 
         final Team tpanda = createTeam("panda", panda);
         final Team tgirafa = createTeam("girafa", girafa);
@@ -140,7 +160,6 @@ public class GamePlayScreen extends BaseScreen {
         final Body body = BodyBuilder.clone(playerBodyModel).build();
         body.setUserData(PlayerUserData.getFor(player));
         player.add(new BodyComponent(body));
-        System.out.println(player.getComponents());
         return player;
 
     }

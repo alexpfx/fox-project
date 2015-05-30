@@ -1,83 +1,104 @@
 
 game.png
-size: 2048,1024
+size: 4096,2048
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+ball
+  rotate: false
+  xy: 1704, 797
+  size: 80, 80
+  orig: 80, 80
+  offset: 0, 0
+  index: -1
 elephant
   rotate: false
-  xy: 1252, 572
+  xy: 2, 520
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
+field
+  rotate: false
+  xy: 2, 779
+  size: 1700, 1150
+  orig: 1700, 1150
+  offset: 0, 0
+  index: -1
 giraffe
   rotate: false
-  xy: 2, 2
+  xy: 3386, 1367
   size: 44, 44
   orig: 44, 44
   offset: 0, 0
   index: -1
 hippo
   rotate: false
-  xy: 1252, 313
+  xy: 3386, 1672
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 monkey
   rotate: false
-  xy: 1510, 572
+  xy: 2, 261
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 panda
   rotate: false
-  xy: 1252, 54
+  xy: 260, 520
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 parrot
   rotate: false
-  xy: 1510, 313
+  xy: 3386, 1413
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 penguin
   rotate: false
-  xy: 1768, 572
+  xy: 3644, 1672
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 pig
   rotate: false
-  xy: 1510, 54
+  xy: 2, 2
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 rabbit
   rotate: false
-  xy: 1768, 313
+  xy: 260, 261
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 snake
   rotate: false
-  xy: 1768, 54
+  xy: 518, 520
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 soccer
   rotate: false
-  xy: 2, 48
-  size: 1248, 781
-  orig: 1248, 781
+  xy: 1704, 879
+  size: 1680, 1050
+  orig: 1680, 1050
+  offset: 0, 0
+  index: -1
+soccerfield
+  rotate: false
+  xy: 1704, 879
+  size: 1680, 1050
+  orig: 1680, 1050
   offset: 0, 0
   index: -1
