@@ -13,7 +13,7 @@ import com.badlogic.gdx.physics.box2d.Body;
  */
 public class SteerComponent extends Component implements Steerable<Vector2>, Updatable {
 
-    public static final float MARGIN = 0.001f;
+    public static final float MARGIN = 0.000001f;
     private Body body;
     private float boundingRadius;
     private final Vector2 worldSize;
@@ -28,14 +28,13 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
 
     public SteerComponent(Body body, boolean independentFacing, float boundingRadius, Vector2 worldSize) {
         this.body = body;
+        worldSize = new Vector2(worldSize.x /2, worldSize.y /2);
+        System.out.println(worldSize);
         this.boundingRadius = boundingRadius;
         this.worldSize = worldSize;
         steeringOutput = new SteeringAcceleration<Vector2>(new Vector2());
         this.independentFacing = independentFacing;
-        setMaxLinearSpeed(130);
-        setMaxAngularSpeed(130);
-        setMaxLinearAcceleration(130);
-        setMaxAngularAcceleration(130);
+
     }
 
     @Override
@@ -53,11 +52,11 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
     private void wrapAround(Vector2 max) {
         float k = Float.POSITIVE_INFINITY;
         final Vector2 position = body.getPosition();
-        Vector2 m = max.scl(0.5f);
-        if (position.x > m.x) k = position.x = -m.x;
-        if (position.x < -m.x) k = position.x = m.x;
-        if (position.y < -m.y) k = position.y = m.y;
-        if (position.y > m.y) k = position.y = -m.y;
+
+        if (position.x > max.x) k = position.x = -max.x;
+        if (position.x < -max.x) k = position.x = max.x;
+        if (position.y < -max.y) k = position.y = max.y;
+        if (position.y > max.y) k = position.y = -max.y;
         if (k != Float.POSITIVE_INFINITY){
             body.setTransform(position, body.getAngle());
         }
@@ -89,7 +88,7 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
 
     private void clampAngularVelocity() {
         final float maxAngularSpeed = getMaxAngularSpeed();
-        body.setAngularVelocity(MathUtils.clamp(body.getAngularVelocity(), 0, getMaxAngularSpeed()));
+//        body.setAngularVelocity(MathUtils.clamp(body.getAngularVelocity(), 0, getMaxAngularSpeed()));
     }
 
     private boolean updatePositionAndLinearVelocity(float delta) {
