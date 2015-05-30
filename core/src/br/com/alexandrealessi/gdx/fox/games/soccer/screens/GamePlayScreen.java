@@ -89,7 +89,7 @@ public class GamePlayScreen extends BaseScreen {
         final Sprite parrot = new Sprite(atlas.findRegion("parrot"));
         parrot.setScale(ANIMAL_SPRITE_SCALE / parrot.getHeight());
 
-        engine.addEntity(field);
+//        engine.addEntity(field);
 
 //        final Team tpanda = createTeam("panda", panda);
 //        final Team tgirafa = createTeam("girafa", girafa);
@@ -144,10 +144,10 @@ public class GamePlayScreen extends BaseScreen {
 //        players.add(builder.createPlayerEntity(createPlayerData("Neymar", 11, PlayerPosition.ATTACKER), uniform, playerBody));
 //        players.add(builder.createPlayerEntity(createPlayerData("Iniesta", 6, PlayerPosition.MIDDLEFIELD), uniform, playerBody));
 //        players.add(builder.createPlayerEntity(createPlayerData("Xabi Alonso", 8, PlayerPosition.MIDDLEFIELD), uniform, playerBody));
-        players.add(builder.createPlayerEntity(createPlayerData("James Rodriguez", 7, PlayerPosition.MIDDLEFIELD), uniform, playerBody));
+//        players.add(builder.createPlayerEntity(createPlayerData("James Rodriguez", 7, PlayerPosition.MIDDLEFIELD), uniform, playerBody));
 //        players.add(builder.createPlayerEntity(createPlayerData("Dani Alves", 2, PlayerPosition.DEFENDER), uniform, playerBody));
 //        players.add(builder.createPlayerEntity(createPlayerData("Mascherano", 3, PlayerPosition.DEFENDER), uniform, playerBody));
-        players.add(builder.createPlayerEntity(createPlayerData("Boateng", 4, PlayerPosition.DEFENDER), uniform, playerBody));
+//        players.add(builder.createPlayerEntity(createPlayerData("Boateng", 4, PlayerPosition.DEFENDER), uniform, playerBody));
         players.add(builder.createPlayerEntity(createPlayerData("Lahm", 5, PlayerPosition.DEFENDER), uniform, playerBody));
         return new Team(name, players);
     }

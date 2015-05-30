@@ -4,6 +4,9 @@ import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.ai.steer.Steerable;
 import com.badlogic.gdx.ai.steer.SteeringAcceleration;
 import com.badlogic.gdx.ai.steer.SteeringBehavior;
+import com.badlogic.gdx.ai.steer.behaviors.Wander;
+import com.badlogic.gdx.ai.utils.Location;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -25,13 +28,18 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
     private SteeringBehavior<Vector2> steeringBehavior;
     private SteeringAcceleration<Vector2> steeringOutput;
     private boolean independentFacing;
+    private ShapeRenderer shapeRenderer;
+
+    public Body getBody() {
+        return body;
+    }
 
     public SteerComponent(Body body, boolean independentFacing, float boundingRadius, Vector2 worldSize) {
+        shapeRenderer = new ShapeRenderer();
         this.body = body;
-        worldSize = new Vector2(worldSize.x /2, worldSize.y /2);
+        this.worldSize = new Vector2(worldSize.x /2, worldSize.y /2);
         System.out.println(worldSize);
         this.boundingRadius = boundingRadius;
-        this.worldSize = worldSize;
         steeringOutput = new SteeringAcceleration<Vector2>(new Vector2());
         this.independentFacing = independentFacing;
 
@@ -47,12 +55,21 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
         //wrap arround (pegar limites de tela para isso)
         wrapAround (worldSize);
 
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setColor(MathUtils.random(1), MathUtils.random(1), MathUtils.random(1), 1);
+        shapeRenderer.circle(((Wander<Vector2>)steeringBehavior).getWanderCenter().x, ((Wander<Vector2>)steeringBehavior).getWanderCenter().y, ((Wander<Vector2>)steeringBehavior).getWanderRadius());
+        shapeRenderer.end();
+
+
+
     }
 
     private void wrapAround(Vector2 max) {
         float k = Float.POSITIVE_INFINITY;
         final Vector2 position = body.getPosition();
 
+        System.out.println(max);
         if (position.x > max.x) k = position.x = -max.x;
         if (position.x < -max.x) k = position.x = max.x;
         if (position.y < -max.y) k = position.y = max.y;
@@ -88,7 +105,9 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
 
     private void clampAngularVelocity() {
         final float maxAngularSpeed = getMaxAngularSpeed();
-//        body.setAngularVelocity(MathUtils.clamp(body.getAngularVelocity(), 0, getMaxAngularSpeed()));
+        if (body.getAngularVelocity() > maxAngularSpeed){
+            body.setAngularVelocity(maxAngularSpeed);
+        }
     }
 
     private boolean updatePositionAndLinearVelocity(float delta) {
@@ -110,7 +129,7 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
 
     private void updateOrientationAndAngularVelocityIfNotIndependentFacing(float delta) {
         final Vector2 linearVelocity = getLinearVelocity();
-        if (linearVelocity.isZero(MARGIN)) {
+        if (linearVelocity.isZero(getZeroLinearSpeedThreshold())) {
             return;
         }
         float newOrientation = vectorToAngle(linearVelocity);
@@ -126,6 +145,11 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
     @Override
     public float getOrientation() {
         return body.getAngle();
+    }
+
+    @Override
+    public void setOrientation(float orientation) {
+
     }
 
     @Override
@@ -153,10 +177,6 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
         this.tagged = tagged;
     }
 
-    @Override
-    public Vector2 newVector() {
-        return new Vector2();
-    }
 
     @Override
     public float vectorToAngle(Vector2 vector) {
@@ -168,6 +188,22 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
         outVector.x = -(float) Math.sin(angle);
         outVector.y = (float) Math.cos(angle);
         return outVector;
+    }
+
+    @Override
+    public Location<Vector2> newLocation() {
+        return new Box2dLocation();
+    }
+
+    @Override
+    public float getZeroLinearSpeedThreshold() {
+        return 0.001f;
+    }
+
+    @Override
+    public void setZeroLinearSpeedThreshold(float value) {
+        throw new UnsupportedOperationException();
+
     }
 
     @Override

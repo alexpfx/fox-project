@@ -3,6 +3,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.BodyComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.SpriteComponent;
+import br.com.alexandrealessi.gdx.fox.base.ashley.components.SteerComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.WorldComponent;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
@@ -41,7 +42,7 @@ public class RenderSystem extends EntitySystem implements Disposable {
     @Override
     public void addedToEngine(Engine engine) {
         players = engine
-                .getEntitiesFor(Family.all(BodyComponent.class, PositionComponent.class, SpriteComponent.class).get());
+                .getEntitiesFor(Family.all(SteerComponent.class, PositionComponent.class, SpriteComponent.class).get());
 
         worldEntity = engine.getEntitiesFor(Family.one(WorldComponent.class).get()).get(0);
 
