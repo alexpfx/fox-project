@@ -32,10 +32,10 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
         this.worldSize = worldSize;
         steeringOutput = new SteeringAcceleration<Vector2>(new Vector2());
         this.independentFacing = independentFacing;
-        setMaxLinearSpeed(30);
-        setMaxAngularSpeed(30);
-        setMaxLinearAcceleration(30);
-        setMaxAngularAcceleration(30);
+        setMaxLinearSpeed(130);
+        setMaxAngularSpeed(130);
+        setMaxLinearAcceleration(130);
+        setMaxAngularAcceleration(130);
     }
 
     @Override
@@ -53,12 +53,14 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
     private void wrapAround(Vector2 max) {
         float k = Float.POSITIVE_INFINITY;
         final Vector2 position = body.getPosition();
-        if (position.x > max.x) k = position.x = 0;
-        if (position.x < 0) k = position.x = max.x;
-        if (position.y < 0) k = position.y = max.y;
-        if (position.y > max.y) k = position.y = 0;
-        if (k != Float.POSITIVE_INFINITY)
+        Vector2 m = max.scl(0.5f);
+        if (position.x > m.x) k = position.x = -m.x;
+        if (position.x < -m.x) k = position.x = m.x;
+        if (position.y < -m.y) k = position.y = m.y;
+        if (position.y > m.y) k = position.y = -m.y;
+        if (k != Float.POSITIVE_INFINITY){
             body.setTransform(position, body.getAngle());
+        }
 
     }
 
@@ -66,7 +68,7 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
         boolean anyAcceleration = false;
         anyAcceleration = updatePositionAndLinearVelocity(delta);
         if (isIndependentFacing()) {
-            anyAcceleration = updateOrientationAndAngularVelocity(delta);
+            anyAcceleration = updateOrientationAndAngularVelocity(delta) || anyAcceleration;
         } else {
             updateOrientationAndAngularVelocityIfNotIndependentFacing(delta);
         }
@@ -91,7 +93,7 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
     }
 
     private boolean updatePositionAndLinearVelocity(float delta) {
-        if (!steeringOutput.linear.isZero()) {
+        if (steeringOutput.linear.isZero()) {
             return false;
         }
         final Vector2 force = steeringOutput.linear.scl(delta);
