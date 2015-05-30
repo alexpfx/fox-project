@@ -9,18 +9,13 @@ import com.badlogic.gdx.graphics.Camera;
 public class CameraFollowerComponent extends Component {
 
     private Camera camera;
-    private PositionComponent positionComponent;
 
-    public CameraFollowerComponent(Camera camera, PositionComponent positionComponent) {
+    public CameraFollowerComponent(Camera camera) {
         this.camera = camera;
-        this.positionComponent = positionComponent;
     }
 
     public Camera getCamera() {
         return camera;
     }
 
-    public PositionComponent getPositionComponent() {
-        return positionComponent;
-    }
 }

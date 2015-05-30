@@ -1,6 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.BodyComponent;
+import br.com.alexandrealessi.gdx.fox.base.ashley.components.CameraFollowerComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.SpriteComponent;
 import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
@@ -43,7 +44,6 @@ public class GamePlayScreen extends BaseScreen {
     private TextureAtlas atlas;
     private RubeSceneHelper rubeSceneHelper;
     private OrthographicCamera camera;
-    private OrthographicCamera worldCamera;
     private Viewport viewport;
 
     public GamePlayScreen(SoccerGame game) {
@@ -51,6 +51,8 @@ public class GamePlayScreen extends BaseScreen {
         atlas = new TextureAtlas(Gdx.files.internal("data/images/game.atlas"));
         rubeSceneHelper = new RubeSceneHelper("soccer.json");
         engine = new Engine();
+        camera = new OrthographicCamera();
+        camera.zoom = 0.4f;
 
 
         Entity fieldEntity = new Entity();
@@ -78,15 +80,11 @@ public class GamePlayScreen extends BaseScreen {
         final Entity ballEntity = new Entity();
         ballEntity.add(new SpriteComponent(ballSprite));
         ballEntity.add(new BodyComponent(ballBody));
-        ballEntity.add(new PositionComponent());
+        final PositionComponent positionComponent = new PositionComponent();
+        ballEntity.add(positionComponent);
+        ballEntity.add(new CameraFollowerComponent(camera));
         ballSprite.setScale(2 / ballSprite.getHeight());
 
-
-
-
-
-        camera = new OrthographicCamera();
-        camera.zoom = 0.7f;
 
         viewport = new ExtendViewport(SCENE_WIDTH, SCENE_HEIGHT, camera);
 
@@ -94,6 +92,7 @@ public class GamePlayScreen extends BaseScreen {
         WorldStepSystem worldStepSystem = new WorldStepSystem();
         MetersToPixelConvertSystem metersToPixelConvertSystem = new MetersToPixelConvertSystem(1);
         RenderSystem renderSystem = new RenderSystem(viewport, true);
+        CameraPositionSystem cameraPositionSystem = new CameraPositionSystem();
         AISystem aiSystem = new AISystem();
 
 
@@ -120,6 +119,8 @@ public class GamePlayScreen extends BaseScreen {
 //        engine.addSystem(contactSystem);
         engine.addSystem(aiSystem);
         engine.addSystem(metersToPixelConvertSystem);
+
+        engine.addSystem(cameraPositionSystem);
         engine.addSystem(renderSystem);
         engine.addSystem(worldStepSystem);
 
