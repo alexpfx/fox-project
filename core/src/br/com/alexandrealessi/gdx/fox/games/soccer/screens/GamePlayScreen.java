@@ -18,12 +18,13 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.*;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * Created by alexandre on 23/05/15.
@@ -38,7 +39,9 @@ public class GamePlayScreen extends BaseScreen {
     private static final float SCENE_WIDTH = 178f;
     private static final float SCENE_HEIGHT = 120;
     private static final float ANIMAL_SPRITE_SCALE = 7F;
-
+    private static final Rectangle SCENE_BOUNDS = new Rectangle(-SCENE_WIDTH , -SCENE_HEIGHT , SCENE_WIDTH , SCENE_HEIGHT );
+    int n = 0;
+    int c = MathUtils.random(4);
     private Engine engine;
     private Entity field;
     private TextureAtlas atlas;
@@ -52,15 +55,13 @@ public class GamePlayScreen extends BaseScreen {
         rubeSceneHelper = new RubeSceneHelper("soccer.json");
         engine = new Engine();
         camera = new OrthographicCamera();
-        camera.zoom = 0.4f;
-
+        camera.zoom = 0.6f;
 
         Entity fieldEntity = new Entity();
-        createWorldEntity (rubeSceneHelper.getWorld());
-
+        createWorldEntity(rubeSceneHelper.getWorld());
 
         final Sprite panda = new Sprite(atlas.findRegion("panda"));
-        panda.getTexture().setFilter(Texture.TextureFilter.Linear,Texture.TextureFilter.Linear);
+        panda.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         panda.setScale(ANIMAL_SPRITE_SCALE / panda.getHeight());
 
         final Sprite girafa = new Sprite(atlas.findRegion("giraffe"));
@@ -70,10 +71,9 @@ public class GamePlayScreen extends BaseScreen {
         field.add(new BodyComponent(rubeSceneHelper.getBody("field")));
         field.add(new PositionComponent());
 
-        final Sprite soccer = new Sprite(atlas.findRegion("field"));
-        soccer.setScale(120 / soccer.getHeight());
+        final Sprite soccer = new Sprite(atlas.findRegion("small_field"));
+        soccer.setScale(SCENE_HEIGHT / soccer.getHeight());
         field.add(new SpriteComponent(soccer));
-
 
         final Sprite ballSprite = new Sprite(atlas.findRegion("ball"));
         final Body ballBody = rubeSceneHelper.getBody("ball");
@@ -82,9 +82,8 @@ public class GamePlayScreen extends BaseScreen {
         ballEntity.add(new BodyComponent(ballBody));
         final PositionComponent positionComponent = new PositionComponent();
         ballEntity.add(positionComponent);
-        ballEntity.add(new CameraFollowerComponent(camera));
+        ballEntity.add(new CameraFollowerComponent(camera, SCENE_BOUNDS));
         ballSprite.setScale(2 / ballSprite.getHeight());
-
 
         viewport = new ExtendViewport(SCENE_WIDTH, SCENE_HEIGHT, camera);
 
@@ -94,7 +93,6 @@ public class GamePlayScreen extends BaseScreen {
         RenderSystem renderSystem = new RenderSystem(viewport, true);
         CameraPositionSystem cameraPositionSystem = new CameraPositionSystem();
         AISystem aiSystem = new AISystem();
-
 
         final Sprite monkey = new Sprite(atlas.findRegion("monkey"));
         monkey.setScale(ANIMAL_SPRITE_SCALE / monkey.getHeight());
@@ -115,7 +113,6 @@ public class GamePlayScreen extends BaseScreen {
         addTeamToEngine(engine, tmonkey);
         addTeamToEngine(engine, tparrot);
 
-
 //        engine.addSystem(contactSystem);
         engine.addSystem(aiSystem);
         engine.addSystem(metersToPixelConvertSystem);
@@ -123,7 +120,6 @@ public class GamePlayScreen extends BaseScreen {
         engine.addSystem(cameraPositionSystem);
         engine.addSystem(renderSystem);
         engine.addSystem(worldStepSystem);
-
 
     }
 
@@ -133,8 +129,6 @@ public class GamePlayScreen extends BaseScreen {
         engine.addEntity(worldEntity);
     }
 
-
-
     private void addTeamToEngine(Engine engine, Team galaticos) {
         for (PlayerEntity p : galaticos.getPlayers()) {
             engine.addEntity(p);
@@ -143,7 +137,7 @@ public class GamePlayScreen extends BaseScreen {
 
     public Team createTeam(String name, Sprite uniform) {
         String playerName = "Ochoa";
-        int n = 1;
+        n++;
         PlayerPosition position = PlayerPosition.GK;
         Array<PlayerEntity> players = new Array<PlayerEntity>();
 
