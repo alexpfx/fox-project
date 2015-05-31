@@ -2,7 +2,6 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.BodyComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
-import br.com.alexandrealessi.gdx.fox.base.ashley.components.SteerComponent;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.MathUtils;
@@ -13,13 +12,13 @@ import com.badlogic.gdx.physics.box2d.Body;
  */
 public class MetersToPixelConvertSystem extends EntitySystem {
 
-    private final float worldToScreen;
+    private final float pixelToMeterFactor;
     private ImmutableArray<Entity> entities;
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<BodyComponent> sm = ComponentMapper.getFor(BodyComponent.class);
 
-    public MetersToPixelConvertSystem(float worldToScreen) {
-        this.worldToScreen = worldToScreen;
+    public MetersToPixelConvertSystem(float pixelToMeterFactor) {
+        this.pixelToMeterFactor = pixelToMeterFactor;
     }
 
     @Override
@@ -36,8 +35,8 @@ public class MetersToPixelConvertSystem extends EntitySystem {
             final BodyComponent bodyComponent = sm.get(e);
             final PositionComponent positionComponent = pm.get(e);
             final Body body = bodyComponent.getBody();
-            float x = body.getPosition().x * worldToScreen;
-            float y = body.getPosition().y * worldToScreen;
+            float x = body.getPosition().x * pixelToMeterFactor;
+            float y = body.getPosition().y * pixelToMeterFactor;
             float r = body.getAngle() * MathUtils.radDeg;
             positionComponent.setPosition(x, y, r);
         }

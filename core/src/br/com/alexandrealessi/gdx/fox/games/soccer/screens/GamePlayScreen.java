@@ -15,13 +15,11 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -40,10 +38,13 @@ public class GamePlayScreen extends BaseScreen {
     private static final float SCENE_HEIGHT = 120;
     private static final float ANIMAL_SPRITE_SCALE = 7F;
     private static final Rectangle SCENE_BOUNDS = new Rectangle(-SCENE_WIDTH , -SCENE_HEIGHT , SCENE_WIDTH , SCENE_HEIGHT );
-    int n = 0;
-    int c = MathUtils.random(4);
+    public static final int PIXEL_TO_METER_FACTOR = 1;
+    public static final boolean DEBUG_PHYSICS = true;
+    public static final float CAMERA_ZOOM = 0.6f;
+    public static final String DATA_IMAGES_GAME_ATLAS = "data/images/game.atlas";
+    public static final String SOCCER_JSON = "soccer.json";
+    public static final String FIELD_BODY_NAME = "field";
     private Engine engine;
-    private Entity field;
     private TextureAtlas atlas;
     private RubeSceneHelper rubeSceneHelper;
     private OrthographicCamera camera;
@@ -51,30 +52,41 @@ public class GamePlayScreen extends BaseScreen {
 
     public GamePlayScreen(SoccerGame game) {
         super(game);
-        atlas = new TextureAtlas(Gdx.files.internal("data/images/game.atlas"));
-        rubeSceneHelper = new RubeSceneHelper("soccer.json");
         engine = new Engine();
+        createResourceHelperObjects();
+        setupViewport();
+        createWorld();
+        createField();
+        createBall();
+        createTeams();
+        createSystems();
+    }
+
+    private void setupViewport() {
         camera = new OrthographicCamera();
-        camera.zoom = 0.6f;
+        camera.zoom = CAMERA_ZOOM;
+        viewport = new ExtendViewport(SCENE_WIDTH, SCENE_HEIGHT, camera);
+    }
 
-        Entity fieldEntity = new Entity();
-        createWorldEntity(rubeSceneHelper.getWorld());
+    private void createResourceHelperObjects() {
+        atlas = new TextureAtlas(Gdx.files.internal(DATA_IMAGES_GAME_ATLAS));
+        rubeSceneHelper = new RubeSceneHelper(SOCCER_JSON);
+    }
 
-        final Sprite panda = new Sprite(atlas.findRegion("panda"));
-        panda.getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        panda.setScale(ANIMAL_SPRITE_SCALE / panda.getHeight());
+    public void createField (){
+        Entity field = new Entity();
 
-        final Sprite girafa = new Sprite(atlas.findRegion("giraffe"));
-        girafa.setScale(ANIMAL_SPRITE_SCALE / girafa.getHeight());
-
-        field = new Entity();
-        field.add(new BodyComponent(rubeSceneHelper.getBody("field")));
+        field.add(new BodyComponent(rubeSceneHelper.getBody(FIELD_BODY_NAME)));
         field.add(new PositionComponent());
 
         final Sprite soccer = new Sprite(atlas.findRegion("small_field"));
         soccer.setScale(SCENE_HEIGHT / soccer.getHeight());
         field.add(new SpriteComponent(soccer));
 
+        engine.addEntity(field);
+    }
+
+    public void createBall (){
         final Sprite ballSprite = new Sprite(atlas.findRegion("ball"));
         final Body ballBody = rubeSceneHelper.getBody("ball");
         final Entity ballEntity = new Entity();
@@ -84,48 +96,43 @@ public class GamePlayScreen extends BaseScreen {
         ballEntity.add(positionComponent);
         ballEntity.add(new CameraFollowerComponent(camera, SCENE_BOUNDS));
         ballSprite.setScale(2 / ballSprite.getHeight());
+        engine.addEntity(ballEntity);
+    }
 
-        viewport = new ExtendViewport(SCENE_WIDTH, SCENE_HEIGHT, camera);
 
-        ContactSystem contactSystem = new ContactSystem();
-        WorldStepSystem worldStepSystem = new WorldStepSystem();
-        MetersToPixelConvertSystem metersToPixelConvertSystem = new MetersToPixelConvertSystem(1);
-        RenderSystem renderSystem = new RenderSystem(viewport, true);
-        CameraPositionSystem cameraPositionSystem = new CameraPositionSystem();
-        AISystem aiSystem = new AISystem();
+    public void createTeams (){
+        final Sprite panda = new Sprite(atlas.findRegion("panda"));
+        panda.setScale(ANIMAL_SPRITE_SCALE / panda.getHeight());
+        final Team tpanda = createTeam("panda", panda);
+        addTeamToEngine(engine, tpanda);
 
         final Sprite monkey = new Sprite(atlas.findRegion("monkey"));
         monkey.setScale(ANIMAL_SPRITE_SCALE / monkey.getHeight());
-
-        final Sprite parrot = new Sprite(atlas.findRegion("parrot"));
-        parrot.setScale(ANIMAL_SPRITE_SCALE / parrot.getHeight());
-
-        engine.addEntity(field);
-        engine.addEntity(ballEntity);
-
-        final Team tpanda = createTeam("panda", panda);
-        final Team tgirafa = createTeam("girafa", girafa);
         final Team tmonkey = createTeam("monkey", monkey);
-        final Team tparrot = createTeam("parrot", parrot);
-
-        addTeamToEngine(engine, tpanda);
-        addTeamToEngine(engine, tgirafa);
         addTeamToEngine(engine, tmonkey);
-        addTeamToEngine(engine, tparrot);
+    }
 
-//        engine.addSystem(contactSystem);
+    public void createSystems(){
+        AISystem aiSystem = new AISystem();
+        ContactSystem contactSystem = new ContactSystem();
+        WorldStepSystem worldStepSystem = new WorldStepSystem();
+        MetersToPixelConvertSystem metersToPixelConvertSystem = new MetersToPixelConvertSystem(PIXEL_TO_METER_FACTOR);
+        RenderSystem renderSystem = new RenderSystem(viewport, DEBUG_PHYSICS);
+        CameraPositionSystem cameraPositionSystem = new CameraPositionSystem();
+
         engine.addSystem(aiSystem);
         engine.addSystem(metersToPixelConvertSystem);
-
         engine.addSystem(cameraPositionSystem);
         engine.addSystem(renderSystem);
         engine.addSystem(worldStepSystem);
-
+        //engine.addSystem(contactSystem);
     }
 
-    private void createWorldEntity(World world) {
+
+
+    private void createWorld() {
         Entity worldEntity = new Entity();
-        worldEntity.add(new WorldComponent(world));
+        worldEntity.add(new WorldComponent(rubeSceneHelper.getWorld()));
         engine.addEntity(worldEntity);
     }
 
@@ -137,12 +144,13 @@ public class GamePlayScreen extends BaseScreen {
 
     public Team createTeam(String name, Sprite uniform) {
         String playerName = "Ochoa";
-        n++;
+
         PlayerPosition position = PlayerPosition.GK;
         Array<PlayerEntity> players = new Array<PlayerEntity>();
-
-        PlayerEntity player = createPlayer(uniform, playerName, n, position, players);
-        players.add(player);
+        for (int i = 0 ; i < 11 ; i ++){
+            PlayerEntity player = createPlayer(uniform, playerName, i + 1, position, players);
+            players.add(player);
+        }
         return new Team(name, players);
     }
 
@@ -156,7 +164,6 @@ public class GamePlayScreen extends BaseScreen {
         body.setUserData(PlayerUserData.getFor(player));
         player.add(new BodyComponent(body));
         return player;
-
     }
 
     @Override
