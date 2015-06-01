@@ -10,20 +10,11 @@ import com.badlogic.gdx.utils.Array;
 public class PlayerEntity extends Entity {
     private final String name;
     private final int number;
-    private final PlayerPosition position;
     private final Team team;
-
-    private PlayerEntity(String name, int number, PlayerPosition position, Team team) {
-        this.name = name;
-        this.number = number;
-        this.position = position;
-        this.team = team;
-    }
 
     private PlayerEntity(Builder builder) {
         name = builder.name;
         number = builder.number;
-        position = builder.position;
         team = builder.team;
     }
 
@@ -39,14 +30,9 @@ public class PlayerEntity extends Entity {
         return number;
     }
 
-    public PlayerPosition getPosition() {
-        return position;
-    }
-
     public static final class Builder {
         private String name;
         private int number;
-        private PlayerPosition position;
         private Team team;
         private Array<Component> components;
 
@@ -64,10 +50,6 @@ public class PlayerEntity extends Entity {
             return this;
         }
 
-        public Builder position(PlayerPosition position) {
-            this.position = position;
-            return this;
-        }
 
         public Builder team(Team team) {
             this.team = team;
