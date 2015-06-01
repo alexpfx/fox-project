@@ -3,7 +3,10 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.CameraFollowerComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
-import com.badlogic.ashley.core.*;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Rectangle;
@@ -29,7 +32,7 @@ public class CameraPositionSystem extends EntitySystem {
             final Rectangle bounds = cameraFollowerComponent.getBounds();
             final PositionComponent positionComponent = ComponentMappers.POSITION.get(entity);
             final Camera camera = cameraFollowerComponent.getCamera();
-            camera.position.set(positionComponent.getX() * lerp, positionComponent.getY() * lerp, 1);
+            camera.position.set(positionComponent.getPosition().x * lerp, positionComponent.getPosition().y * lerp, 1);
 
         }
     }

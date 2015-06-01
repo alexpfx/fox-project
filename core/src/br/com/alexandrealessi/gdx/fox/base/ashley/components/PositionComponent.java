@@ -1,30 +1,22 @@
 package br.com.alexandrealessi.gdx.fox.base.ashley.components;
 
 import com.badlogic.ashley.core.Component;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * Created by alexandre on 24/05/15.
  */
 //TODO: mover para base.
 public class PositionComponent extends Component {
-    private float x;
-    private float y;
+    private Vector2 position = new Vector2();
     private float rotation;
 
-    public float getX() {
-        return x;
+    public Vector2 getPosition() {
+        return position;
     }
 
-    public void setX(float x) {
-        this.x = x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public void setY(float y) {
-        this.y = y;
+    public void setPosition(Vector2 position) {
+        this.position = position;
     }
 
     public float getRotation() {
@@ -36,13 +28,13 @@ public class PositionComponent extends Component {
     }
 
     public void setPosition(float x, float y, float rotation) {
-        this.x = x;
-        this.y = y;
+        position.x = x;
+        position.y = y;
         this.rotation = rotation;
     }
 
     @Override
     public String toString() {
-        return "x: " + x + ",y: " + y;
+        return "x: " + position.x + ",y: " + position.y;
     }
 }

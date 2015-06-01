@@ -68,7 +68,7 @@ public class RenderSystem extends EntitySystem implements Disposable {
             final PositionComponent positionComponent = pm.get(e);
             final SpriteComponent spriteComponent = sm.get(e);
             final Sprite sprite = spriteComponent.getSprite();
-            sprite.setPosition(positionComponent.getX() - sprite.getWidth() * 0.5f, positionComponent.getY() - sprite
+            sprite.setPosition(positionComponent.getPosition().x - sprite.getWidth() * 0.5f, positionComponent.getPosition().y - sprite
                     .getHeight() * 0.5f);
             sprite.setRotation(positionComponent.getRotation());
             sprite.setOriginCenter();
