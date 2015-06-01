@@ -30,9 +30,6 @@ public class GamePlayScreen extends BaseScreen {
     //1248 x 794
     //1700 x 1150
 
-//    private static final float SCENE_WIDTH = 159.761f;
-//    private static final float SCENE_HEIGHT = 100;
-
     public static final int PIXEL_TO_METER_FACTOR = 1;
     public static final boolean DEBUG_PHYSICS = true;
     public static final float CAMERA_ZOOM = 0.6f;
@@ -116,6 +113,7 @@ public class GamePlayScreen extends BaseScreen {
         WorldStepSystem worldStepSystem = new WorldStepSystem();
         MetersToPixelConvertSystem metersToPixelConvertSystem = new MetersToPixelConvertSystem(PIXEL_TO_METER_FACTOR);
         RenderSystem renderSystem = new RenderSystem(viewport, DEBUG_PHYSICS);
+
         CameraPositionSystem cameraPositionSystem = new CameraPositionSystem();
 
         engine.addSystem(aiSystem);
@@ -138,10 +136,9 @@ public class GamePlayScreen extends BaseScreen {
         }
     }
 
-
     public Team createTeam(String name, Sprite uniform) {
         Array<PlayerEntity> players = new Array<PlayerEntity>();
-        for (int i = 0; i < 11 ; i++){
+        for (int i = 0; i < 11; i++) {
             final PlayerEntity player = createPlayer(uniform, "defender" + i, i + 1);
             players.add(player);
         }
@@ -176,7 +173,6 @@ public class GamePlayScreen extends BaseScreen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height);
-//        worldViewport.update(width, height);
     }
 
     @Override

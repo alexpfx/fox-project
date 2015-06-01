@@ -10,28 +10,27 @@ import com.badlogic.gdx.math.Rectangle;
 /**
  * Created by alexandre on 30/05/15.
  */
-public class CameraPositionSystem extends EntitySystem{
+public class CameraPositionSystem extends EntitySystem {
 
+    float lerp = 0.4f;
     private ImmutableArray<Entity> entities;
     private ComponentMapper<CameraFollowerComponent> cfm = ComponentMapper.getFor(CameraFollowerComponent.class);
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
+
     @Override
     public void addedToEngine(Engine engine) {
         entities = engine.getEntitiesFor(Family.all(PositionComponent.class, CameraFollowerComponent.class).get());
     }
 
-    float lerp = 0.4f;
     @Override
     public void update(float deltaTime) {
-        for (Entity entity:entities){
+        for (Entity entity : entities) {
             final CameraFollowerComponent cameraFollowerComponent = cfm.get(entity);
             final Rectangle bounds = cameraFollowerComponent.getBounds();
             final PositionComponent positionComponent = pm.get(entity);
 
-
             final Camera camera = cameraFollowerComponent.getCamera();
             camera.position.set(positionComponent.getX() * lerp, positionComponent.getY() * lerp, 1);
-
 
         }
     }

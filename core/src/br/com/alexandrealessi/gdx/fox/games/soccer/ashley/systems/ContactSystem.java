@@ -1,7 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.WorldComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
 import com.badlogic.ashley.core.*;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.*;
@@ -58,7 +58,8 @@ public class ContactSystem extends EntitySystem implements ContactListener {
 
     private boolean save(Body b) {
         final boolean save = MathUtils.randomBoolean(.5f);
-        if (save) b.applyLinearImpulse(MathUtils.random(-100, 100), MathUtils.random(-100, 100), b.getLocalCenter().x, b.getLocalCenter().y, true);
+        if (save) b.applyLinearImpulse(MathUtils.random(-100, 100), MathUtils.random(-100, 100), b.getLocalCenter().x, b
+                .getLocalCenter().y, true);
         return save;
     }
 

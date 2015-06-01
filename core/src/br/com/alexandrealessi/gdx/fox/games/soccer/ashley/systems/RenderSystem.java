@@ -54,7 +54,7 @@ public class RenderSystem extends EntitySystem implements Disposable {
     }
 
     private void renderWorld() {
-        if (debugPhysics){
+        if (debugPhysics) {
             final World world = wm.get(worldEntity).getWorld();
             box2DDebugRenderer.render(world, camera.combined);
         }

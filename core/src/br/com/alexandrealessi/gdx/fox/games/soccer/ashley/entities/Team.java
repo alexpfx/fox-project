@@ -13,9 +13,8 @@ public class Team extends Entity {
     private Array<PlayerEntity> defenders;
     private Array<PlayerEntity> middlefields;
     private Array<PlayerEntity> attackers;
-    private Array <PlayerEntity> allPlayers;
+    private Array<PlayerEntity> allPlayers;
     private boolean changed = false;
-
 
     private Team(Builder builder) {
         name = builder.name;
@@ -27,15 +26,15 @@ public class Team extends Entity {
         refreshAllPlayers();
     }
 
-    private void refreshAllPlayers (){
+    public static Builder newBuilder(TeamFormation formation) {
+        return new Builder(formation);
+    }
+
+    private void refreshAllPlayers() {
         allPlayers.add(goalKeeper);
         allPlayers.addAll(defenders);
         allPlayers.addAll(middlefields);
         allPlayers.addAll(attackers);
-    }
-
-    public static Builder newBuilder(TeamFormation formation) {
-        return new Builder(formation);
     }
 
     public String getName() {
@@ -58,13 +57,12 @@ public class Team extends Entity {
         return attackers;
     }
 
-    public Array<PlayerEntity> getAllPlayers () {
-        if (changed){
+    public Array<PlayerEntity> getAllPlayers() {
+        if (changed) {
             refreshAllPlayers();
         }
         return allPlayers;
     }
-
 
     public static final class Builder {
         private String name;

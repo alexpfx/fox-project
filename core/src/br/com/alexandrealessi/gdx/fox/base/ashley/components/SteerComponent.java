@@ -17,9 +17,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 public class SteerComponent extends Component implements Steerable<Vector2>, Updatable {
 
     public static final float MARGIN = 0.000001f;
+    private final Vector2 worldSize;
     private Body body;
     private float boundingRadius;
-    private final Vector2 worldSize;
     private boolean tagged = false;
     private float maxLinearSpeed;
     private float maxLinearAcceleration;
@@ -30,19 +30,18 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
     private boolean independentFacing;
     private ShapeRenderer shapeRenderer;
 
-    public Body getBody() {
-        return body;
-    }
-
     public SteerComponent(Body body, boolean independentFacing, float boundingRadius, Vector2 worldSize) {
         shapeRenderer = new ShapeRenderer();
         this.body = body;
-        this.worldSize = new Vector2(worldSize.x /2, worldSize.y /2);
+        this.worldSize = new Vector2(worldSize.x / 2, worldSize.y / 2);
         this.boundingRadius = boundingRadius;
         steeringOutput = new SteeringAcceleration<Vector2>(new Vector2());
         this.independentFacing = independentFacing;
 
+    }
 
+    public Body getBody() {
+        return body;
     }
 
     @Override
@@ -53,15 +52,14 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
         }
 
         //wrap arround (pegar limites de tela para isso)
-        wrapAround (worldSize);
-
+        wrapAround(worldSize);
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(MathUtils.random(1), MathUtils.random(1), MathUtils.random(1), 1);
-        shapeRenderer.circle(((Wander<Vector2>)steeringBehavior).getWanderCenter().x, ((Wander<Vector2>)steeringBehavior).getWanderCenter().y, ((Wander<Vector2>)steeringBehavior).getWanderRadius());
+        shapeRenderer
+                .circle(((Wander<Vector2>) steeringBehavior).getWanderCenter().x, ((Wander<Vector2>) steeringBehavior)
+                        .getWanderCenter().y, ((Wander<Vector2>) steeringBehavior).getWanderRadius());
         shapeRenderer.end();
-
-
 
     }
 
@@ -74,7 +72,7 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
         if (position.x < -max.x) k = position.x = max.x;
         if (position.y < -max.y) k = position.y = max.y;
         if (position.y > max.y) k = position.y = -max.y;
-        if (k != Float.POSITIVE_INFINITY){
+        if (k != Float.POSITIVE_INFINITY) {
             body.setTransform(position, body.getAngle());
         }
 
@@ -105,7 +103,7 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
 
     private void clampAngularVelocity() {
         final float maxAngularSpeed = getMaxAngularSpeed();
-        if (body.getAngularVelocity() > maxAngularSpeed){
+        if (body.getAngularVelocity() > maxAngularSpeed) {
             body.setAngularVelocity(maxAngularSpeed);
         }
     }
@@ -176,7 +174,6 @@ public class SteerComponent extends Component implements Steerable<Vector2>, Upd
     public void setTagged(boolean tagged) {
         this.tagged = tagged;
     }
-
 
     @Override
     public float vectorToAngle(Vector2 vector) {

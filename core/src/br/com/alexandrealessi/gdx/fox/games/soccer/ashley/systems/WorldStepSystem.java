@@ -3,7 +3,8 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 import br.com.alexandrealessi.gdx.fox.base.UserData;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.WorldComponent;
 import com.badlogic.ashley.core.*;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Iterator;
@@ -27,7 +28,7 @@ public class WorldStepSystem extends EntitySystem {
     public void update(float deltaTime) {
         final WorldComponent worldComponent = wm.get(worldEntity);
         final World world = worldComponent.getWorld();
-        clearWorld (world);
+        clearWorld(world);
         world.step(TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
     }
 
@@ -35,10 +36,10 @@ public class WorldStepSystem extends EntitySystem {
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
         final Iterator<Body> iterator = bodies.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             final Body b = iterator.next();
             final UserData userData = (UserData) b.getUserData();
-            if (userData != null && userData.canDestroy()){
+            if (userData != null && userData.canDestroy()) {
                 world.destroyBody(b);
                 iterator.remove();
             }

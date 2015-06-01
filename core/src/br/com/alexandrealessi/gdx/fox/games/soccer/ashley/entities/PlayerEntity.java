@@ -50,7 +50,6 @@ public class PlayerEntity extends Entity {
             return this;
         }
 
-
         public Builder team(Team team) {
             this.team = team;
             return this;

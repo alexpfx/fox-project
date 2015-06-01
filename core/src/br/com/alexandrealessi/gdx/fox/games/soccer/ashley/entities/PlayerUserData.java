@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.Array;
 /**
  * Created by alexandre on 27/05/15.
  */
-public class PlayerUserData implements UserData{
+public class PlayerUserData implements UserData {
 
     private boolean alive;
     private PlayerEntity playerEntity;
@@ -34,6 +34,5 @@ public class PlayerUserData implements UserData{
     public PlayerEntity getPlayerEntity() {
         return playerEntity;
     }
-
 
 }
