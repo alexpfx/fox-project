@@ -2,6 +2,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.CameraFollowerComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Camera;
@@ -14,8 +15,6 @@ public class CameraPositionSystem extends EntitySystem {
 
     float lerp = 0.4f;
     private ImmutableArray<Entity> entities;
-    private ComponentMapper<CameraFollowerComponent> cfm = ComponentMapper.getFor(CameraFollowerComponent.class);
-    private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
 
     @Override
     public void addedToEngine(Engine engine) {
@@ -25,10 +24,10 @@ public class CameraPositionSystem extends EntitySystem {
     @Override
     public void update(float deltaTime) {
         for (Entity entity : entities) {
-            final CameraFollowerComponent cameraFollowerComponent = cfm.get(entity);
-            final Rectangle bounds = cameraFollowerComponent.getBounds();
-            final PositionComponent positionComponent = pm.get(entity);
 
+            final CameraFollowerComponent cameraFollowerComponent =  ComponentMappers.CAMERA_FOLLOWER.get(entity);
+            final Rectangle bounds = cameraFollowerComponent.getBounds();
+            final PositionComponent positionComponent = ComponentMappers.POSITION.get(entity);
             final Camera camera = cameraFollowerComponent.getCamera();
             camera.position.set(positionComponent.getX() * lerp, positionComponent.getY() * lerp, 1);
 
