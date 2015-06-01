@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities;
+package br.com.alexandrealessi.gdx.fox.base.ashley.components;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.physics.box2d.World;

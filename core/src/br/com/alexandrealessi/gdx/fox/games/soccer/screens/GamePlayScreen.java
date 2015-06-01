@@ -1,14 +1,14 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 
-import br.com.alexandrealessi.gdx.fox.base.ashley.components.BodyComponent;
-import br.com.alexandrealessi.gdx.fox.base.ashley.components.CameraFollowerComponent;
-import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
-import br.com.alexandrealessi.gdx.fox.base.ashley.components.SpriteComponent;
+import br.com.alexandrealessi.gdx.fox.base.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
 import br.com.alexandrealessi.gdx.fox.base.utils.BodyBuilder;
 import br.com.alexandrealessi.gdx.fox.base.utils.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.*;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.TeamFormation;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -17,11 +17,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
@@ -34,16 +33,16 @@ public class GamePlayScreen extends BaseScreen {
 //    private static final float SCENE_WIDTH = 159.761f;
 //    private static final float SCENE_HEIGHT = 100;
 
-    private static final float SCENE_WIDTH = 178f;
-    private static final float SCENE_HEIGHT = 120;
-    private static final float ANIMAL_SPRITE_SCALE = 7F;
-    private static final Rectangle SCENE_BOUNDS = new Rectangle(-SCENE_WIDTH , -SCENE_HEIGHT , SCENE_WIDTH , SCENE_HEIGHT );
     public static final int PIXEL_TO_METER_FACTOR = 1;
     public static final boolean DEBUG_PHYSICS = true;
     public static final float CAMERA_ZOOM = 0.6f;
     public static final String DATA_IMAGES_GAME_ATLAS = "data/images/game.atlas";
     public static final String SOCCER_JSON = "soccer.json";
     public static final String FIELD_BODY_NAME = "field";
+    private static final float SCENE_WIDTH = 178f;
+    private static final float SCENE_HEIGHT = 120;
+    private static final float ANIMAL_SPRITE_SCALE = 7F;
+    private static final Rectangle SCENE_BOUNDS = new Rectangle(-SCENE_WIDTH, -SCENE_HEIGHT, SCENE_WIDTH, SCENE_HEIGHT);
     private Engine engine;
     private TextureAtlas atlas;
     private RubeSceneHelper rubeSceneHelper;
@@ -65,7 +64,7 @@ public class GamePlayScreen extends BaseScreen {
     private void setupViewport() {
         camera = new OrthographicCamera();
         camera.zoom = CAMERA_ZOOM;
-        viewport = new ExtendViewport(SCENE_WIDTH, SCENE_HEIGHT, camera);
+        viewport = new StretchViewport(SCENE_WIDTH, SCENE_HEIGHT, camera);
     }
 
     private void createResourceHelperObjects() {
@@ -73,7 +72,7 @@ public class GamePlayScreen extends BaseScreen {
         rubeSceneHelper = new RubeSceneHelper(SOCCER_JSON);
     }
 
-    public void createField (){
+    public void createField() {
         Entity field = new Entity();
 
         field.add(new BodyComponent(rubeSceneHelper.getBody(FIELD_BODY_NAME)));
@@ -86,7 +85,7 @@ public class GamePlayScreen extends BaseScreen {
         engine.addEntity(field);
     }
 
-    public void createBall (){
+    public void createBall() {
         final Sprite ballSprite = new Sprite(atlas.findRegion("ball"));
         final Body ballBody = rubeSceneHelper.getBody("ball");
         final Entity ballEntity = new Entity();
@@ -99,8 +98,7 @@ public class GamePlayScreen extends BaseScreen {
         engine.addEntity(ballEntity);
     }
 
-
-    public void createTeams (){
+    public void createTeams() {
         final Sprite panda = new Sprite(atlas.findRegion("panda"));
         panda.setScale(ANIMAL_SPRITE_SCALE / panda.getHeight());
         final Team tpanda = createTeam("panda", panda);
@@ -112,7 +110,7 @@ public class GamePlayScreen extends BaseScreen {
         addTeamToEngine(engine, tmonkey);
     }
 
-    public void createSystems(){
+    public void createSystems() {
         AISystem aiSystem = new AISystem();
         ContactSystem contactSystem = new ContactSystem();
         WorldStepSystem worldStepSystem = new WorldStepSystem();
@@ -128,35 +126,32 @@ public class GamePlayScreen extends BaseScreen {
         //engine.addSystem(contactSystem);
     }
 
-
-
     private void createWorld() {
         Entity worldEntity = new Entity();
         worldEntity.add(new WorldComponent(rubeSceneHelper.getWorld()));
         engine.addEntity(worldEntity);
     }
 
-    private void addTeamToEngine(Engine engine, Team galaticos) {
-        for (PlayerEntity p : galaticos.getPlayers()) {
+    private void addTeamToEngine(Engine engine, Team team) {
+        for (PlayerEntity p : team.getAllPlayers()) {
             engine.addEntity(p);
         }
     }
 
-    public Team createTeam(String name, Sprite uniform) {
-        String playerName = "Ochoa";
 
-        PlayerPosition position = PlayerPosition.GK;
+    public Team createTeam(String name, Sprite uniform) {
         Array<PlayerEntity> players = new Array<PlayerEntity>();
-        for (int i = 0 ; i < 11 ; i ++){
-            PlayerEntity player = createPlayer(uniform, playerName, i + 1, position, players);
+        for (int i = 0; i < 11 ; i++){
+            final PlayerEntity player = createPlayer(uniform, "defender" + i, i + 1);
             players.add(player);
         }
-        return new Team(name, players);
+        final Team.Builder teamBuilder = Team.newBuilder(TeamFormation.F433).name(name).players(players);
+        return teamBuilder.build();
     }
 
-    private PlayerEntity createPlayer(Sprite uniform, String playerName, int n, PlayerPosition position, Array<PlayerEntity> players) {
+    private PlayerEntity createPlayer(Sprite uniform, String playerName, int n) {
         final Body playerBodyModel = rubeSceneHelper.getBody("player");
-        PlayerEntity.Builder builder = PlayerEntity.newBuilder().name(playerName).number(n).position(position);
+        PlayerEntity.Builder builder = PlayerEntity.newBuilder().name(playerName).number(n);
         builder.addComponent(new SpriteComponent(uniform));
         builder.addComponent(new PositionComponent());
         final PlayerEntity player = builder.build();
