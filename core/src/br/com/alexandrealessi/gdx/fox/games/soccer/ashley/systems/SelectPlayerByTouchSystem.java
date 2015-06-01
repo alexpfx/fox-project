@@ -24,8 +24,9 @@ public class SelectPlayerByTouchSystem extends EntitySystem{
     @Override
     public void update(float deltaTime) {
         final TouchDownInputComponent touchDownInputComponent = ComponentMappers.TOUCH_DOWN_INPUT.get(entity);
-
-        System.out.println(touchDownInputComponent.getTouch());
+        if (!touchDownInputComponent.isConsumed()){
+            System.out.println(touchDownInputComponent.getTouch());
+        }
 
     }
 }

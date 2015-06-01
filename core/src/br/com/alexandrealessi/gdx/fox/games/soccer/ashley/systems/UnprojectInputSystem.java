@@ -24,7 +24,7 @@ public class UnprojectInputSystem extends EntitySystem {
     @Override
     public void addedToEngine(Engine engine) {
         inputEntity = engine
-                .getEntitiesFor(Family.all(TouchDownInputComponent.class, CameraFollowerComponent.class).get()).get(0);
+                .getEntitiesFor(Family.all(TouchDownInputComponent.class, CameraComponent.class).get()).get(0);
     }
 
     @Override

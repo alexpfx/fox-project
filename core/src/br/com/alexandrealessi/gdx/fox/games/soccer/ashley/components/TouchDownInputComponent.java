@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.StringBuilder;
  */
 public class TouchDownInputComponent extends Component {
 
-    private Touch touch;
+    private Touch touch = new Touch();
     private boolean consumed;
 
 

@@ -53,9 +53,9 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor{
     public GamePlayScreen(SoccerGame game) {
         super(game);
         engine = new Engine();
+        setupViewport();
         setupInput();
         createResourceHelperObjects();
-        setupViewport();
         createWorld();
         createField();
         createBall();
@@ -125,20 +125,23 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor{
     }
 
     public void createSystems() {
+        UnprojectInputSystem unprojectInputSystem = new UnprojectInputSystem();
+        SelectPlayerByTouchSystem selectPlayerByTouchSystem = new SelectPlayerByTouchSystem();
         AISystem aiSystem = new AISystem();
+        MetersToPixelConvertSystem metersToPixelConvertSystem = new MetersToPixelConvertSystem(PIXEL_TO_METER_FACTOR);
+        CameraPositionSystem cameraPositionSystem = new CameraPositionSystem();
+        RenderSystem renderSystem = new RenderSystem(viewport, DEBUG_PHYSICS);
         ContactSystem contactSystem = new ContactSystem();
         WorldStepSystem worldStepSystem = new WorldStepSystem();
-        MetersToPixelConvertSystem metersToPixelConvertSystem = new MetersToPixelConvertSystem(PIXEL_TO_METER_FACTOR);
-        RenderSystem renderSystem = new RenderSystem(viewport, DEBUG_PHYSICS);
 
-        CameraPositionSystem cameraPositionSystem = new CameraPositionSystem();
-
+        engine.addSystem(unprojectInputSystem);
+        engine.addSystem(selectPlayerByTouchSystem);
         engine.addSystem(aiSystem);
         engine.addSystem(metersToPixelConvertSystem);
         engine.addSystem(cameraPositionSystem);
         engine.addSystem(renderSystem);
-        engine.addSystem(worldStepSystem);
         //engine.addSystem(contactSystem);
+        engine.addSystem(worldStepSystem);
     }
 
     private void createWorld() {
@@ -214,6 +217,7 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        System.out.println("touchDown");
         touchDownInputComponent.set(screenX, screenY, pointer, button);
         return true;
     }
