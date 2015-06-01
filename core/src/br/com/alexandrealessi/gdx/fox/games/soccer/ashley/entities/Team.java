@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Array;
 /**
  * Created by alexandre on 25/05/15.
  */
-public class Team extends Entity {
+public class Team  {
 
     private String name;
     private PlayerEntity goalKeeper;
