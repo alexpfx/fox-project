@@ -5,6 +5,7 @@ import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
 import br.com.alexandrealessi.gdx.fox.base.utils.BodyBuilder;
 import br.com.alexandrealessi.gdx.fox.base.utils.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
@@ -13,12 +14,14 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -26,7 +29,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by alexandre on 23/05/15.
  */
-public class GamePlayScreen extends BaseScreen {
+public class GamePlayScreen extends BaseScreen implements InputProcessor{
     //1248 x 794
     //1700 x 1150
 
@@ -40,6 +43,7 @@ public class GamePlayScreen extends BaseScreen {
     private static final float SCENE_HEIGHT = 120;
     private static final float ANIMAL_SPRITE_SCALE = 7F;
     private static final Rectangle SCENE_BOUNDS = new Rectangle(-SCENE_WIDTH, -SCENE_HEIGHT, SCENE_WIDTH, SCENE_HEIGHT);
+    private TouchDownInputComponent touchDownInputComponent;
     private Engine engine;
     private TextureAtlas atlas;
     private RubeSceneHelper rubeSceneHelper;
@@ -49,6 +53,7 @@ public class GamePlayScreen extends BaseScreen {
     public GamePlayScreen(SoccerGame game) {
         super(game);
         engine = new Engine();
+        setupInput();
         createResourceHelperObjects();
         setupViewport();
         createWorld();
@@ -56,6 +61,18 @@ public class GamePlayScreen extends BaseScreen {
         createBall();
         createTeams();
         createSystems();
+    }
+
+    private void setupInput() {
+        Entity input = new Entity();
+        Gdx.input.setInputProcessor(this);
+
+        this.touchDownInputComponent = new TouchDownInputComponent();
+        input.add(touchDownInputComponent);
+
+        input.add(new CameraComponent(viewport.getCamera()));
+
+        engine.addEntity(input);
     }
 
     private void setupViewport() {
@@ -178,5 +195,46 @@ public class GamePlayScreen extends BaseScreen {
     @Override
     public void dispose() {
         atlas.dispose();
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        touchDownInputComponent.set(screenX, screenY, pointer, button);
+        return true;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
     }
 }
