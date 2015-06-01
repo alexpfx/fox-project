@@ -1,7 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.base.UserData;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.WorldComponent;
+import br.com.alexandrealessi.gdx.fox.base.ashley.components.WorldComponent;
 import com.badlogic.ashley.core.*;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
