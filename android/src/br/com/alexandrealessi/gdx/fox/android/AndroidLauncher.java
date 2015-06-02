@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenter;
 import br.com.alexandrealessi.gdx.fox.android.presenter.GooglePlayServicesPresenterImpl;
-import br.com.alexandrealessi.gdx.fox.base.utils.services.RequestHandler;
+import br.com.alexandrealessi.gdx.fox.base.services.RequestHandler;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.backends.android.AndroidApplication;

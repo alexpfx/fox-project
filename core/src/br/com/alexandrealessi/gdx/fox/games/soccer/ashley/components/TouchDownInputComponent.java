@@ -1,10 +1,8 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 
-import br.com.alexandrealessi.gdx.fox.games.soccer.input.Touch;
+import br.com.alexandrealessi.gdx.fox.base.input.Touch;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.*;
-import com.badlogic.gdx.utils.StringBuilder;
 
 /**
  * Created by alexandre on 31/05/15.

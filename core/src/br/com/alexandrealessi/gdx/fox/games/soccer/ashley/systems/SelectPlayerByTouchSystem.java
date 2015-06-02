@@ -5,7 +5,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.SpriteCompo
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchContextComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
-import br.com.alexandrealessi.gdx.fox.games.soccer.input.Touch;
+import br.com.alexandrealessi.gdx.fox.base.input.Touch;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;

@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.games.soccer.input;
+package br.com.alexandrealessi.gdx.fox.base.input;
 
 import com.badlogic.gdx.utils.*;
 

@@ -1,8 +1,8 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 
 import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
-import br.com.alexandrealessi.gdx.fox.base.utils.box2d.BodyBuilder;
-import br.com.alexandrealessi.gdx.fox.base.utils.box2d.RubeSceneHelper;
+import br.com.alexandrealessi.gdx.fox.base.box2d.BodyBuilder;
+import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
