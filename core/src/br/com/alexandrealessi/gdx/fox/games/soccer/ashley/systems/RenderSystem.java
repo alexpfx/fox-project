@@ -3,7 +3,11 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.SpriteComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.WorldComponent;
-import com.badlogic.ashley.core.*;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -21,10 +25,6 @@ public class RenderSystem extends EntitySystem implements Disposable {
     private final boolean debugPhysics;
     private ImmutableArray<Entity> players;
     private Entity worldEntity;
-
-    private ComponentMapper<SpriteComponent> sm = ComponentMapper.getFor(SpriteComponent.class);
-    private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
-    private ComponentMapper<WorldComponent> wm = ComponentMapper.getFor(WorldComponent.class);
 
     private SpriteBatch batch;
     private Camera camera;
@@ -54,7 +54,7 @@ public class RenderSystem extends EntitySystem implements Disposable {
 
     private void renderWorld() {
         if (debugPhysics) {
-            final World world = wm.get(worldEntity).getWorld();
+            final World world = ComponentMappers.WORLD.get(worldEntity).getWorld();
             box2DDebugRenderer.render(world, camera.combined);
         }
     }
@@ -64,10 +64,11 @@ public class RenderSystem extends EntitySystem implements Disposable {
         batch.begin();
         for (int i = 0; i < players.size(); i++) {
             final Entity e = players.get(i);
-            final PositionComponent positionComponent = pm.get(e);
-            final SpriteComponent spriteComponent = sm.get(e);
+            final PositionComponent positionComponent = ComponentMappers.POSITION.get(e);
+            final SpriteComponent spriteComponent = ComponentMappers.SPRITE_COMPONENT.get(e);
             final Sprite sprite = spriteComponent.getSprite();
-            sprite.setPosition(positionComponent.getPosition().x - sprite.getWidth() * 0.5f, positionComponent.getPosition().y - sprite
+            sprite.setPosition(positionComponent.getPosition().x - sprite.getWidth() * 0.5f, positionComponent
+                    .getPosition().y - sprite
                     .getHeight() * 0.5f);
             sprite.setRotation(positionComponent.getRotation());
             sprite.setOriginCenter();

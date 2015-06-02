@@ -1,7 +1,11 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.SteerComponent;
-import com.badlogic.ashley.core.*;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 
 /**
@@ -10,7 +14,6 @@ import com.badlogic.ashley.utils.ImmutableArray;
 public class AISystem extends EntitySystem {
 
     ImmutableArray<Entity> entities;
-    private ComponentMapper<SteerComponent> sm = ComponentMapper.getFor(SteerComponent.class);
 
     @Override
     public void addedToEngine(Engine engine) {
@@ -20,7 +23,7 @@ public class AISystem extends EntitySystem {
     @Override
     public void update(float deltaTime) {
         for (Entity e : entities) {
-            final SteerComponent steerComponent = sm.get(e);
+            final SteerComponent steerComponent = ComponentMappers.STEER.get(e);
             steerComponent.update(deltaTime);
         }
     }

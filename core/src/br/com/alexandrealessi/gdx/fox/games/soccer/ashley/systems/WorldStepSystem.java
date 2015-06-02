@@ -2,6 +2,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.base.UserData;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.WorldComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.*;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -17,7 +18,7 @@ public class WorldStepSystem extends EntitySystem {
     private static final int VELOCITY_ITERATIONS = 3;
     private static final int POSITION_ITERATIONS = 2;
     private Entity worldEntity;
-    private ComponentMapper<WorldComponent> wm = ComponentMapper.getFor(WorldComponent.class);
+
 
     @Override
     public void addedToEngine(Engine engine) {
@@ -26,7 +27,7 @@ public class WorldStepSystem extends EntitySystem {
 
     @Override
     public void update(float deltaTime) {
-        final WorldComponent worldComponent = wm.get(worldEntity);
+        final WorldComponent worldComponent = ComponentMappers.WORLD.get(worldEntity);
         final World world = worldComponent.getWorld();
         clearWorld(world);
         world.step(TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);

@@ -3,7 +3,10 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.BodyComponent;
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
-import com.badlogic.ashley.core.*;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -24,12 +27,10 @@ public class MetersToPixelConvertSystem extends EntitySystem {
     @Override
     public void addedToEngine(Engine engine) {
         entities = engine.getEntitiesFor(Family.all(BodyComponent.class, PositionComponent.class).get());
-        System.out.println(entities);
     }
 
     @Override
     public void update(float deltaTime) {
-
         for (int i = 0; i < entities.size(); i++) {
             final Entity e = entities.get(i);
             final BodyComponent bodyComponent = ComponentMappers.BODY.get(e);

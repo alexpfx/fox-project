@@ -2,6 +2,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.WorldComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.*;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.*;
@@ -14,12 +15,12 @@ public class ContactSystem extends EntitySystem implements ContactListener {
     private static final float timeWaitBeforeProcessContactBetweenPlayers = 10f;
     private Entity worldEntity;
     private float timecount = 0;
-    private ComponentMapper<WorldComponent> wm = ComponentMapper.getFor(WorldComponent.class);
+
 
     @Override
     public void addedToEngine(Engine engine) {
         worldEntity = engine.getEntitiesFor(Family.one(WorldComponent.class).get()).get(0);
-        final World world = wm.get(worldEntity).getWorld();
+        final World world = ComponentMappers.WORLD.get(worldEntity).getWorld();
         world.setContactListener(this);
     }
 
