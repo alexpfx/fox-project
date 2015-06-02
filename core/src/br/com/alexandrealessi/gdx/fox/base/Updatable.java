@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.base.ashley.components;
+package br.com.alexandrealessi.gdx.fox.base;
 
 /**
  * Created by alexandre on 28/05/15.

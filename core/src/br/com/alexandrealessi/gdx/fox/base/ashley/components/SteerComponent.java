@@ -1,5 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.base.ashley.components;
 
+import br.com.alexandrealessi.gdx.fox.base.Updatable;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.ai.steer.Steerable;
 import com.badlogic.gdx.ai.steer.SteeringAcceleration;
