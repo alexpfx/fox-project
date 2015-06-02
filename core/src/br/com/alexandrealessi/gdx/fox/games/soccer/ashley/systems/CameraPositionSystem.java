@@ -9,7 +9,10 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 
 /**
  * Created by alexandre on 30/05/15.
@@ -27,12 +30,12 @@ public class CameraPositionSystem extends EntitySystem {
     @Override
     public void update(float deltaTime) {
         for (Entity entity : entities) {
-
             final CameraFollowerComponent cameraFollowerComponent =  ComponentMappers.CAMERA_FOLLOWER.get(entity);
             final Rectangle bounds = cameraFollowerComponent.getBounds();
             final PositionComponent positionComponent = ComponentMappers.POSITION.get(entity);
             final Camera camera = cameraFollowerComponent.getCamera();
-            camera.position.set(positionComponent.getPosition().x * lerp, positionComponent.getPosition().y * lerp, 1);
+            final Vector2 position = positionComponent.getPosition();
+            camera.position.set(position.x * lerp, position.y * lerp, 1);
 
         }
     }

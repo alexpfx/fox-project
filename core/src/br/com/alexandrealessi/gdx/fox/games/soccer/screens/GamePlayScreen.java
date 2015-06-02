@@ -5,11 +5,12 @@ import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
 import br.com.alexandrealessi.gdx.fox.base.utils.BodyBuilder;
 import br.com.alexandrealessi.gdx.fox.base.utils.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchContextComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerPosition;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.TeamFormation;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -21,7 +22,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -115,12 +115,12 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor{
     public void createTeams() {
         final Sprite panda = new Sprite(atlas.findRegion("panda"));
         panda.setScale(ANIMAL_SPRITE_SCALE / panda.getHeight());
-        final Team tpanda = createTeam("panda", panda);
+        final Array<PlayerEntity> tpanda = createPlayersOfTeam("panda", panda);
         addTeamToEngine(engine, tpanda);
 
         final Sprite monkey = new Sprite(atlas.findRegion("monkey"));
         monkey.setScale(ANIMAL_SPRITE_SCALE / monkey.getHeight());
-        final Team tmonkey = createTeam("monkey", monkey);
+        final Array<PlayerEntity> tmonkey = createPlayersOfTeam("monkey", monkey);
         addTeamToEngine(engine, tmonkey);
     }
 
@@ -150,23 +150,23 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor{
         engine.addEntity(worldEntity);
     }
 
-    private void addTeamToEngine(Engine engine, Team team) {
-        for (PlayerEntity p : team.getAllPlayers()) {
+    private void addTeamToEngine(Engine engine, Array<PlayerEntity> players) {
+        for (PlayerEntity p : players) {
             engine.addEntity(p);
         }
     }
 
-    public Team createTeam(String name, Sprite uniform) {
+    public Array<PlayerEntity> createPlayersOfTeam(String teamName, Sprite uniform) {
+        Team team = new Team(teamName);
         Array<PlayerEntity> players = new Array<PlayerEntity>();
         for (int i = 0; i < 11; i++) {
-            final PlayerEntity player = createPlayer(uniform, "defender" + i, i + 1);
+            final PlayerEntity player = createPlayer(team, uniform, "player" + i, i + 1);
             players.add(player);
         }
-        final Team.Builder teamBuilder = Team.newBuilder(TeamFormation.F433).name(name).players(players);
-        return teamBuilder.build();
+        return players;
     }
 
-    private PlayerEntity createPlayer(Sprite uniform, String playerName, int n) {
+    private PlayerEntity createPlayer(Team team, Sprite uniform, String playerName, int n) {
         final Body playerBodyModel = rubeSceneHelper.getBody("player");
         PlayerEntity.Builder builder = PlayerEntity.newBuilder().name(playerName).number(n);
         builder.addComponent(new SpriteComponent(uniform));
@@ -175,6 +175,7 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor{
         final Body body = BodyBuilder.clone(playerBodyModel).build();
         body.setUserData(PlayerUserData.getFor(player));
         player.add(new BodyComponent(body));
+        player.add(new MatchContextComponent(team, PlayerPosition.ATTACKER));
         return player;
     }
 
