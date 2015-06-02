@@ -29,4 +29,8 @@ public class MatchContextComponent extends Component{
     public void setIsSelected(boolean isSelected) {
         this.isSelected = isSelected;
     }
+
+    public Team getTeam() {
+        return team;
+    }
 }

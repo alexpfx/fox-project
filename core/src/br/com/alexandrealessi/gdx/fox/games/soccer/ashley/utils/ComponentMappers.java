@@ -1,6 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils;
 
 import br.com.alexandrealessi.gdx.fox.base.ashley.components.*;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchContextComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import com.badlogic.ashley.core.ComponentMapper;
 
@@ -21,5 +22,6 @@ public class ComponentMappers {
     public static final ComponentMapper<WorldComponent> WORLD = ComponentMapper.getFor(WorldComponent.class);
 
     public static final ComponentMapper<SteerComponent> STEER = ComponentMapper.getFor(SteerComponent.class);
+    public static final ComponentMapper<MatchContextComponent> MATCH_CONTEXT = ComponentMapper.getFor(MatchContextComponent.class);
 
 }
