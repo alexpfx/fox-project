@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.base.utils;
+package br.com.alexandrealessi.gdx.fox.base.utils.box2d;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;

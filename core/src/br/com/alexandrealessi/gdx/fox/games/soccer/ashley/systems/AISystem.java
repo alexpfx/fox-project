@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
-import br.com.alexandrealessi.gdx.fox.base.ashley.components.SteerComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.SteerComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;

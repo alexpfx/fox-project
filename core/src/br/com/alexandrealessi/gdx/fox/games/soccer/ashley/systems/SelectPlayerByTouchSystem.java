@@ -1,7 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
-import br.com.alexandrealessi.gdx.fox.base.ashley.components.PositionComponent;
-import br.com.alexandrealessi.gdx.fox.base.ashley.components.SpriteComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PositionComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.SpriteComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchContextComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;

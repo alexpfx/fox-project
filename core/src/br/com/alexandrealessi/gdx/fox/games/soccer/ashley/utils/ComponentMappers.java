@@ -1,8 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils;
 
-import br.com.alexandrealessi.gdx.fox.base.ashley.components.*;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchContextComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import com.badlogic.ashley.core.ComponentMapper;
 
 /**

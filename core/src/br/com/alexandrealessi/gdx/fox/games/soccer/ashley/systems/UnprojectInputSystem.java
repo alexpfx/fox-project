@@ -1,7 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
-import br.com.alexandrealessi.gdx.fox.base.ashley.components.CameraComponent;
-import br.com.alexandrealessi.gdx.fox.base.ashley.components.CameraFollowerComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.CameraComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import br.com.alexandrealessi.gdx.fox.games.soccer.input.Touch;

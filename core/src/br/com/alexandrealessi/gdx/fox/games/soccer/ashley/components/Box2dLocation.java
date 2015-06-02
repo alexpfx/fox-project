@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.base.ashley.components;
+package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 
 import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.Vector2;
