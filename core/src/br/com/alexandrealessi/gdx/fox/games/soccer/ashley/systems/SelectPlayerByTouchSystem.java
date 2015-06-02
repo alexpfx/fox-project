@@ -42,8 +42,7 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
         }
     }
 
-    /// TODO: jogar para classe utils.
-    private Entity getNearestPlayer(float x, float y) {
+    public Entity getNearestPlayer(float x, float y) {
         float lowDistance = Float.MAX_VALUE;
         Entity nearest = null;
         for (Entity e : players) {
