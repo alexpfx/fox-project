@@ -29,7 +29,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by alexandre on 23/05/15.
  */
-public class GamePlayScreen extends BaseScreen implements InputProcessor{
+public class GamePlayScreen extends BaseScreen implements InputProcessor {
     //1248 x 794
     //1700 x 1150
 
@@ -115,12 +115,12 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor{
     public void createTeams() {
         final Sprite panda = new Sprite(atlas.findRegion("panda"));
         panda.setScale(ANIMAL_SPRITE_SCALE / panda.getHeight());
-        final Array<PlayerEntity> tpanda = createPlayersOfTeam("panda", panda);
+        final Array<PlayerEntity> tpanda = createPlayersOfTeam("panda", panda, false);
         addTeamToEngine(engine, tpanda);
 
         final Sprite monkey = new Sprite(atlas.findRegion("monkey"));
         monkey.setScale(ANIMAL_SPRITE_SCALE / monkey.getHeight());
-        final Array<PlayerEntity> tmonkey = createPlayersOfTeam("monkey", monkey);
+        final Array<PlayerEntity> tmonkey = createPlayersOfTeam("monkey", monkey, true);
         addTeamToEngine(engine, tmonkey);
     }
 
@@ -156,8 +156,8 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor{
         }
     }
 
-    public Array<PlayerEntity> createPlayersOfTeam(String teamName, Sprite uniform) {
-        Team team = new Team(teamName);
+    public Array<PlayerEntity> createPlayersOfTeam(String teamName, Sprite uniform, boolean userTeam) {
+        Team team = new Team(teamName, userTeam);
         Array<PlayerEntity> players = new Array<PlayerEntity>();
         for (int i = 0; i < 11; i++) {
             final PlayerEntity player = createPlayer(team, uniform, "player" + i, i + 1);
