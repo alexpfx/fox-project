@@ -42,7 +42,6 @@ public class RenderSystem extends EntitySystem implements Disposable {
         players = engine
                 .getEntitiesFor(Family.all(PositionComponent.class, SpriteComponent.class).get());
         worldEntity = engine.getEntitiesFor(Family.one(WorldComponent.class).get()).get(0);
-
     }
 
     @Override

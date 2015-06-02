@@ -218,7 +218,6 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        System.out.println("touchDown");
         touchDownInputComponent.set(screenX, screenY, pointer, button);
         return true;
     }

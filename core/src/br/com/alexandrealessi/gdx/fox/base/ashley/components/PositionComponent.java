@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by alexandre on 24/05/15.
  */
-//TODO: mover para base.
+//TODO: mover de volta para o pacote especifico.
 public class PositionComponent extends Component {
     private Vector2 position = new Vector2();
     private float rotation;
