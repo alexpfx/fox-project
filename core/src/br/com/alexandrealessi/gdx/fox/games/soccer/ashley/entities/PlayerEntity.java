@@ -30,6 +30,12 @@ public class PlayerEntity extends Entity {
         return number;
     }
 
+    @Override
+    public String toString() {
+        return "name: "+name + " number: "+number;
+
+    }
+
     public static final class Builder {
         private String name;
         private int number;
