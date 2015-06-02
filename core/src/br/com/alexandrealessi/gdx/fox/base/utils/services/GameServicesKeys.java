@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.base.utils;
+package br.com.alexandrealessi.gdx.fox.base.utils.services;
 
 /**
  * Created by alexandre on 19/04/15.
@@ -14,7 +14,7 @@ public enum GameServicesKeys {
 
     public final String key;
 
-    private GameServicesKeys(String key) {
+    GameServicesKeys(String key) {
         this.key = key;
     }
 
