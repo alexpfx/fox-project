@@ -50,8 +50,6 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
     private OrthographicCamera camera;
     private Viewport viewport;
 
-
-
     public GamePlayScreen(SoccerGame game) {
         super(game);
 
@@ -192,9 +190,9 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
     public void render(float delta) {
         Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        StopWatch.start();
+        StopWatch.start(); // tempo de um ciclo (game loop)
         engine.update(delta);
-        System.out.println(StopWatch.elapsed());
+        System.out.println(StopWatch.elapsedSeconds());
     }
 
     @Override

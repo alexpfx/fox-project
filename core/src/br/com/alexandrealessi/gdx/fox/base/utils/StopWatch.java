@@ -23,7 +23,11 @@ public class StopWatch {
     }
 
     public static long elapsedNanos() {
-        return TimeUtils.timeSinceNanos(time);
+        return TimeUtils.timeSinceNanos(nanoTime);
+    }
+
+    public static final float elapsedSeconds (){
+        return TimeUtils.timeSinceMillis(time) * 0.001f;
     }
 
 }
