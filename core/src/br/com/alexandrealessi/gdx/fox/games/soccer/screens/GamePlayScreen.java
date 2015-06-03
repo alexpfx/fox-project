@@ -14,7 +14,6 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -45,6 +44,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     private static final float ANIMAL_SPRITE_SCALE = 7F;
     private static final Rectangle SCENE_BOUNDS = new Rectangle(-SCENE_WIDTH, -SCENE_HEIGHT, SCENE_WIDTH, SCENE_HEIGHT);
     boolean isDrag = false;
+    Array<Vector2> points = new Array<Vector2>();
     private TouchDownInputComponent touchDownInputComponent;
     private Engine engine;
     private TextureAtlas atlas;
@@ -55,8 +55,6 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
 
     public GamePlayScreen(SoccerGame game) {
         super(game);
-
-
         engine = new Engine();
         setupViewport();
         setupInput();
@@ -66,6 +64,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         createBall();
         createTeams();
         createSystems();
+
     }
 
     private void setupInput() {
@@ -181,7 +180,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         final Body body = BodyBuilder.clone(playerBodyModel).build();
         body.setUserData(PlayerUserData.getFor(player));
         player.add(new BodyComponent(body));
-        player.add(new MatchContextComponent(team, PlayerPosition.ATTACKER));
+        player.add(new PlayerMatchContext(team, PlayerPosition.ATTACKER));
         return player;
     }
 
@@ -199,8 +198,8 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         engine.update(delta);
         final long n = StopWatch.elapsedNanos();
         final float s = StopWatch.elapsedSeconds();
-        System.out.println("nanos: "+ n);
-        System.out.println("segundos: "+s);
+//        System.out.println("nanos: " + n);
+//        System.out.println("segundos: " + s);
     }
 
     @Override
@@ -255,8 +254,5 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
         return false;
     }
-
-
-
 
 }

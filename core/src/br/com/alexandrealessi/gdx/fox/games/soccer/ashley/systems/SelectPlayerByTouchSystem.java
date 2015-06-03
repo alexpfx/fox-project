@@ -2,7 +2,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PositionComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.SpriteComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchContextComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PlayerMatchContext;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import br.com.alexandrealessi.gdx.fox.base.input.Touch;
@@ -28,7 +28,7 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
     public void addedToEngine(Engine engine) {
         touch = engine.getEntitiesFor(Family.all(TouchDownInputComponent.class).get()).first();
         players = engine
-                .getEntitiesFor(Family.all(MatchContextComponent.class, PositionComponent.class, SpriteComponent.class)
+                .getEntitiesFor(Family.all(PlayerMatchContext.class, PositionComponent.class, SpriteComponent.class)
                                       .get());
     }
 
@@ -41,8 +41,8 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
             final Touch touch = touchDownInputComponent.getTouch();
             int x = 0;
             Entity nearest = getAndSetSelectedNearestPlayer(touch.x, touch.y);
-            final MatchContextComponent matchContextComponent = ComponentMappers.MATCH_CONTEXT.get(nearest);
-            matchContextComponent.setIsSelected(true);
+            final PlayerMatchContext playerMatchContext = ComponentMappers.MATCH_CONTEXT.get(nearest);
+            playerMatchContext.setIsSelected(true);
             final SpriteComponent spriteComponent = ComponentMappers.SPRITE_COMPONENT.get(nearest);
             spriteComponent.getSprite().setColor(Color.WHITE);
         }
@@ -55,7 +55,7 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
             if (nearest == null) {
                 nearest = e;
             }
-            MatchContextComponent matchContext = ComponentMappers.MATCH_CONTEXT.get(e);
+            PlayerMatchContext matchContext = ComponentMappers.MATCH_CONTEXT.get(e);
             if (matchContext.getTeam().isUserTeam()) {
                 continue;
             }

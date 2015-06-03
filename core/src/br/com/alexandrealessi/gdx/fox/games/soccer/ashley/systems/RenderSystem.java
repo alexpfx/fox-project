@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchContextComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PlayerMatchContext;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PositionComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.SpriteComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
@@ -69,9 +69,9 @@ public class RenderSystem extends EntitySystem implements Disposable {
             final PositionComponent positionComponent = ComponentMappers.POSITION.get(e);
             final SpriteComponent spriteComponent = ComponentMappers.SPRITE_COMPONENT.get(e);
             final Sprite sprite = spriteComponent.getSprite();
-            final MatchContextComponent matchContextComponent = ComponentMappers.MATCH_CONTEXT.get(e);
-            if (matchContextComponent != null){
-                if (matchContextComponent.isSelected()){
+            final PlayerMatchContext playerMatchContext = ComponentMappers.MATCH_CONTEXT.get(e);
+            if (playerMatchContext != null){
+                if (playerMatchContext.isSelected()){
                     sprite.setColor(Color.CYAN);
                 }else{
                     sprite.setColor(Color.WHITE);
