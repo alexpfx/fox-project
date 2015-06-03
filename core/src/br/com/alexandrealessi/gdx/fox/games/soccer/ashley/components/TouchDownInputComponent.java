@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 public class TouchDownInputComponent extends Component {
 
     private Touch touch = new Touch();
-    private boolean consumed;
+    private boolean consumed = true;
 
 
     public void set (Vector3 coords){

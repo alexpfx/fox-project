@@ -1,8 +1,9 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 
-import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
 import br.com.alexandrealessi.gdx.fox.base.box2d.BodyBuilder;
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
+import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
+import br.com.alexandrealessi.gdx.fox.base.utils.StopWatch;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
@@ -41,6 +42,7 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
     private static final float SCENE_HEIGHT = 120;
     private static final float ANIMAL_SPRITE_SCALE = 7F;
     private static final Rectangle SCENE_BOUNDS = new Rectangle(-SCENE_WIDTH, -SCENE_HEIGHT, SCENE_WIDTH, SCENE_HEIGHT);
+    boolean isDrag = false;
     private TouchDownInputComponent touchDownInputComponent;
     private Engine engine;
     private TextureAtlas atlas;
@@ -48,8 +50,11 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
     private OrthographicCamera camera;
     private Viewport viewport;
 
+
+
     public GamePlayScreen(SoccerGame game) {
         super(game);
+
         engine = new Engine();
         setupViewport();
         setupInput();
@@ -169,7 +174,6 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
         PlayerEntity.Builder builder = PlayerEntity.newBuilder().name(playerName).number(n);
         final Sprite sprite = new Sprite(uniform);
         builder.addComponent(new SpriteComponent(sprite));
-        System.out.println(sprite);
         builder.addComponent(new PositionComponent());
         final PlayerEntity player = builder.build();
         final Body body = BodyBuilder.clone(playerBodyModel).build();
@@ -188,7 +192,9 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
     public void render(float delta) {
         Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        StopWatch.start();
         engine.update(delta);
+        System.out.println(StopWatch.elapsed());
     }
 
     @Override
@@ -203,7 +209,8 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        return false;
+
+        return true;
     }
 
     @Override
@@ -218,18 +225,23 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        touchDownInputComponent.set(screenX, screenY, pointer, button);
-        return true;
+
+        return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        if (isDrag) {
+            return true;
+        }
+        touchDownInputComponent.set(screenX, screenY, pointer, button);
         return false;
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
+        System.out.println("dragged");
+        return true;
     }
 
     @Override
