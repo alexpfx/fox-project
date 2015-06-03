@@ -1,5 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchContextComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PositionComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.SpriteComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
@@ -10,6 +11,7 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -67,6 +69,15 @@ public class RenderSystem extends EntitySystem implements Disposable {
             final PositionComponent positionComponent = ComponentMappers.POSITION.get(e);
             final SpriteComponent spriteComponent = ComponentMappers.SPRITE_COMPONENT.get(e);
             final Sprite sprite = spriteComponent.getSprite();
+            final MatchContextComponent matchContextComponent = ComponentMappers.MATCH_CONTEXT.get(e);
+            if (matchContextComponent != null){
+                if (matchContextComponent.isSelected()){
+                    sprite.setColor(Color.CYAN);
+                }else{
+                    sprite.setColor(Color.WHITE);
+                }
+
+            }
             sprite.setPosition(positionComponent.getPosition().x - sprite.getWidth() * 0.5f, positionComponent
                     .getPosition().y - sprite
                     .getHeight() * 0.5f);

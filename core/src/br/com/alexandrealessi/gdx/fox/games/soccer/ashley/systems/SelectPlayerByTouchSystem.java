@@ -11,6 +11,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -31,18 +32,23 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
                                       .get());
     }
 
+
+
     @Override
     public void update(float deltaTime) {
         final TouchDownInputComponent touchDownInputComponent = ComponentMappers.TOUCH_DOWN_INPUT.get(touch);
         if (!touchDownInputComponent.isConsumed()) {
             final Touch touch = touchDownInputComponent.getTouch();
             int x = 0;
-            Entity nearest = getNearestPlayer(touch.x, touch.y);
-            System.out.println(nearest);
+            Entity nearest = getAndSetSelectedNearestPlayer(touch.x, touch.y);
+            final MatchContextComponent matchContextComponent = ComponentMappers.MATCH_CONTEXT.get(nearest);
+            matchContextComponent.setIsSelected(true);
+            final SpriteComponent spriteComponent = ComponentMappers.SPRITE_COMPONENT.get(nearest);
+            spriteComponent.getSprite().setColor(Color.WHITE);
         }
     }
 
-    public Entity getNearestPlayer(float x, float y) {
+    public Entity getAndSetSelectedNearestPlayer(float x, float y) {
         float lowDistance = Float.MAX_VALUE;
         Entity nearest = null;
         for (Entity e : players) {
@@ -53,6 +59,8 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
             if (matchContext.getTeam().isUserTeam()) {
                 continue;
             }
+
+            matchContext.setIsSelected(false);
 
             final Vector2 position = ComponentMappers.POSITION.get(e).getPosition();
             final float dist = position.dst2(x, y);

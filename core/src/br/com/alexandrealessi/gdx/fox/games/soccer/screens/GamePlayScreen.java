@@ -167,7 +167,9 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
     private PlayerEntity createPlayer(Team team, Sprite uniform, String playerName, int n) {
         final Body playerBodyModel = rubeSceneHelper.getBody("player");
         PlayerEntity.Builder builder = PlayerEntity.newBuilder().name(playerName).number(n);
-        builder.addComponent(new SpriteComponent(uniform));
+        final Sprite sprite = new Sprite(uniform);
+        builder.addComponent(new SpriteComponent(sprite));
+        System.out.println(sprite);
         builder.addComponent(new PositionComponent());
         final PlayerEntity player = builder.build();
         final Body body = BodyBuilder.clone(playerBodyModel).build();
