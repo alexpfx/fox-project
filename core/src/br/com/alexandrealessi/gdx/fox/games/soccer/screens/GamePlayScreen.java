@@ -19,7 +19,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -28,7 +30,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by alexandre on 23/05/15.
  */
-public class GamePlayScreen extends BaseScreen implements InputProcessor {
+public class GamePlayScreen extends BaseScreen implements GestureDetector.GestureListener {
     //1248 x 794
     //1700 x 1150
 
@@ -49,9 +51,11 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
     private RubeSceneHelper rubeSceneHelper;
     private OrthographicCamera camera;
     private Viewport viewport;
+    private GestureDetector gestureDetector;
 
     public GamePlayScreen(SoccerGame game) {
         super(game);
+
 
         engine = new Engine();
         setupViewport();
@@ -66,7 +70,7 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
 
     private void setupInput() {
         Entity input = new Entity();
-        Gdx.input.setInputProcessor(this);
+        Gdx.input.setInputProcessor(new GestureDetector(this));
 
         this.touchDownInputComponent = new TouchDownInputComponent();
         input.add(touchDownInputComponent);
@@ -188,11 +192,15 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
 
     @Override
     public void render(float delta) {
+        StopWatch.start(); // tempo de um ciclo (game loop)
+        StopWatch.startNanos();
         Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        StopWatch.start(); // tempo de um ciclo (game loop)
         engine.update(delta);
-        System.out.println(StopWatch.elapsedSeconds());
+        final long n = StopWatch.elapsedNanos();
+        final float s = StopWatch.elapsedSeconds();
+        System.out.println("nanos: "+ n);
+        System.out.println("segundos: "+s);
     }
 
     @Override
@@ -205,50 +213,50 @@ public class GamePlayScreen extends BaseScreen implements InputProcessor {
         atlas.dispose();
     }
 
-    @Override
-    public boolean keyDown(int keycode) {
+    //Input
 
+    @Override
+    public boolean touchDown(float x, float y, int pointer, int button) {
+        touchDownInputComponent.set(x, y, pointer, button);
         return true;
     }
 
     @Override
-    public boolean keyUp(int keycode) {
+    public boolean tap(float x, float y, int count, int button) {
         return false;
     }
 
     @Override
-    public boolean keyTyped(char character) {
+    public boolean longPress(float x, float y) {
         return false;
     }
 
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-
+    public boolean fling(float velocityX, float velocityY, int button) {
         return false;
     }
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        if (isDrag) {
-            return true;
-        }
-        touchDownInputComponent.set(screenX, screenY, pointer, button);
+    public boolean pan(float x, float y, float deltaX, float deltaY) {
         return false;
     }
 
     @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        System.out.println("dragged");
-        return true;
-    }
-
-    @Override
-    public boolean mouseMoved(int screenX, int screenY) {
+    public boolean panStop(float x, float y, int pointer, int button) {
         return false;
     }
 
     @Override
-    public boolean scrolled(int amount) {
+    public boolean zoom(float initialDistance, float distance) {
         return false;
     }
+
+    @Override
+    public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
+        return false;
+    }
+
+
+
+
 }
