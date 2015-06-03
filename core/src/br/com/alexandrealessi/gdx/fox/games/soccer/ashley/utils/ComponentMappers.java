@@ -20,6 +20,6 @@ public class ComponentMappers {
     public static final ComponentMapper<WorldComponent> WORLD = ComponentMapper.getFor(WorldComponent.class);
 
     public static final ComponentMapper<SteerComponent> STEER = ComponentMapper.getFor(SteerComponent.class);
-    public static final ComponentMapper<PlayerMatchContext> MATCH_CONTEXT = ComponentMapper.getFor(PlayerMatchContext.class);
+    public static final ComponentMapper<PlayerMatchContextComponent> MATCH_CONTEXT = ComponentMapper.getFor(PlayerMatchContextComponent.class);
 
 }

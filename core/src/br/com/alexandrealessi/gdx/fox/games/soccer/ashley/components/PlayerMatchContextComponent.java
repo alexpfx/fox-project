@@ -7,13 +7,13 @@ import com.badlogic.ashley.core.Component;
 /**
  * Created by alexandre on 01/06/15.
  */
-public class PlayerMatchContext extends Component{
+public class PlayerMatchContextComponent extends Component{
 
     private Team team;
     private PlayerPosition position;
     private boolean isSelected = false;
 
-    public PlayerMatchContext(Team team, PlayerPosition playerPosition) {
+    public PlayerMatchContextComponent(Team team, PlayerPosition playerPosition) {
         this.team = team;
         this.position = playerPosition;
     }

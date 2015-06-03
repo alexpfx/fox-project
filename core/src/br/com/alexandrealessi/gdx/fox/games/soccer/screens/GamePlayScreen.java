@@ -180,7 +180,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         final Body body = BodyBuilder.clone(playerBodyModel).build();
         body.setUserData(PlayerUserData.getFor(player));
         player.add(new BodyComponent(body));
-        player.add(new PlayerMatchContext(team, PlayerPosition.ATTACKER));
+        player.add(new PlayerMatchContextComponent(team, PlayerPosition.ATTACKER));
         return player;
     }
 
