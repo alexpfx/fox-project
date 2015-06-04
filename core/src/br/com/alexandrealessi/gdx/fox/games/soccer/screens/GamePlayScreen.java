@@ -90,15 +90,23 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         rubeSceneHelper = new RubeSceneHelper(SOCCER_JSON);
     }
 
+
+    public void createGoalPost(){
+        Entity goalPost = new Entity();
+        goalPost.add(new BodyComponent(rubeSceneHelper.getBody("")));
+
+
+
+    }
+
     public void createField() {
         Entity field = new Entity();
-
         field.add(new BodyComponent(rubeSceneHelper.getBody(FIELD_BODY_NAME)));
         field.add(new PositionComponent());
 
-        final Sprite soccer = new Sprite(atlas.findRegion("small_field"));
-        soccer.setScale(SCENE_HEIGHT / soccer.getHeight());
-        field.add(new SpriteComponent(soccer));
+        final Sprite fieldSprite = new Sprite(atlas.findRegion("small_field"));
+        fieldSprite.setScale(SCENE_HEIGHT / fieldSprite.getHeight());
+        field.add(new SpriteComponent(fieldSprite));
 
         engine.addEntity(field);
     }
