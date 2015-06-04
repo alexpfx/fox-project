@@ -144,7 +144,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         engine.addSystem(metersToPixelConvertSystem);
         engine.addSystem(cameraPositionSystem);
         engine.addSystem(renderSystem);
-        //engine.addSystem(contactSystem);
+        engine.addSystem(contactSystem);
         engine.addSystem(worldStepSystem);
     }
 

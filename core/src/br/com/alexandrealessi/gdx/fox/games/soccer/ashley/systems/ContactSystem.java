@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.*;
  */
 public class ContactSystem extends EntitySystem implements ContactListener {
 
-    private static final float timeWaitBeforeProcessContactBetweenPlayers = 10f;
+    private static final float secondsWaitingBeforeProcessContactBetweenPlayers = 1f;
     private Entity worldEntity;
     private float timecount = 0;
 
@@ -26,9 +26,14 @@ public class ContactSystem extends EntitySystem implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
-        if (timecount > timeWaitBeforeProcessContactBetweenPlayers) {
-            processContactBetweenPlayers(contact);
+        if (timecount > secondsWaitingBeforeProcessContactBetweenPlayers) {
+            processGoals (contact);
         }
+    }
+
+    private void processGoals(Contact contact) {
+
+
     }
 
     @Override
