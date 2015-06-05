@@ -64,7 +64,6 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         createBall();
         createTeams();
         createSystems();
-
     }
 
     private void setupInput() {
@@ -88,6 +87,11 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     private void createResourceHelperObjects() {
         atlas = new TextureAtlas(Gdx.files.internal(DATA_IMAGES_GAME_ATLAS));
         rubeSceneHelper = new RubeSceneHelper(SOCCER_JSON);
+    }
+
+    public void createPost(){
+        Entity field = new Entity();
+
     }
 
     public void createField() {

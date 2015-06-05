@@ -3,7 +3,10 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
-import com.badlogic.ashley.core.*;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.*;
 
@@ -16,7 +19,6 @@ public class ContactSystem extends EntitySystem implements ContactListener {
     private Entity worldEntity;
     private float timecount = 0;
 
-
     @Override
     public void addedToEngine(Engine engine) {
         worldEntity = engine.getEntitiesFor(Family.one(WorldComponent.class).get()).get(0);
@@ -26,13 +28,54 @@ public class ContactSystem extends EntitySystem implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
+        processContact(contact);
         if (timecount > secondsWaitingBeforeProcessContactBetweenPlayers) {
-            processGoals (contact);
+            ballPlayerCollision(contact);
         }
     }
 
-    private void processGoals(Contact contact) {
+    private void processContact(Contact contact) {
+        final Body bodyA = contact.getFixtureA().getBody();
+        final Body bodyB = contact.getFixtureB().getBody();
+        if (areBothPlayers(bodyA, bodyB)) {
+            processContactBetweenPlayers(contact, bodyA, bodyB);
 
+        }
+        // others contacts processing.
+    }
+
+    private void processContactBetweenPlayers(Contact contact, Body playerBodyA, Body playerBodyB) {
+        final float vx_a = Math.abs(playerBodyA.getLinearVelocity().x);
+        final float vx_b = Math.abs(playerBodyB.getLinearVelocity().x);
+        final float vy_a = Math.abs(playerBodyA.getLinearVelocity().y);
+        final float vy_b = Math.abs(playerBodyB.getLinearVelocity().y);
+
+        final float a_power = vx_a + vy_a;
+        final float b_power = vx_b + vy_b;
+
+        if (a_power > b_power) {
+            if (!saved(playerBodyA)) {
+                destroyIfNotSaved(playerBodyA);
+            }
+        } else {
+            if (!saved(playerBodyB)) {
+                destroyIfNotSaved(playerBodyB);
+            }
+        }
+    }
+
+    public void destroyIfNotSaved(Body playerBody) {
+        if (!saved(playerBody)) {
+            markForDestroy(playerBody);
+        }
+    }
+
+    private boolean areBothPlayers(Body bodyA, Body bodyB) {
+        return isPlayer(bodyA) && isPlayer(bodyB);
+    }
+
+
+    private void ballPlayerCollision(Contact contact) {
 
     }
 
@@ -41,28 +84,7 @@ public class ContactSystem extends EntitySystem implements ContactListener {
         timecount += deltaTime;
     }
 
-    private void processContactBetweenPlayers(Contact contact) {
-        final Body bodyA = contact.getFixtureA().getBody();
-        final Body bodyB = contact.getFixtureB().getBody();
-        if (!isPlayer(bodyA) || !isPlayer(bodyB)) {
-            return;
-        }
-        final float vx_a = Math.abs(bodyA.getLinearVelocity().x);
-        final float vx_b = Math.abs(bodyB.getLinearVelocity().x);
-        final float vy_a = Math.abs(bodyA.getLinearVelocity().y);
-        final float vy_b = Math.abs(bodyB.getLinearVelocity().y);
-        final float a_power = vx_a + vy_a;
-        final float b_power = vx_b + vy_b;
-        if ((a_power > b_power)) {
-            if (save(bodyB)) return;
-            markForDestroy(bodyB);
-        } else {
-            if (save(bodyA)) return;
-            markForDestroy(bodyA);
-        }
-    }
-
-    private boolean save(Body b) {
+    private boolean saved(Body b) {
         final boolean save = MathUtils.randomBoolean(.5f);
         if (save) b.applyLinearImpulse(MathUtils.random(-100, 100), MathUtils.random(-100, 100), b.getLocalCenter().x, b
                 .getLocalCenter().y, true);
