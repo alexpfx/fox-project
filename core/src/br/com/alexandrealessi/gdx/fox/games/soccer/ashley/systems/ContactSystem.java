@@ -1,7 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerBodyUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.*;
  * Created by alexandre on 27/05/15.
  */
 public class ContactSystem extends EntitySystem implements ContactListener {
+
 
     private static final float secondsWaitingBeforeProcessContactBetweenPlayers = 1f;
     private Entity worldEntity;
@@ -77,6 +78,8 @@ public class ContactSystem extends EntitySystem implements ContactListener {
 
     private void ballPlayerCollision(Contact contact) {
 
+
+
     }
 
     @Override
@@ -93,12 +96,22 @@ public class ContactSystem extends EntitySystem implements ContactListener {
 
     private boolean isPlayer(Body body) {
         final Object userData = body.getUserData();
-        return userData != null && userData instanceof PlayerUserData;
+        return userData != null && userData instanceof PlayerBodyUserData;
     }
 
     private void markForDestroy(Body body) {
-        final PlayerUserData userData = (PlayerUserData) body.getUserData();
+        final PlayerBodyUserData userData = (PlayerBodyUserData) body.getUserData();
         userData.setAlive(false);
+    }
+
+
+    public CollisionType determineCollisionType (Fixture fixtureA, Fixture fixtureB){
+
+
+        return null;
+
+
+
     }
 
     @Override
@@ -115,5 +128,11 @@ public class ContactSystem extends EntitySystem implements ContactListener {
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
     }
+
+    enum CollisionType {
+        BALL_PLAYER, BALL_GOAL_LINE, PLAYER_PLAYER
+    }
+
+
 
 }
