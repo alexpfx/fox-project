@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.*;
 /**
  * Created by alex on 06/06/2015.
  */
-public abstract class SoccerContacdtListener implements ContactListener {
+public abstract class SoccerContactListener implements ContactListener {
 
     protected abstract void contactBallPlayer(UserData ball, UserData player);
 
