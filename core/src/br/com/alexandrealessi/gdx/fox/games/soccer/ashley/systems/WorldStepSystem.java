@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
-import br.com.alexandrealessi.gdx.fox.base.UserData;
+import br.com.alexandrealessi.gdx.fox.base.BodyUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.*;
@@ -39,8 +39,8 @@ public class WorldStepSystem extends EntitySystem {
         final Iterator<Body> iterator = bodies.iterator();
         while (iterator.hasNext()) {
             final Body b = iterator.next();
-            final UserData userData = (UserData) b.getUserData();
-            if (userData != null && userData.canDestroy()) {
+            final BodyUserData bodyUserData = (BodyUserData) b.getUserData();
+            if (bodyUserData != null && bodyUserData.canDestroy()) {
                 world.destroyBody(b);
                 iterator.remove();
             }

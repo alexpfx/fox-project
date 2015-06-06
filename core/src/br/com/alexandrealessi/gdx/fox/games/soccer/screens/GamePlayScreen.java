@@ -8,7 +8,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerPosition;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerBodyUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import com.badlogic.ashley.core.Engine;
@@ -64,7 +64,6 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         createBall();
         createTeams();
         createSystems();
-
     }
 
     private void setupInput() {
@@ -90,23 +89,20 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         rubeSceneHelper = new RubeSceneHelper(SOCCER_JSON);
     }
 
-
-    public void createGoalPost(){
-        Entity goalPost = new Entity();
-        goalPost.add(new BodyComponent(rubeSceneHelper.getBody("")));
-
-
+    public void createPost(){
+        Entity field = new Entity();
 
     }
 
     public void createField() {
         Entity field = new Entity();
+
         field.add(new BodyComponent(rubeSceneHelper.getBody(FIELD_BODY_NAME)));
         field.add(new PositionComponent());
 
-        final Sprite fieldSprite = new Sprite(atlas.findRegion("small_field"));
-        fieldSprite.setScale(SCENE_HEIGHT / fieldSprite.getHeight());
-        field.add(new SpriteComponent(fieldSprite));
+        final Sprite soccer = new Sprite(atlas.findRegion("small_field"));
+        soccer.setScale(SCENE_HEIGHT / soccer.getHeight());
+        field.add(new SpriteComponent(soccer));
 
         engine.addEntity(field);
     }
@@ -186,7 +182,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         builder.addComponent(new PositionComponent());
         final PlayerEntity player = builder.build();
         final Body body = BodyBuilder.clone(playerBodyModel).build();
-        body.setUserData(PlayerUserData.getFor(player));
+        body.setUserData(PlayerBodyUserData.getFor(player));
         player.add(new BodyComponent(body));
         player.add(new PlayerMatchContextComponent(team, PlayerPosition.ATTACKER));
         return player;
