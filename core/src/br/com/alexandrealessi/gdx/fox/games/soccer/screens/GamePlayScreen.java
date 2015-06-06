@@ -8,7 +8,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerPosition;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerBodyUserData;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import com.badlogic.ashley.core.Engine;
@@ -111,6 +111,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         final Sprite ballSprite = new Sprite(atlas.findRegion("ball"));
         final Body ballBody = rubeSceneHelper.getBody("ball");
         final Entity ballEntity = new Entity();
+
         ballEntity.add(new SpriteComponent(ballSprite));
         ballEntity.add(new BodyComponent(ballBody));
         final PositionComponent positionComponent = new PositionComponent();
@@ -182,7 +183,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         builder.addComponent(new PositionComponent());
         final PlayerEntity player = builder.build();
         final Body body = BodyBuilder.clone(playerBodyModel).build();
-        body.setUserData(PlayerBodyUserData.getFor(player));
+        body.setUserData(PlayerUserData.getFor(player));
         player.add(new BodyComponent(body));
         player.add(new PlayerMatchContextComponent(team, PlayerPosition.ATTACKER));
         return player;

@@ -1,7 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerBodyUserData;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -96,23 +96,14 @@ public class ContactSystem extends EntitySystem implements ContactListener {
 
     private boolean isPlayer(Body body) {
         final Object userData = body.getUserData();
-        return userData != null && userData instanceof PlayerBodyUserData;
+        return userData != null && userData instanceof PlayerUserData;
     }
 
     private void markForDestroy(Body body) {
-        final PlayerBodyUserData userData = (PlayerBodyUserData) body.getUserData();
+        final PlayerUserData userData = (PlayerUserData) body.getUserData();
         userData.setAlive(false);
     }
 
-
-    public CollisionType determineCollisionType (Fixture fixtureA, Fixture fixtureB){
-
-
-        return null;
-
-
-
-    }
 
     @Override
     public void endContact(Contact contact) {
@@ -127,10 +118,6 @@ public class ContactSystem extends EntitySystem implements ContactListener {
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
-    }
-
-    enum CollisionType {
-        BALL_PLAYER, BALL_GOAL_LINE, PLAYER_PLAYER
     }
 
 

@@ -1,5 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 
+import br.com.alexandrealessi.gdx.fox.base.UserData;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gushikustudios.rube.RubeDefaults;
@@ -7,9 +8,9 @@ import com.gushikustudios.rube.RubeDefaults;
 /**
  * Created by alexandre on 24/05/15.
  */
-public class BodyComponent extends Component{
+public class BodyComponent extends Component implements UserData {
     private Body body;
-    
+    private boolean isAlive;
 
     public BodyComponent(Body body) {
         this.body = body;
@@ -19,4 +20,12 @@ public class BodyComponent extends Component{
         return body;
     }
 
+    @Override
+    public boolean canDestroy() {
+        return !isAlive;
+    }
+
+    public void setIsAlive(boolean isAlive) {
+        this.isAlive = isAlive;
+    }
 }

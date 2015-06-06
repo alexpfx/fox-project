@@ -1,25 +1,25 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities;
 
-import br.com.alexandrealessi.gdx.fox.base.BodyUserData;
+import br.com.alexandrealessi.gdx.fox.base.UserData;
 import br.com.alexandrealessi.gdx.fox.base.UserDataAction;
 import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by alexandre on 27/05/15.
  */
-public class PlayerBodyUserData implements BodyUserData {
+public class PlayerUserData implements UserData {
 
     private boolean alive;
     private PlayerEntity playerEntity;
     private Array<UserDataAction> actions = new Array<UserDataAction>();
 
-    private PlayerBodyUserData(PlayerEntity playerEntity) {
+    private PlayerUserData(PlayerEntity playerEntity) {
         this.playerEntity = playerEntity;
         this.alive = true;
     }
 
-    public static PlayerBodyUserData getFor(PlayerEntity playerEntity) {
-        return new PlayerBodyUserData(playerEntity);
+    public static PlayerUserData getFor(PlayerEntity playerEntity) {
+        return new PlayerUserData(playerEntity);
     }
 
     @Override
