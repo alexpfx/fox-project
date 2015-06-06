@@ -59,11 +59,18 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         setupViewport();
         setupInput();
         createResourceHelperObjects();
+        createMatch ();
         createWorld();
         createField();
         createBall();
         createTeams();
         createSystems();
+    }
+
+    private void createMatch() {
+        Entity match = new Entity();
+
+
     }
 
     private void setupInput() {

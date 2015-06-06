@@ -69,7 +69,7 @@ public class RenderSystem extends EntitySystem implements Disposable {
             final PositionComponent positionComponent = ComponentMappers.POSITION.get(e);
             final SpriteComponent spriteComponent = ComponentMappers.SPRITE_COMPONENT.get(e);
             final Sprite sprite = spriteComponent.getSprite();
-            final PlayerMatchContextComponent playerMatchContextComponent = ComponentMappers.MATCH_CONTEXT.get(e);
+            final PlayerMatchContextComponent playerMatchContextComponent = ComponentMappers.PLAYER_MATCH_CONTEXT.get(e);
             if (playerMatchContextComponent != null){
                 if (playerMatchContextComponent.isSelected()){
                     sprite.setColor(Color.CYAN);

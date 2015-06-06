@@ -41,7 +41,7 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
             final Touch touch = touchDownInputComponent.getTouch();
             int x = 0;
             Entity nearest = getAndSetSelectedNearestPlayer(touch.x, touch.y);
-            final PlayerMatchContextComponent playerMatchContextComponent = ComponentMappers.MATCH_CONTEXT.get(nearest);
+            final PlayerMatchContextComponent playerMatchContextComponent = ComponentMappers.PLAYER_MATCH_CONTEXT.get(nearest);
             playerMatchContextComponent.setIsSelected(true);
             final SpriteComponent spriteComponent = ComponentMappers.SPRITE_COMPONENT.get(nearest);
             spriteComponent.getSprite().setColor(Color.WHITE);
@@ -55,7 +55,7 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
             if (nearest == null) {
                 nearest = e;
             }
-            PlayerMatchContextComponent matchContext = ComponentMappers.MATCH_CONTEXT.get(e);
+            PlayerMatchContextComponent matchContext = ComponentMappers.PLAYER_MATCH_CONTEXT.get(e);
             if (matchContext.getTeam().isUserTeam()) {
                 continue;
             }
