@@ -52,6 +52,8 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     private OrthographicCamera camera;
     private Viewport viewport;
     private GestureDetector gestureDetector;
+    private Team homeTeam;
+    private Team awayTeam;
 
     public GamePlayScreen(SoccerGame game) {
         super(game);
@@ -59,17 +61,17 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         setupViewport();
         setupInput();
         createResourceHelperObjects();
-        createMatch ();
         createWorld();
         createField();
         createBall();
         createTeams();
+        createMatch();
         createSystems();
     }
 
     private void createMatch() {
         Entity match = new Entity();
-
+        match.add(new MatchContextComponent(homeTeam, awayTeam));
 
     }
 
@@ -129,14 +131,16 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     }
 
     public void createTeams() {
+        homeTeam = new Team("Gremio", true);
         final Sprite panda = new Sprite(atlas.findRegion("panda"));
         panda.setScale(ANIMAL_SPRITE_SCALE / panda.getHeight());
-        final Array<PlayerEntity> tpanda = createPlayersOfTeam("panda", panda, false);
+        final Array<PlayerEntity> tpanda = createPlayersOfTeam(panda, homeTeam);
         addTeamToEngine(engine, tpanda);
 
+        awayTeam = new Team("Internacional", false);
         final Sprite monkey = new Sprite(atlas.findRegion("monkey"));
         monkey.setScale(ANIMAL_SPRITE_SCALE / monkey.getHeight());
-        final Array<PlayerEntity> tmonkey = createPlayersOfTeam("monkey", monkey, true);
+        final Array<PlayerEntity> tmonkey = createPlayersOfTeam(monkey, awayTeam);
         addTeamToEngine(engine, tmonkey);
     }
 
@@ -172,8 +176,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         }
     }
 
-    public Array<PlayerEntity> createPlayersOfTeam(String teamName, Sprite uniform, boolean userTeam) {
-        Team team = new Team(teamName, userTeam);
+    public Array<PlayerEntity> createPlayersOfTeam(Sprite uniform, Team team) {
         Array<PlayerEntity> players = new Array<PlayerEntity>();
         for (int i = 0; i < 11; i++) {
             final PlayerEntity player = createPlayer(team, uniform, "player" + i, i + 1);
