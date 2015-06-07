@@ -1,7 +1,5 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 
-import br.com.alexandrealessi.gdx.fox.FixtureUserData;
-import br.com.alexandrealessi.gdx.fox.base.FixtureType;
 import br.com.alexandrealessi.gdx.fox.base.box2d.BodyBuilder;
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
@@ -12,6 +10,8 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerPosition;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.BallFactory;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.GoalLineFactory;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -24,7 +24,6 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -67,7 +66,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         createWorld();
         createField();
         createBall();
-        createPosts();
+        createGoalLines();
         createTeams();
         createMatch();
         createSystems();
@@ -102,29 +101,14 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         rubeSceneHelper = new RubeSceneHelper(SOCCER_JSON);
     }
 
-    public void createPosts(){
-        // Left
-        Entity leftGoalLine = new Entity();
-        final Body goalLineLeftBody = rubeSceneHelper.getBody("goal_line_left");
-        leftGoalLine.add(new BodyComponent(goalLineLeftBody));
+    public void createGoalLines(){
+        final GoalLineFactory factory = GoalLineFactory.getInstance(rubeSceneHelper);
 
-        final Fixture goalLineLeftFixture = rubeSceneHelper.getFixture(goalLineLeftBody, "line");
-        goalLineLeftFixture.setUserData(new FixtureUserData(FixtureType.GOAL_LINE_HOME, leftGoalLine));
-        leftGoalLine.add(new TeamComponent(awayTeam));
+        final Entity leftGoalEntity = factory.create(awayTeam);
+        engine.addEntity(leftGoalEntity);
 
-        engine.addEntity(leftGoalLine);
-
-
-        // Right
-        Entity rightGoalLine = new Entity();
-        final Body goalLineRightBody = rubeSceneHelper.getBody("goal_line_right");
-        rightGoalLine.add(new BodyComponent(goalLineRightBody));
-
-        final Fixture goalLineRightFixture = rubeSceneHelper.getFixture(goalLineRightBody, "line");
-        goalLineLeftFixture.setUserData(new FixtureUserData(FixtureType.GOAL_LINE_HOME, rightGoalLine));
-        rightGoalLine.add(new TeamComponent(homeTeam));
-
-        engine.addEntity(rightGoalLine);
+        final Entity rightGoalEntity = factory.create(homeTeam);
+        engine.addEntity(rightGoalEntity);
     }
 
     public void createField() {
@@ -140,20 +124,10 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         engine.addEntity(field);
     }
 
-    //TODO: organizar
+
     public void createBall() {
-        final Sprite ballSprite = new Sprite(atlas.findRegion("ball"));
-        final Body ballBody = rubeSceneHelper.getBody("ball");
-        final Fixture ball = rubeSceneHelper.getFixture(ballBody, "ball");
-        final Entity ballEntity = new Entity();
-        ball.setUserData(new FixtureUserData(FixtureType.BALL, ballEntity));
-        ballEntity.add(new SpriteComponent(ballSprite));
-        ballEntity.add(new BodyComponent(ballBody));
-        final PositionComponent positionComponent = new PositionComponent();
-        ballEntity.add(positionComponent);
-        ballEntity.add(new CameraFollowerComponent(camera, SCENE_BOUNDS));
-        ballSprite.setScale(2 / ballSprite.getHeight());
-        engine.addEntity(ballEntity);
+        final Entity ball = BallFactory.getInstance(atlas, rubeSceneHelper, camera, SCENE_BOUNDS).create();
+        engine.addEntity(ball);
     }
 
     public void createTeams() {

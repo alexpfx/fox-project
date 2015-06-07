@@ -62,7 +62,7 @@ public abstract class SoccerResolverContactListener implements ContactListener {
     }
 
     public boolean isGoalLine(Fixture fixture) {
-        return (FixtureType.GOAL_LINE_HOME == ((FixtureUserData) fixture.getUserData()).getType());
+        return (FixtureType.GOAL_LINE == ((FixtureUserData) fixture.getUserData()).getType());
     }
 
     public boolean isBall(Fixture fixture) {
