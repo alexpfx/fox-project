@@ -11,7 +11,9 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerPositio
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.BallFactory;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.FieldFactory;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.GoalLineFactory;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.InputFactory;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -40,7 +42,6 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     public static final float CAMERA_ZOOM = 0.6f;
     public static final String DATA_IMAGES_GAME_ATLAS = "data/images/game.atlas";
     public static final String SOCCER_JSON = "soccer.json";
-    public static final String FIELD_BODY_NAME = "field";
     private static final float SCENE_WIDTH = 178f;
     private static final float SCENE_HEIGHT = 120;
     private static final float ANIMAL_SPRITE_SCALE = 7F;
@@ -75,19 +76,12 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     private void createMatch() {
         Entity match = new Entity();
         match.add(new MatchScoreComponent(homeTeam, awayTeam));
-
     }
 
     private void setupInput() {
-        Entity input = new Entity();
-        Gdx.input.setInputProcessor(new GestureDetector(this));
-
         this.touchDownInputComponent = new TouchDownInputComponent();
-        input.add(touchDownInputComponent);
-
-        input.add(new CameraComponent(viewport.getCamera()));
-
-        engine.addEntity(input);
+        InputFactory.getInstance(viewport, touchDownInputComponent).createAndAddToEngine(engine);
+        Gdx.input.setInputProcessor(new GestureDetector(this));
     }
 
     private void setupViewport() {
@@ -104,30 +98,19 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     public void createGoalLines(){
         final GoalLineFactory factory = GoalLineFactory.getInstance(rubeSceneHelper);
 
-        final Entity leftGoalEntity = factory.create(awayTeam);
-        engine.addEntity(leftGoalEntity);
+        factory.setTeam(awayTeam);
+        factory.createAndAddToEngine(engine);
 
-        final Entity rightGoalEntity = factory.create(homeTeam);
-        engine.addEntity(rightGoalEntity);
+        factory.setTeam(homeTeam);
+        factory.createAndAddToEngine(engine);
     }
 
     public void createField() {
-        Entity field = new Entity();
-
-        field.add(new BodyComponent(rubeSceneHelper.getBody(FIELD_BODY_NAME)));
-        field.add(new PositionComponent());
-
-        final Sprite soccer = new Sprite(atlas.findRegion("small_field"));
-        soccer.setScale(SCENE_HEIGHT / soccer.getHeight());
-        field.add(new SpriteComponent(soccer));
-
-        engine.addEntity(field);
+        FieldFactory.newInstance(rubeSceneHelper, atlas, SCENE_HEIGHT).createAndAddToEngine(engine);
     }
 
-
     public void createBall() {
-        final Entity ball = BallFactory.getInstance(atlas, rubeSceneHelper, camera, SCENE_BOUNDS).create();
-        engine.addEntity(ball);
+        BallFactory.getInstance(atlas, rubeSceneHelper, camera, SCENE_BOUNDS).createAndAddToEngine(engine);
     }
 
     public void createTeams() {
@@ -268,4 +251,4 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         return false;
     }
 
-}
+} // 271 -> 100

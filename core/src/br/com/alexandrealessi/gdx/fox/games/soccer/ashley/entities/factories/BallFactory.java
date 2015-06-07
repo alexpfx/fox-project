@@ -7,6 +7,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.BodyCompone
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.CameraFollowerComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PositionComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.SpriteComponent;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -18,7 +19,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 /**
  * Created by alexandre on 07/06/15.
  */
-public class BallFactory implements EntityFactory {
+public class BallFactory extends CreateAndAddToEngineFactory {
     private TextureAtlas atlas;
     private RubeSceneHelper rubeSceneHelper;
     private Camera camera;
@@ -52,4 +53,6 @@ public class BallFactory implements EntityFactory {
         ballSprite.setScale(2 / ballSprite.getHeight());
         return ballEntity;
     }
+
+
 }

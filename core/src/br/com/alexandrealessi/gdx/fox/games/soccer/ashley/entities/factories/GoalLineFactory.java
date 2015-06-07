@@ -13,9 +13,10 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 /**
  * Created by alexandre on 07/06/15.
  */
-public class GoalLineFactory  {
+public class GoalLineFactory extends CreateAndAddToEngineFactory {
 
     private RubeSceneHelper rubeSceneHelper;
+    private Team team;
 
     private GoalLineFactory(RubeSceneHelper rubeSceneHelper) {
         this.rubeSceneHelper = rubeSceneHelper;
@@ -25,8 +26,16 @@ public class GoalLineFactory  {
         return new GoalLineFactory(rubeSceneHelper);
     }
 
-    public Entity create(Team team) {
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
+
+    @Override
+    public Entity create() {
+        if (team == null){
+            throw new IllegalArgumentException("usar setTeam para setar o time");
+        }
         Entity entity = new Entity();
         final Body goalLineLeftBody = rubeSceneHelper.getBody("goal_line_left");
         entity.add(new BodyComponent(goalLineLeftBody));
@@ -37,4 +46,5 @@ public class GoalLineFactory  {
 
         return entity;
     }
+
 }
