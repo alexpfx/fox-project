@@ -22,6 +22,7 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -99,7 +100,10 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     }
 
     public void createPosts(){
-        Entity field = new Entity();
+        Entity goalLineLeft = new Entity();
+        final Body goalLineLeftBody = rubeSceneHelper.getBody("goal_line_left");
+        final Array<Fixture> fixtureList = goalLineLeftBody.getFixtureList();
+        goalLineLeft.add(new BodyComponent(goalLineLeftBody));
 
     }
 
