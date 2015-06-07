@@ -24,9 +24,23 @@ public class RubeSceneHelper {
     }
 
     public Body getBody(String name) {
-        return getBodies(name).get(0);
+        return getBodies(name).first();
     }
 
+    public Fixture getFixture (Body body, String fixtureName){
+        final Array<Fixture> fixturesByName = getFixturesByName(fixtureName);
+        for (Fixture f:fixturesByName){
+            if (body.equals(f.getBody())){
+                return f;
+            }
+        }
+        return null;
+    }
+
+
+    public Fixture getFixture (String name){
+        return getFixturesByName(name).first();
+    }
     public Array<Fixture> getFixturesByName(String name) {
         return scene.getNamed(Fixture.class, name);
     }

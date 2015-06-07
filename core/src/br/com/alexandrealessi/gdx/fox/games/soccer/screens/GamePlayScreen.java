@@ -1,5 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 
+import br.com.alexandrealessi.gdx.fox.FixtureUserData;
+import br.com.alexandrealessi.gdx.fox.base.FixtureType;
 import br.com.alexandrealessi.gdx.fox.base.box2d.BodyBuilder;
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
@@ -65,6 +67,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         createWorld();
         createField();
         createBall();
+        createPosts();
         createTeams();
         createMatch();
         createSystems();
@@ -100,11 +103,23 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     }
 
     public void createPosts(){
-        Entity goalLineLeft = new Entity();
+        // Left
+        Entity leftGoalLine = new Entity();
         final Body goalLineLeftBody = rubeSceneHelper.getBody("goal_line_left");
-        final Array<Fixture> fixtureList = goalLineLeftBody.getFixtureList();
-        goalLineLeft.add(new BodyComponent(goalLineLeftBody));
+        leftGoalLine.add(new BodyComponent(goalLineLeftBody));
 
+        final Fixture goalLineLeftFixture = rubeSceneHelper.getFixture(goalLineLeftBody, "line");
+        goalLineLeftFixture.setUserData(new FixtureUserData(FixtureType.GOAL_LINE_HOME, leftGoalLine));
+        engine.addEntity(leftGoalLine);
+
+        // Right
+        Entity rightGoalLine = new Entity();
+        final Body goalLineRightBody = rubeSceneHelper.getBody("goal_line_right");
+        rightGoalLine.add(new BodyComponent(goalLineRightBody));
+
+        final Fixture goalLineRightFixture = rubeSceneHelper.getFixture(goalLineRightBody, "line");
+        goalLineLeftFixture.setUserData(new FixtureUserData(FixtureType.GOAL_LINE_HOME, rightGoalLine));
+        engine.addEntity(rightGoalLine);
     }
 
     public void createField() {
