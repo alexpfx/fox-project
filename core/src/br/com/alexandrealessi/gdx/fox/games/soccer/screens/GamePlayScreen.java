@@ -98,7 +98,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         rubeSceneHelper = new RubeSceneHelper(SOCCER_JSON);
     }
 
-    public void createPost(){
+    public void createPosts(){
         Entity field = new Entity();
 
     }

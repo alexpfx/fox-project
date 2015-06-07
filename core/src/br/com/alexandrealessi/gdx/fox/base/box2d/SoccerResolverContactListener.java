@@ -2,7 +2,6 @@ package br.com.alexandrealessi.gdx.fox.base.box2d;
 
 import br.com.alexandrealessi.gdx.fox.FixtureUserData;
 import br.com.alexandrealessi.gdx.fox.base.FixtureType;
-import br.com.alexandrealessi.gdx.fox.base.UserData;
 import com.badlogic.gdx.physics.box2d.*;
 
 /**
@@ -12,7 +11,7 @@ public abstract class SoccerResolverContactListener implements ContactListener {
 
     protected abstract void contactBallPlayer(FixtureUserData ball, FixtureUserData player);
 
-    protected abstract void contactBallPost(FixtureUserData ball, FixtureUserData post);
+    protected abstract void contactBallGoalLine(FixtureUserData ball, FixtureUserData goalLine);
 
     protected abstract void contactPlayerPlayer(FixtureUserData playerA, FixtureUserData playerB);
 
@@ -32,8 +31,8 @@ public abstract class SoccerResolverContactListener implements ContactListener {
             contactPlayerPlayer(uDataA, uDataB);
         } else if (isBallAndPlayer(fixtureA, fixtureB)) {
             contactBallPlayer(uDataA, uDataB);
-        } else if (isBallAndPost(fixtureA, fixtureB)) {
-            contactBallPost(uDataA, uDataB);
+        } else if (isBallAndGoalLine(fixtureA, fixtureB)) {
+            contactBallGoalLine(uDataA, uDataB);
         }
     }
 
@@ -45,7 +44,7 @@ public abstract class SoccerResolverContactListener implements ContactListener {
         return isBall(fixtureA) && isPlayer(fixtureA) || isBall(fixtureB) && isPlayer(fixtureA);
     }
 
-    private boolean isBallAndPost(Fixture fixtureA, Fixture fixtureB) {
+    private boolean isBallAndGoalLine(Fixture fixtureA, Fixture fixtureB) {
         return isBall(fixtureA) && isGoalLine(fixtureB) || isBall(fixtureB) && isGoalLine(fixtureA);
     }
 
