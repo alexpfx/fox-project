@@ -24,8 +24,12 @@ public abstract class SoccerResolverContactListener implements ContactListener {
     private void resolveContact(Contact contact) {
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
+
         FixtureUserData uDataA = getFixtureUserData(fixtureA);
         FixtureUserData uDataB = getFixtureUserData(fixtureB);
+        if (uDataA == null || uDataB == null){
+            return;
+        }
 
         if (areBothPlayers(fixtureA, fixtureB)) {
             contactPlayerPlayer(uDataA, uDataB);
@@ -58,8 +62,7 @@ public abstract class SoccerResolverContactListener implements ContactListener {
     }
 
     public boolean isGoalLine(Fixture fixture) {
-        return (FixtureType.GOAL_LINE_HOME == ((FixtureUserData) fixture.getUserData()).getType()) ||
-                (FixtureType.GOAL_LINE_VISITOR == ((FixtureUserData) fixture.getUserData()).getType());
+        return (FixtureType.GOAL_LINE_HOME == ((FixtureUserData) fixture.getUserData()).getType());
     }
 
     public boolean isBall(Fixture fixture) {

@@ -135,11 +135,13 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         engine.addEntity(field);
     }
 
+    //TODO: organizar
     public void createBall() {
         final Sprite ballSprite = new Sprite(atlas.findRegion("ball"));
         final Body ballBody = rubeSceneHelper.getBody("ball");
+        final Fixture ball = rubeSceneHelper.getFixture(ballBody, "ball");
         final Entity ballEntity = new Entity();
-
+        ball.setUserData(new FixtureUserData(FixtureType.BALL, ballEntity));
         ballEntity.add(new SpriteComponent(ballSprite));
         ballEntity.add(new BodyComponent(ballBody));
         final PositionComponent positionComponent = new PositionComponent();

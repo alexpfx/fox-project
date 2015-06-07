@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.gushikustudios.rube.RubeDefaults;
 import com.gushikustudios.rube.RubeScene;
 import com.gushikustudios.rube.loader.RubeSceneLoader;
 
@@ -27,6 +28,8 @@ public class RubeSceneHelper {
         return getBodies(name).first();
     }
 
+
+
     public Fixture getFixture (Body body, String fixtureName){
         final Array<Fixture> fixturesByName = getFixturesByName(fixtureName);
         for (Fixture f:fixturesByName){
@@ -42,7 +45,14 @@ public class RubeSceneHelper {
         return getFixturesByName(name).first();
     }
     public Array<Fixture> getFixturesByName(String name) {
-        return scene.getNamed(Fixture.class, name);
+        final Array named = scene.getNamed(Object.class, name);
+        final Array <Fixture> fixtures = new Array<Fixture>();
+        for (Object f:named){
+            if (f instanceof Fixture){
+                fixtures.add((Fixture) f);
+            }
+        }
+        return fixtures;
     }
 
     public Array<Body> getBodies(String name) {

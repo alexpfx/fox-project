@@ -10,16 +10,15 @@ import com.badlogic.ashley.core.Entity;
  */
 public class SoccerContactListener extends SoccerResolverContactListener {
 
+
     @Override
     protected void contactBallPlayer(FixtureUserData ballUserData, FixtureUserData playerUserData) {
-
 
     }
 
     @Override
     protected void contactBallGoalLine(FixtureUserData ballUserData, FixtureUserData goalLine) {
-        Entity entity = goalLine.getEntity();
-        
+
 
 
 
