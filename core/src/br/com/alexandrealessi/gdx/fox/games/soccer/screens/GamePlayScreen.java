@@ -110,7 +110,10 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
 
         final Fixture goalLineLeftFixture = rubeSceneHelper.getFixture(goalLineLeftBody, "line");
         goalLineLeftFixture.setUserData(new FixtureUserData(FixtureType.GOAL_LINE_HOME, leftGoalLine));
+        leftGoalLine.add(new TeamComponent(awayTeam));
+
         engine.addEntity(leftGoalLine);
+
 
         // Right
         Entity rightGoalLine = new Entity();
@@ -119,6 +122,8 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
 
         final Fixture goalLineRightFixture = rubeSceneHelper.getFixture(goalLineRightBody, "line");
         goalLineLeftFixture.setUserData(new FixtureUserData(FixtureType.GOAL_LINE_HOME, rightGoalLine));
+        rightGoalLine.add(new TeamComponent(homeTeam));
+
         engine.addEntity(rightGoalLine);
     }
 
@@ -172,7 +177,6 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         MetersToPixelConvertSystem metersToPixelConvertSystem = new MetersToPixelConvertSystem(PIXEL_TO_METER_FACTOR);
         CameraPositionSystem cameraPositionSystem = new CameraPositionSystem();
         RenderSystem renderSystem = new RenderSystem(viewport, DEBUG_PHYSICS);
-        ContactSystem contactSystem = new ContactSystem();
         WorldStepSystem worldStepSystem = new WorldStepSystem();
 
         engine.addSystem(unprojectInputSystem);
@@ -181,7 +185,6 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         engine.addSystem(metersToPixelConvertSystem);
         engine.addSystem(cameraPositionSystem);
         engine.addSystem(renderSystem);
-        engine.addSystem(contactSystem);
         engine.addSystem(worldStepSystem);
     }
 

@@ -1,7 +1,11 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.base.UserData;
+import br.com.alexandrealessi.gdx.fox.base.box2d.MatchEventListener;
+import br.com.alexandrealessi.gdx.fox.base.box2d.SoccerContactListener;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.MatchEntity;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.*;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -13,7 +17,7 @@ import java.util.Iterator;
 /**
  * Created by alexandre on 24/05/15.
  */
-public class WorldStepSystem extends EntitySystem {
+public class WorldStepSystem extends EntitySystem implements MatchEventListener{
     private static final float TIME_STEP = 1 / 60f;
     private static final int VELOCITY_ITERATIONS = 3;
     private static final int POSITION_ITERATIONS = 2;
@@ -23,6 +27,9 @@ public class WorldStepSystem extends EntitySystem {
     @Override
     public void addedToEngine(Engine engine) {
         worldEntity = engine.getEntitiesFor(Family.one(WorldComponent.class).get()).first();
+        final WorldComponent worldComponent = ComponentMappers.WORLD.get(worldEntity);
+        final World world = worldComponent.getWorld();
+        world.setContactListener(new SoccerContactListener(this));
     }
 
     @Override
@@ -45,5 +52,14 @@ public class WorldStepSystem extends EntitySystem {
                 iterator.remove();
             }
         }
+    }
+
+    @Override
+    public void goal(Entity goalLineEntity) {
+        final TeamComponent teamComponent = ComponentMappers.TEAM.get(goalLineEntity);
+        
+
+        System.out.println(goalLineEntity);
+
     }
 }

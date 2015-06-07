@@ -22,5 +22,6 @@ public class ComponentMappers {
     public static final ComponentMapper<SteerComponent> STEER = ComponentMapper.getFor(SteerComponent.class);
     public static final ComponentMapper<PlayerMatchContextComponent> PLAYER_MATCH_CONTEXT = ComponentMapper.getFor(PlayerMatchContextComponent.class);
     public static final ComponentMapper<MatchScoreComponent> MATCH_CONTEXT = ComponentMapper.getFor(MatchScoreComponent.class);
+    public static final ComponentMapper<TeamComponent> TEAM = ComponentMapper.getFor(TeamComponent.class);
 
 }
