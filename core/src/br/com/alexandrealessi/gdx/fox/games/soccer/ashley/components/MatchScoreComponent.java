@@ -6,7 +6,7 @@ import com.badlogic.ashley.core.Component;
 /**
  * Created by alexandre on 31/05/15.
  */
-public class MatchContextComponent extends Component {
+public class MatchScoreComponent extends Component {
 
     private Team homeTeam;
     private int homeScore = 0;
@@ -15,7 +15,7 @@ public class MatchContextComponent extends Component {
     private int awayScore = 0;
 
 
-    public MatchContextComponent(Team homeTeam, Team awayTeam) {
+    public MatchScoreComponent(Team homeTeam, Team awayTeam) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
     }
@@ -48,6 +48,8 @@ public class MatchContextComponent extends Component {
     public void incrementAwayScore() {
         awayScore++;
     }
+
+
 
 
 }

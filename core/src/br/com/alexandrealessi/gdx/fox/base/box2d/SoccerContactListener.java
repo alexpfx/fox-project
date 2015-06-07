@@ -14,7 +14,6 @@ public class SoccerContactListener extends SoccerResolverContactListener {
         Entity player = playerUserData.getEntity();
         PlayerMatchContextComponent playerMatchContextComponent = ComponentMappers.PLAYER_MATCH_CONTEXT.get(player);
 
-
     }
 
     @Override

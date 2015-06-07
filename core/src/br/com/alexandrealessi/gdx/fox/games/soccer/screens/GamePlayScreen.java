@@ -71,7 +71,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
 
     private void createMatch() {
         Entity match = new Entity();
-        match.add(new MatchContextComponent(homeTeam, awayTeam));
+        match.add(new MatchScoreComponent(homeTeam, awayTeam));
 
     }
 
