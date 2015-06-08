@@ -3,14 +3,12 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.CameraComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * Created by alexandre on 07/06/15.
  */
-public class InputFactory extends CreateAndAddToEngineFactory {
+public class InputFactory extends CreateAndAddToEngineEntityFactory {
     private Viewport viewport;
     private TouchDownInputComponent touchDownInputComponent;
 

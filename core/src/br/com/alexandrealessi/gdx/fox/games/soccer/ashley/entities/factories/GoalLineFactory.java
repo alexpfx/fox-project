@@ -13,7 +13,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 /**
  * Created by alexandre on 07/06/15.
  */
-public class GoalLineFactory extends CreateAndAddToEngineFactory {
+public class GoalLineFactory extends CreateAndAddToEngineEntityFactory {
 
     private RubeSceneHelper rubeSceneHelper;
     private Team team;

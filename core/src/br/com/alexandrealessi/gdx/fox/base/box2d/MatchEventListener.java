@@ -6,5 +6,5 @@ import com.badlogic.ashley.core.Entity;
  * Created by alexandre on 07/06/15.
  */
 public interface MatchEventListener {
-    void goal (Entity goalEntity);
+    void goal (Entity goalLineEntity);
 }

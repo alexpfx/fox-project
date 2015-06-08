@@ -4,11 +4,12 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchScoreC
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchTimerComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Family;
 
 /**
  * Created by alexandre on 07/06/15.
  */
-public class MatchFactory extends CreateAndAddToEngineFactory {
+public class MatchFactory extends CreateAndAddToEngineEntityFactory {
     private float matchTotalTime;
     private Team homeTeam;
     private Team awayTeam;
@@ -30,4 +31,7 @@ public class MatchFactory extends CreateAndAddToEngineFactory {
         entity.add(new MatchScoreComponent(homeTeam, awayTeam));
         return entity;
     }
+
+
+
 }

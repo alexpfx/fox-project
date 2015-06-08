@@ -18,7 +18,7 @@ import java.util.Iterator;
 /**
  * Created by alexandre on 24/05/15.
  */
-public class WorldStepSystem extends EntitySystem implements MatchEventListener{
+public class WorldStepSystem extends EntitySystem {
     private static final float TIME_STEP = 1 / 60f;
     private static final int VELOCITY_ITERATIONS = 3;
     private static final int POSITION_ITERATIONS = 2;
@@ -28,9 +28,7 @@ public class WorldStepSystem extends EntitySystem implements MatchEventListener{
     @Override
     public void addedToEngine(Engine engine) {
         worldEntity = engine.getEntitiesFor(Family.one(WorldComponent.class).get()).first();
-        final WorldComponent worldComponent = ComponentMappers.WORLD.get(worldEntity);
-        final World world = worldComponent.getWorld();
-        world.setContactListener(new SoccerContactListener(this));
+
     }
 
     @Override
@@ -55,11 +53,4 @@ public class WorldStepSystem extends EntitySystem implements MatchEventListener{
         }
     }
 
-    @Override
-    public void goal(Entity goalLineEntity) {
-        final TeamComponent teamComponent = ComponentMappers.TEAM.get(goalLineEntity);
-
-
-
-    }
 }

@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 /**
  * Created by alexandre on 07/06/15.
  */
-public class FieldFactory extends CreateAndAddToEngineFactory {
+public class FieldFactory extends CreateAndAddToEngineEntityFactory {
     private static final String FIELD_BODY_NAME = "field";
     private RubeSceneHelper rubeSceneHelper;
     private TextureAtlas atlas;
