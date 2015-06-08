@@ -22,6 +22,7 @@ import com.badlogic.gdx.physics.box2d.World;
 public class GameManagmentSystem extends EntitySystem implements MatchEventListener {
 
     private Entity worldEntity;
+    private Entity goalLineEntity;
 
     private MatchTimerComponent matchTimerComponent;
     private MatchScoreComponent matchScoreComponent;
@@ -36,7 +37,10 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
 
         Entity matchEntity = engine.getEntitiesFor(Family.all(MatchTimerComponent.class, MatchScoreComponent.class).get()).first();
         matchTimerComponent = ComponentMappers.MATCH_TIMER.get(matchEntity);
+
         matchScoreComponent = ComponentMappers.MATCH_CONTEXT.get(matchEntity);
+
+        final ImmutableArray<Entity> entitiesFor = engine.getEntitiesFor(Family.one(TeamComponent.class).get());
 
     }
 
@@ -54,8 +58,10 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
         } else {
             matchScoreComponent.incrementHomeScore();
         }
+        System.out.println();
         System.out.println("Away Score: "+matchScoreComponent.getAwayScore());
         System.out.println("Home Score:  "+matchScoreComponent.getHomeScore());
+
 
     }
 }

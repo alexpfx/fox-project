@@ -36,7 +36,12 @@ public abstract class SoccerResolverContactListener implements ContactListener {
         } else if (isBallAndPlayer(fixtureA, fixtureB)) {
             contactBallPlayer(uDataA, uDataB);
         } else if (isBallAndGoalLine(fixtureA, fixtureB)) {
-            contactBallGoalLine(uDataA, uDataB);
+            if (isGoalLine(fixtureA)){
+                contactBallGoalLine(uDataB, uDataA);
+            } else{
+                contactBallGoalLine(uDataA, uDataB);
+            }
+
         }
     }
 

@@ -93,9 +93,11 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         final GoalLineFactory factory = GoalLineFactory.getInstance(rubeSceneHelper);
 
         factory.setTeam(awayTeam);
+        factory.setGoalLineBodyName("goal_line_left");
         factory.createAndAddToEngine(engine);
 
         factory.setTeam(homeTeam);
+        factory.setGoalLineBodyName("goal_line_right");
         factory.createAndAddToEngine(engine);
     }
 
@@ -129,6 +131,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         CameraPositionSystem cameraPositionSystem = new CameraPositionSystem();
         RenderSystem renderSystem = new RenderSystem(viewport, DEBUG_PHYSICS);
         WorldStepSystem worldStepSystem = new WorldStepSystem();
+        GameManagmentSystem gameManagmentSystem = new GameManagmentSystem();
 
         engine.addSystem(unprojectInputSystem);
         engine.addSystem(selectPlayerByTouchSystem);
@@ -137,6 +140,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         engine.addSystem(cameraPositionSystem);
         engine.addSystem(renderSystem);
         engine.addSystem(worldStepSystem);
+        engine.addSystem(gameManagmentSystem);
     }
 
     private void createWorld() {

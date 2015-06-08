@@ -6,9 +6,11 @@ import br.com.alexandrealessi.gdx.fox.base.box2d.SoccerContactListener;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.MatchEntity;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.*;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
@@ -35,8 +37,26 @@ public class WorldStepSystem extends EntitySystem {
     public void update(float deltaTime) {
         final WorldComponent worldComponent = ComponentMappers.WORLD.get(worldEntity);
         final World world = worldComponent.getWorld();
+        final Array<Body> bodies = new Array<Body>();
+        world.getBodies(bodies);
+
+        if (applyForce ()) {
+            final Body body = bodies.get(MathUtils.random(bodies.size - 1));
+            final Object userData = body.getUserData();
+
+            if (userData != null && userData instanceof PlayerUserData) {
+                final float forceX = MathUtils.random(100f);
+                final float forceY = MathUtils.random(100f);
+                body.applyForceToCenter(forceX, forceY, true);
+
+            }
+        }
         clearWorld(world);
         world.step(TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+    }
+
+    private boolean applyForce() {
+        return MathUtils.randomBoolean(0.1f);
     }
 
     private void clearWorld(World world) {
