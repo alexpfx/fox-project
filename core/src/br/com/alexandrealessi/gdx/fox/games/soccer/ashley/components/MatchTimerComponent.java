@@ -1,9 +1,11 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 
+import com.badlogic.ashley.core.Component;
+
 /**
  * Created by alex on 07/06/2015.
  */
-public class MatchTimerComponent {
+public class MatchTimerComponent extends Component{
 
     private final float totalTime;
     private float timer;

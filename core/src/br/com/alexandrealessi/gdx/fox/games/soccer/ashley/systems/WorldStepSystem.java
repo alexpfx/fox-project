@@ -6,6 +6,7 @@ import br.com.alexandrealessi.gdx.fox.base.box2d.SoccerContactListener;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.MatchEntity;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.*;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -57,9 +58,8 @@ public class WorldStepSystem extends EntitySystem implements MatchEventListener{
     @Override
     public void goal(Entity goalLineEntity) {
         final TeamComponent teamComponent = ComponentMappers.TEAM.get(goalLineEntity);
-        
 
-        System.out.println(goalLineEntity);
+
 
     }
 }

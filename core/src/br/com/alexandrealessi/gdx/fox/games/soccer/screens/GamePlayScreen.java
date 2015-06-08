@@ -10,10 +10,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerPosition;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.BallFactory;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.FieldFactory;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.GoalLineFactory;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.InputFactory;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -34,8 +31,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Created by alexandre on 23/05/15.
  */
 public class GamePlayScreen extends BaseScreen implements GestureDetector.GestureListener {
-    //1248 x 794
-    //1700 x 1150
 
     public static final int PIXEL_TO_METER_FACTOR = 1;
     public static final boolean DEBUG_PHYSICS = true;
@@ -66,16 +61,15 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         createResourceHelperObjects();
         createWorld();
         createField();
+        createTeams();
         createBall();
         createGoalLines();
-        createTeams();
         createMatch();
         createSystems();
     }
 
     private void createMatch() {
-        Entity match = new Entity();
-        match.add(new MatchScoreComponent(homeTeam, awayTeam));
+        MatchFactory.newInstance(45f, homeTeam, awayTeam).createAndAddToEngine(engine);
     }
 
     private void setupInput() {
@@ -182,7 +176,6 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
 
     @Override
     public void show() {
-
     }
 
     @Override
@@ -194,8 +187,6 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         engine.update(delta);
         final long n = StopWatch.elapsedNanos();
         final float s = StopWatch.elapsedSeconds();
-//        System.out.println("nanos: " + n);
-//        System.out.println("segundos: " + s);
     }
 
     @Override
@@ -208,8 +199,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         atlas.dispose();
     }
 
-    //Input
-
+    //Input //TODO: mover para outra classe.
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {
         touchDownInputComponent.set(x, y, pointer, button);
@@ -251,4 +241,4 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         return false;
     }
 
-} // 271 -> 100
+} // 271/244 -> 100
