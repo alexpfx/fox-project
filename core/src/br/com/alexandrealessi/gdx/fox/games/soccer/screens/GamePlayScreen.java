@@ -91,6 +91,8 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         rubeSceneHelper = new RubeSceneHelper(SOCCER_JSON);
     }
 
+
+    //FIXME: so esta computando um lado.
     public void createGoalLines(){
         final GoalLineFactory factory = GoalLineFactory.getInstance(rubeSceneHelper);
 
