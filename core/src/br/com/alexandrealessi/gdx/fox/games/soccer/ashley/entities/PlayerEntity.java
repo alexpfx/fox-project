@@ -74,4 +74,16 @@ public class PlayerEntity extends Entity {
             return playerEntity;
         }
     }
+
+    private int touched = 0;
+
+    public void addTouch (){
+        touched ++;
+        System.out.println(touched);
+    }
+
+    public boolean wasReach (){
+        return touched == 20;
+    }
+
 }

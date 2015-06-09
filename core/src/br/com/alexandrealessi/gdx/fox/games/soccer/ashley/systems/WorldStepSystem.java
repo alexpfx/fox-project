@@ -1,13 +1,8 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.base.UserData;
-import br.com.alexandrealessi.gdx.fox.base.box2d.MatchEventListener;
-import br.com.alexandrealessi.gdx.fox.base.box2d.SoccerContactListener;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.MatchEntity;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.EntityUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.*;
 import com.badlogic.gdx.math.MathUtils;
@@ -44,7 +39,7 @@ public class WorldStepSystem extends EntitySystem {
             final Body body = bodies.get(MathUtils.random(bodies.size - 1));
             final Object userData = body.getUserData();
 
-            if (userData != null && userData instanceof PlayerUserData) {
+            if (userData != null && userData instanceof EntityUserData) {
                 final float forceX = MathUtils.random(100f);
                 final float forceY = MathUtils.random(100f);
                 body.applyForceToCenter(forceX, forceY, true);

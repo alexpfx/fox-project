@@ -4,16 +4,14 @@ import br.com.alexandrealessi.gdx.fox.base.box2d.MatchEventListener;
 import br.com.alexandrealessi.gdx.fox.base.box2d.SoccerContactListener;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerUserData;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.EntityUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.MatchFactory;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
 /**
@@ -72,9 +70,8 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
 
         if (p.wasReach()){
             final BodyComponent bodyComponent = ComponentMappers.BODY.get(player);
-            final PlayerUserData userData = (PlayerUserData) bodyComponent.getBody().getUserData();
+            final EntityUserData userData = (EntityUserData) bodyComponent.getBody().getUserData();
             userData.setAlive(false);
-
         }
 
 
