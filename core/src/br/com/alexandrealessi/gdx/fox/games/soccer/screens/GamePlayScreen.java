@@ -101,7 +101,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         arguments.put(GoalLineFactory.GOAL_LINE_BODY_NAME, "goal_line_right");
         factory.createAndAddToEngine(arguments, engine);
 
-        arguments.put(GoalLineFactory.TEAM, awayTeam);
+        arguments.put(GoalLineFactory.TEAM, homeTeam);
         arguments.put(GoalLineFactory.GOAL_LINE_BODY_NAME, "goal_line_left");
         factory.createAndAddToEngine(arguments, engine);
     }

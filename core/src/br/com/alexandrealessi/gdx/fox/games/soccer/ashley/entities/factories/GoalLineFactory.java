@@ -34,7 +34,7 @@ public class GoalLineFactory extends CreateAndAddToEngineEntityFactory {
         Team team = map.get(TEAM);
         String goalLineBodyName = map.get(GOAL_LINE_BODY_NAME);
         if (team == null || goalLineBodyName == null){
-            throw new IllegalArgumentException("team or body name don't pass to arguments");
+            throw new IllegalArgumentException("team or body name don't passed as arguments");
         }
         Entity entity = new Entity();
         final Body body = rubeSceneHelper.getBody(goalLineBodyName);
@@ -43,6 +43,7 @@ public class GoalLineFactory extends CreateAndAddToEngineEntityFactory {
         goalLineLeftFixture.setUserData(new FixtureUserData(FixtureType.GOAL_LINE, entity));
         entity.add(new TeamComponent(team));
         return entity;
+
     }
 
 }
