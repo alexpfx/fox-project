@@ -11,11 +11,17 @@ public class PlayerMatchContextComponent extends Component{
 
     private Team team;
     private PlayerPosition position;
+    private int playerNumber;
+
     private boolean isSelected = false;
 
-    public PlayerMatchContextComponent(Team team, PlayerPosition playerPosition) {
+    private PlayerMatchContextComponent(Team team, PlayerPosition playerPosition, int playerNumber) {
         this.team = team;
         this.position = playerPosition;
+    }
+
+    public static PlayerMatchContextComponent newInstance(Team team, PlayerPosition playerPosition, int playerNumber) {
+        return new PlayerMatchContextComponent(team, playerPosition, playerNumber);
     }
 
     public PlayerPosition getPosition() {

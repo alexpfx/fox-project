@@ -12,8 +12,12 @@ public class BodyComponent extends Component implements UserData {
     private Body body;
     private boolean isAlive;
 
-    public BodyComponent(Body body) {
+    private BodyComponent(Body body) {
         this.body = body;
+    }
+
+    public static BodyComponent newInstance(Body body) {
+        return new BodyComponent(body);
     }
 
     public Body getBody() {

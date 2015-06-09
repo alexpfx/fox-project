@@ -11,11 +11,18 @@ public class SpriteComponent extends Component {
 
     private Sprite sprite;
 
-    public SpriteComponent(Sprite sprite) {
+    private SpriteComponent(Sprite sprite) {
         this.sprite = sprite;
+    }
+
+    public static SpriteComponent newInstance(Sprite sprite) {
+        return new SpriteComponent(sprite);
     }
 
     public Sprite getSprite() {
         return sprite;
     }
+
+
+
 }
