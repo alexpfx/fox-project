@@ -7,7 +7,6 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.SpriteCompo
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.utils.ArrayMap;
 
 /**
  * Created by alexandre on 07/06/15.
@@ -32,12 +31,12 @@ public class FieldFactory extends CreateAndAddToEngineEntityFactory {
     public Entity create(CreateArguments arguments) {
         Entity field = new Entity();
 
-        field.add(new BodyComponent(rubeSceneHelper.getBody(FIELD_BODY_NAME)));
-        field.add(new PositionComponent());
+        field.add(BodyComponent.newInstance(rubeSceneHelper.getBody(FIELD_BODY_NAME)));
+        field.add(PositionComponent.newInstance());
 
         final Sprite soccer = new Sprite(atlas.findRegion("small_field"));
         soccer.setScale(SCENE_HEIGHT / soccer.getHeight());
-        field.add(new SpriteComponent(soccer));
+        field.add(SpriteComponent.newInstance(soccer));
 
         return field;
     }

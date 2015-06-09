@@ -14,7 +14,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.utils.ArrayMap;
 
 /**
  * Created by alexandre on 07/06/15.
@@ -43,9 +42,9 @@ public class BallFactory extends CreateAndAddToEngineEntityFactory {
         final Body ballBody = rubeSceneHelper.getBody("ball");
         final Fixture ball = rubeSceneHelper.getFixture(ballBody, "ball");
         ball.setUserData(new FixtureUserData(FixtureType.BALL, ballEntity));
-        ballEntity.add(new SpriteComponent(ballSprite));
-        ballEntity.add(new BodyComponent(ballBody));
-        final PositionComponent positionComponent = new PositionComponent();
+        ballEntity.add(SpriteComponent.newInstance(ballSprite));
+        ballEntity.add(BodyComponent.newInstance(ballBody));
+        final PositionComponent positionComponent = PositionComponent.newInstance();
         ballEntity.add(positionComponent);
         ballEntity.add(new CameraFollowerComponent(camera, SCENE_BOUNDS));
         ballSprite.setScale(2 / ballSprite.getHeight());

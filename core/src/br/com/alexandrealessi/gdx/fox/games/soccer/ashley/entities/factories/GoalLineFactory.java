@@ -9,7 +9,6 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.utils.ArrayMap;
 
 /**
  * Created by alexandre on 07/06/15.
@@ -38,7 +37,7 @@ public class GoalLineFactory extends CreateAndAddToEngineEntityFactory {
         }
         Entity entity = new Entity();
         final Body body = rubeSceneHelper.getBody(goalLineBodyName);
-        entity.add(new BodyComponent(body));
+        entity.add(BodyComponent.newInstance(body));
         final Fixture goalLineLeftFixture = rubeSceneHelper.getFixture(body, "line");
         goalLineLeftFixture.setUserData(new FixtureUserData(FixtureType.GOAL_LINE, entity));
         entity.add(new TeamComponent(team));
