@@ -15,7 +15,6 @@ public abstract class SoccerResolverContactListener implements ContactListener {
 
     protected abstract void contactPlayerPlayer(FixtureUserData playerA, FixtureUserData playerB);
 
-
     @Override
     final public void beginContact(Contact contact) {
         resolveContact(contact);
@@ -27,21 +26,24 @@ public abstract class SoccerResolverContactListener implements ContactListener {
 
         FixtureUserData uDataA = getFixtureUserData(fixtureA);
         FixtureUserData uDataB = getFixtureUserData(fixtureB);
-        if (uDataA == null || uDataB == null){
+        if (uDataA == null || uDataB == null) {
             return;
         }
 
         if (areBothPlayers(fixtureA, fixtureB)) {
             contactPlayerPlayer(uDataA, uDataB);
         } else if (isBallAndPlayer(fixtureA, fixtureB)) {
-            contactBallPlayer(uDataA, uDataB);
+            if (isBall(fixtureA)) {
+                contactBallPlayer(uDataA, uDataB);
+            } else {
+                contactBallPlayer(uDataB, uDataA);
+            }
         } else if (isBallAndGoalLine(fixtureA, fixtureB)) {
-            if (isGoalLine(fixtureA)){
+            if (isGoalLine(fixtureA)) {
                 contactBallGoalLine(uDataB, uDataA);
-            } else{
+            } else {
                 contactBallGoalLine(uDataA, uDataB);
             }
-
         }
     }
 
@@ -60,7 +62,6 @@ public abstract class SoccerResolverContactListener implements ContactListener {
     private boolean areBothPlayers(Fixture fixtureA, Fixture fixtureB) {
         return (isPlayer(fixtureA) && isPlayer(fixtureB));
     }
-
 
     public boolean isPlayer(Fixture fixture) {
         return (FixtureType.PLAYER == ((FixtureUserData) fixture.getUserData()).getType());

@@ -15,7 +15,7 @@ public class SoccerContactListener extends SoccerResolverContactListener {
 
     @Override
     protected void contactBallPlayer(FixtureUserData ballUserData, FixtureUserData playerUserData) {
-
+        listener.playerBall(playerUserData.getEntity());
     }
 
     @Override
