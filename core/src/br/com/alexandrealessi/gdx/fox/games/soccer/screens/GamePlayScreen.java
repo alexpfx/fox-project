@@ -110,7 +110,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     }
 
     public void createBall() {
-        BallFactory.getInstance(atlas, rubeSceneHelper, camera, SCENE_BOUNDS)
+        BallFactory.newInstance(atlas, rubeSceneHelper, camera, SCENE_BOUNDS)
                    .createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
     }
 
