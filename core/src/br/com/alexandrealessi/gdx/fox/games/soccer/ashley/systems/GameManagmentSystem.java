@@ -65,16 +65,6 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
 
     @Override
     public void playerBall(Entity player) {
-        final PlayerEntity p = (PlayerEntity) player;
-        p.addTouch();
-
-        if (p.wasReach()){
-            final BodyComponent bodyComponent = ComponentMappers.BODY.get(player);
-            final EntityUserData userData = (EntityUserData) bodyComponent.getBody().getUserData();
-            userData.setAlive(false);
-        }
-
-
-
+        System.out.println("playerball");
     }
 }

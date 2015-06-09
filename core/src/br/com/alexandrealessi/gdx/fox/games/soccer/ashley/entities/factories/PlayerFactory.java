@@ -1,5 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories;
 
+import br.com.alexandrealessi.gdx.fox.FixtureUserData;
+import br.com.alexandrealessi.gdx.fox.base.FixtureType;
 import br.com.alexandrealessi.gdx.fox.base.box2d.BodyBuilder;
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
@@ -9,6 +11,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Fixture;
 
 /**
  * Created by alexandre on 08/06/15.
@@ -36,8 +39,14 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
         Entity player = new Entity();
 
         final Body bodyModel = rubeSceneHelper.getBody("player");
+        final Fixture bodyFixture = rubeSceneHelper.getFixture(bodyModel, "player_fixture");
+
+        //FIXME: vai criar um userdata apenas
+        bodyFixture.setUserData(new FixtureUserData(FixtureType.PLAYER, player));
+
         final Body body = BodyBuilder.clone(bodyModel).build();
         body.setUserData(EntityUserData.newInstance(player));
+
         player.add(BodyComponent.newInstance(body));
 
         final Sprite sprite = new Sprite(uniform.getSprite());

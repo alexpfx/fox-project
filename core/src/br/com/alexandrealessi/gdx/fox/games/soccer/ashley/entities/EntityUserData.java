@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.Array;
 public class EntityUserData implements UserData {
 
     private boolean alive;
-    private PlayerEntity playerEntity;
+    private Entity playerEntity;
 
     private EntityUserData(Entity entity) {
         this.playerEntity = playerEntity;
