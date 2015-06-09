@@ -2,16 +2,16 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.ashley.core.Family;
+import com.badlogic.gdx.utils.ArrayMap;
 
 /**
  * Created by alexandre on 07/06/15.
  */
-public abstract class CreateAndAddToEngineEntityFactory<T extends Entity> implements EntityFactory <T> {
+public abstract class CreateAndAddToEngineEntityFactory<E extends Entity> implements EntityFactory<E> {
 
-    @Override
-    public Entity createAndAddToEngine(Engine engine) {
-        final T entity = create();
+
+    public final E createAndAddToEngine(CreateArguments arguments, Engine engine) {
+        final E entity = create(arguments);
         engine.addEntity(entity);
         return entity;
     }

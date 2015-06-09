@@ -9,15 +9,16 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.utils.ArrayMap;
 
 /**
  * Created by alexandre on 07/06/15.
  */
 public class GoalLineFactory extends CreateAndAddToEngineEntityFactory {
 
+    public static final String TEAM = "team";
+    public static final String GOAL_LINE_BODY_NAME = "goal_line_body_name";
     private RubeSceneHelper rubeSceneHelper;
-    private Team team;
-    private String goalLineBodyName;
 
     private GoalLineFactory(RubeSceneHelper rubeSceneHelper) {
         this.rubeSceneHelper = rubeSceneHelper;
@@ -27,32 +28,20 @@ public class GoalLineFactory extends CreateAndAddToEngineEntityFactory {
         return new GoalLineFactory(rubeSceneHelper);
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
-    }
-
-    public void setGoalLineBodyName(String goalLineBodyName) {
-        this.goalLineBodyName = goalLineBodyName;
-    }
 
     @Override
-    public Entity create() {
+    public Entity create(CreateArguments map) {
+        Team team = map.get(TEAM);
+        String goalLineBodyName = map.get(GOAL_LINE_BODY_NAME);
         if (team == null || goalLineBodyName == null){
-            throw new IllegalArgumentException("usar setTeam para setar o time");
+            throw new IllegalArgumentException("team or body name don't pass to arguments");
         }
-
-
-
         Entity entity = new Entity();
-
         final Body body = rubeSceneHelper.getBody(goalLineBodyName);
         entity.add(new BodyComponent(body));
-
         final Fixture goalLineLeftFixture = rubeSceneHelper.getFixture(body, "line");
         goalLineLeftFixture.setUserData(new FixtureUserData(FixtureType.GOAL_LINE, entity));
         entity.add(new TeamComponent(team));
-        team = null;
-        goalLineBodyName = null;
         return entity;
     }
 

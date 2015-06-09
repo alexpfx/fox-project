@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.utils.ArrayMap;
 
 /**
  * Created by alexandre on 07/06/15.
@@ -23,8 +24,6 @@ public class BallFactory extends CreateAndAddToEngineEntityFactory {
     private RubeSceneHelper rubeSceneHelper;
     private Camera camera;
     private Rectangle SCENE_BOUNDS;
-
-
 
     private BallFactory(TextureAtlas atlas, RubeSceneHelper rubeSceneHelper, Camera camera, Rectangle SCENE_BOUNDS) {
         this.atlas = atlas;
@@ -38,7 +37,7 @@ public class BallFactory extends CreateAndAddToEngineEntityFactory {
     }
 
     @Override
-    public Entity create() {
+    public Entity create(CreateArguments arguments) {
         final Entity ballEntity = new Entity();
         final Sprite ballSprite = new Sprite(atlas.findRegion("ball"));
         final Body ballBody = rubeSceneHelper.getBody("ball");
@@ -52,6 +51,5 @@ public class BallFactory extends CreateAndAddToEngineEntityFactory {
         ballSprite.setScale(2 / ballSprite.getHeight());
         return ballEntity;
     }
-
 
 }

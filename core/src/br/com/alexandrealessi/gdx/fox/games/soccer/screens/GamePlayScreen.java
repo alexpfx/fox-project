@@ -3,6 +3,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 import br.com.alexandrealessi.gdx.fox.base.box2d.BodyBuilder;
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
+import br.com.alexandrealessi.gdx.fox.base.utils.EmptyObjects;
 import br.com.alexandrealessi.gdx.fox.base.utils.StopWatch;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
@@ -24,6 +25,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ArrayMap;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -69,12 +71,12 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     }
 
     private void createMatch() {
-        MatchFactory.newInstance(45f, homeTeam, awayTeam).createAndAddToEngine(engine);
+        MatchFactory.newInstance(45f, homeTeam, awayTeam).createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
     }
 
     private void setupInput() {
         this.touchDownInputComponent = new TouchDownInputComponent();
-        InputFactory.getInstance(viewport, touchDownInputComponent).createAndAddToEngine(engine);
+        InputFactory.getInstance(viewport, touchDownInputComponent).createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
         Gdx.input.setInputProcessor(new GestureDetector(this));
     }
 
@@ -92,21 +94,22 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     public void createGoalLines(){
         final GoalLineFactory factory = GoalLineFactory.getInstance(rubeSceneHelper);
 
-        factory.setTeam(awayTeam);
-        factory.setGoalLineBodyName("goal_line_right");
-        factory.createAndAddToEngine(engine);
+        CreateArguments arguments = new CreateArguments();
+        arguments.put(GoalLineFactory.TEAM, awayTeam);
+        arguments.put(GoalLineFactory.GOAL_LINE_BODY_NAME, "goal_line_right");
+        factory.createAndAddToEngine(arguments, engine);
 
-        factory.setTeam(homeTeam);
-        factory.setGoalLineBodyName("goal_line_left");
-        factory.createAndAddToEngine(engine);
+        arguments.put(GoalLineFactory.TEAM, awayTeam);
+        arguments.put(GoalLineFactory.GOAL_LINE_BODY_NAME, "goal_line_left");
+        factory.createAndAddToEngine(arguments, engine);
     }
 
     public void createField() {
-        FieldFactory.newInstance(rubeSceneHelper, atlas, SCENE_HEIGHT).createAndAddToEngine(engine);
+        FieldFactory.newInstance(rubeSceneHelper, atlas, SCENE_HEIGHT).createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
     }
 
     public void createBall() {
-        BallFactory.getInstance(atlas, rubeSceneHelper, camera, SCENE_BOUNDS).createAndAddToEngine(engine);
+        BallFactory.getInstance(atlas, rubeSceneHelper, camera, SCENE_BOUNDS).createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
     }
 
     public void createTeams() {

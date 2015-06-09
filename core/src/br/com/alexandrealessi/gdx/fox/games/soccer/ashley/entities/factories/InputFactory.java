@@ -3,6 +3,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.CameraComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.utils.ArrayMap;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
@@ -22,7 +23,7 @@ public class InputFactory extends CreateAndAddToEngineEntityFactory {
     }
 
     @Override
-    public Entity create() {
+    public Entity create(CreateArguments map) {
         Entity input = new Entity();
         this.touchDownInputComponent = new TouchDownInputComponent();
         input.add(touchDownInputComponent);
