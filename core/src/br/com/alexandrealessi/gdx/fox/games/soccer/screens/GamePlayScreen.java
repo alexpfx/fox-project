@@ -74,7 +74,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
 
     private void setupInput() {
         this.touchDownInputComponent = new TouchDownInputComponent();
-        InputFactory.getInstance(viewport, touchDownInputComponent)
+        InputFactory.newInstance(viewport, touchDownInputComponent)
                     .createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
         Gdx.input.setInputProcessor(new GestureDetector(this));
     }
@@ -92,7 +92,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
 
     //FIXME: so esta computando um lado.
     public void createGoalLines() {
-        final GoalLineFactory factory = GoalLineFactory.getInstance(rubeSceneHelper);
+        final GoalLineFactory factory = GoalLineFactory.newInstance(rubeSceneHelper);
 
         CreateArguments arguments = new CreateArguments();
         arguments.put(GoalLineFactory.TEAM, awayTeam);

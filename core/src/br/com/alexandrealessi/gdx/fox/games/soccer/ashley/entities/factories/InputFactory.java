@@ -18,7 +18,7 @@ public class InputFactory extends CreateAndAddToEngineEntityFactory {
         this.touchDownInputComponent = touchDownInputComponent;
     }
 
-    public static InputFactory getInstance(Viewport viewport, TouchDownInputComponent touchDownInputComponent) {
+    public static InputFactory newInstance(Viewport viewport, TouchDownInputComponent touchDownInputComponent) {
         return new InputFactory(viewport, touchDownInputComponent);
     }
 
