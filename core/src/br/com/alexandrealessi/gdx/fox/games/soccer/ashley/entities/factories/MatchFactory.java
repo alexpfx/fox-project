@@ -25,7 +25,7 @@ public class MatchFactory extends CreateAndAddToEngineEntityFactory {
     }
 
     @Override
-    public Entity create(CreateArguments map) {
+    public Entity create(CreateArguments arguments) {
         Entity entity = new Entity();
         entity.add(new MatchTimerComponent(matchTotalTime));
         entity.add(new MatchScoreComponent(homeTeam, awayTeam));

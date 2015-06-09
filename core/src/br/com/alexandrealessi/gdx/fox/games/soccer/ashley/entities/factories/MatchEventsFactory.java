@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.ArrayMap;
  */
 public class MatchEventsFactory extends CreateAndAddToEngineEntityFactory {
     @Override
-    public Entity create(CreateArguments map) {
+    public Entity create(CreateArguments arguments) {
         // entidade que tratar eventos acontecidos no jogo.
         return null;
     }

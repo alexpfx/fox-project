@@ -29,9 +29,9 @@ public class GoalLineFactory extends CreateAndAddToEngineEntityFactory {
 
 
     @Override
-    public Entity create(CreateArguments map) {
-        Team team = map.get(TEAM);
-        String goalLineBodyName = map.get(GOAL_LINE_BODY_NAME);
+    public Entity create(CreateArguments arguments) {
+        Team team = arguments.get(TEAM);
+        String goalLineBodyName = arguments.get(GOAL_LINE_BODY_NAME);
         if (team == null || goalLineBodyName == null){
             throw new IllegalArgumentException("team or body name don't passed as arguments");
         }

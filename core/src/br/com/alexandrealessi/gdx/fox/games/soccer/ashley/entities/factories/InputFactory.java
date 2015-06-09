@@ -23,7 +23,7 @@ public class InputFactory extends CreateAndAddToEngineEntityFactory {
     }
 
     @Override
-    public Entity create(CreateArguments map) {
+    public Entity create(CreateArguments arguments) {
         Entity input = new Entity();
         this.touchDownInputComponent = new TouchDownInputComponent();
         input.add(touchDownInputComponent);
