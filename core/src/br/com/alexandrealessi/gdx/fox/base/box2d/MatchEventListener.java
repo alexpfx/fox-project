@@ -7,4 +7,5 @@ import com.badlogic.ashley.core.Entity;
  */
 public interface MatchEventListener {
     void goal (Entity goalLineEntity);
+    void playerBall (Entity player);
 }
