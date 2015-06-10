@@ -3,7 +3,6 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 import br.com.alexandrealessi.gdx.fox.base.box2d.MatchEventListener;
 import br.com.alexandrealessi.gdx.fox.base.box2d.SoccerContactListener;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.EntityUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
@@ -33,7 +32,8 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
         final World world = worldComponent.getWorld();
         world.setContactListener(new SoccerContactListener(this));
 
-        Entity matchEntity = engine.getEntitiesFor(Family.all(MatchTimerComponent.class, MatchScoreComponent.class).get()).first();
+        Entity matchEntity = engine
+                .getEntitiesFor(Family.all(MatchTimerComponent.class, MatchScoreComponent.class).get()).first();
         matchTimerComponent = ComponentMappers.MATCH_TIMER.get(matchEntity);
 
         matchScoreComponent = ComponentMappers.MATCH_CONTEXT.get(matchEntity);
@@ -51,20 +51,25 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
     public void goal(Entity goalLineEntity) {
         final TeamComponent teamComponent = ComponentMappers.TEAM.get(goalLineEntity);
         final Team team = teamComponent.getTeam();
-        if (team.equals(matchScoreComponent.getHomeTeam())){
+        if (team.equals(matchScoreComponent.getHomeTeam())) {
             matchScoreComponent.incrementAwayScore();
         } else {
             matchScoreComponent.incrementHomeScore();
         }
         System.out.println();
-        System.out.println("Away Score: "+matchScoreComponent.getAwayScore());
-        System.out.println("Home Score:  "+matchScoreComponent.getHomeScore());
-
+        System.out.println("Away Score: " + matchScoreComponent.getAwayScore());
+        System.out.println("Home Score:  " + matchScoreComponent.getHomeScore());
 
     }
 
     @Override
     public void playerBall(Entity player) {
-        System.out.println("playerball");
+        final PlayerInfoComponent info = ComponentMappers.PLAYER_INFO.get(player);
+
+        if (info.wasReach()) {
+            final BodyComponent bodyComponent = ComponentMappers.BODY.get(player);
+            final EntityUserData userData = (EntityUserData) bodyComponent.getBody().getUserData();
+            userData.setAlive(false);
+        }
     }
 }

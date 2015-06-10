@@ -7,6 +7,7 @@ import com.badlogic.ashley.core.Component;
  */
 public class PlayerInfoComponent extends Component {
     private String nome;
+    private int ballPlayerContact = 0;
 
     private PlayerInfoComponent(String nome) {
         this.nome = nome;
@@ -19,4 +20,16 @@ public class PlayerInfoComponent extends Component {
     public String getNome() {
         return nome;
     }
+
+    public void incrementBallPlayer (){
+        ballPlayerContact ++;
+        System.out.println(ballPlayerContact);
+    }
+
+    public boolean wasReach (){
+        incrementBallPlayer();
+        return ballPlayerContact >= 6;
+    }
+
+
 }

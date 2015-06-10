@@ -26,7 +26,9 @@ public abstract class SoccerResolverContactListener implements ContactListener {
 
         FixtureUserData uDataA = getFixtureUserData(fixtureA);
         FixtureUserData uDataB = getFixtureUserData(fixtureB);
+
         if (uDataA == null || uDataB == null) {
+
             return;
         }
 
@@ -47,12 +49,21 @@ public abstract class SoccerResolverContactListener implements ContactListener {
         }
     }
 
+    private void print(FixtureUserData uDataB) {
+        if (uDataB == null){
+            System.out.println("Udata: Null.");
+        } else {
+            System.out.println("Udata: "+uDataB.getType());
+
+        }
+    }
+
     private FixtureUserData getFixtureUserData(Fixture fixture) {
         return (FixtureUserData) fixture.getUserData();
     }
 
     private boolean isBallAndPlayer(Fixture fixtureA, Fixture fixtureB) {
-        return isBall(fixtureA) && isPlayer(fixtureA) || isBall(fixtureB) && isPlayer(fixtureA);
+        return isBall(fixtureA) && isPlayer(fixtureB) || isBall(fixtureB) && isPlayer(fixtureA);
     }
 
     private boolean isBallAndGoalLine(Fixture fixtureA, Fixture fixtureB) {

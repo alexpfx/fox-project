@@ -42,10 +42,10 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
 
         Entity player = new Entity();
 
-        final Body bodyModel = rubeSceneHelper.getBody("player");
-        final Fixture bodyFixture = rubeSceneHelper.getFixture(bodyModel, "player_fixture");
 
-        //FIXME: vai criar um userdata apenas
+        final Body bodyModel = rubeSceneHelper.getBody("player");
+
+        final Fixture bodyFixture = rubeSceneHelper.getFixture(bodyModel, "player_fixture");
         bodyFixture.setUserData(new FixtureUserData(FixtureType.PLAYER, player));
 
         final Body body = bodyCloner.clone(bodyModel);
