@@ -2,7 +2,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories;
 
 import br.com.alexandrealessi.gdx.fox.FixtureUserData;
 import br.com.alexandrealessi.gdx.fox.base.FixtureType;
-import br.com.alexandrealessi.gdx.fox.base.box2d.BodyBuilder;
+import br.com.alexandrealessi.gdx.fox.base.box2d.BodyCloner;
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.EntityUserData;
@@ -17,15 +17,18 @@ import com.badlogic.gdx.physics.box2d.Fixture;
  * Created by alexandre on 08/06/15.
  */
 public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
-    private RubeSceneHelper rubeSceneHelper;
     public static final String PLAYER_NUMBER = "NUMBER";
     public static final String PLAYER_POSITION = "PLAYER_POSITION";
     public static final String PLAYER_NAME = "PLAYER_NAME";
     public static final String UNIFORM = "UNIFORM";
     public static final String TEAM = "TEAM";
+    private RubeSceneHelper rubeSceneHelper;
+    private BodyCloner bodyCloner;
 
     private PlayerFactory(RubeSceneHelper rubeSceneHelper) {
         this.rubeSceneHelper = rubeSceneHelper;
+        bodyCloner = BodyCloner.newInstance();
+
     }
 
     public static PlayerFactory newInstance(RubeSceneHelper rubeSceneHelper) {
@@ -34,6 +37,7 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
 
     @Override
     public Entity create(CreateArguments arguments) {
+
         final ScaledSprite uniform = arguments.get(UNIFORM);
 
         Entity player = new Entity();
@@ -44,7 +48,8 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
         //FIXME: vai criar um userdata apenas
         bodyFixture.setUserData(new FixtureUserData(FixtureType.PLAYER, player));
 
-        final Body body = BodyBuilder.clone(bodyModel).build();
+        final Body body = bodyCloner.clone(bodyModel);
+
         body.setUserData(EntityUserData.newInstance(player));
 
         player.add(BodyComponent.newInstance(body));
@@ -54,8 +59,8 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
 
         final Team team = arguments.get(TEAM);
         final PlayerPosition position = arguments.get(PLAYER_POSITION);
-        final int number  = arguments.get(PLAYER_NUMBER);
-        player.add(PlayerMatchContextComponent.newInstance(team, position, 0));
+        final int number = arguments.get(PLAYER_NUMBER);
+        player.add(PlayerMatchContextComponent.newInstance(team, position, number));
 
         player.add(PositionComponent.newInstance());
 
