@@ -69,7 +69,9 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
         if (info.wasReach()) {
             final BodyComponent bodyComponent = ComponentMappers.BODY.get(player);
             final EntityUserData userData = (EntityUserData) bodyComponent.getBody().getUserData();
-            userData.setAlive(false);
+            if (userData != null){
+                userData.setAlive(false);
+            }
         }
     }
 }
