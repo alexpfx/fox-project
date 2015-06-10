@@ -47,7 +47,7 @@ public class BodyCloner {
         FixtureCloner fixtureCloner = FixtureCloner.newInstance();
         for (Fixture f: fixtureList){
             final FixtureUserDataComposite fixtureClone = fixtureCloner.clone(f);
-            final Object fixtureUserData = fixtureClone.getUserData();
+            final Object fixtureUserData = f.getUserData();
             final FixtureDef fixtureDef = fixtureClone.getFixtureDef();
             final Fixture fixture = clone.createFixture(fixtureDef);
             fixture.setUserData(fixtureUserData);
