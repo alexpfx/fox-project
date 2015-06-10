@@ -25,6 +25,6 @@ public class ComponentMappers {
     public static final ComponentMapper<TeamComponent> TEAM = ComponentMapper.getFor(TeamComponent.class);
     public static final ComponentMapper<MatchTimerComponent> MATCH_TIMER = ComponentMapper.getFor(MatchTimerComponent.class);
 
-    private static final ComponentMapper<PlayerInfoComponent> PLAYER_INFO = ComponentMapper.getFor(PlayerInfoComponent.class);
+    public static final ComponentMapper<PlayerInfoComponent> PLAYER_INFO = ComponentMapper.getFor(PlayerInfoComponent.class);
 
 }
