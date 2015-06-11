@@ -1,7 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerPosition;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Component;
 
 /**

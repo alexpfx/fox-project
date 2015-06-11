@@ -2,6 +2,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.BodyComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PositionComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.EntityUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -34,6 +35,11 @@ public class MetersToPixelConvertSystem extends EntitySystem {
         for (int i = 0; i < entities.size(); i++) {
             final Entity e = entities.get(i);
             final BodyComponent bodyComponent = ComponentMappers.BODY.get(e);
+            final EntityUserData userData = (EntityUserData)  bodyComponent.getBody().getUserData();
+            if (userData != null){
+
+
+            }
             final PositionComponent positionComponent = ComponentMappers.POSITION.get(e);
             final Body body = bodyComponent.getBody();
             float x = body.getPosition().x * pixelToMeterFactor;

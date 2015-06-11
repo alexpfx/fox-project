@@ -5,7 +5,7 @@ import br.com.alexandrealessi.gdx.fox.base.FixtureType;
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.BodyComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;

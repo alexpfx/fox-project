@@ -8,8 +8,8 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerPosition;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import com.badlogic.ashley.core.Engine;
@@ -160,7 +160,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
 
     public Array<Entity> createPlayersOfTeam(ScaledSprite uniform, Team team) {
         Array<Entity> players = new Array<Entity>();
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 1; i++) {
             final Entity player = createPlayer(team, uniform, "player" + i, i + 1);
             players.add(player);
         }
@@ -168,6 +168,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     }
 
     private Entity createPlayer(Team team, ScaledSprite uniform, String playerName, int n) {
+
 
         CreateArguments arguments = new CreateArguments();
         arguments.put(PlayerFactory.PLAYER_POSITION, PlayerPosition.ATTACKER);

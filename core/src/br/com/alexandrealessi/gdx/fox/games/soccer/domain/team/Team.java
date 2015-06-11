@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities;
+package br.com.alexandrealessi.gdx.fox.games.soccer.domain.team;
 
 /**
  * Created by alexandre on 25/05/15.

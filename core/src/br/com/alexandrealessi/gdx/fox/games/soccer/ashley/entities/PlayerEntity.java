@@ -1,5 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities;
 
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.utils.Array;

@@ -6,8 +6,8 @@ import br.com.alexandrealessi.gdx.fox.base.box2d.BodyCloner;
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.EntityUserData;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerPosition;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -42,7 +42,6 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
 
         Entity player = new Entity();
 
-
         final Body bodyModel = rubeSceneHelper.getBody("player");
 
         final Fixture bodyFixture = rubeSceneHelper.getFixture(bodyModel, "player_fixture");
@@ -51,6 +50,7 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
         final Body body = bodyCloner.clone(bodyModel);
 
         body.setUserData(EntityUserData.newInstance(player));
+        body.setTransform(-50, 20, 0);
 
         player.add(BodyComponent.newInstance(body));
 

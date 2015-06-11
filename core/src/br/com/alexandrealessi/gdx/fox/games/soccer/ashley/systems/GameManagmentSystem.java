@@ -4,7 +4,7 @@ import br.com.alexandrealessi.gdx.fox.base.box2d.MatchEventListener;
 import br.com.alexandrealessi.gdx.fox.base.box2d.SoccerContactListener;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.EntityUserData;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;

@@ -2,9 +2,8 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories;
 
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchScoreComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchTimerComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.Team;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.utils.ArrayMap;
 
 /**
  * Created by alexandre on 07/06/15.
