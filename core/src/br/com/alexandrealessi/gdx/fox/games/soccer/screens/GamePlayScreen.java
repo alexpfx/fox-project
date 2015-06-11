@@ -12,6 +12,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.TeamFormation;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
@@ -115,12 +116,12 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     }
 
     public void createTeams() {
-        homeTeam = new Team("Gremio", true);
+        homeTeam = new Team("Gremio", true, TeamFormation.F433);
         final Sprite panda = new Sprite(atlas.findRegion("panda"));
         final Array<Entity> tpanda = createPlayersOfTeam(ScaledSprite
                 .newInstance(panda, ANIMAL_SPRITE_SCALE / panda.getHeight()), homeTeam);
 
-        awayTeam = new Team("Internacional", false);
+        awayTeam = new Team("Internacional", false, TeamFormation.F433);
         final Sprite monkey = new Sprite(atlas.findRegion("monkey"));
         final Array<Entity> tmonkey = createPlayersOfTeam(ScaledSprite
                 .newInstance(monkey, ANIMAL_SPRITE_SCALE / monkey.getHeight()), awayTeam);
@@ -171,7 +172,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
 
 
         CreateArguments arguments = new CreateArguments();
-        arguments.put(PlayerFactory.PLAYER_POSITION, PlayerPosition.ATTACKER);
+        arguments.put(PlayerFactory.PLAYER_POSITION, PlayerPosition.AM);
         arguments.put(PlayerFactory.PLAYER_NAME, playerName);
         arguments.put(PlayerFactory.UNIFORM, uniform);
         arguments.put(PlayerFactory.TEAM, team);
