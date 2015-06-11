@@ -1,13 +1,13 @@
-package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities;
+package br.com.alexandrealessi.gdx.fox.games.soccer.domain.team;
 
-import static br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerPosition.*;
+import static br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition.*;
 
 /**
  * Created by alexandre on 10/06/15.
  */
 public enum DefenderFormation {
-    DEFAULT(4, new PlayerPosition[]{LB, CB, CB, RB}),
-    SWEAPER_1(5, new PlayerPosition[]{LB, CB, SW, CB, RB});
+    DEFAULT_4(4, new PlayerPosition[]{LB, CB, CB, RB}),
+    SWEAPER_5(5, new PlayerPosition[]{LB, CB, SW, CB, RB});
 
     private PlayerPosition[] pos;
     private int number;
