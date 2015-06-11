@@ -5,22 +5,22 @@ import static br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosi
 /**
  * Created by alexandre on 10/06/15.
  */
-public enum  MiddlefieldFormation {
+public enum MiddlefieldFormation implements FormationGroup {
 
-    DEFAULT_3(3, new PlayerPosition[]{CM, DM, CM}),
-    DEFAULT_4(4, new PlayerPosition[]{CM, DM, AM, CM})
+    DEFAULT_3(3, new PlayerPosition[]{LDM, CDM, LDM}),
+    DEFAULT_4(4, new PlayerPosition[]{LDM, CDM, AM, LDM});
 
-    ;
-
-
-
-
-    private PlayerPosition[] pos;
+    private PlayerPosition[] positionArray;
     private int number;
 
     MiddlefieldFormation(int number, PlayerPosition[] playerPositions) {
         this.number = number;
-        this.pos = playerPositions;
+        this.positionArray = playerPositions;
 
+    }
+
+    @Override
+    public PlayerPosition[] getPositionArray() {
+        return positionArray;
     }
 }

@@ -8,18 +8,34 @@ import com.badlogic.gdx.utils.Array;
  */
 public class FormationOrganizer {
 
-    private PlayerPosition playerPosition;
+    private TeamFormation teamFormation;
     private Array<Vector2> positionArray;
     private float scale = 0;
 
-    public FormationOrganizer(PlayerPosition playerPosition, Array<Vector2> positionArray, float scale) {
-        this.playerPosition = playerPosition;
+    public FormationOrganizer(TeamFormation teamFormation, Array<Vector2> positionArray, float scale) {
+        this.teamFormation = teamFormation;
         this.positionArray = positionArray;
         this.scale = scale;
     }
 
-    public Array.ArrayIterator <Vector2> getIterator (){
-        return (Array.ArrayIterator<Vector2>) positionArray.iterator();
+    public Array<Vector2> organize() {
+        final FormationGroup defenderFormation = teamFormation.getDefenderFormation();
+        final FormationGroup middlefieldFormation = teamFormation.getMiddlefieldFormation();
+        final FormationGroup attackerFormation = teamFormation.getAttackerFormation();
+        Array<Vector2> array = new Array<Vector2>();
+
+        for (PlayerPosition pp : defenderFormation.getPositionArray()) {
+
+        }
+        for (PlayerPosition pp : middlefieldFormation.getPositionArray()) {
+
+        }
+        for (PlayerPosition pp : attackerFormation.getPositionArray()) {
+
+        }
+
+        return null;
+
     }
 
 }

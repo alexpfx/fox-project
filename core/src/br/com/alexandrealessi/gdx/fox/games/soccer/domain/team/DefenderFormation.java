@@ -5,23 +5,25 @@ import static br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosi
 /**
  * Created by alexandre on 10/06/15.
  */
-public enum DefenderFormation {
-    DEFAULT_4(4, new PlayerPosition[]{LB, CB, CB, RB}),
-    SWEAPER_5(5, new PlayerPosition[]{LB, CB, SW, CB, RB});
+public enum DefenderFormation implements FormationGroup {
+    DEFAULT_4(4, new PlayerPosition[]{LB, LCB, LCB, RB}),
+    SWEAPER_5(5, new PlayerPosition[]{LB, LCB, SW, LCB, RB});
 
-    private PlayerPosition[] pos;
+    private PlayerPosition[] positionArray;
     private int number;
 
-    DefenderFormation(int number, PlayerPosition[] pos) {
+    DefenderFormation(int number, PlayerPosition[] positionArray) {
         this.number = number;
-        this.pos = pos;
+        this.positionArray = positionArray;
     }
 
     public int getNumber() {
         return number;
     }
 
-    public PlayerPosition[] getPos() {
-        return pos;
+    @Override
+    public PlayerPosition[] getPositionArray() {
+        return positionArray;
     }
+
 }

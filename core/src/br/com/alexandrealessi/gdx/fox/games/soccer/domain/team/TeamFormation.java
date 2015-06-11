@@ -18,5 +18,17 @@ public enum TeamFormation {
         this.defenderFormation = defenderFormation;
         this.middlefieldFormation = middlefieldFormation;
     }
+
+    public DefenderFormation getDefenderFormation() {
+        return defenderFormation;
+    }
+
+    public MiddlefieldFormation getMiddlefieldFormation() {
+        return middlefieldFormation;
+    }
+
+    public AttackerFormation getAttackerFormation() {
+        return attackerFormation;
+    }
 }
 

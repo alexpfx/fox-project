@@ -5,18 +5,23 @@ import static br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosi
 /**
  * Created by alexandre on 10/06/15.
  */
-public enum AttackerFormation {
+public enum AttackerFormation implements FormationGroup{
 
-    DEFAULT_2(2, new PlayerPosition[]{WF, CF}),
-    DEFAULT_3(3, new PlayerPosition[]{WF, CF, CF})
+    DEFAULT_2(2, new PlayerPosition[]{RST, CF}),
+    DEFAULT_3(3, new PlayerPosition[]{RST, CF, CF})
     ;
 
     private final int position;
-    private final PlayerPosition[] playerPositions;
+    private final PlayerPosition[] positionArray;
 
-    AttackerFormation(int number, PlayerPosition[] playerPositions) {
+    AttackerFormation(int number, PlayerPosition[] positionArray) {
         this.position = number;
-        this.playerPositions = playerPositions;
+        this.positionArray = positionArray;
 
+    }
+
+    @Override
+    public PlayerPosition[] getPositionArray() {
+        return new PlayerPosition[0];
     }
 }
