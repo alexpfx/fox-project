@@ -69,8 +69,6 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
         String playerName = arguments.get(PLAYER_NAME);
         player.add(PlayerInfoComponent.newInstance(playerName));
 
-
-
         return player;
     }
 }

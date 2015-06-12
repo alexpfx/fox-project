@@ -165,7 +165,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         final Array<Vector2> organized = o.organize(FormationOrganizer.FormationOrganizerType.FIXED);
 
         Array<Entity> players = new Array<Entity>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 11; i++) {
             final Entity player = createPlayer(team, uniform, "player" + i, i + 1, organized.get(i));
             players.add(player);
         }

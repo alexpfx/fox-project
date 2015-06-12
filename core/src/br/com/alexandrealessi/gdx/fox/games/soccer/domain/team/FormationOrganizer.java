@@ -21,25 +21,28 @@ public class FormationOrganizer {
         Array<Vector2> array = new Array<Vector2>();
 
         for (PlayerPosition pp : defenderFormation.getPositionArray()) {
-            Vector2 position = getPosition(pp, type);
+            Vector2 position = getPosition(pp, type, -1);
             array.add(position);
         }
         for (PlayerPosition pp : middlefieldFormation.getPositionArray()) {
-            Vector2 position = getPosition(pp, type);
+            Vector2 position = getPosition(pp, type, -1);
             array.add(position);
         }
         for (PlayerPosition pp : attackerFormation.getPositionArray()) {
-            Vector2 position = getPosition(pp, type);
+            Vector2 position = getPosition(pp, type, -1);
             array.add(position);
         }
         return array;
     }
 
-    private Vector2 getPosition(PlayerPosition pp, FormationOrganizerType type) {
-        return pp.getInitialPosition();
+    //TODO fix mult
+    private Vector2 getPosition(PlayerPosition pp, FormationOrganizerType type, float leftOrRight) {
+        final Vector2 ip = new Vector2(pp.getInitialPosition().x * leftOrRight, pp.getInitialPosition().y);
+        System.out.println(ip);
+        return ip;
     }
 
-    enum FormationOrganizerType {
+    public enum FormationOrganizerType {
         RANDOM, FIXED
     }
 
