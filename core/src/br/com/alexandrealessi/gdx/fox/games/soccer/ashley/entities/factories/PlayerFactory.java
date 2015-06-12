@@ -10,6 +10,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 
@@ -22,6 +23,7 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
     public static final String PLAYER_NAME = "PLAYER_NAME";
     public static final String UNIFORM = "UNIFORM";
     public static final String TEAM = "TEAM";
+    public static final String INITIAL_POSITION = "INITIAL_POSITION";
     private RubeSceneHelper rubeSceneHelper;
     private BodyCloner bodyCloner;
 
@@ -37,7 +39,6 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
 
     @Override
     public Entity create(CreateArguments arguments) {
-
         final ScaledSprite uniform = arguments.get(UNIFORM);
 
         Entity player = new Entity();
@@ -50,7 +51,8 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
         final Body body = bodyCloner.clone(bodyModel);
 
         body.setUserData(EntityUserData.newInstance(player));
-        body.setTransform(-50, 20, 0);
+        Vector2 initialPosition = arguments.get(INITIAL_POSITION);
+        body.setTransform(initialPosition.x, initialPosition.y, 0);
 
         player.add(BodyComponent.newInstance(body));
 
@@ -58,14 +60,16 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
         player.add(SpriteComponent.newInstance(sprite));
 
         final Team team = arguments.get(TEAM);
-        final PlayerPosition position = arguments.get(PLAYER_POSITION);
+        final PlayerPosition playerPosition = arguments.get(PLAYER_POSITION);
         final int number = arguments.get(PLAYER_NUMBER);
-        player.add(PlayerMatchContextComponent.newInstance(team, position, number));
+        player.add(PlayerMatchContextComponent.newInstance(team, playerPosition, number));
 
         player.add(PositionComponent.newInstance());
 
         String playerName = arguments.get(PLAYER_NAME);
         player.add(PlayerInfoComponent.newInstance(playerName));
+
+
 
         return player;
     }
