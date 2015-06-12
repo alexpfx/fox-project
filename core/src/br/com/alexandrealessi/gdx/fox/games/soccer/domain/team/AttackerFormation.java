@@ -22,6 +22,6 @@ public enum AttackerFormation implements FormationGroup{
 
     @Override
     public PlayerPosition[] getPositionArray() {
-        return new PlayerPosition[0];
+        return positionArray;
     }
 }
