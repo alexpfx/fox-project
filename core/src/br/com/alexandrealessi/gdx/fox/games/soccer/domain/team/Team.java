@@ -19,4 +19,7 @@ public class Team {
         return userTeam;
     }
 
+    public TeamFormation getFormation() {
+        return formation;
+    }
 }
