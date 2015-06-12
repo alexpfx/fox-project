@@ -17,6 +17,7 @@ public enum TeamFormation {
         this.name = name;
         this.defenderFormation = defenderFormation;
         this.middlefieldFormation = middlefieldFormation;
+        this.attackerFormation = attackerFormation;
     }
 
     public DefenderFormation getDefenderFormation() {
