@@ -49,7 +49,7 @@ public class BallFactory extends CreateAndAddToEngineEntityFactory {
         final PositionComponent positionComponent = PositionComponent.newInstance();
         ballEntity.add(positionComponent);
         ballEntity.add(new CameraFollowerComponent(camera, SCENE_BOUNDS));
-        ballSprite.setScale(1.9f / ballSprite.getHeight());
+        ballSprite.setScale(0.78f / ballSprite.getHeight());
         return ballEntity;
     }
 

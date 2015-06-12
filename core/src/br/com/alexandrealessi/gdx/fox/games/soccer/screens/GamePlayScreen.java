@@ -8,6 +8,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.FormationOrganizer;
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.*;
@@ -39,7 +40,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     public static final String SOCCER_JSON = "soccer.json";
     private static final float SCENE_WIDTH = 178f;
     private static final float SCENE_HEIGHT = 120;
-    private static final float ANIMAL_SPRITE_SCALE = 7F;
+    private static final float ANIMAL_SPRITE_SCALE = 3.50175F;
     private static final Rectangle SCENE_BOUNDS = new Rectangle(-SCENE_WIDTH, -SCENE_HEIGHT, SCENE_WIDTH, SCENE_HEIGHT);
     boolean isDrag = false;
     Array<Vector2> points = new Array<Vector2>();
@@ -158,25 +159,28 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
             engine.addEntity(p);
         }
     }
-
+//    FormationOrganizer o = new FormationOrganizer(team.getFormation());
     public Array<Entity> createPlayersOfTeam(ScaledSprite uniform, Team team) {
+        FormationOrganizer o = new FormationOrganizer(team.getFormation());
+        final Array<Vector2> organized = o.organize(FormationOrganizer.FormationOrganizerType.FIXED);
+
         Array<Entity> players = new Array<Entity>();
-        for (int i = 0; i < 1; i++) {
-            final Entity player = createPlayer(team, uniform, "player" + i, i + 1);
+        for (int i = 0; i < 10; i++) {
+            final Entity player = createPlayer(team, uniform, "player" + i, i + 1, organized.get(i));
             players.add(player);
         }
         return players;
     }
 
-    private Entity createPlayer(Team team, ScaledSprite uniform, String playerName, int n) {
-
-
+    private Entity createPlayer(Team team, ScaledSprite uniform, String playerName, int n, Vector2 initialPosition) {
         CreateArguments arguments = new CreateArguments();
         arguments.put(PlayerFactory.PLAYER_POSITION, PlayerPosition.AM);
         arguments.put(PlayerFactory.PLAYER_NAME, playerName);
         arguments.put(PlayerFactory.UNIFORM, uniform);
         arguments.put(PlayerFactory.TEAM, team);
         arguments.put(PlayerFactory.PLAYER_NUMBER, n);
+        arguments.put(PlayerFactory.INITIAL_POSITION, initialPosition);
+
 
         final Entity player = PlayerFactory.newInstance(rubeSceneHelper)
                                            .createAndAddToEngine(arguments, engine);
