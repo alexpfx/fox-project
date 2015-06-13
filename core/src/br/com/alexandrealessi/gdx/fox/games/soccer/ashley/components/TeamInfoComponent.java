@@ -14,11 +14,13 @@ public class TeamInfoComponent extends Component {
     private ScaledSprite secondaryUniform;
     private ScaledSprite gkUniform;
 
-    public TeamInfoComponent(String name, ScaledSprite mainUniform, ScaledSprite gkUniform) {
+    private TeamInfoComponent(String name, ScaledSprite mainUniform, ScaledSprite gkUniform) {
         this.name = name;
         this.mainUniform = mainUniform;
         this.gkUniform = gkUniform;
     }
 
-
+    public static TeamInfoComponent newInstance(String name, ScaledSprite mainUniform, ScaledSprite gkUniform) {
+        return new TeamInfoComponent(name, mainUniform, gkUniform);
+    }
 }
