@@ -1,7 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils;
 
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
-import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.TeamFormation;
 import com.badlogic.ashley.core.ComponentMapper;
 
 import static com.badlogic.ashley.core.ComponentMapper.getFor;
@@ -34,8 +33,7 @@ public class ComponentMappers {
 
     public static final ComponentMapper<TeamFormationComponent> TEAM_FORMATION = getFor(TeamFormationComponent.class);
 
-    private static final ComponentMapper <TeamInfoComponent> TEAM_INFO = getFor(TeamInfoComponent.class);
+    private static final ComponentMapper<TeamInfoComponent> TEAM_INFO = getFor(TeamInfoComponent.class);
 
-
-
+    public static final ComponentMapper<TeamMatchContext> TEAM_MATCH = getFor(TeamMatchContext.class);
 }

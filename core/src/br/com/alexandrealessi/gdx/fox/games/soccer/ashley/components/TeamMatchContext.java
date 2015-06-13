@@ -1,5 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.domain.TeamSide;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.Component;
 
@@ -8,7 +9,15 @@ import com.badlogic.ashley.core.Component;
  */
 public class TeamMatchContext extends Component {
 
+    private TeamSide teamSide;
 
+    public TeamMatchContext(TeamSide teamSide) {
+        this.teamSide = teamSide;
+    }
+
+    public TeamSide getTeamSide() {
+        return teamSide;
+    }
 
 
 }
