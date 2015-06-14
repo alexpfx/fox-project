@@ -55,6 +55,7 @@ public class OrganizeTeamToMatchSystem extends IteratingSystem {
         final Array<OrganizedParameters> organized = organizer
                 .organize();
 
+        int i = 1;
         for (OrganizedParameters v : organized) {
             CreateArguments arguments = new CreateArguments();
             arguments.put(PlayerFactory.INITIAL_POSITION, v.getInitialPosition());
@@ -62,9 +63,15 @@ public class OrganizeTeamToMatchSystem extends IteratingSystem {
             arguments.put(PlayerFactory.PLAYER_POSITION, v.getPlayerPosition());
             arguments.put(PlayerFactory.TEAM, entity);
             arguments.put(PlayerFactory.UNIFORM, teamInfoComponent.getMainUniform());
+            arguments.put(PlayerFactory.PLAYER_NUMBER, i++);
             playerFactory.createAndAddToEngine(arguments, engine);
         }
 
     }
 
+    @Override
+    public void update(float deltaTime) {
+        super.update(deltaTime);
+        this.setProcessing(false);
+    }
 }
