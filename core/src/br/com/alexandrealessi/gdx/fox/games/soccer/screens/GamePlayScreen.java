@@ -124,14 +124,14 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
 
         homeTeam = createTeam(factory, TeamFormation.F433, gremioUniform, "Gremio", TeamSide.RIGHT, true);
 
-        final Sprite elephant = new Sprite(atlas.findRegion("elephant"));
+        final Sprite elephant = new Sprite(atlas.findRegion("snake"));
         final ScaledSprite interUniform = ScaledSprite
                 .newInstance(elephant, ANIMAL_SPRITE_SCALE / elephant.getHeight());
 
         awayTeam = createTeam(factory, TeamFormation.F442, interUniform, "Inter", TeamSide.LEFT, false);
     }
 
-    private Entity createTeam(TeamFactory factory, TeamFormation teamFormation, ScaledSprite mainUniform, String name, TeamSide side, boolean userTeam){
+    private Entity createTeam(TeamFactory factory, TeamFormation teamFormation, ScaledSprite mainUniform, String name, TeamSide side, boolean userTeam) {
         CreateArguments arguments = new CreateArguments();
         arguments.put(TeamFactory.TEAM_FORMATION, teamFormation);
         arguments.put(TeamFactory.TEAM_MAIN_UNIFORM, mainUniform);
@@ -152,7 +152,6 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         RenderSystem renderSystem = new RenderSystem(viewport, DEBUG_PHYSICS);
         WorldStepSystem worldStepSystem = new WorldStepSystem();
         GameManagmentSystem gameManagmentSystem = new GameManagmentSystem();
-
 
         engine.addSystem(organizeTeamToMatchSystem);
         engine.addSystem(unprojectInputSystem);
@@ -186,7 +185,6 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         arguments.put(PlayerFactory.TEAM, team);
         arguments.put(PlayerFactory.PLAYER_NUMBER, n);
         arguments.put(PlayerFactory.INITIAL_POSITION, initialPosition);
-
 
         final Entity player = PlayerFactory.newInstance(rubeSceneHelper)
                                            .createAndAddToEngine(arguments, engine);
