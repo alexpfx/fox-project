@@ -19,6 +19,7 @@ public class PlayerMatchContextComponent extends Component{
     private PlayerMatchContextComponent(Entity team, PlayerPosition playerPosition, int playerNumber) {
         this.team = team;
         this.position = playerPosition;
+        this.playerNumber = playerNumber;
     }
 
     public static PlayerMatchContextComponent newInstance(Entity team, PlayerPosition playerPosition, int playerNumber) {
@@ -39,5 +40,9 @@ public class PlayerMatchContextComponent extends Component{
 
     public Entity getTeam() {
         return team;
+    }
+
+    public int getPlayerNumber() {
+        return playerNumber;
     }
 }

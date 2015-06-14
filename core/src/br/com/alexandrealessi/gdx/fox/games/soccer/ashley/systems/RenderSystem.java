@@ -5,6 +5,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PositionCom
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.SpriteComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
@@ -12,6 +13,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -25,6 +27,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class RenderSystem extends EntitySystem implements Disposable {
 
     private final boolean debugPhysics;
+    private BitmapFont font;
     private ImmutableArray<Entity> players;
     private Entity worldEntity;
 
@@ -37,6 +40,11 @@ public class RenderSystem extends EntitySystem implements Disposable {
         batch = new SpriteBatch();
         camera = viewport.getCamera();
         box2DDebugRenderer = new Box2DDebugRenderer();
+        font = new BitmapFont();
+        font.getData().setScale(0.06f);
+
+
+
     }
 
     @Override
@@ -61,6 +69,7 @@ public class RenderSystem extends EntitySystem implements Disposable {
         }
     }
 
+    //TODO: cada componente deve saber se desenhar.
     private void renderSprites() {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
@@ -69,21 +78,30 @@ public class RenderSystem extends EntitySystem implements Disposable {
             final PositionComponent positionComponent = ComponentMappers.POSITION.get(e);
             final SpriteComponent spriteComponent = ComponentMappers.SPRITE_COMPONENT.get(e);
             final Sprite sprite = spriteComponent.getSprite();
-            final PlayerMatchContextComponent playerMatchContextComponent = ComponentMappers.PLAYER_MATCH_CONTEXT.get(e);
-            if (playerMatchContextComponent != null){
-                if (playerMatchContextComponent.isSelected()){
-                    sprite.setColor(Color.CYAN);
-                }else{
-                    sprite.setColor(Color.WHITE);
-                }
+            final PlayerMatchContextComponent playerMatchContextComponent = ComponentMappers.PLAYER_MATCH_CONTEXT
+                    .get(e);
+            final float x = positionComponent.getPosition().x;
+            final float y = positionComponent.getPosition().y;
 
-            }
-            sprite.setPosition(positionComponent.getPosition().x - sprite.getWidth() * 0.5f, positionComponent
-                    .getPosition().y - sprite
+
+            sprite.setPosition(x - sprite.getWidth() * 0.5f, y - sprite
                     .getHeight() * 0.5f);
             sprite.setRotation(positionComponent.getRotation());
             sprite.setOriginCenter();
             sprite.draw(batch, 1f);
+
+            if (playerMatchContextComponent != null) {
+
+                if (playerMatchContextComponent.isSelected()) {
+                    sprite.setColor(Color.CYAN);
+                } else {
+                    sprite.setColor(Color.WHITE);
+                }
+                final PlayerPosition position = playerMatchContextComponent.getPosition();
+                font.draw(batch, position.toString() , x - 1.1f, y + 1.7f);
+                font.draw(batch, ""+playerMatchContextComponent.getPlayerNumber(), x - 1f, y - 1.5f);
+            }
+
         }
         batch.end();
     }
