@@ -13,8 +13,12 @@ public class CreateArguments {
         arguments.put(key, value);
     }
 
-    public <T> T get (String key){
+    public <T> T get(String key) {
         return (T) arguments.get(key);
     }
 
+    public <T> T get(String key, T defaultValue) {
+        T t = (T) arguments.get(key);
+        return (t == null ? defaultValue : t);
+    }
 }
