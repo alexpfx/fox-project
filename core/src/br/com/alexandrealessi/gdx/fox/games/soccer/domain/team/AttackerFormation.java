@@ -7,8 +7,8 @@ import static br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosi
  */
 public enum AttackerFormation implements FormationGroup{
 
-    DEFAULT_2(2, new PlayerPosition[]{RST, CF}),
-    DEFAULT_3(3, new PlayerPosition[]{RST, CF, CF})
+    DEFAULT_2(2, new PlayerPosition[]{RST, LST}),
+    DEFAULT_3(3, new PlayerPosition[]{RST, CF, LST})
     ;
 
     private final int position;
