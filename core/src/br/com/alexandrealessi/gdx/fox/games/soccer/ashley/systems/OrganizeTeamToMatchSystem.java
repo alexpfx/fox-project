@@ -4,6 +4,7 @@ import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamFormationComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamInfoComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamMatchContext;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.domain.TeamSide;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.CreateArguments;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.PlayerFactory;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
@@ -15,7 +16,6 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -44,17 +44,17 @@ public class OrganizeTeamToMatchSystem extends IteratingSystem {
         final TeamInfoComponent teamInfoComponent = ComponentMappers.TEAM_INFO.get(entity);
         final TeamMatchContext teamMatchContext = ComponentMappers.TEAM_MATCH.get(entity);
 
-
-        createPlayers(entity, formationComponent.getFormation(), teamInfoComponent);
+        createPlayers(entity, formationComponent.getFormation(), teamInfoComponent, teamMatchContext.getTeamSide());
 
     }
 
-    private void createPlayers(Entity entity, TeamFormation formation, TeamInfoComponent teamInfoComponent) {
-        FormationOrganizer organizer = new FormationOrganizer(formation);
+    private void createPlayers(Entity entity, TeamFormation formation, TeamInfoComponent teamInfoComponent, TeamSide side) {
+        FormationOrganizer organizer = new FormationOrganizer(formation, FormationOrganizer.FormationOrganizerType.FIXED, side);
         PlayerFactory playerFactory = PlayerFactory.newInstance(rubeSceneHelper);
-        final Array<OrganizedParameters> organize = organizer.organize(FormationOrganizer.FormationOrganizerType.FIXED);
+        final Array<OrganizedParameters> organized = organizer
+                .organize();
 
-        for (OrganizedParameters v:organize){
+        for (OrganizedParameters v : organized) {
             CreateArguments arguments = new CreateArguments();
             arguments.put(PlayerFactory.INITIAL_POSITION, v.getInitialPosition());
             arguments.put(PlayerFactory.PLAYER_NAME, "name");
@@ -63,7 +63,6 @@ public class OrganizeTeamToMatchSystem extends IteratingSystem {
             arguments.put(PlayerFactory.UNIFORM, teamInfoComponent.getMainUniform());
             playerFactory.createAndAddToEngine(arguments, engine);
         }
-
 
     }
 
