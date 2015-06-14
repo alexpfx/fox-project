@@ -17,13 +17,22 @@ public class BodyCloner {
 
     public Body clone (Body body){
         final Array<Fixture> fixtureList = body.getFixtureList();
+        final Array<JointEdge> jointList = body.getJointList();
         final World world = body.getWorld();
         final BodyDef bodyDef = createBodyDef(body);
         final Body cloneBody = world.createBody(bodyDef);
         cloneFixtures(fixtureList, cloneBody);
+        cloneJoints (jointList, cloneBody);
         final Object userData = body.getUserData();
         cloneBody.setUserData(userData);
         return cloneBody;
+    }
+
+    private void cloneJoints(Array<JointEdge> jointList, Body cloneBody) {
+        JointCloner jointCloner = new JointCloner();
+        for (JointEdge j:jointList){
+            jointCloner.clone(j.joint, j.other, cloneBody, cloneBody.getWorld());
+        }
     }
 
     private BodyDef createBodyDef (Body body){
