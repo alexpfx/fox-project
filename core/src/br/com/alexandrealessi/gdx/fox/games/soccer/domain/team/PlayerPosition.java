@@ -23,7 +23,7 @@ public enum PlayerPosition {
 
     CDM(new Vector2(40, 0), new Vector2(10, 10)),
     LDM(new Vector2(40, -10), new Vector2(10, 10)),
-    RDM(new Vector2(35, 10), new Vector2(10, 10)),
+    RDM(new Vector2(40, 10), new Vector2(10, 10)),
 
     CM(new Vector2(30, 0), new Vector2(10, 10)),
     LCM(new Vector2(30, -10), new Vector2(10, 10)),

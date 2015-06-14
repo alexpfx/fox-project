@@ -7,7 +7,7 @@ import static br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosi
  */
 public enum MiddlefieldFormation implements FormationGroup {
 
-    DEFAULT_3(3, new PlayerPosition[]{LDM, CDM, RDM}),
+    DEFAULT_3(3, new PlayerPosition[]{LDM, CM, RDM}),
     DEFAULT_4(4, new PlayerPosition[]{LDM, CDM, AM, RDM});
 
     private PlayerPosition[] positionArray;
