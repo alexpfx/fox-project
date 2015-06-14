@@ -5,7 +5,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.domain.team;
  */
 public enum TeamFormation {
 
-    F442("4-4-2A", DefenderFormation.DEFAULT_4, MiddlefieldFormation.DEFAULT_3, AttackerFormation.DEFAULT_2),
+    F442("4-4-2A", DefenderFormation.DEFAULT_4, MiddlefieldFormation.DEFAULT_4, AttackerFormation.DEFAULT_2),
     F433("4-3-3A", DefenderFormation.DEFAULT_4, MiddlefieldFormation.DEFAULT_3, AttackerFormation.DEFAULT_3);
 
     private String name;
