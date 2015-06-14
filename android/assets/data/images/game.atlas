@@ -6,105 +6,119 @@ filter: Nearest,Nearest
 repeat: none
 ball
   rotate: false
-  xy: 1704, 761
+  xy: 1704, 797
   size: 80, 80
   orig: 80, 80
   offset: 0, 0
   index: -1
+button
+  rotate: false
+  xy: 3386, 1429
+  size: 500, 500
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+button1
+  rotate: false
+  xy: 1286, 9
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
 elephant
   rotate: false
-  xy: 3386, 1636
+  xy: 1028, 520
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 field
   rotate: false
-  xy: 2, 743
+  xy: 2, 779
   size: 1700, 1150
   orig: 1700, 1150
   offset: 0, 0
   index: -1
 giraffe
   rotate: false
-  xy: 2, 2
+  xy: 1544, 733
   size: 44, 44
   orig: 44, 44
   offset: 0, 0
   index: -1
 hippo
   rotate: false
-  xy: 1028, 484
+  xy: 3386, 1170
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 monkey
   rotate: false
-  xy: 3386, 1377
+  xy: 1028, 261
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 panda
   rotate: false
-  xy: 3644, 1636
+  xy: 1286, 520
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 parrot
   rotate: false
-  xy: 1028, 225
+  xy: 3386, 911
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 penguin
   rotate: false
-  xy: 1286, 484
+  xy: 1286, 261
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 pig
   rotate: false
-  xy: 3386, 1118
+  xy: 3644, 1170
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 rabbit
   rotate: false
-  xy: 3644, 1377
+  xy: 3644, 911
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 small_field
   rotate: false
-  xy: 2, 48
+  xy: 2, 84
   size: 1024, 693
   orig: 1024, 693
   offset: 0, 0
   index: -1
 snake
   rotate: false
-  xy: 1286, 225
+  xy: 1028, 2
   size: 256, 257
   orig: 256, 257
   offset: 0, 0
   index: -1
 soccer
   rotate: false
-  xy: 1704, 843
+  xy: 1704, 879
   size: 1680, 1050
   orig: 1680, 1050
   offset: 0, 0
   index: -1
 soccerfield
   rotate: false
-  xy: 1704, 843
+  xy: 1704, 879
   size: 1680, 1050
   orig: 1680, 1050
   offset: 0, 0
