@@ -14,23 +14,23 @@ public class FormationOrganizer {
         this.teamFormation = teamFormation;
     }
 
-    public Array<Vector2> organize(FormationOrganizerType type) {
+    public Array<OrganizedParameters> organize(FormationOrganizerType type) {
         final FormationGroup defenderFormation = teamFormation.getDefenderFormation();
         final FormationGroup middlefieldFormation = teamFormation.getMiddlefieldFormation();
         final FormationGroup attackerFormation = teamFormation.getAttackerFormation();
-        Array<Vector2> array = new Array<Vector2>();
+        Array<OrganizedParameters> array = new Array<OrganizedParameters>();
 
         for (PlayerPosition pp : defenderFormation.getPositionArray()) {
             Vector2 position = getPosition(pp, type, -1);
-            array.add(position);
+            array.add(OrganizedParameters.newInstance(position, pp));
         }
         for (PlayerPosition pp : middlefieldFormation.getPositionArray()) {
             Vector2 position = getPosition(pp, type, -1);
-            array.add(position);
+            array.add(OrganizedParameters.newInstance(position, pp));
         }
         for (PlayerPosition pp : attackerFormation.getPositionArray()) {
             Vector2 position = getPosition(pp, type, -1);
-            array.add(position);
+            array.add(OrganizedParameters.newInstance(position, pp));
         }
         return array;
     }
