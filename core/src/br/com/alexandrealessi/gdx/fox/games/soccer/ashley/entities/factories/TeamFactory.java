@@ -53,7 +53,7 @@ public class TeamFactory extends CreateAndAddToEngineEntityFactory{
 
     private void createAndAddTeamMatchContext(Entity entity, CreateArguments arguments) {
         TeamSide teamSide = arguments.get(TEAM_SIDE);
-        boolean isUserTeam = arguments.get(TEAM_IS_USER_TEAM);
+        boolean isUserTeam = arguments.get(TEAM_IS_USER_TEAM, false);
         TeamMatchContext teamMatchContext = TeamMatchContext.newInstance(teamSide, isUserTeam);
         entity.add(teamMatchContext);
     }

@@ -122,22 +122,24 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         final ScaledSprite gremioUniform = ScaledSprite
                 .newInstance(panda, ANIMAL_SPRITE_SCALE / panda.getHeight());
 
-        homeTeam = createTeam(factory, TeamFormation.F433, gremioUniform, "Gremio", TeamSide.RIGHT);
+        homeTeam = createTeam(factory, TeamFormation.F433, gremioUniform, "Gremio", TeamSide.RIGHT, true);
 
         final Sprite elephant = new Sprite(atlas.findRegion("elephant"));
         final ScaledSprite interUniform = ScaledSprite
                 .newInstance(elephant, ANIMAL_SPRITE_SCALE / elephant.getHeight());
 
-        awayTeam = createTeam(factory, TeamFormation.F442, interUniform, "Inter", TeamSide.LEFT);
+        awayTeam = createTeam(factory, TeamFormation.F442, interUniform, "Inter", TeamSide.LEFT, false);
     }
 
-    private Entity createTeam(TeamFactory factory, TeamFormation teamFormation, ScaledSprite mainUniform, String name, TeamSide side){
+    private Entity createTeam(TeamFactory factory, TeamFormation teamFormation, ScaledSprite mainUniform, String name, TeamSide side, boolean userTeam){
         CreateArguments arguments = new CreateArguments();
         arguments.put(TeamFactory.TEAM_FORMATION, teamFormation);
         arguments.put(TeamFactory.TEAM_MAIN_UNIFORM, mainUniform);
         arguments.put(TeamFactory.TEAM_NAME, name);
         arguments.put(TeamFactory.TEAM_SIDE, side);
+        arguments.put(TeamFactory.TEAM_IS_USER_TEAM, userTeam);
         return factory.createAndAddToEngine(arguments, engine);
+
     }
 
     public void createSystems() {
