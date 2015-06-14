@@ -35,7 +35,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
 
     public static final int PIXEL_TO_METER_FACTOR = 1;
     public static final boolean DEBUG_PHYSICS = true;
-    public static final float CAMERA_ZOOM = 0.6f;
+    public static final float CAMERA_ZOOM = 1.1f;
     public static final String DATA_IMAGES_GAME_ATLAS = "data/images/game.atlas";
     public static final String SOCCER_JSON = "soccer.json";
     private static final float SCENE_WIDTH = 178f;
