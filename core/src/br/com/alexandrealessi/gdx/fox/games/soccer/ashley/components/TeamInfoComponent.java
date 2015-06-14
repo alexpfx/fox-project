@@ -23,4 +23,20 @@ public class TeamInfoComponent extends Component {
     public static TeamInfoComponent newInstance(String name, ScaledSprite mainUniform, ScaledSprite gkUniform) {
         return new TeamInfoComponent(name, mainUniform, gkUniform);
     }
+
+    public ScaledSprite getGkUniform() {
+        return gkUniform;
+    }
+
+    public ScaledSprite getMainUniform() {
+        return mainUniform;
+    }
+
+    public ScaledSprite getSecondaryUniform() {
+        return secondaryUniform;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
