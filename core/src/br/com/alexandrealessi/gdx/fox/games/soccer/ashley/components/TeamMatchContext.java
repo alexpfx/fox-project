@@ -11,8 +11,12 @@ public class TeamMatchContext extends Component {
 
     private TeamSide teamSide;
 
-    public TeamMatchContext(TeamSide teamSide) {
+    private TeamMatchContext(TeamSide teamSide) {
         this.teamSide = teamSide;
+    }
+
+    public static TeamMatchContext newInstance(TeamSide teamSide) {
+        return new TeamMatchContext(teamSide);
     }
 
     public TeamSide getTeamSide() {

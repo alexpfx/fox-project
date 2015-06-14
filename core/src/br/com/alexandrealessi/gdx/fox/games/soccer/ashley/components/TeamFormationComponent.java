@@ -9,7 +9,15 @@ import com.badlogic.ashley.core.Component;
 public class TeamFormationComponent extends Component {
     private TeamFormation formation;
 
-    public TeamFormationComponent(TeamFormation formation) {
+    private TeamFormationComponent(TeamFormation formation) {
         this.formation = formation;
+    }
+
+    public static TeamFormationComponent newInstance(TeamFormation formation) {
+        return new TeamFormationComponent(formation);
+    }
+
+    public TeamFormation getFormation() {
+        return formation;
     }
 }

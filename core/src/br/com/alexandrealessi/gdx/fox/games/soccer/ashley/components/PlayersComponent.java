@@ -11,8 +11,12 @@ public class PlayersComponent extends Component{
 
     private Array <Entity> entities;
 
-    public PlayersComponent (Array<Entity> players){
+    private PlayersComponent(Array<Entity> players){
         this.entities = players;
+    }
+
+    public static PlayersComponent newInstance(Array<Entity> players) {
+        return new PlayersComponent(players);
     }
 
     public Array<Entity> getEntities() {
