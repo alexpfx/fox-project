@@ -24,6 +24,15 @@ public class TeamFactory extends CreateAndAddToEngineEntityFactory{
     private int numberOfPlayers = 11;
     private RubeSceneHelper rubeSceneHelper;
 
+    private TeamFactory(int numberOfPlayers, RubeSceneHelper rubeSceneHelper) {
+        this.numberOfPlayers = numberOfPlayers;
+        this.rubeSceneHelper = rubeSceneHelper;
+    }
+
+    public static TeamFactory newInstance(int numberOfPlayers, RubeSceneHelper rubeSceneHelper) {
+        return new TeamFactory(numberOfPlayers, rubeSceneHelper);
+    }
+
     @Override
     public Entity create(CreateArguments arguments) {
         Entity entity = new Entity();

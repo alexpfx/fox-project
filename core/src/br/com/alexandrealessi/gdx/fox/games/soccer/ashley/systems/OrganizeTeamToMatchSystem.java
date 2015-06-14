@@ -27,7 +27,7 @@ public class OrganizeTeamToMatchSystem extends IteratingSystem {
     private RubeSceneHelper rubeSceneHelper;
     private Engine engine;
 
-    public OrganizeTeamToMatchSystem(Family family, RubeSceneHelper rubeSceneHelper) {
+    public OrganizeTeamToMatchSystem(RubeSceneHelper rubeSceneHelper) {
         super(Family.all(TeamFormationComponent.class, TeamInfoComponent.class, TeamMatchContext.class).get());
         this.rubeSceneHelper = rubeSceneHelper;
     }

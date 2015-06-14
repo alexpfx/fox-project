@@ -7,12 +7,12 @@ import br.com.alexandrealessi.gdx.fox.base.utils.StopWatch;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.domain.TeamSide;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
-import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.FormationOrganizer;
-import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
-import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
+import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.TeamFormation;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -92,7 +92,6 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         rubeSceneHelper = new RubeSceneHelper(SOCCER_JSON);
     }
 
-    //FIXME: so esta computando um lado.
     public void createGoalLines() {
         final GoalLineFactory factory = GoalLineFactory.newInstance(rubeSceneHelper);
 
@@ -117,18 +116,32 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     }
 
     public void createTeams() {
-        homeTeam = new Team("Gremio", true, TeamFormation.F433);
-        final Sprite panda = new Sprite(atlas.findRegion("panda"));
-        final Array<Entity> tpanda = createPlayersOfTeam(ScaledSprite
-                .newInstance(panda, ANIMAL_SPRITE_SCALE / panda.getHeight()), homeTeam);
+        TeamFactory factory = TeamFactory.newInstance(11, rubeSceneHelper);
 
-        awayTeam = new Team("Internacional", false, TeamFormation.F433);
-        final Sprite monkey = new Sprite(atlas.findRegion("monkey"));
-        final Array<Entity> tmonkey = createPlayersOfTeam(ScaledSprite
-                .newInstance(monkey, ANIMAL_SPRITE_SCALE / monkey.getHeight()), awayTeam);
+        final Sprite panda = new Sprite(atlas.findRegion("panda"));
+        final ScaledSprite gremioUniform = ScaledSprite
+                .newInstance(panda, ANIMAL_SPRITE_SCALE / panda.getHeight());
+
+        createTeam(factory, TeamFormation.F433, gremioUniform, "Gremio", TeamSide.RIGHT);
+
+        final Sprite elephant = new Sprite(atlas.findRegion("elephant"));
+        final ScaledSprite interUniform = ScaledSprite
+                .newInstance(elephant, ANIMAL_SPRITE_SCALE / elephant.getHeight());
+
+        createTeam(factory, TeamFormation.F442, interUniform, "Inter", TeamSide.LEFT);
+    }
+
+    private void createTeam(TeamFactory factory, TeamFormation teamFormation, ScaledSprite mainUniform, String name, TeamSide side){
+        CreateArguments arguments = new CreateArguments();
+        arguments.put(TeamFactory.TEAM_FORMATION, teamFormation);
+        arguments.put(TeamFactory.TEAM_MAIN_UNIFORM, mainUniform);
+        arguments.put(TeamFactory.TEAM_NAME, name);
+        arguments.put(TeamFactory.TEAM_SIDE, side);
+        factory.createAndAddToEngine(arguments, engine);
     }
 
     public void createSystems() {
+        OrganizeTeamToMatchSystem organizeTeamToMatchSystem = new OrganizeTeamToMatchSystem(rubeSceneHelper);
         UnprojectInputSystem unprojectInputSystem = new UnprojectInputSystem();
         SelectPlayerByTouchSystem selectPlayerByTouchSystem = new SelectPlayerByTouchSystem();
         AISystem aiSystem = new AISystem();
@@ -138,6 +151,8 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         WorldStepSystem worldStepSystem = new WorldStepSystem();
         GameManagmentSystem gameManagmentSystem = new GameManagmentSystem();
 
+
+        engine.addSystem(organizeTeamToMatchSystem);
         engine.addSystem(unprojectInputSystem);
         engine.addSystem(selectPlayerByTouchSystem);
         engine.addSystem(aiSystem);
@@ -146,6 +161,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         engine.addSystem(renderSystem);
         engine.addSystem(worldStepSystem);
         engine.addSystem(gameManagmentSystem);
+
     }
 
     private void createWorld() {
@@ -158,18 +174,6 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         for (PlayerEntity p : players) {
             engine.addEntity(p);
         }
-    }
-//    FormationOrganizer o = new FormationOrganizer(team.getFormation());
-    public Array<Entity> createPlayersOfTeam(ScaledSprite uniform, Team team) {
-        FormationOrganizer o = new FormationOrganizer(team.getFormation());
-        final Array<Vector2> organized = o.organize(FormationOrganizer.FormationOrganizerType.FIXED);
-
-        Array<Entity> players = new Array<Entity>();
-        for (int i = 0; i < 11; i++) {
-            final Entity player = createPlayer(team, uniform, "player" + i, i + 1, organized.get(i));
-            players.add(player);
-        }
-        return players;
     }
 
     private Entity createPlayer(Team team, ScaledSprite uniform, String playerName, int n, Vector2 initialPosition) {
@@ -255,4 +259,4 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         return false;
     }
 
-} // 271/244 -> 100 -> 249
+} // 213 -> 100
