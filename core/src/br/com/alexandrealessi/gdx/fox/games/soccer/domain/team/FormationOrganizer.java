@@ -25,19 +25,20 @@ public class FormationOrganizer {
         final FormationGroup attackerFormation = teamFormation.getAttackerFormation();
         Array<OrganizedParameters> array = new Array<OrganizedParameters>();
 
+        Vector2 gkPosition = getPosition(PlayerPosition.GK, type, side.getMultiplicator());
+        array.add(OrganizedParameters.newInstance(gkPosition, PlayerPosition.GK));
+
+        createSector(defenderFormation, array);
+        createSector(middlefieldFormation, array);
+        createSector(attackerFormation, array);
+        return array;
+    }
+
+    private void createSector(FormationGroup defenderFormation, Array<OrganizedParameters> array) {
         for (PlayerPosition pp : defenderFormation.getPositionArray()) {
             Vector2 position = getPosition(pp, type, side.getMultiplicator());
             array.add(OrganizedParameters.newInstance(position, pp));
         }
-        for (PlayerPosition pp : middlefieldFormation.getPositionArray()) {
-            Vector2 position = getPosition(pp, type, side.getMultiplicator());
-            array.add(OrganizedParameters.newInstance(position, pp));
-        }
-        for (PlayerPosition pp : attackerFormation.getPositionArray()) {
-            Vector2 position = getPosition(pp, type, side.getMultiplicator());
-            array.add(OrganizedParameters.newInstance(position, pp));
-        }
-        return array;
     }
 
     private Vector2 getPosition(PlayerPosition pp, FormationOrganizerType type, float teamSide) {
