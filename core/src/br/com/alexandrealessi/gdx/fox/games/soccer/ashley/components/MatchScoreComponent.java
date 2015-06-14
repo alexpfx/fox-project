@@ -2,29 +2,30 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Component;
+import com.badlogic.ashley.core.Entity;
 
 /**
  * Created by alexandre on 31/05/15.
  */
 public class MatchScoreComponent extends Component {
 
-    private Team homeTeam;
+    private Entity homeTeam;
     private int homeScore = 0;
 
-    private Team awayTeam;
+    private Entity awayTeam;
     private int awayScore = 0;
 
 
-    public MatchScoreComponent(Team homeTeam, Team awayTeam) {
+    public MatchScoreComponent(Entity homeTeam, Entity awayTeam) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
     }
 
-    public Team getAwayTeam() {
+    public Entity getAwayTeam() {
         return awayTeam;
     }
 
-    public Team getHomeTeam() {
+    public Entity getHomeTeam() {
         return homeTeam;
     }
 

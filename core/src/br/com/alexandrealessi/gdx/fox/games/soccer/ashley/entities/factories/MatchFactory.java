@@ -10,16 +10,16 @@ import com.badlogic.ashley.core.Entity;
  */
 public class MatchFactory extends CreateAndAddToEngineEntityFactory {
     private float matchTotalTime;
-    private Team homeTeam;
-    private Team awayTeam;
+    private Entity homeTeam;
+    private Entity awayTeam;
 
-    private MatchFactory(float matchTotalTime, Team homeTeam, Team awayTeam) {
+    private MatchFactory(float matchTotalTime, Entity homeTeam, Entity awayTeam) {
         this.matchTotalTime = matchTotalTime;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
     }
 
-    public static MatchFactory newInstance(float matchTotalTime, Team homeTeam, Team awayTeam) {
+    public static MatchFactory newInstance(float matchTotalTime, Entity homeTeam, Entity awayTeam) {
         return new MatchFactory(matchTotalTime, homeTeam, awayTeam);
     }
 

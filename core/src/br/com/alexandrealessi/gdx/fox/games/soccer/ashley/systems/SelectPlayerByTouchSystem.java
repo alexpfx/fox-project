@@ -1,9 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PositionComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.SpriteComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PlayerMatchContextComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import br.com.alexandrealessi.gdx.fox.base.input.Touch;
 import com.badlogic.ashley.core.Engine;
@@ -56,7 +53,9 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
                 nearest = e;
             }
             PlayerMatchContextComponent matchContext = ComponentMappers.PLAYER_MATCH_CONTEXT.get(e);
-            if (matchContext.getTeam().isUserTeam()) {
+            final Entity team = matchContext.getTeam();
+            final TeamMatchContext teamMatchContext = ComponentMappers.TEAM_MATCH.get(team);
+            if (teamMatchContext.isUserTeam()) {
                 continue;
             }
 

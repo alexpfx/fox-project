@@ -1,9 +1,11 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.domain.team;
 
+import com.badlogic.ashley.core.Entity;
+
 /**
  * Created by alexandre on 25/05/15.
  */
-public class Team {
+public class Team extends Entity{
 
     private String name;
     private boolean userTeam = false;

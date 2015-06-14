@@ -51,8 +51,8 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     private OrthographicCamera camera;
     private Viewport viewport;
     private GestureDetector gestureDetector;
-    private Team homeTeam;
-    private Team awayTeam;
+    private Entity homeTeam;
+    private Entity awayTeam;
 
     public GamePlayScreen(SoccerGame game) {
         super(game);
@@ -122,22 +122,22 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         final ScaledSprite gremioUniform = ScaledSprite
                 .newInstance(panda, ANIMAL_SPRITE_SCALE / panda.getHeight());
 
-        createTeam(factory, TeamFormation.F433, gremioUniform, "Gremio", TeamSide.RIGHT);
+        homeTeam = createTeam(factory, TeamFormation.F433, gremioUniform, "Gremio", TeamSide.RIGHT);
 
         final Sprite elephant = new Sprite(atlas.findRegion("elephant"));
         final ScaledSprite interUniform = ScaledSprite
                 .newInstance(elephant, ANIMAL_SPRITE_SCALE / elephant.getHeight());
 
-        createTeam(factory, TeamFormation.F442, interUniform, "Inter", TeamSide.LEFT);
+        awayTeam = createTeam(factory, TeamFormation.F442, interUniform, "Inter", TeamSide.LEFT);
     }
 
-    private void createTeam(TeamFactory factory, TeamFormation teamFormation, ScaledSprite mainUniform, String name, TeamSide side){
+    private Entity createTeam(TeamFactory factory, TeamFormation teamFormation, ScaledSprite mainUniform, String name, TeamSide side){
         CreateArguments arguments = new CreateArguments();
         arguments.put(TeamFactory.TEAM_FORMATION, teamFormation);
         arguments.put(TeamFactory.TEAM_MAIN_UNIFORM, mainUniform);
         arguments.put(TeamFactory.TEAM_NAME, name);
         arguments.put(TeamFactory.TEAM_SIDE, side);
-        factory.createAndAddToEngine(arguments, engine);
+        return factory.createAndAddToEngine(arguments, engine);
     }
 
     public void createSystems() {

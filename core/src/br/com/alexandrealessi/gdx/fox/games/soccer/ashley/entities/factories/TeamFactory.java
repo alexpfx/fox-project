@@ -20,6 +20,7 @@ public class TeamFactory extends CreateAndAddToEngineEntityFactory{
     public static final String TEAM_MAIN_UNIFORM = "team.main.uniform";
     public static final String TEAM_GK_UNIFORM = "team.gk.uniform";
     public static final String TEAM_FORMATION = "team.formation";
+    public static final String TEAM_IS_USER_TEAM = "team.isUserTeam";
 
     private int numberOfPlayers = 11;
     private RubeSceneHelper rubeSceneHelper;
@@ -52,7 +53,8 @@ public class TeamFactory extends CreateAndAddToEngineEntityFactory{
 
     private void createAndAddTeamMatchContext(Entity entity, CreateArguments arguments) {
         TeamSide teamSide = arguments.get(TEAM_SIDE);
-        TeamMatchContext teamMatchContext = TeamMatchContext.newInstance(teamSide);
+        boolean isUserTeam = arguments.get(TEAM_IS_USER_TEAM);
+        TeamMatchContext teamMatchContext = TeamMatchContext.newInstance(teamSide, isUserTeam);
         entity.add(teamMatchContext);
     }
 

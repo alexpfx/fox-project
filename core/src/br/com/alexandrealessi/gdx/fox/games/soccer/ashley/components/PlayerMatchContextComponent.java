@@ -3,24 +3,25 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Component;
+import com.badlogic.ashley.core.Entity;
 
 /**
  * Created by alexandre on 01/06/15.
  */
 public class PlayerMatchContextComponent extends Component{
 
-    private Team team;
+    private Entity team;
     private PlayerPosition position;
     private int playerNumber;
 
     private boolean isSelected = false;
 
-    private PlayerMatchContextComponent(Team team, PlayerPosition playerPosition, int playerNumber) {
+    private PlayerMatchContextComponent(Entity team, PlayerPosition playerPosition, int playerNumber) {
         this.team = team;
         this.position = playerPosition;
     }
 
-    public static PlayerMatchContextComponent newInstance(Team team, PlayerPosition playerPosition, int playerNumber) {
+    public static PlayerMatchContextComponent newInstance(Entity team, PlayerPosition playerPosition, int playerNumber) {
         return new PlayerMatchContextComponent(team, playerPosition, playerNumber);
     }
 
@@ -36,7 +37,7 @@ public class PlayerMatchContextComponent extends Component{
         this.isSelected = isSelected;
     }
 
-    public Team getTeam() {
+    public Entity getTeam() {
         return team;
     }
 }

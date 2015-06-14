@@ -59,7 +59,7 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
         final Sprite sprite = new Sprite(uniform.getSprite());
         player.add(SpriteComponent.newInstance(sprite));
 
-        final Team team = arguments.get(TEAM);
+        final Entity team = arguments.get(TEAM);
         final PlayerPosition playerPosition = arguments.get(PLAYER_POSITION);
         final int number = arguments.get(PLAYER_NUMBER);
         player.add(PlayerMatchContextComponent.newInstance(team, playerPosition, number));

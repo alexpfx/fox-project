@@ -50,7 +50,7 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
     @Override
     public void goal(Entity goalLineEntity) {
         final TeamComponent teamComponent = ComponentMappers.TEAM.get(goalLineEntity);
-        final Team team = teamComponent.getTeam();
+        final Entity team = teamComponent.getTeam();
         if (team.equals(matchScoreComponent.getHomeTeam())) {
             matchScoreComponent.incrementAwayScore();
         } else {

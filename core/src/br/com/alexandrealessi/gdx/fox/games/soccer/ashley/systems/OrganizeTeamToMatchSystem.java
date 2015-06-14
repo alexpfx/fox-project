@@ -34,6 +34,7 @@ public class OrganizeTeamToMatchSystem extends IteratingSystem {
 
     @Override
     public void addedToEngine(Engine engine) {
+        super.addedToEngine(engine);
         this.engine = engine;
 
     }
