@@ -1,4 +1,4 @@
-package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities;
+package br.com.alexandrealessi.gdx.fox.base.input;
 
 import br.com.alexandrealessi.gdx.fox.base.input.XboxOneMapping;
 import com.badlogic.gdx.controllers.Controller;

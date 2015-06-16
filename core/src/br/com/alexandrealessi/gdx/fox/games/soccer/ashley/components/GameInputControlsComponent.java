@@ -1,6 +1,6 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.InputHandle;
+import br.com.alexandrealessi.gdx.fox.base.input.InputHandle;
 import com.badlogic.ashley.core.Component;
 
 /**
