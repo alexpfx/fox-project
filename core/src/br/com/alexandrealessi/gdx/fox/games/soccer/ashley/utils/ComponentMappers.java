@@ -34,4 +34,8 @@ public class ComponentMappers {
     public static final ComponentMapper<TeamFormationComponent> TEAM_FORMATION = getFor(TeamFormationComponent.class);
     public static final ComponentMapper<TeamInfoComponent> TEAM_INFO = getFor(TeamInfoComponent.class);
     public static final ComponentMapper<TeamMatchContext> TEAM_MATCH = getFor(TeamMatchContext.class);
+    public static final ComponentMapper<GameInputControlsComponent> GAME_INPUT_CONTROLS = getFor(GameInputControlsComponent.class);
+
+
+
 }
