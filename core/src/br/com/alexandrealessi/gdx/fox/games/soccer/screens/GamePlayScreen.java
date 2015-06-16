@@ -36,13 +36,13 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 public class GamePlayScreen extends BaseScreen implements GestureDetector.GestureListener {
 
     public static final int PIXEL_TO_METER_FACTOR = 1;
-    public static final boolean DEBUG_PHYSICS = false;
+    public static final boolean DEBUG_PHYSICS = true;
     public static final float CAMERA_ZOOM = 0.6f;
     public static final String DATA_IMAGES_GAME_ATLAS = "data/images/game.atlas";
     public static final String SOCCER_JSON = "soccer.json";
     private static final float SCENE_WIDTH = 178f;
     private static final float SCENE_HEIGHT = 120;
-    private static final float ANIMAL_SPRITE_SCALE = 7F;
+    private static final float ANIMAL_SPRITE_SCALE = 3.5F;
     private static final Rectangle SCENE_BOUNDS = new Rectangle(-SCENE_WIDTH, -SCENE_HEIGHT, SCENE_WIDTH, SCENE_HEIGHT);
     boolean isDrag = false;
     Array<Vector2> points = new Array<Vector2>();
