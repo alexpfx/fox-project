@@ -45,6 +45,13 @@ public class GameInputControlsComponent extends Component implements InputHandle
         this.buttonY = buttonY;
     }
 
+    public void reset() {
+        buttonX = false;
+        buttonY = false;
+        buttonB = false;
+        buttonA = false;
+    }
+
     @Override
     public void pressA() {
         buttonA = true;

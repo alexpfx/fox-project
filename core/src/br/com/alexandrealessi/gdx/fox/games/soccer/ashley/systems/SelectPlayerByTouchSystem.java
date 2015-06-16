@@ -18,12 +18,12 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class SelectPlayerByTouchSystem extends EntitySystem {
 
-    Entity touch;
+    Entity input;
     ImmutableArray<Entity> players;
 
     @Override
     public void addedToEngine(Engine engine) {
-        touch = engine.getEntitiesFor(Family.all(TouchDownInputComponent.class).get()).first();
+        input = engine.getEntitiesFor(Family.one(TouchDownInputComponent.class, GameInputControlsComponent.class).get()).first();
         players = engine
                 .getEntitiesFor(Family.all(PlayerMatchContextComponent.class, PositionComponent.class, SpriteComponent.class)
                                       .get());
@@ -33,7 +33,9 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
 
     @Override
     public void update(float deltaTime) {
-        final TouchDownInputComponent touchDownInputComponent = ComponentMappers.TOUCH_DOWN_INPUT.get(touch);
+        final GameInputControlsComponent gameInputControlsComponent = ComponentMappers.GAME_INPUT_CONTROLS.get(input);
+        printButtons(gameInputControlsComponent);
+        final TouchDownInputComponent touchDownInputComponent = ComponentMappers.TOUCH_DOWN_INPUT.get(input);
         if (!touchDownInputComponent.isConsumed()) {
             final Touch touch = touchDownInputComponent.getTouch();
             int x = 0;
@@ -43,6 +45,29 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
             final SpriteComponent spriteComponent = ComponentMappers.SPRITE_COMPONENT.get(nearest);
             spriteComponent.getSprite().setColor(Color.WHITE);
         }
+    }
+
+    private void printButtons(GameInputControlsComponent gameInputControlsComponent) {
+
+        final boolean buttonX = gameInputControlsComponent.isButtonX();
+        if (buttonX)
+            System.out.println("X:" + buttonX);
+
+        final boolean buttonY = gameInputControlsComponent.isButtonY();
+        if (buttonY)
+            System.out.println("Y:" + buttonY);
+
+        final boolean buttonA = gameInputControlsComponent.isButtonA();
+        if (buttonA)
+            System.out.println("A:" + buttonA);
+
+
+        final boolean buttonB = gameInputControlsComponent.isButtonB();
+        if (buttonB)
+            System.out.println("B:" + buttonB);
+
+        gameInputControlsComponent.reset();
+
     }
 
     public Entity getAndSetSelectedNearestPlayer(float x, float y) {

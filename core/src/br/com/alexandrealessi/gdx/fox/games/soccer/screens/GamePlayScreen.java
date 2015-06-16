@@ -1,14 +1,15 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
+import br.com.alexandrealessi.gdx.fox.base.input.InputHandle;
 import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
 import br.com.alexandrealessi.gdx.fox.base.utils.EmptyObjects;
 import br.com.alexandrealessi.gdx.fox.base.utils.StopWatch;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.GameInputControlsComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.domain.TeamSide;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.InputHandle;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
@@ -17,7 +18,6 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.TeamFormation;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -77,13 +77,14 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     }
 
     private void setupInput() {
-        final Array<Controller> controllers = Controllers.getControllers();
-        for (Controller c:controllers){
-            c.addListener(new InputHandle());
-        }
 
         this.touchDownInputComponent = new TouchDownInputComponent();
-        InputFactory.newInstance(viewport, touchDownInputComponent)
+
+        final GameInputControlsComponent gameInputControlsComponent = new GameInputControlsComponent();
+        InputHandle inputHandle = new InputHandle(gameInputControlsComponent);
+        Controllers.addListener(inputHandle);
+
+        InputFactory.newInstance(viewport, touchDownInputComponent, gameInputControlsComponent)
                     .createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
 
     }
