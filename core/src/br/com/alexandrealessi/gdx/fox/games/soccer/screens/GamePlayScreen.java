@@ -8,7 +8,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.domain.TeamSide;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.PlayerEntity;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.InputHandle;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
@@ -17,6 +17,8 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.TeamFormation;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -75,10 +77,15 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
     }
 
     private void setupInput() {
+        final Array<Controller> controllers = Controllers.getControllers();
+        for (Controller c:controllers){
+            c.addListener(new InputHandle());
+        }
+
         this.touchDownInputComponent = new TouchDownInputComponent();
         InputFactory.newInstance(viewport, touchDownInputComponent)
                     .createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
-        Gdx.input.setInputProcessor(new GestureDetector(this));
+
     }
 
     private void setupViewport() {
@@ -153,6 +160,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         WorldStepSystem worldStepSystem = new WorldStepSystem();
         GameManagmentSystem gameManagmentSystem = new GameManagmentSystem();
 
+
         engine.addSystem(organizeTeamToMatchSystem);
         engine.addSystem(unprojectInputSystem);
         engine.addSystem(selectPlayerByTouchSystem);
@@ -163,6 +171,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         engine.addSystem(worldStepSystem);
         engine.addSystem(gameManagmentSystem);
 
+
     }
 
     private void createWorld() {
@@ -171,11 +180,7 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         engine.addEntity(worldEntity);
     }
 
-    private void addTeamToEngine(Engine engine, Array<PlayerEntity> players) {
-        for (PlayerEntity p : players) {
-            engine.addEntity(p);
-        }
-    }
+
 
     private Entity createPlayer(Team team, ScaledSprite uniform, String playerName, int n, Vector2 initialPosition) {
         CreateArguments arguments = new CreateArguments();
