@@ -15,7 +15,7 @@ public class GameInputControlsComponent extends Component implements InputHandle
     private boolean buttonX;
     private boolean buttonY;
 
-    private float [] axis  = new float [N_AXIS];
+    private float[] axis = new float[N_AXIS];
 
     public boolean isButtonA() {
         return buttonA;
@@ -54,8 +54,8 @@ public class GameInputControlsComponent extends Component implements InputHandle
         buttonY = false;
         buttonB = false;
         buttonA = false;
-        for (int i = 0 ; i < N_AXIS ; i ++){
-            axis [i] = 0f;
+        for (int i = 0; i < N_AXIS; i++) {
+            axis[i] = 0f;
         }
     }
 
@@ -77,5 +77,29 @@ public class GameInputControlsComponent extends Component implements InputHandle
     @Override
     public void pressY() {
         buttonY = true;
+    }
+
+    @Override
+    public void leftAxisX(int code, float value) {
+        axis[code] = value;
+    }
+
+    @Override
+    public void leftAxisY(int code, float value) {
+        axis[code] = value;
+    }
+
+    @Override
+    public void rightAxisX(int code, float value) {
+        axis[code] = value;
+    }
+
+    @Override
+    public void rightAxisY(int code, float value) {
+        axis[code] = value;
+    }
+
+    public float[] getAxis() {
+        return axis;
     }
 }

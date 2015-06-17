@@ -33,7 +33,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by alexandre on 23/05/15.
  */
-public class GamePlayScreen extends BaseScreen implements GestureDetector.GestureListener {
+public class GamePlayScreen extends BaseScreen  {
 
     public static final int PIXEL_TO_METER_FACTOR = 1;
     public static final boolean DEBUG_PHYSICS = true;
@@ -223,46 +223,4 @@ public class GamePlayScreen extends BaseScreen implements GestureDetector.Gestur
         atlas.dispose();
     }
 
-    //Input //TODO: mover para outra classe.
-    @Override
-    public boolean touchDown(float x, float y, int pointer, int button) {
-        touchDownInputComponent.set(x, y, pointer, button);
-        return true;
-    }
-
-    @Override
-    public boolean tap(float x, float y, int count, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean longPress(float x, float y) {
-        return false;
-    }
-
-    @Override
-    public boolean fling(float velocityX, float velocityY, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean pan(float x, float y, float deltaX, float deltaY) {
-        return false;
-    }
-
-    @Override
-    public boolean panStop(float x, float y, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean zoom(float initialDistance, float distance) {
-        return false;
-    }
-
-    @Override
-    public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
-        return false;
-    }
-
-} // 213 -> 100
+} // 213 -> 100 -> 226

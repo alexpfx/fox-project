@@ -1,15 +1,14 @@
 package br.com.alexandrealessi.gdx.fox.base.input;
 
-import br.com.alexandrealessi.gdx.fox.base.input.XboxOneMapping;
 import com.badlogic.gdx.controllers.Controller;
-import com.badlogic.gdx.controllers.ControllerListener;
+import com.badlogic.gdx.controllers.ControllerAdapter;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.badlogic.gdx.math.Vector3;
 
 /**
  * Created by alexandre on 14/06/15.
  */
-public class InputHandle implements ControllerListener {
+public class InputHandle extends ControllerAdapter {
 
     private InputHandleListener inputHandleListener;
 
@@ -54,21 +53,26 @@ public class InputHandle implements ControllerListener {
 
     @Override
     public boolean axisMoved(Controller controller, int axisCode, float value) {
+        switch (axisCode) {
+            case XboxOneMapping.AXIS_LEFT_X:
+                inputHandleListener.leftAxisX(axisCode, value);
+                break;
+            case XboxOneMapping.AXIS_LEFT_Y:
+                inputHandleListener.leftAxisY(axisCode, value);
+                break;
+            case XboxOneMapping.AXIS_RIGHT_X:
+                inputHandleListener.rightAxisX(axisCode, value);
+                break;
+            case XboxOneMapping.AXIS_RIGHT_Y:
+                inputHandleListener.rightAxisY(axisCode, value);
+                break;
+        }
+
         return true;
     }
 
     @Override
     public boolean povMoved(Controller controller, int povCode, PovDirection value) {
-        return false;
-    }
-
-    @Override
-    public boolean xSliderMoved(Controller controller, int sliderCode, boolean value) {
-        return false;
-    }
-
-    @Override
-    public boolean ySliderMoved(Controller controller, int sliderCode, boolean value) {
         return false;
     }
 
@@ -86,6 +90,15 @@ public class InputHandle implements ControllerListener {
         void pressX();
 
         void pressY();
+
+        void leftAxisX(int code, float value);
+
+        void leftAxisY(int code, float value);
+
+        void rightAxisX(int code, float value);
+
+        void rightAxisY(int code, float value);
+
     }
 
 }

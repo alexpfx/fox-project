@@ -37,7 +37,7 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
         final GameInputControlsComponent gameInputControlsComponent = ComponentMappers.GAME_INPUT_CONTROLS.get(input);
         final TouchDownInputComponent touchDownInputComponent = ComponentMappers.TOUCH_DOWN_INPUT.get(input);
 
-        final Entity player = players.get(MathUtils.random(players.size() - 1));
+        final Entity player = players.get(15);
         processar(player, gameInputControlsComponent);
 
         if (!touchDownInputComponent.isConsumed()) {
@@ -55,25 +55,26 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
     private void processar(Entity player, GameInputControlsComponent gameInputControlsComponent) {
         final boolean buttonX = gameInputControlsComponent.isButtonX();
         final BodyComponent bodyComponent = ComponentMappers.BODY.get(player);
-        final float impulse = 5 * 10000;
-        if (buttonX) {
-            bodyComponent.getBody().applyForceToCenter(-impulse * 1f, 0, true);
+        final float impulse = 1000;
+        final float[] axis = gameInputControlsComponent.getAxis();
+        final float axis0 = axis[0];
+        if (axis0 != 0){
+            bodyComponent.getBody().applyForceToCenter(0, axis0 * impulse * -1, true);
 
-            System.out.println("x");
         }
-        final boolean buttonY = gameInputControlsComponent.isButtonY();
-        if (buttonY) {
-            bodyComponent.getBody().applyForceToCenter(0, impulse, true);
+        final float axis1 = axis[1];
+        if (axis1 != 0){
+            bodyComponent.getBody().applyForceToCenter(axis1 * impulse, 0, true);
         }
 
-        final boolean buttonA = gameInputControlsComponent.isButtonA();
-        if (buttonA) {
-            bodyComponent.getBody().applyForceToCenter(0, -impulse, true);
-        }
-        final boolean buttonB = gameInputControlsComponent.isButtonB();
-        if (buttonB) {
-            bodyComponent.getBody().applyForceToCenter(impulse, 0, true);
-        }
+
+//
+//        public static final int AXIS_LEFT_X = 1; //-1 is left | +1 is right
+//        public static final int AXIS_LEFT_Y = 0; //-1 is up | +1 is down
+//        public static final int AXIS_LEFT_TRIGGER = 4; //value 0 to 1f
+//        public static final int AXIS_RIGHT_X = 3; //-1 is left | +1 is right
+//        public static final int AXIS_RIGHT_Y = 2; //-1 is up | +1 is down
+
 
         gameInputControlsComponent.reset();
     }
