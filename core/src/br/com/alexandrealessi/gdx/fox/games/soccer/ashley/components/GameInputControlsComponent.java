@@ -5,13 +5,17 @@ import com.badlogic.ashley.core.Component;
 
 /**
  * Created by alexandre on 15/06/15.
+ * Deve considerar os controles: botao pressionado e botao segurado.
  */
 public class GameInputControlsComponent extends Component implements InputHandle.InputHandleListener {
 
+    private static final int N_AXIS = 4;
     private boolean buttonA;
     private boolean buttonB;
     private boolean buttonX;
     private boolean buttonY;
+
+    private float [] axis  = new float [N_AXIS];
 
     public boolean isButtonA() {
         return buttonA;
@@ -50,6 +54,9 @@ public class GameInputControlsComponent extends Component implements InputHandle
         buttonY = false;
         buttonB = false;
         buttonA = false;
+        for (int i = 0 ; i < N_AXIS ; i ++){
+            axis [i] = 0f;
+        }
     }
 
     @Override
