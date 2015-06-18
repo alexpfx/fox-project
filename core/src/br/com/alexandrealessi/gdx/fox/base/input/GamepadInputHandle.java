@@ -8,11 +8,11 @@ import com.badlogic.gdx.math.Vector3;
 /**
  * Created by alexandre on 14/06/15.
  */
-public class InputHandle extends ControllerAdapter {
+public class GamepadInputHandle extends ControllerAdapter {
 
     private InputHandleListener inputHandleListener;
 
-    public InputHandle(InputHandleListener inputHandleListener) {
+    public GamepadInputHandle(InputHandleListener inputHandleListener) {
         this.inputHandleListener = inputHandleListener;
     }
 

@@ -1,13 +1,13 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 
-import br.com.alexandrealessi.gdx.fox.base.input.InputHandle;
+import br.com.alexandrealessi.gdx.fox.base.input.GamepadInputHandle;
 import com.badlogic.ashley.core.Component;
 
 /**
  * Created by alexandre on 15/06/15.
  * Deve considerar os controles: botao pressionado e botao segurado.
  */
-public class GameInputControlsComponent extends Component implements InputHandle.InputHandleListener {
+public class GameInputControlsComponent extends Component implements GamepadInputHandle.InputHandleListener {
 
     private static final int N_AXIS = 4;
     private boolean buttonA;

@@ -1,7 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.screens;
 
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
-import br.com.alexandrealessi.gdx.fox.base.input.InputHandle;
+import br.com.alexandrealessi.gdx.fox.base.input.GamepadInputHandle;
 import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
 import br.com.alexandrealessi.gdx.fox.base.utils.EmptyObjects;
 import br.com.alexandrealessi.gdx.fox.base.utils.StopWatch;
@@ -81,7 +81,7 @@ public class GamePlayScreen extends BaseScreen  {
         this.touchDownInputComponent = new TouchDownInputComponent();
 
         final GameInputControlsComponent gameInputControlsComponent = new GameInputControlsComponent();
-        InputHandle inputHandle = new InputHandle(gameInputControlsComponent);
+        GamepadInputHandle inputHandle = new GamepadInputHandle(gameInputControlsComponent);
         Controllers.addListener(inputHandle);
 
         InputFactory.newInstance(viewport, touchDownInputComponent, gameInputControlsComponent)
