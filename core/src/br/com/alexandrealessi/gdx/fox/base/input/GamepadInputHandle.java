@@ -99,7 +99,7 @@ public class GamepadInputHandle extends ControllerAdapter {
             case southWest:
                 break;
         }
-        return false;
+        return true;
 
     }
 
