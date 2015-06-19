@@ -99,6 +99,27 @@ public class GameInputControlsComponent extends Component implements GamepadInpu
         axis[code] = value;
     }
 
+    @Override
+    public void povUp() {
+
+
+    }
+
+    @Override
+    public void povDown() {
+
+    }
+
+    @Override
+    public void povLeft() {
+
+    }
+
+    @Override
+    public void povRight() {
+
+    }
+
     public float[] getAxis() {
         return axis;
     }
