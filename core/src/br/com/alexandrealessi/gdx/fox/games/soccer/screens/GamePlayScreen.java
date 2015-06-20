@@ -78,6 +78,11 @@ public class GamePlayScreen extends BaseScreen  {
 
     private void setupInput() {
 
+        ControllersHolderFactory controllersHolderFactory = new ControllersHolderFactory();
+        CreateArguments arguments = new CreateArguments();
+        arguments.put(ControllersHolderFactory.CONTROLLER, Controllers.getControllers().get(0));
+        controllersHolderFactory.createAndAddToEngine(arguments, engine);
+
         this.touchDownInputComponent = new TouchDownInputComponent();
 
         final GameInputControlsComponent gameInputControlsComponent = new GameInputControlsComponent();
@@ -160,11 +165,13 @@ public class GamePlayScreen extends BaseScreen  {
         RenderSystem renderSystem = new RenderSystem(viewport, DEBUG_PHYSICS);
         WorldStepSystem worldStepSystem = new WorldStepSystem();
         GameManagmentSystem gameManagmentSystem = new GameManagmentSystem();
-
+        InputSystem inputSystem = new InputSystem();
 
         engine.addSystem(organizeTeamToMatchSystem);
         engine.addSystem(unprojectInputSystem);
-        engine.addSystem(selectPlayerByTouchSystem);
+//        engine.addSystem(selectPlayerByTouchSystem);
+
+        engine.addSystem(inputSystem);
         engine.addSystem(aiSystem);
         engine.addSystem(metersToPixelConvertSystem);
         engine.addSystem(cameraPositionSystem);
