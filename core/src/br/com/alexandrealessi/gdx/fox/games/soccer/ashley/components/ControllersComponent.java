@@ -17,4 +17,8 @@ public class ControllersComponent extends Component{
     public static ControllersComponent newInstance(Controller controller) {
         return new ControllersComponent(controller);
     }
+
+    public Controller getController() {
+        return controller;
+    }
 }
