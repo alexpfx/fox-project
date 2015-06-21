@@ -14,6 +14,7 @@ import java.util.Iterator;
 
 /**
  * Created by alexandre on 24/05/15.
+ * Responsavel por incrementar a iteração do world e limpar se for necessario.
  */
 public class WorldStepSystem extends EntitySystem {
     private static final float TIME_STEP = 1 / 60f;
@@ -34,18 +35,6 @@ public class WorldStepSystem extends EntitySystem {
         final World world = worldComponent.getWorld();
         final Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
-
-        if (applyForce ()) {
-            final Body body = bodies.get(MathUtils.random(bodies.size - 1));
-            final Object userData = body.getUserData();
-
-            if (userData != null && userData instanceof EntityUserData) {
-                final float forceX = MathUtils.random(100f);
-                final float forceY = MathUtils.random(100f);
-                body.applyForceToCenter(forceX, forceY, true);
-
-            }
-        }
         clearWorld(world);
         world.step(TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
     }

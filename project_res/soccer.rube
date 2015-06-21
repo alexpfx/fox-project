@@ -929,7 +929,7 @@
         "collideConnected" : false,
         "id" : 17,
         "maxForce" : 300.0,
-        "maxTorque" : 0,
+        "maxTorque" : 300.0,
         "name" : "joint1",
         "type" : "friction"
       }
