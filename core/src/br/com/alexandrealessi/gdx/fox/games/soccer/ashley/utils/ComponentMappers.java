@@ -29,7 +29,7 @@ public class ComponentMappers {
 
     public static final ComponentMapper<PlayerInfoComponent> PLAYER_INFO = getFor(PlayerInfoComponent.class);
 
-    public static final ComponentMapper<PlayersComponent> PLAYERS = getFor(PlayersComponent.class);
+//    public static final ComponentMapper<PlayersComponent> PLAYERS = getFor(PlayersComponent.class);
 
     public static final ComponentMapper<TeamFormationComponent> TEAM_FORMATION = getFor(TeamFormationComponent.class);
     public static final ComponentMapper<TeamInfoComponent> TEAM_INFO = getFor(TeamInfoComponent.class);
