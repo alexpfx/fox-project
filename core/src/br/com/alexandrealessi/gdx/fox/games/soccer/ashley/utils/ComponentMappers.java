@@ -38,6 +38,8 @@ public class ComponentMappers {
 
     public static final ComponentMapper<ControllersComponent> CONTROLLERS = getFor(ControllersComponent.class);
 
+    public static final ComponentMapper<MatchStatusComponent> MATCH_STATUS = getFor(MatchStatusComponent.class);
+
 
 
 }
