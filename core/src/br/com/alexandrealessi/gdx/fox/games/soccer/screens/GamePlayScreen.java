@@ -156,7 +156,7 @@ public class GamePlayScreen extends BaseScreen  {
     }
 
     public void createSystems() {
-        OrganizeTeamToMatchSystem organizeTeamToMatchSystem = new OrganizeTeamToMatchSystem(rubeSceneHelper);
+        TeamOrganizeSystem teamOrganizeSystem = new TeamOrganizeSystem(rubeSceneHelper);
         UnprojectInputSystem unprojectInputSystem = new UnprojectInputSystem();
         SelectPlayerByTouchSystem selectPlayerByTouchSystem = new SelectPlayerByTouchSystem();
         AISystem aiSystem = new AISystem();
@@ -167,7 +167,7 @@ public class GamePlayScreen extends BaseScreen  {
         GameManagmentSystem gameManagmentSystem = new GameManagmentSystem();
         InputSystem inputSystem = new InputSystem();
 
-        engine.addSystem(organizeTeamToMatchSystem);
+        engine.addSystem(teamOrganizeSystem);
         engine.addSystem(unprojectInputSystem);
 //        engine.addSystem(selectPlayerByTouchSystem);
 

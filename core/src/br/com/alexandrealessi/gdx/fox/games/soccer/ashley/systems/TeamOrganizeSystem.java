@@ -21,13 +21,13 @@ import com.badlogic.gdx.utils.Array;
 /**
  * Created by alexandre on 13/06/15.
  */
-public class OrganizeTeamToMatchSystem extends IteratingSystem {
+public class TeamOrganizeSystem extends IteratingSystem {
 
     private ImmutableArray<Entity> teams;
     private RubeSceneHelper rubeSceneHelper;
     private Engine engine;
 
-    public OrganizeTeamToMatchSystem(RubeSceneHelper rubeSceneHelper) {
+    public TeamOrganizeSystem(RubeSceneHelper rubeSceneHelper) {
         super(Family.all(TeamFormationComponent.class, TeamInfoComponent.class, TeamMatchContext.class).get());
         this.rubeSceneHelper = rubeSceneHelper;
     }
