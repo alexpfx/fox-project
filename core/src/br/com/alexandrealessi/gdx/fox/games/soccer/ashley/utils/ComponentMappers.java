@@ -33,12 +33,14 @@ public class ComponentMappers {
 
     public static final ComponentMapper<TeamFormationComponent> TEAM_FORMATION = getFor(TeamFormationComponent.class);
     public static final ComponentMapper<TeamInfoComponent> TEAM_INFO = getFor(TeamInfoComponent.class);
-    public static final ComponentMapper<TeamMatchContext> TEAM_MATCH = getFor(TeamMatchContext.class);
+    public static final ComponentMapper<TeamMatchContextComponent> TEAM_MATCH_CONTEXT = getFor(TeamMatchContextComponent.class);
     public static final ComponentMapper<GameInputControlsComponent> GAME_INPUT_CONTROLS = getFor(GameInputControlsComponent.class);
 
     public static final ComponentMapper<ControllersComponent> CONTROLLERS = getFor(ControllersComponent.class);
 
     public static final ComponentMapper<MatchStatusComponent> MATCH_STATUS = getFor(MatchStatusComponent.class);
+
+    public static final ComponentMapper<BallContextComponent> BALL_CONTEXT = getFor(BallContextComponent.class);
 
 
 
