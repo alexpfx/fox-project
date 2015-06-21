@@ -22,4 +22,8 @@ public class WorldComponent extends Component implements Disposable {
     public void dispose() {
         world.dispose();
     }
+
+    public void clearForces(){
+        world.clearForces();
+    }
 }
