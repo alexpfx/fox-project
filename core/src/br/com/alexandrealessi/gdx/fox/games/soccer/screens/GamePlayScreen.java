@@ -156,8 +156,9 @@ public class GamePlayScreen extends BaseScreen  {
     }
 
     public void createSystems() {
-        TeamOrganizeSystem teamOrganizeSystem = new TeamOrganizeSystem(rubeSceneHelper);
+        TeamCreationSystem teamCreationSystem = new TeamCreationSystem(rubeSceneHelper);
         UnprojectInputSystem unprojectInputSystem = new UnprojectInputSystem();
+        TeamResetSystem teamResetSystem = new TeamResetSystem();
         SelectPlayerByTouchSystem selectPlayerByTouchSystem = new SelectPlayerByTouchSystem();
         AISystem aiSystem = new AISystem();
         MetersToPixelConvertSystem metersToPixelConvertSystem = new MetersToPixelConvertSystem(PIXEL_TO_METER_FACTOR);
@@ -167,7 +168,8 @@ public class GamePlayScreen extends BaseScreen  {
         GameManagmentSystem gameManagmentSystem = new GameManagmentSystem();
         InputSystem inputSystem = new InputSystem();
 
-        engine.addSystem(teamOrganizeSystem);
+        engine.addSystem(teamCreationSystem);
+        engine.addSystem(teamResetSystem);
         engine.addSystem(unprojectInputSystem);
 //        engine.addSystem(selectPlayerByTouchSystem);
 

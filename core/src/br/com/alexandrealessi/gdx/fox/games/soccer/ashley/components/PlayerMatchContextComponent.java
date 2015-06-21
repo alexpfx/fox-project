@@ -1,9 +1,9 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
-import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * Created by alexandre on 01/06/15.
@@ -13,17 +13,19 @@ public class PlayerMatchContextComponent extends Component{
     private Entity team;
     private PlayerPosition position;
     private int playerNumber;
+    private Vector2 initialPosition;
 
     private boolean isSelected = false;
 
-    private PlayerMatchContextComponent(Entity team, PlayerPosition playerPosition, int playerNumber) {
+    private PlayerMatchContextComponent(Entity team, PlayerPosition playerPosition, int playerNumber, Vector2 initialPosition) {
         this.team = team;
         this.position = playerPosition;
         this.playerNumber = playerNumber;
+        this.initialPosition = initialPosition;
     }
 
-    public static PlayerMatchContextComponent newInstance(Entity team, PlayerPosition playerPosition, int playerNumber) {
-        return new PlayerMatchContextComponent(team, playerPosition, playerNumber);
+    public static PlayerMatchContextComponent newInstance(Entity team, PlayerPosition playerPosition, int playerNumber, Vector2 initialPosition) {
+        return new PlayerMatchContextComponent(team, playerPosition, playerNumber, initialPosition);
     }
 
     public PlayerPosition getPosition() {
@@ -44,5 +46,9 @@ public class PlayerMatchContextComponent extends Component{
 
     public int getPlayerNumber() {
         return playerNumber;
+    }
+
+    public Vector2 getInitialPosition() {
+        return initialPosition;
     }
 }

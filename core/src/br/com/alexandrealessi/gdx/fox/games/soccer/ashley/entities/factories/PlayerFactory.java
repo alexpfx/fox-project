@@ -61,7 +61,8 @@ public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
         final Entity team = arguments.get(TEAM);
         final PlayerPosition playerPosition = arguments.get(PLAYER_POSITION);
         final int number = arguments.get(PLAYER_NUMBER, 0);
-        player.add(PlayerMatchContextComponent.newInstance(team, playerPosition, number));
+        player.add(PlayerMatchContextComponent.newInstance(team, playerPosition, number, initialPosition));
+
 
         player.add(PositionComponent.newInstance());
 

@@ -2,10 +2,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.base.box2d.MatchEventListener;
 import br.com.alexandrealessi.gdx.fox.base.box2d.SoccerContactListener;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchScoreComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchTimerComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -22,8 +19,10 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
     private Entity worldEntity;
     private Entity goalLineEntity;
 
+
     private MatchTimerComponent matchTimerComponent;
     private MatchScoreComponent matchScoreComponent;
+    private MatchStatusComponent matchStatusComponent;
 
     @Override
     public void addedToEngine(Engine engine) {
@@ -39,6 +38,8 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
 
         matchScoreComponent = ComponentMappers.MATCH_CONTEXT.get(matchEntity);
 
+        matchStatusComponent = ComponentMappers.MATCH_STATUS.get(matchEntity);
+
         final ImmutableArray<Entity> entitiesFor = engine.getEntitiesFor(Family.one(TeamComponent.class).get());
 
     }
@@ -52,6 +53,9 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
     public void goal(Entity goalLineEntity) {
         final TeamComponent teamComponent = ComponentMappers.TEAM.get(goalLineEntity);
         final Entity team = teamComponent.getTeam();
+
+        matchStatusComponent.setGameStatus(MatchStatusComponent.MatchGameStatus.AFTER_GOAL);
+
         if (team.equals(matchScoreComponent.getHomeTeam())) {
             matchScoreComponent.incrementAwayScore();
         } else {
