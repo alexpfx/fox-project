@@ -3,10 +3,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories;
 import br.com.alexandrealessi.gdx.fox.FixtureUserData;
 import br.com.alexandrealessi.gdx.fox.base.FixtureType;
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.BodyComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.CameraFollowerComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PositionComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.SpriteComponent;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -45,7 +42,7 @@ public class BallFactory extends CreateAndAddToEngineEntityFactory {
         ball.setUserData(new FixtureUserData(FixtureType.BALL, ballEntity));
         ballEntity.add(SpriteComponent.newInstance(ballSprite));
         ballEntity.add(BodyComponent.newInstance(ballBody));
-
+        ballEntity.add(new BallContextComponent());
         final PositionComponent positionComponent = PositionComponent.newInstance();
         ballEntity.add(positionComponent);
         ballEntity.add(new CameraFollowerComponent(camera, SCENE_BOUNDS));
