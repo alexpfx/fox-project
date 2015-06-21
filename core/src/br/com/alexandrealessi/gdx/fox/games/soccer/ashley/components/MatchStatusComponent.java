@@ -18,7 +18,7 @@ public class MatchStatusComponent extends Component {
     }
 
     public enum MatchGameStatus {
-        AFTER_BEGIN, AFTER_GOAL, AFTER_HALF, AFTER_END;
+        AFTER_BEGIN, AFTER_GOAL, AFTER_HALF, AFTER_END, RUNNING;
 
         public boolean isOneOf(MatchGameStatus... matchGameStatuses) {
             for (MatchGameStatus status : matchGameStatuses) {
