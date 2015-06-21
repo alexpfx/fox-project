@@ -39,10 +39,6 @@ public class WorldStepSystem extends EntitySystem {
         world.step(TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
     }
 
-    private boolean applyForce() {
-        return MathUtils.randomBoolean(0.1f);
-    }
-
     private void clearWorld(World world) {
         Array<Body> bodies = new Array<Body>();
         world.getBodies(bodies);
