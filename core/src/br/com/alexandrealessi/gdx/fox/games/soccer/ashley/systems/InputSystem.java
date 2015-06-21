@@ -37,21 +37,30 @@ public class InputSystem extends EntitySystem {
         float y = controller.getAxis(XboxOneMapping.AXIS_LEFT_Y) *  -1;
         x = Math.abs(x) > 0.05f?x:0;
         y = Math.abs(y) > 0.05f?y:0;
-        boolean b = controller.getButton(XboxOneMapping.BUTTON_A);
-        System.out.println(b);
+        boolean a = controller.getButton(XboxOneMapping.BUTTON_A);
+        boolean b = controller.getButton(XboxOneMapping.BUTTON_B);
+        boolean bx = controller.getButton(XboxOneMapping.BUTTON_X);
+        boolean by = controller.getButton(XboxOneMapping.BUTTON_Y);
 
-        float MULT = 50;
-        System.out.println();
-        System.out.println(x);
-        System.out.println(y);
+        System.out.println(a);
+
+        float MULT = 20;
         final Entity player = players.get(14);
         final BodyComponent bodyComponent = ComponentMappers.BODY.get(player);
 
-
-//        bodyComponent.getBody().applyForceToCenter(x * MULT, y * MULT, true);
-        if (b){
-            bodyComponent.getBody().setLinearVelocity(x* MULT, y * MULT);
+        if (a){
+            final float delta = 0.5f;
+            bodyComponent.getBody().setLinearVelocity(x * MULT * delta, y * MULT * delta);
+            System.out.println("xxx");
+        }  else if (b){
+            final float delta = 1f;
+            bodyComponent.getBody().setLinearVelocity(x * MULT * delta, y * MULT * delta);
+        } else if (bx){
+            final float delta = 2f;
+            bodyComponent.getBody().setLinearVelocity(x * MULT * delta, y * MULT * delta);
+        } else if (by){
+            final float delta = 4f;
+            bodyComponent.getBody().setLinearVelocity(x * MULT * delta, y * MULT * delta);
         }
-
     }
 }
