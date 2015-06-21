@@ -6,18 +6,18 @@ import com.badlogic.ashley.core.Component;
 /**
  * Created by alexandre on 12/06/15.
  */
-public class TeamMatchContext extends Component {
+public class TeamMatchContextComponent extends Component {
 
     private TeamSide teamSide;
     private boolean isUserTeam;
 
-    private TeamMatchContext(TeamSide teamSide, boolean isUserTeam) {
+    private TeamMatchContextComponent(TeamSide teamSide, boolean isUserTeam) {
         this.teamSide = teamSide;
         this.isUserTeam = isUserTeam;
     }
 
-    public static TeamMatchContext newInstance(TeamSide teamSide, boolean isUserTeam) {
-        return new TeamMatchContext(teamSide, isUserTeam);
+    public static TeamMatchContextComponent newInstance(TeamSide teamSide, boolean isUserTeam) {
+        return new TeamMatchContextComponent(teamSide, isUserTeam);
     }
 
     public TeamSide getTeamSide() {

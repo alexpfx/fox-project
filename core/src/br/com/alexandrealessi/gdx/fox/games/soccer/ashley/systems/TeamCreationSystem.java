@@ -4,7 +4,7 @@ import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchStatusComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamFormationComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamInfoComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamMatchContext;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamMatchContextComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.domain.TeamSide;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.CreateArguments;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.PlayerFactory;
@@ -24,7 +24,7 @@ import static br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.Matc
 /**
  * Created by alexandre on 13/06/15.
  */
-public class TeamOrganizeSystem extends EntitySystem {
+public class TeamCreationSystem extends EntitySystem {
 
     private ImmutableArray<Entity> teams;
     private RubeSceneHelper rubeSceneHelper;
@@ -32,7 +32,7 @@ public class TeamOrganizeSystem extends EntitySystem {
     private ImmutableArray<Entity> teamEntities;
     private Entity match;
 
-    public TeamOrganizeSystem(RubeSceneHelper rubeSceneHelper) {
+    public TeamCreationSystem(RubeSceneHelper rubeSceneHelper) {
         this.rubeSceneHelper = rubeSceneHelper;
     }
 
@@ -40,15 +40,15 @@ public class TeamOrganizeSystem extends EntitySystem {
     public void addedToEngine(Engine engine) {
         this.engine = engine;
         teamEntities = engine.getEntitiesFor(Family
-                .all(TeamFormationComponent.class, TeamInfoComponent.class, TeamMatchContext.class).get());
+                .all(TeamFormationComponent.class, TeamInfoComponent.class, TeamMatchContextComponent.class).get());
         match = engine.getEntitiesFor(Family.one(MatchStatusComponent.class).get()).first();
     }
 
     protected void organizeTeam(Entity entity) {
         final TeamFormationComponent formationComponent = ComponentMappers.TEAM_FORMATION.get(entity);
         final TeamInfoComponent teamInfoComponent = ComponentMappers.TEAM_INFO.get(entity);
-        final TeamMatchContext teamMatchContext = ComponentMappers.TEAM_MATCH.get(entity);
-        createPlayers(entity, formationComponent.getFormation(), teamInfoComponent, teamMatchContext.getTeamSide());
+        final TeamMatchContextComponent teamMatchContextComponent = ComponentMappers.TEAM_MATCH_CONTEXT.get(entity);
+        createPlayers(entity, formationComponent.getFormation(), teamInfoComponent, teamMatchContextComponent.getTeamSide());
     }
 
 
@@ -81,6 +81,7 @@ public class TeamOrganizeSystem extends EntitySystem {
             organizeTeams();
             matchStatusComponent.setGameStatus(RUNNING);
         }
+        setProcessing(false);
     }
 
     private void organizeTeams() {

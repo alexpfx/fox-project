@@ -1,14 +1,12 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories;
 
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.PlayersComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamFormationComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamInfoComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamMatchContext;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamMatchContextComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.domain.TeamSide;
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.TeamFormation;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by alexandre on 11/06/15.
@@ -54,8 +52,9 @@ public class TeamFactory extends CreateAndAddToEngineEntityFactory{
     private void createAndAddTeamMatchContext(Entity entity, CreateArguments arguments) {
         TeamSide teamSide = arguments.get(TEAM_SIDE);
         boolean isUserTeam = arguments.get(TEAM_IS_USER_TEAM, false);
-        TeamMatchContext teamMatchContext = TeamMatchContext.newInstance(teamSide, isUserTeam);
-        entity.add(teamMatchContext);
+        TeamMatchContextComponent teamMatchContextComponent = TeamMatchContextComponent
+                .newInstance(teamSide, isUserTeam);
+        entity.add(teamMatchContextComponent);
     }
 
     private void createAndAddTeamInfo(Entity entity, CreateArguments arguments){

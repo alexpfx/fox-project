@@ -59,8 +59,8 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
             }
             PlayerMatchContextComponent matchContext = ComponentMappers.PLAYER_MATCH_CONTEXT.get(e);
             final Entity team = matchContext.getTeam();
-            final TeamMatchContext teamMatchContext = ComponentMappers.TEAM_MATCH.get(team);
-            if (teamMatchContext.isUserTeam()) {
+            final TeamMatchContextComponent teamMatchContextComponent = ComponentMappers.TEAM_MATCH_CONTEXT.get(team);
+            if (teamMatchContextComponent.isUserTeam()) {
                 continue;
             }
 
