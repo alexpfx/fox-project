@@ -2,10 +2,11 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.base.UserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.EntityUserData;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
-import com.badlogic.ashley.core.*;
-import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
@@ -21,7 +22,6 @@ public class WorldStepSystem extends EntitySystem {
     private static final int VELOCITY_ITERATIONS = 3;
     private static final int POSITION_ITERATIONS = 2;
     private Entity worldEntity;
-
 
     @Override
     public void addedToEngine(Engine engine) {

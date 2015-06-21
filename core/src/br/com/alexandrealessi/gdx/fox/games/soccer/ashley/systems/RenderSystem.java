@@ -43,8 +43,6 @@ public class RenderSystem extends EntitySystem implements Disposable {
         font = new BitmapFont();
         font.getData().setScale(0.06f);
 
-
-
     }
 
     @Override
@@ -83,7 +81,6 @@ public class RenderSystem extends EntitySystem implements Disposable {
             final float x = positionComponent.getPosition().x;
             final float y = positionComponent.getPosition().y;
 
-
             sprite.setPosition(x - sprite.getWidth() * 0.5f, y - sprite
                     .getHeight() * 0.5f);
             sprite.setRotation(positionComponent.getRotation());
@@ -98,8 +95,8 @@ public class RenderSystem extends EntitySystem implements Disposable {
                     sprite.setColor(Color.WHITE);
                 }
                 final PlayerPosition position = playerMatchContextComponent.getPosition();
-                font.draw(batch, position.toString() , x - 1.1f, y + 1.7f);
-                font.draw(batch, ""+playerMatchContextComponent.getPlayerNumber(), x - 1f, y - 1.5f);
+                font.draw(batch, position.toString(), x - 1.1f, y + 1.7f);
+                font.draw(batch, "" + playerMatchContextComponent.getPlayerNumber(), x - 1f, y - 1.5f);
             }
 
         }

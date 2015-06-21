@@ -8,9 +8,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -40,7 +38,6 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
 
         final Entity player = players.get(15);
 
-
         if (!touchDownInputComponent.isConsumed()) {
             final Touch touch = touchDownInputComponent.getTouch();
             int x = 0;
@@ -52,8 +49,6 @@ public class SelectPlayerByTouchSystem extends EntitySystem {
             spriteComponent.getSprite().setColor(Color.WHITE);
         }
     }
-
-
 
     public Entity getAndSetSelectedNearestPlayer(float x, float y) {
         float lowDistance = Float.MAX_VALUE;

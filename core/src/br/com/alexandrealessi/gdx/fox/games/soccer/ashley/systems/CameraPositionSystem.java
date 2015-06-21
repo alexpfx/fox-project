@@ -28,7 +28,7 @@ public class CameraPositionSystem extends EntitySystem {
     @Override
     public void update(float deltaTime) {
         for (Entity entity : entities) {
-            final CameraFollowerComponent cameraFollowerComponent =  ComponentMappers.CAMERA_FOLLOWER.get(entity);
+            final CameraFollowerComponent cameraFollowerComponent = ComponentMappers.CAMERA_FOLLOWER.get(entity);
             final Rectangle bounds = cameraFollowerComponent.getBounds();
             final PositionComponent positionComponent = ComponentMappers.POSITION.get(entity);
             final Camera camera = cameraFollowerComponent.getCamera();
