@@ -20,7 +20,8 @@ public class InputSystem extends EntitySystem {
 
     @Override
     public void addedToEngine(Engine engine) {
-        controller = engine.getEntitiesFor(Family.all(ControllersComponent.class).get()).get(0);
+        ImmutableArray<Entity> controllers = engine.getEntitiesFor(Family.all(ControllersComponent.class).get());
+        controller = controllers.size() == 0? null:controllers.first();
         players = engine
                 .getEntitiesFor(Family
                         .all(PlayerMatchContextComponent.class, PositionComponent.class, SpriteComponent.class)
@@ -28,8 +29,15 @@ public class InputSystem extends EntitySystem {
 
     }
 
+
+
     @Override
     public void update(float deltaTime) {
+        //FIXME provisorio
+        if (controller == null){
+            setProcessing(false);
+            return;
+        }
         final ControllersComponent controllersComponent = ComponentMappers.CONTROLLERS.get(controller);
         final Controller controller = controllersComponent.getController();
         float x = controller.getAxis(XboxOneMapping.AXIS_LEFT_X);

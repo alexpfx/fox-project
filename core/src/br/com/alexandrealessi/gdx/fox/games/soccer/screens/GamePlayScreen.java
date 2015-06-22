@@ -80,7 +80,7 @@ public class GamePlayScreen extends BaseScreen  {
 
         ControllersHolderFactory controllersHolderFactory = new ControllersHolderFactory();
         CreateArguments arguments = new CreateArguments();
-        arguments.put(ControllersHolderFactory.CONTROLLER, Controllers.getControllers().get(0));
+        arguments.put(ControllersHolderFactory.CONTROLLERS, Controllers.getControllers());
         controllersHolderFactory.createAndAddToEngine(arguments, engine);
 
         this.touchDownInputComponent = new TouchDownInputComponent();
@@ -131,7 +131,7 @@ public class GamePlayScreen extends BaseScreen  {
     public void createTeams() {
         TeamFactory factory = TeamFactory.newInstance(11, rubeSceneHelper);
 
-        final Sprite panda = new Sprite(atlas.findRegion("button"));
+        final Sprite panda = new Sprite(atlas.findRegion("panda"));
         final ScaledSprite gremioUniform = ScaledSprite
                 .newInstance(panda, ANIMAL_SPRITE_SCALE / panda.getHeight());
 
@@ -172,6 +172,7 @@ public class GamePlayScreen extends BaseScreen  {
         engine.addSystem(teamResetSystem);
         engine.addSystem(unprojectInputSystem);
 //        engine.addSystem(selectPlayerByTouchSystem);
+
 
         engine.addSystem(inputSystem);
         engine.addSystem(aiSystem);
