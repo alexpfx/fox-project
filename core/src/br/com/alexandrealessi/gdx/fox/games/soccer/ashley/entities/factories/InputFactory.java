@@ -20,7 +20,7 @@ public class InputFactory extends CreateAndAddToEngineEntityFactory {
         this.gameInputControlsComponent = gameInputControlsComponent;
     }
 
-    public static InputFactory newInstance(Viewport viewport, TouchDownInputComponent touchDownInputComponent, GameInputControlsComponent gameInputControlsComponent) {
+    public static InputFactory create(Viewport viewport, TouchDownInputComponent touchDownInputComponent, GameInputControlsComponent gameInputControlsComponent) {
         return new InputFactory(viewport, touchDownInputComponent, gameInputControlsComponent);
     }
 

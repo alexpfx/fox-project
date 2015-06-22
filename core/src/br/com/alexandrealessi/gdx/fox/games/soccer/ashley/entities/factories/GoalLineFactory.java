@@ -23,7 +23,7 @@ public class GoalLineFactory extends CreateAndAddToEngineEntityFactory {
         this.rubeSceneHelper = rubeSceneHelper;
     }
 
-    public static GoalLineFactory newInstance(RubeSceneHelper rubeSceneHelper) {
+    public static GoalLineFactory create(RubeSceneHelper rubeSceneHelper) {
         return new GoalLineFactory(rubeSceneHelper);
     }
 

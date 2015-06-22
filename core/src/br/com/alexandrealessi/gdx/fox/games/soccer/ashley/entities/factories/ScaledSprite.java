@@ -13,7 +13,7 @@ public class ScaledSprite {
         sprite.setScale(scale);
     }
 
-    public static ScaledSprite newInstance(Sprite sprite, float scale) {
+    public static ScaledSprite create(Sprite sprite, float scale) {
         return new ScaledSprite(sprite, scale);
     }
 

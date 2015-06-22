@@ -20,7 +20,7 @@ public class MatchFactory extends CreateAndAddToEngineEntityFactory {
         this.awayTeam = awayTeam;
     }
 
-    public static MatchFactory newInstance(float matchTotalTime, Entity homeTeam, Entity awayTeam) {
+    public static MatchFactory create(float matchTotalTime, Entity homeTeam, Entity awayTeam) {
         return new MatchFactory(matchTotalTime, homeTeam, awayTeam);
     }
 

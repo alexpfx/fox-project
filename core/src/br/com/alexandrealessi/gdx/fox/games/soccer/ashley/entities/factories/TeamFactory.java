@@ -28,7 +28,7 @@ public class TeamFactory extends CreateAndAddToEngineEntityFactory{
         this.rubeSceneHelper = rubeSceneHelper;
     }
 
-    public static TeamFactory newInstance(int numberOfPlayers, RubeSceneHelper rubeSceneHelper) {
+    public static TeamFactory create(int numberOfPlayers, RubeSceneHelper rubeSceneHelper) {
         return new TeamFactory(numberOfPlayers, rubeSceneHelper);
     }
 

@@ -12,8 +12,6 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldCompon
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.domain.TeamSide;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
-import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.PlayerPosition;
-import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.TeamFormation;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -23,10 +21,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -44,15 +39,12 @@ public class GamePlayScreen extends BaseScreen  {
     private static final float SCENE_HEIGHT = 120;
     private static final float ANIMAL_SPRITE_SCALE = 3.5F;
     private static final Rectangle SCENE_BOUNDS = new Rectangle(-SCENE_WIDTH, -SCENE_HEIGHT, SCENE_WIDTH, SCENE_HEIGHT);
-    boolean isDrag = false;
-    Array<Vector2> points = new Array<Vector2>();
     private TouchDownInputComponent touchDownInputComponent;
     private Engine engine;
     private TextureAtlas atlas;
     private RubeSceneHelper rubeSceneHelper;
     private OrthographicCamera camera;
     private Viewport viewport;
-    private GestureDetector gestureDetector;
     private Entity homeTeam;
     private Entity awayTeam;
 
@@ -72,12 +64,11 @@ public class GamePlayScreen extends BaseScreen  {
     }
 
     private void createMatch() {
-        MatchFactory.newInstance(45f, homeTeam, awayTeam)
+        MatchFactory.create(45f, homeTeam, awayTeam)
                     .createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
     }
 
     private void setupInput() {
-
         ControllersHolderFactory controllersHolderFactory = new ControllersHolderFactory();
         CreateArguments arguments = new CreateArguments();
         arguments.put(ControllersHolderFactory.CONTROLLERS, Controllers.getControllers());
@@ -89,7 +80,7 @@ public class GamePlayScreen extends BaseScreen  {
         GamepadInputHandle inputHandle = new GamepadInputHandle(gameInputControlsComponent);
         Controllers.addListener(inputHandle);
 
-        InputFactory.newInstance(viewport, touchDownInputComponent, gameInputControlsComponent)
+        InputFactory.create(viewport, touchDownInputComponent, gameInputControlsComponent)
                     .createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
 
     }
@@ -106,7 +97,7 @@ public class GamePlayScreen extends BaseScreen  {
     }
 
     public void createGoalLines() {
-        final GoalLineFactory factory = GoalLineFactory.newInstance(rubeSceneHelper);
+        final GoalLineFactory factory = GoalLineFactory.create(rubeSceneHelper);
 
         CreateArguments arguments = new CreateArguments();
         arguments.put(GoalLineFactory.TEAM, awayTeam);
@@ -119,27 +110,27 @@ public class GamePlayScreen extends BaseScreen  {
     }
 
     public void createField() {
-        FieldFactory.newInstance(rubeSceneHelper, atlas, SCENE_HEIGHT)
+        FieldFactory.create(rubeSceneHelper, atlas, SCENE_HEIGHT)
                     .createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
     }
 
     public void createBall() {
-        BallFactory.newInstance(atlas, rubeSceneHelper, camera, SCENE_BOUNDS)
+        BallFactory.create(atlas, rubeSceneHelper, camera, SCENE_BOUNDS)
                    .createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
     }
 
     public void createTeams() {
-        TeamFactory factory = TeamFactory.newInstance(11, rubeSceneHelper);
+        TeamFactory factory = TeamFactory.create(11, rubeSceneHelper);
 
         final Sprite panda = new Sprite(atlas.findRegion("panda"));
         final ScaledSprite gremioUniform = ScaledSprite
-                .newInstance(panda, ANIMAL_SPRITE_SCALE / panda.getHeight());
+                .create(panda, ANIMAL_SPRITE_SCALE / panda.getHeight());
 
         homeTeam = createTeam(factory, TeamFormation.F433, gremioUniform, "Gremio", TeamSide.RIGHT, true);
 
         final Sprite elephant = new Sprite(atlas.findRegion("snake"));
         final ScaledSprite interUniform = ScaledSprite
-                .newInstance(elephant, ANIMAL_SPRITE_SCALE / elephant.getHeight());
+                .create(elephant, ANIMAL_SPRITE_SCALE / elephant.getHeight());
 
         awayTeam = createTeam(factory, TeamFormation.F442, interUniform, "Inter", TeamSide.LEFT, false);
     }
@@ -152,64 +143,25 @@ public class GamePlayScreen extends BaseScreen  {
         arguments.put(TeamFactory.TEAM_SIDE, side);
         arguments.put(TeamFactory.TEAM_IS_USER_TEAM, userTeam);
         return factory.createAndAddToEngine(arguments, engine);
-
     }
-
     public void createSystems() {
-        TeamCreationSystem teamCreationSystem = new TeamCreationSystem(rubeSceneHelper);
-        UnprojectInputSystem unprojectInputSystem = new UnprojectInputSystem();
-        TeamResetSystem teamResetSystem = new TeamResetSystem();
-        SelectPlayerByTouchSystem selectPlayerByTouchSystem = new SelectPlayerByTouchSystem();
-        AISystem aiSystem = new AISystem();
-        MetersToPixelConvertSystem metersToPixelConvertSystem = new MetersToPixelConvertSystem(PIXEL_TO_METER_FACTOR);
-        CameraPositionSystem cameraPositionSystem = new CameraPositionSystem();
-        RenderSystem renderSystem = new RenderSystem(viewport, DEBUG_PHYSICS);
-        WorldStepSystem worldStepSystem = new WorldStepSystem();
-        GameManagmentSystem gameManagmentSystem = new GameManagmentSystem();
-        InputSystem inputSystem = new InputSystem();
-
-        engine.addSystem(teamCreationSystem);
-        engine.addSystem(teamResetSystem);
-        engine.addSystem(unprojectInputSystem);
-//        engine.addSystem(selectPlayerByTouchSystem);
-
-
-        engine.addSystem(inputSystem);
-        engine.addSystem(aiSystem);
-        engine.addSystem(metersToPixelConvertSystem);
-        engine.addSystem(cameraPositionSystem);
-        engine.addSystem(renderSystem);
-        engine.addSystem(worldStepSystem);
-        engine.addSystem(gameManagmentSystem);
-
-
+        engine.addSystem(new TeamCreationSystem(rubeSceneHelper));
+        engine.addSystem(new TeamResetSystem());
+        engine.addSystem(new UnprojectInputSystem());
+//        engine.addSystem(new SelectPlayerByTouchSystem());
+        engine.addSystem(new InputSystem());
+        engine.addSystem(new AISystem());
+        engine.addSystem(new MetersToPixelConvertSystem(PIXEL_TO_METER_FACTOR));
+        engine.addSystem(new CameraPositionSystem());
+        engine.addSystem(new RenderSystem(viewport, DEBUG_PHYSICS));
+        engine.addSystem(new WorldStepSystem());
+        engine.addSystem(new GameManagmentSystem());
     }
 
     private void createWorld() {
         Entity worldEntity = new Entity();
         worldEntity.add(new WorldComponent(rubeSceneHelper.getWorld()));
         engine.addEntity(worldEntity);
-    }
-
-
-
-    private Entity createPlayer(Team team, ScaledSprite uniform, String playerName, int n, Vector2 initialPosition) {
-        CreateArguments arguments = new CreateArguments();
-        arguments.put(PlayerFactory.PLAYER_POSITION, PlayerPosition.AM);
-        arguments.put(PlayerFactory.PLAYER_NAME, playerName);
-        arguments.put(PlayerFactory.UNIFORM, uniform);
-        arguments.put(PlayerFactory.TEAM, team);
-        arguments.put(PlayerFactory.PLAYER_NUMBER, n);
-        arguments.put(PlayerFactory.INITIAL_POSITION, initialPosition);
-
-        final Entity player = PlayerFactory.newInstance(rubeSceneHelper)
-                                           .createAndAddToEngine(arguments, engine);
-
-        return player;
-    }
-
-    @Override
-    public void show() {
     }
 
     @Override
@@ -233,4 +185,4 @@ public class GamePlayScreen extends BaseScreen  {
         atlas.dispose();
     }
 
-} // 213 -> 100 -> 226
+} // 213 -> 100 -> 226 220 201

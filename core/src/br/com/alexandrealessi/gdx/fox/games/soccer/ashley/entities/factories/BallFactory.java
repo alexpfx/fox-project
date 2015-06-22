@@ -28,7 +28,7 @@ public class BallFactory extends CreateAndAddToEngineEntityFactory {
         this.SCENE_BOUNDS = SCENE_BOUNDS;
     }
 
-    public static BallFactory newInstance(TextureAtlas atlas, RubeSceneHelper rubeSceneHelper, Camera camera, Rectangle SCENE_BOUNDS) {
+    public static BallFactory create(TextureAtlas atlas, RubeSceneHelper rubeSceneHelper, Camera camera, Rectangle SCENE_BOUNDS) {
         return new BallFactory(atlas, rubeSceneHelper, camera, SCENE_BOUNDS);
     }
 

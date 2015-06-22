@@ -23,7 +23,7 @@ public class FieldFactory extends CreateAndAddToEngineEntityFactory {
         this.SCENE_HEIGHT = SCENE_HEIGHT;
     }
 
-    public static FieldFactory newInstance(RubeSceneHelper rubeSceneHelper, TextureAtlas atlas, float SCENE_HEIGHT) {
+    public static FieldFactory create(RubeSceneHelper rubeSceneHelper, TextureAtlas atlas, float SCENE_HEIGHT) {
         return new FieldFactory(rubeSceneHelper, atlas, SCENE_HEIGHT);
     }
 
