@@ -3,7 +3,6 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchScoreComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchStatusComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchTimerComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Entity;
 
 /**
@@ -32,7 +31,6 @@ public class MatchFactory extends CreateAndAddToEngineEntityFactory {
         entity.add(new MatchStatusComponent());
         return entity;
     }
-
 
 
 }

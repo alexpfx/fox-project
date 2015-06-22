@@ -3,7 +3,6 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.ControllersComponent;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.controllers.Controller;
-import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -16,10 +15,10 @@ public class ControllersHolderFactory extends CreateAndAddToEngineEntityFactory 
     @Override
     public Entity create(CreateArguments arguments) {
 
-        Array <Controller> controller = arguments.get(CONTROLLERS);
+        Array<Controller> controller = arguments.get(CONTROLLERS);
         Entity entity = new Entity();
 
-        for (Controller c: controller){
+        for (Controller c : controller) {
             entity.add(ControllersComponent.newInstance(c));
         }
         return entity;

@@ -37,7 +37,7 @@ public class BallFactory extends CreateAndAddToEngineEntityFactory {
         final Entity ballEntity = new Entity();
         final Sprite ballSprite = new Sprite(atlas.findRegion("ball"));
         final Body ballBody = rubeSceneHelper.getBody("ball");
-        ballBody.setTransform(0,0,0);
+        ballBody.setTransform(0, 0, 0);
         final Fixture ball = rubeSceneHelper.getFixture(ballBody, "ball");
         ball.setUserData(new FixtureUserData(FixtureType.BALL, ballEntity));
         ballEntity.add(SpriteComponent.newInstance(ballSprite));

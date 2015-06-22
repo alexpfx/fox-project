@@ -5,7 +5,6 @@ import br.com.alexandrealessi.gdx.fox.base.FixtureType;
 import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.BodyComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TeamComponent;
-import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -32,7 +31,7 @@ public class GoalLineFactory extends CreateAndAddToEngineEntityFactory {
     public Entity create(CreateArguments arguments) {
         Entity team = arguments.get(TEAM);
         String goalLineBodyName = arguments.get(GOAL_LINE_BODY_NAME);
-        if (team == null || goalLineBodyName == null){
+        if (team == null || goalLineBodyName == null) {
             throw new IllegalArgumentException("team or body name don't passed as arguments");
         }
         Entity entity = new Entity();

@@ -2,7 +2,6 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories;
 
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.utils.ArrayMap;
 
 /**
  * Created by alexandre on 07/06/15.

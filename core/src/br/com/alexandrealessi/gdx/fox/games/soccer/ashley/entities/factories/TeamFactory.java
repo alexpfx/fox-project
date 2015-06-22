@@ -11,7 +11,7 @@ import com.badlogic.ashley.core.Entity;
 /**
  * Created by alexandre on 11/06/15.
  */
-public class TeamFactory extends CreateAndAddToEngineEntityFactory{
+public class TeamFactory extends CreateAndAddToEngineEntityFactory {
 
     public static final String TEAM_SIDE = "team.side";
     public static final String TEAM_NAME = "team.name";
@@ -37,8 +37,8 @@ public class TeamFactory extends CreateAndAddToEngineEntityFactory{
         Entity entity = new Entity();
 
         createAndAddTeamInfo(entity, arguments);
-        createAndAddTeamMatchContext (entity, arguments);
-        createAndAddTeamFormation (entity, arguments);
+        createAndAddTeamMatchContext(entity, arguments);
+        createAndAddTeamFormation(entity, arguments);
 
         return entity;
     }
@@ -57,7 +57,7 @@ public class TeamFactory extends CreateAndAddToEngineEntityFactory{
         entity.add(teamMatchContextComponent);
     }
 
-    private void createAndAddTeamInfo(Entity entity, CreateArguments arguments){
+    private void createAndAddTeamInfo(Entity entity, CreateArguments arguments) {
         String name = arguments.get(TEAM_NAME);
         ScaledSprite mainUniform = arguments.get(TEAM_MAIN_UNIFORM);
         ScaledSprite gkUniform = arguments.get(TEAM_GK_UNIFORM);
