@@ -1,6 +1,7 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities;
 
 import com.badlogic.ashley.core.Component;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.utils.Array;
 
@@ -43,4 +44,9 @@ public abstract class UserEntity {
     public void init(Entity entity) {
 
     }
+
+    public void addToEngine (Engine engine){
+        engine.addEntity(entity);
+    }
+
 }
