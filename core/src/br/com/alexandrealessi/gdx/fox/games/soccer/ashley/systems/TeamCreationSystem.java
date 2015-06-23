@@ -51,8 +51,6 @@ public class TeamCreationSystem extends EntitySystem {
         createPlayers(entity, formationComponent.getFormation(), teamInfoComponent, teamMatchContextComponent.getTeamSide());
     }
 
-
-    /* nao pode criar aqui. deve somente organizar nas posicoes */
     private void createPlayers(Entity entity, TeamFormation formation, TeamInfoComponent teamInfoComponent, TeamSide side) {
         FormationOrganizer organizer = new FormationOrganizer(formation, FormationOrganizer.FormationOrganizerType.FIXED, side);
         PlayerFactory playerFactory = PlayerFactory.newInstance(rubeSceneHelper);

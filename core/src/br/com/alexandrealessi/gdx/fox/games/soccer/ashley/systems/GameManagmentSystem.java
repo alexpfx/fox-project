@@ -28,6 +28,12 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
     public void addedToEngine(Engine engine) {
         worldEntity = engine.getEntitiesFor(Family.one(WorldComponent.class).get()).first();
 
+
+        //get entities that have all those components.
+        final Entity ballEntity = engine.getEntitiesFor(Family
+                .all(BallContextComponent.class, SpriteComponent.class, BodyComponent.class, PositionComponent.class, CameraFollowerComponent.class)
+                .get()).first();
+
         final WorldComponent worldComponent = ComponentMappers.WORLD.get(worldEntity);
         final World world = worldComponent.getWorld();
         world.setContactListener(new SoccerContactListener(this));

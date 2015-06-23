@@ -16,59 +16,59 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 /**
  * Created by alexandre on 08/06/15.
  */
-public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
-    public static final String PLAYER_NUMBER = "NUMBER";
-    public static final String PLAYER_POSITION = "PLAYER_POSITION";
-    public static final String PLAYER_NAME = "PLAYER_NAME";
-    public static final String UNIFORM = "UNIFORM";
-    public static final String TEAM = "TEAM";
-    public static final String INITIAL_POSITION = "INITIAL_POSITION";
-    private RubeSceneHelper rubeSceneHelper;
-    private BodyCloner bodyCloner;
+    public class PlayerFactory extends CreateAndAddToEngineEntityFactory {
+        public static final String PLAYER_NUMBER = "NUMBER";
+        public static final String PLAYER_POSITION = "PLAYER_POSITION";
+        public static final String PLAYER_NAME = "PLAYER_NAME";
+        public static final String UNIFORM = "UNIFORM";
+        public static final String TEAM = "TEAM";
+        public static final String INITIAL_POSITION = "INITIAL_POSITION";
+        private RubeSceneHelper rubeSceneHelper;
+        private BodyCloner bodyCloner;
 
-    private PlayerFactory(RubeSceneHelper rubeSceneHelper) {
-        this.rubeSceneHelper = rubeSceneHelper;
-        bodyCloner = BodyCloner.newInstance();
+        private PlayerFactory(RubeSceneHelper rubeSceneHelper) {
+            this.rubeSceneHelper = rubeSceneHelper;
+            bodyCloner = BodyCloner.newInstance();
 
+        }
+
+        public static PlayerFactory newInstance(RubeSceneHelper rubeSceneHelper) {
+            return new PlayerFactory(rubeSceneHelper);
+        }
+
+        @Override
+        public Entity create(CreateArguments arguments) {
+            final ScaledSprite uniform = arguments.get(UNIFORM);
+
+            Entity player = new Entity();
+
+            final Body bodyModel = rubeSceneHelper.getBody("player");
+
+            final Fixture bodyFixture = rubeSceneHelper.getFixture(bodyModel, "player_fixture");
+            bodyFixture.setUserData(new FixtureUserData(FixtureType.PLAYER, player));
+
+            final Body body = bodyCloner.clone(bodyModel);
+
+            body.setUserData(EntityUserData.newInstance(player));
+            Vector2 initialPosition = arguments.get(INITIAL_POSITION);
+            body.setTransform(initialPosition.x, initialPosition.y, 0);
+
+            player.add(BodyComponent.newInstance(body));
+
+            final Sprite sprite = new Sprite(uniform.getSprite());
+            player.add(SpriteComponent.newInstance(sprite));
+
+            final Entity team = arguments.get(TEAM);
+            final PlayerPosition playerPosition = arguments.get(PLAYER_POSITION);
+            final int number = arguments.get(PLAYER_NUMBER, 0);
+            player.add(PlayerMatchContextComponent.newInstance(team, playerPosition, number, initialPosition));
+
+
+            player.add(PositionComponent.newInstance());
+
+            String playerName = arguments.get(PLAYER_NAME);
+            player.add(PlayerInfoComponent.newInstance(playerName));
+
+            return player;
+        }
     }
-
-    public static PlayerFactory newInstance(RubeSceneHelper rubeSceneHelper) {
-        return new PlayerFactory(rubeSceneHelper);
-    }
-
-    @Override
-    public Entity create(CreateArguments arguments) {
-        final ScaledSprite uniform = arguments.get(UNIFORM);
-
-        Entity player = new Entity();
-
-        final Body bodyModel = rubeSceneHelper.getBody("player");
-
-        final Fixture bodyFixture = rubeSceneHelper.getFixture(bodyModel, "player_fixture");
-        bodyFixture.setUserData(new FixtureUserData(FixtureType.PLAYER, player));
-
-        final Body body = bodyCloner.clone(bodyModel);
-
-        body.setUserData(EntityUserData.newInstance(player));
-        Vector2 initialPosition = arguments.get(INITIAL_POSITION);
-        body.setTransform(initialPosition.x, initialPosition.y, 0);
-
-        player.add(BodyComponent.newInstance(body));
-
-        final Sprite sprite = new Sprite(uniform.getSprite());
-        player.add(SpriteComponent.newInstance(sprite));
-
-        final Entity team = arguments.get(TEAM);
-        final PlayerPosition playerPosition = arguments.get(PLAYER_POSITION);
-        final int number = arguments.get(PLAYER_NUMBER, 0);
-        player.add(PlayerMatchContextComponent.newInstance(team, playerPosition, number, initialPosition));
-
-
-        player.add(PositionComponent.newInstance());
-
-        String playerName = arguments.get(PLAYER_NAME);
-        player.add(PlayerInfoComponent.newInstance(playerName));
-
-        return player;
-    }
-}
