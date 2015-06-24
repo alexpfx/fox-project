@@ -20,13 +20,14 @@ import com.badlogic.gdx.utils.Array;
  */
 public class BallEntity extends UserEntity {
     public static final float SCALE_FACTOR = 0.78f;
+    public static final String BALL = "ball";
     private Body ballBody;
     private Camera camera;
     private Sprite ball;
     private Fixture ballFixture;
 
     public BallEntity(TextureAtlas atlas, RubeSceneHelper rubeSceneHelper, Camera camera) {
-        this(ScaledSprite.createUsingHeight(new Sprite(atlas.findRegion("ball")), SCALE_FACTOR), rubeSceneHelper);
+        this(ScaledSprite.createUsingHeight(new Sprite(atlas.findRegion(BALL)), SCALE_FACTOR), rubeSceneHelper);
         this.camera = camera;
     }
 

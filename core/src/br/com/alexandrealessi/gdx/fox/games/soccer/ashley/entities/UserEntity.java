@@ -45,7 +45,7 @@ public abstract class UserEntity {
 
     }
 
-    public void addToEngine (Engine engine){
+    public void addToEngine(Engine engine) {
         engine.addEntity(entity);
     }
 
