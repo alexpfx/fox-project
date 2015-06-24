@@ -10,6 +10,7 @@
     import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
     import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
     import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.domain.TeamSide;
+    import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.BallEntity;
     import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.*;
     import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
     import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.TeamFormation;
@@ -115,8 +116,8 @@
         }
 
         public void createBall() {
-            BallFactory.create(atlas, rubeSceneHelper, camera, SCENE_BOUNDS)
-                       .createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
+            BallEntity ballEntity = new BallEntity(atlas, rubeSceneHelper, camera);
+            ballEntity.addToEngine(engine);
         }
 
         public void createTeams() {

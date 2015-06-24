@@ -27,8 +27,6 @@ public class GameManagmentSystem extends EntitySystem implements MatchEventListe
     @Override
     public void addedToEngine(Engine engine) {
         worldEntity = engine.getEntitiesFor(Family.one(WorldComponent.class).get()).first();
-
-
         //get entities that have all those components.
         final Entity ballEntity = engine.getEntitiesFor(Family
                 .all(BallContextComponent.class, SpriteComponent.class, BodyComponent.class, PositionComponent.class, CameraFollowerComponent.class)
