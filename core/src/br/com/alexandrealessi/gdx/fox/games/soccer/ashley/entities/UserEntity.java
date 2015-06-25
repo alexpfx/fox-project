@@ -20,18 +20,18 @@ public abstract class UserEntity {
 
     public final Entity getEntity() {
         if (!wasBuilt) {
-            final Array<Component> components = getComponents();
+            final Component[] components = getComponents();
             componentClasses = new Array<Class<? extends Component>>();
             for (Component c : components) {
                 entity.add(c);
                 componentClasses.add(c.getClass());
             }
-            init(entity);
+            afterInit(entity);
         }
         return entity;
     }
 
-    protected abstract Array<Component> getComponents();
+    protected abstract Component [] getComponents();
 
     public Class<? extends Component>[] getComponentClasses() {
         if (!wasBuilt) {
@@ -41,7 +41,7 @@ public abstract class UserEntity {
     }
 
     /* Override when need to init some components */
-    public void init(Entity entity) {
+    public void afterInit(Entity entity) {
 
     }
 

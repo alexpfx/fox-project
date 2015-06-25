@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by alexandre on 22/06/15.
@@ -46,18 +45,17 @@ public class BallEntity extends UserEntity {
     }
 
     @Override
-    public Array<Component> getComponents() {
-        Array<Component> components = new Array<Component>();
-        components.add(PositionComponent.newInstance());
-        components.add(CameraFollowerComponent.newInstance(camera));
-        components.add(SpriteComponent.newInstance(ball));
-        components.add(BodyComponent.newInstance(ballBody));
-        components.add(BallContextComponent.newInstance());
-        return components;
+    public Component[] getComponents() {
+        return new Component[]{
+                PositionComponent.newInstance(),
+                CameraFollowerComponent.newInstance(camera),
+                SpriteComponent.newInstance(ball),
+                BodyComponent.newInstance(ballBody),
+                BallContextComponent.newInstance()};
     }
 
     @Override
-    public void init(Entity entity) {
+    public void afterInit(Entity entity) {
         BodyComponent bodyComponent = entity.getComponent(BodyComponent.class);
         bodyComponent.setPosition(Vector2.Zero);
         ballFixture.setUserData(new FixtureUserData(FixtureType.BALL, entity));
