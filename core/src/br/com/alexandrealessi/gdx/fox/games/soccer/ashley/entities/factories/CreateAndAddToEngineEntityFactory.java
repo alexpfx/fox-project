@@ -8,12 +8,10 @@ import com.badlogic.ashley.core.Entity;
  */
 public abstract class CreateAndAddToEngineEntityFactory<E extends Entity> implements EntityFactory<E> {
 
-
     public final E createAndAddToEngine(CreateArguments arguments, Engine engine) {
         final E entity = create(arguments);
         engine.addEntity(entity);
         return entity;
     }
-
 
 }

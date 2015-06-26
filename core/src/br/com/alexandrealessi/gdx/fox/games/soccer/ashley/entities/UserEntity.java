@@ -11,19 +11,19 @@ import com.badlogic.ashley.utils.ImmutableArray;
  */
 public abstract class UserEntity {
 
+    private final boolean buildable;
     private Entity entity;
     private boolean wasBuilt = false;
-    private final boolean buildable;
 
     protected UserEntity(boolean buildable) {
         this.buildable = buildable;
-        if (buildable){
+        if (buildable) {
             this.entity = new Entity();
         }
     }
 
     public final Entity getEntity() {
-        if (!buildable){
+        if (!buildable) {
             throw new IllegalArgumentException("it's not a buildable Entity");
         }
         if (!wasBuilt) {
@@ -43,7 +43,7 @@ public abstract class UserEntity {
 
     }
 
-    public ImmutableArray<Entity> getAllInEngine(Engine engine){
+    public ImmutableArray<Entity> getAllInEngine(Engine engine) {
         return engine.getEntitiesFor(getDistinctFamily());
     }
 

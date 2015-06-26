@@ -16,7 +16,8 @@ public class ScaledSprite {
     public static ScaledSprite create(Sprite sprite, float scale) {
         return new ScaledSprite(sprite, scale);
     }
-    public static ScaledSprite createUsingHeight(Sprite sprite, float scaleFactor){
+
+    public static ScaledSprite createUsingHeight(Sprite sprite, float scaleFactor) {
         return new ScaledSprite(sprite, scaleFactor / sprite.getHeight());
     }
 

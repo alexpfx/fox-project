@@ -32,5 +32,4 @@ public class MatchFactory extends CreateAndAddToEngineEntityFactory {
         return entity;
     }
 
-
 }

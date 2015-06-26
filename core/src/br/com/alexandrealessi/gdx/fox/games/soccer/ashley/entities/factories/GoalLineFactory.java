@@ -26,7 +26,6 @@ public class GoalLineFactory extends CreateAndAddToEngineEntityFactory {
         return new GoalLineFactory(rubeSceneHelper);
     }
 
-
     @Override
     public Entity create(CreateArguments arguments) {
         Entity team = arguments.get(TEAM);
