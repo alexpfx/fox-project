@@ -2,6 +2,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems;
 
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.MatchStatusComponent.MatchGameStatus;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.BallEntity;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.utils.ComponentMappers;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -26,6 +27,7 @@ public class TeamResetSystem extends EntitySystem {
         players = engine.getEntitiesFor(Family.all(PlayerInfoComponent.class, PlayerMatchContextComponent.class).get());
         match = engine.getEntitiesFor(Family.one(MatchStatusComponent.class).get()).first();
         ball = engine.getEntitiesFor(Family.one(BallContextComponent.class).get()).first();
+        ball = new BallEntity().getAllInEngine(engine).first();
         world = engine.getEntitiesFor(Family.one(WorldComponent.class).get()).first();
     }
 

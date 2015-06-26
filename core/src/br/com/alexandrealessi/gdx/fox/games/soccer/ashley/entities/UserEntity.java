@@ -3,50 +3,50 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.utils.Array;
+import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.utils.ImmutableArray;
 
 /**
  * Created by alexandre on 22/06/15.
  */
 public abstract class UserEntity {
 
-    private final Entity entity;
+    private Entity entity;
     private boolean wasBuilt = false;
-    private Array<Class<? extends Component>> componentClasses;
+    private final boolean buildable;
 
-    protected UserEntity() {
-        this.entity = new Entity();
+    protected UserEntity(boolean buildable) {
+        this.buildable = buildable;
+        if (buildable){
+            this.entity = new Entity();
+        }
     }
 
     public final Entity getEntity() {
+        if (!buildable){
+            throw new IllegalArgumentException("it's not a buildable Entity");
+        }
         if (!wasBuilt) {
             final Component[] components = getComponents();
-            componentClasses = new Array<Class<? extends Component>>();
             for (Component c : components) {
                 entity.add(c);
-                componentClasses.add(c.getClass());
             }
-            afterInit(entity);
+            afterConstruct(entity);
         }
         return entity;
     }
 
-    protected abstract Component [] getComponents();
-
-    public Class<? extends Component>[] getComponentClasses() {
-        if (!wasBuilt) {
-            throw new IllegalArgumentException("It needs to build entity before use it.");
-        }
-        return componentClasses.toArray();
-    }
+    protected abstract Component[] getComponents();
 
     /* Override when need to init some components */
-    public void afterInit(Entity entity) {
+    public void afterConstruct(Entity entity) {
 
     }
 
-    public void addToEngine(Engine engine) {
-        engine.addEntity(entity);
+    public ImmutableArray<Entity> getAllInEngine(Engine engine){
+        return engine.getEntitiesFor(getDistinctFamily());
     }
+
+    protected abstract Family getDistinctFamily();
 
 }

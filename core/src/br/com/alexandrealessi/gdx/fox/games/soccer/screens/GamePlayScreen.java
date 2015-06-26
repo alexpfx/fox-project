@@ -118,7 +118,7 @@ public class GamePlayScreen extends BaseScreen {
     public void createBall() {
         final BallEntity ballEntity = new BallEntityFactory(atlas, rubeSceneHelper)
                 .createBallEntity("ball", 0.78f, camera);
-        ballEntity.addToEngine(engine);
+        engine.addEntity(ballEntity.getEntity());
     }
 
     public void createTeams() {
