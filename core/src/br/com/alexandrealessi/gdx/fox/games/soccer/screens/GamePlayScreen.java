@@ -6,6 +6,7 @@ import br.com.alexandrealessi.gdx.fox.base.screens.BaseScreen;
 import br.com.alexandrealessi.gdx.fox.base.utils.EmptyObjects;
 import br.com.alexandrealessi.gdx.fox.base.utils.StopWatch;
 import br.com.alexandrealessi.gdx.fox.games.soccer.SoccerGame;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.BallContextComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.GameInputControlsComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownInputComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
