@@ -2,14 +2,11 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities;
 
 import br.com.alexandrealessi.gdx.fox.FixtureUserData;
 import br.com.alexandrealessi.gdx.fox.base.FixtureType;
-import br.com.alexandrealessi.gdx.fox.base.box2d.RubeSceneHelper;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.ScaledSprite;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -22,26 +19,14 @@ public class BallEntity extends UserEntity {
     public static final String BALL = "ball";
     private Body ballBody;
     private Camera camera;
-    private Sprite ball;
+    private ScaledSprite ballSprite;
     private Fixture ballFixture;
 
-    public BallEntity(TextureAtlas atlas, RubeSceneHelper rubeSceneHelper, Camera camera) {
-        this(ScaledSprite.createUsingHeight(new Sprite(atlas.findRegion(BALL)), SCALE_FACTOR), rubeSceneHelper);
-        this.camera = camera;
-    }
-
-    private BallEntity(ScaledSprite scaledSprite, RubeSceneHelper rubeSceneHelper) {
-        this(scaledSprite.getSprite(), rubeSceneHelper.getBody("ball"), rubeSceneHelper);
-    }
-
-    private BallEntity(Sprite sprite, Body ballBody, RubeSceneHelper rubeSceneHelper) {
-        this(rubeSceneHelper.getFixture(ballBody, "ball"));
-        this.ball = sprite;
+    public BallEntity(ScaledSprite ballSprite, Body ballBody, Fixture ballFixture, Camera camera) {
+        this.ballSprite = ballSprite;
         this.ballBody = ballBody;
-    }
-
-    private BallEntity(Fixture ballFixture) {
         this.ballFixture = ballFixture;
+        this.camera = camera;
     }
 
     @Override
@@ -49,7 +34,7 @@ public class BallEntity extends UserEntity {
         return new Component[]{
                 PositionComponent.newInstance(),
                 CameraFollowerComponent.newInstance(camera),
-                SpriteComponent.newInstance(ball),
+                SpriteComponent.newInstance(ballSprite.getSprite()),
                 BodyComponent.newInstance(ballBody),
                 BallContextComponent.newInstance()};
     }
@@ -61,3 +46,6 @@ public class BallEntity extends UserEntity {
         ballFixture.setUserData(new FixtureUserData(FixtureType.BALL, entity));
     }
 }
+
+
+
