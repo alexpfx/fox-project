@@ -5,7 +5,7 @@ package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.domain;
  */
 public enum TeamSide {
 
-    LEFT (-1), RIGHT(1);
+    LEFT(-1), RIGHT(1);
 
     private int multiplicator;
 

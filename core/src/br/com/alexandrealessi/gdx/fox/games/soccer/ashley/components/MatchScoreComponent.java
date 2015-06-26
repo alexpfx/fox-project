@@ -1,6 +1,5 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 
-import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
 
@@ -14,7 +13,6 @@ public class MatchScoreComponent extends Component {
 
     private Entity awayTeam;
     private int awayScore = 0;
-
 
     public MatchScoreComponent(Entity homeTeam, Entity awayTeam) {
         this.homeTeam = homeTeam;
@@ -49,8 +47,5 @@ public class MatchScoreComponent extends Component {
     public void incrementAwayScore() {
         awayScore++;
     }
-
-
-
 
 }

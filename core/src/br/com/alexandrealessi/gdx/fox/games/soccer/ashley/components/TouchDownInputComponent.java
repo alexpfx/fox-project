@@ -12,12 +12,11 @@ public class TouchDownInputComponent extends Component {
     private Touch touch = new Touch();
     private boolean consumed = true;
 
-
-    public void set (Vector3 coords){
+    public void set(Vector3 coords) {
         set(coords.x, coords.y, touch.pointer, touch.button);
     }
 
-    public void set (float x, float y, int pointer, int button){
+    public void set(float x, float y, int pointer, int button) {
         touch.x = x;
         touch.y = y;
         touch.pointer = pointer;
@@ -25,7 +24,7 @@ public class TouchDownInputComponent extends Component {
         consumed = false;
     }
 
-    public Touch getTouch (){
+    public Touch getTouch() {
         consumed = true;
         return touch;
     }

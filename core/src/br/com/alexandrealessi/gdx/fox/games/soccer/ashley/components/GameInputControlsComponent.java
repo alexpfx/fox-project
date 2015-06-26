@@ -102,7 +102,6 @@ public class GameInputControlsComponent extends Component implements GamepadInpu
     @Override
     public void povUp() {
 
-
     }
 
     @Override

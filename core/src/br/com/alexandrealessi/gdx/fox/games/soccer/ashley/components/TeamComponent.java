@@ -1,13 +1,12 @@
 package br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components;
 
-import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.Team;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
 
 /**
  * Created by alexandre on 07/06/15.
  */
-public class TeamComponent extends Component{
+public class TeamComponent extends Component {
 
     private Entity team;
 

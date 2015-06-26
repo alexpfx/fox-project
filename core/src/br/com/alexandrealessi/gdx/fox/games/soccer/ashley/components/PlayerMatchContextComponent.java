@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Created by alexandre on 01/06/15.
  */
-public class PlayerMatchContextComponent extends Component{
+public class PlayerMatchContextComponent extends Component {
 
     private Entity team;
     private PlayerPosition position;

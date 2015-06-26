@@ -5,7 +5,7 @@ import com.badlogic.ashley.core.Component;
 /**
  * Created by alex on 07/06/2015.
  */
-public class MatchTimerComponent extends Component{
+public class MatchTimerComponent extends Component {
 
     private final float totalTime;
     private float timer;

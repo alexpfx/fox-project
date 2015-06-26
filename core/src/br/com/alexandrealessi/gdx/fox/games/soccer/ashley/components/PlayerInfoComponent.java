@@ -21,15 +21,14 @@ public class PlayerInfoComponent extends Component {
         return nome;
     }
 
-    public void incrementBallPlayer (){
-        ballPlayerContact ++;
+    public void incrementBallPlayer() {
+        ballPlayerContact++;
         System.out.println(ballPlayerContact);
     }
 
-    public boolean wasReach (){
+    public boolean wasReach() {
         incrementBallPlayer();
         return ballPlayerContact >= 6;
     }
-
 
 }
