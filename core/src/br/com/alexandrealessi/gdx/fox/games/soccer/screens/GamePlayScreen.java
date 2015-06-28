@@ -12,6 +12,7 @@ import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.TouchDownIn
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.WorldComponent;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.components.domain.TeamSide;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.BallEntity;
+import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.FieldEntity;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.entities.factories.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.ashley.systems.*;
 import br.com.alexandrealessi.gdx.fox.games.soccer.domain.team.TeamFormation;
@@ -112,8 +113,8 @@ public class GamePlayScreen extends BaseScreen {
     }
 
     public void createField() {
-        FieldFactory.create(rubeSceneHelper, atlas, SCENE_HEIGHT)
-                    .createAndAddToEngine(EmptyObjects.EMPTY_CREATE_ARGUMENTS, engine);
+        final FieldEntity fieldEntity = new FieldEntityFactory(rubeSceneHelper, atlas).create("small_field", SCENE_HEIGHT);
+        engine.addEntity(fieldEntity.getEntity());
     }
 
     public void createBall() {
